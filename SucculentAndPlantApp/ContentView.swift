@@ -12,51 +12,84 @@ import _PhotosUI_SwiftUI
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var shareService: PersistImageService
+    @StateObject private var imagePicker = ImagePicker()
+    @State private var formState: NewSucculentFormState?
+    @State private var imageExists = false
+    @State private var searchText = ""
+    
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name)])
     private var items: FetchedResults<Item>
-    @StateObject private var imagePicker = ImagePicker()
-    @State private var formType: NewSucculentFormState?
-    @State private var imageExists = false
+    
+    var gridItemLayout = [GridItem(.adaptive(minimum: 200))]
     
     var body: some View {
         NavigationStack {
-            Group {
-                if items.isEmpty {
-                    EmptyGridView()
-                } else {
-                    GridView(items: items, viewContext: viewContext)
-                }
-            }
-            .navigationTitle("My Succulents")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    PhotosPicker("New Image",
-                                 selection: $imagePicker.imageSelection,
-                                 matching: .images,
-                                 photoLibrary: .shared())
-                    .buttonStyle(.borderedProminent)
-                }
-            }
-            .onChange(of: imagePicker.uiImage) { newImage in
-                if let newImage {
-                    formType = .new(newImage)
-                }
-            }
-            .onChange(of: shareService.codeableImage) { codableImage in
-                if let codableImage {
-                    if let item = items.first(where: {$0.id == codableImage.id}) {
-                        // Update
-                        updateInfo(myItem: item)
-                        imageExists.toggle()
+            GeometryReader { proxy in
+                let cellWidth = proxy.size.width/2.45
+                
+                Group {
+                    if items.isEmpty {
+                        EmptyGridView()
                     } else {
-                        // New
-                        restoreMyImage()
+                        ScrollView {
+                            LazyVGrid(columns: gridItemLayout, spacing: 20) {
+                                ForEach(items) { item in
+                                    Button {
+                                        formState = .edit(item)
+                                    } label: {
+                                        Image(uiImage: item.uiImage)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: cellWidth, height: cellWidth)
+                                            .clipped()
+                                            .cornerRadius(24)
+                                            .shadow(radius: 15.0)
+                                    }
+                                }
+                                .onDelete(perform: deleteItems)
+                            }
+                        }
                     }
                 }
-            }
-            .sheet(item: $formType) { $0 }
-            .alert("Image Updated", isPresented: $imageExists) {
-                Button("OK") {}
+                .navigationTitle("All Succulents")
+                .searchable(text: $searchText, prompt: "Search")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        PhotosPicker(selection: $imagePicker.imageSelection,
+                                     matching: .images,
+                                     photoLibrary: .shared()) {
+                            Image(systemName: "plus")
+                        }
+                    }
+                }
+                .onChange(of: imagePicker.uiImage) { newImage in
+                    if let newImage {
+                        formState = .new(newImage)
+                    }
+                }
+                .onChange(of: shareService.codeableImage) { codableImage in
+                    if let codableImage {
+                        if let item = items.first(where: {$0.id == codableImage.id}) {
+                            // Update
+                            updateInfo(myItem: item)
+                            imageExists.toggle()
+                        } else {
+                            // New
+                            restoreMyImage()
+                        }
+                    }
+                }
+                .onChange(of: searchText) { value in
+                    if (searchText != ""){
+                        items.nsPredicate = NSPredicate(format: "name CONTAINS[c] %@", searchText)
+                    } else {
+                        items.nsPredicate = nil
+                    }
+                }
+                .sheet(item: $formState) { $0 }
+                .alert("Image Updated", isPresented: $imageExists) {
+                    Button("OK") {}
+                }
             }
         }
     }
@@ -90,36 +123,7 @@ struct ContentView: View {
         shareService.codeableImage = nil
     }
     
-    struct GridView: View {
-        var items: FetchedResults<Item>
-        var viewContext: NSManagedObjectContext
-        
-        var body: some View {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        VStack {
-//                            Image(uiImage: item.uiImage)
-//                                .resizable()
-//                                .scaledToFill()
-//                                .frame(width: 100, height: 100)
-//                                .clipped()
-//                                .shadow(radius: 5.0)
-                            Text("Item \(item.nameText)")
-                        }
-                    } label: {
-                        Image(uiImage: item.uiImage)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 100, height: 100)
-                            .clipped()
-                            .shadow(radius: 5.0)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-        }
-        
+
         private func deleteItems(offsets: IndexSet) {
             withAnimation {
                 offsets.map { items[$0] }.forEach(viewContext.delete)
@@ -133,7 +137,7 @@ struct ContentView: View {
                     fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
                 }
             }
-        }
+        
     }
     
     struct EmptyGridView: View {
