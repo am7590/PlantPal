@@ -43,7 +43,7 @@ struct ContentView: View {
                                             .frame(width: cellWidth, height: cellWidth)
                                             .clipped()
                                             .cornerRadius(24)
-                                            .shadow(radius: 15.0)
+                                            .shadow(radius: 8.0)
                                     }
                                 }
                                 .onDelete(perform: deleteItems)
@@ -80,7 +80,7 @@ struct ContentView: View {
                     }
                 }
                 .onChange(of: searchText) { value in
-                    if (searchText != ""){
+                    if searchText != "" {
                         items.nsPredicate = NSPredicate(format: "name CONTAINS[c] %@", searchText)
                     } else {
                         items.nsPredicate = nil
@@ -142,7 +142,12 @@ struct ContentView: View {
     
     struct EmptyGridView: View {
         var body: some View {
-            Text("Select an item")
+            HStack {
+                Spacer()
+                Text("Empty")
+                Spacer()
+            }
+            .padding(.vertical)
         }
     }
     

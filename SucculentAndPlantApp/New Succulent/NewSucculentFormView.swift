@@ -18,63 +18,100 @@ struct NewSucculentFormView: View {
     private var myImages: FetchedResults<Item>
     
     @State private var name = ""
+    @State var amount = 0
     
     var body: some View {
         NavigationStack {
             Image(uiImage: viewModel.uiImage)
                 .resizable()
                 .scaledToFit()
-            
-            TextField("Name", text: $viewModel.name)
-            
-            HStack {
-                Text("Date Taken")
-                Spacer()
-                if viewModel.dateHidden {
-                    Text("No Date")
-                    Button("Set Date") {
-                        viewModel.date = Date()
-                    }
-                } else {
+                .cornerRadius(24)
+
+        
+            List {
+                Section {
                     HStack {
-                        DatePicker("", selection: $viewModel.date, in: ...Date(), displayedComponents: .date)
-                        Button("Clear date") {
-                            viewModel.date = Date.distantPast
+                        Spacer()
+                        Image(systemName: "drop.fill")
+                            .foregroundColor(Color.accentColor)
+                        PhotosPicker("Water",
+                                     selection: $imagePicker.imageSelection,
+                                     matching: .images,
+                                     photoLibrary: .shared())
+                        Spacer()
+                    }
+                    .bold()
+                }
+                .listRowBackground(Color(uiColor: .blue.withAlphaComponent(0.1)))
+                
+                Section("General Info") {
+                    TextField("Name", text: $viewModel.name)
+                        .textFieldStyle(.plain)
+                }
+                .listRowBackground(Color(uiColor: .secondarySystemBackground))
+                
+                Section("Water Plant") {
+                    Picker("Water", selection: $amount) {
+                        Text("As needed")
+                            .tag(0)
+                        ForEach(1..<11) { number in
+                            Text("every " + number.description + " days")
+                                .tag(number)
                         }
                     }
-                }
-            }
-            .padding()
-            .buttonStyle(.bordered)
-            
-            HStack {
-                if viewModel.updating {
-                    PhotosPicker("Change Image",
-                                 selection: $imagePicker.imageSelection,
-                                 matching: .images,
-                                 photoLibrary: .shared())
+                    
+                    HStack {
+                        Text("Last Watered")
+                        Spacer()
+                        if viewModel.dateHidden {
+                            Text("No Date")
+                            Button("Set Date") {
+                                viewModel.date = Date()
+                            }
+                        } else {
+                            HStack {
+                                DatePicker("", selection: $viewModel.date, in: ...Date(), displayedComponents: .date)
+                                //                                Button("Clear") {
+                                //                                    viewModel.date = Date.distantPast
+                                //                                }
+                            }
+                        }
+                    }
                     .buttonStyle(.bordered)
                 }
-                Button {
-                    if viewModel.updating {
-                        updateImage()
-                        dismiss()
-                    } else {
-                        let newImage = Item(context: moc)
-                        newImage.name = viewModel.name
-                        newImage.id = UUID().uuidString
-                        newImage.image = viewModel.uiImage
-                        try? moc.save()
-                        dismiss()
-                    }
-                } label: {
-                    Image(systemName: "checkmark")
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(.green)
-                .disabled(viewModel.incomplete)
+                .listRowBackground(Color(uiColor: .secondarySystemBackground))
             }
+            .cornerRadius(24)
+            .scrollContentBackground(.hidden)
             
+            //            HStack {
+            //                if viewModel.updating {
+            //                    PhotosPicker("Change Image",
+            //                                 selection: $imagePicker.imageSelection,
+            //                                 matching: .images,
+            //                                 photoLibrary: .shared())
+            //                    .buttonStyle(.bordered)
+            //                }
+            //                Button {
+            //                    if viewModel.updating {
+            //                        updateImage()
+            //                        dismiss()
+            //                    } else {
+            //                        let newImage = Item(context: moc)
+            //                        newImage.name = viewModel.name
+            //                        newImage.id = UUID().uuidString
+            //                        newImage.image = viewModel.uiImage
+            //                        try? moc.save()
+            //                        dismiss()
+            //                    }
+            //                } label: {
+            //                    Image(systemName: "checkmark")
+            //                }
+            //                .buttonStyle(.borderedProminent)
+            //                .tint(.green)
+            //                .disabled(viewModel.incomplete)
+            //            }
+            //
             Spacer()
         }
         .padding()
@@ -93,7 +130,6 @@ struct NewSucculentFormView: View {
                     HStack {
                         Button {
                             if let selectedImage = myImages.first(where: {$0.id == viewModel.id}) {
-//                                    FileManager().deleteImage(with: selectedImage.imageID)
                                 moc.delete(selectedImage)
                                 try? moc.save()
                             }
@@ -119,7 +155,7 @@ struct NewSucculentFormView: View {
            let selectedImage = myImages.first(where: {$0.id == id}) {
             selectedImage.name = viewModel.name
             selectedImage.image = viewModel.uiImage
-//            FileManager().saveImage(with: id, image: viewModel.uiImage)
+            //            FileManager().saveImage(with: id, image: viewModel.uiImage)
             if moc.hasChanges {
                 try? moc.save()
             }
