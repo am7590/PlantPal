@@ -7,61 +7,146 @@
 
 import SwiftUI
 import CoreData
+import _PhotosUI_SwiftUI
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
+    @EnvironmentObject var shareService: PersistImageService
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.name)])
     private var items: FetchedResults<Item>
-
+    @StateObject private var imagePicker = ImagePicker()
+    @State private var formType: NewSucculentFormState?
+    @State private var imageExists = false
+    
     var body: some View {
-        NavigationView {
+        NavigationStack {
+            Group {
+                if items.isEmpty {
+                    EmptyGridView()
+                } else {
+                    GridView(items: items, viewContext: viewContext)
+                }
+            }
+            .navigationTitle("My Succulents")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    PhotosPicker("New Image",
+                                 selection: $imagePicker.imageSelection,
+                                 matching: .images,
+                                 photoLibrary: .shared())
+                    .buttonStyle(.borderedProminent)
+                }
+            }
+            .onChange(of: imagePicker.uiImage) { newImage in
+                if let newImage {
+                    formType = .new(newImage)
+                }
+            }
+            .onChange(of: shareService.codeableImage) { codableImage in
+                if let codableImage {
+                    if let item = items.first(where: {$0.id == codableImage.id}) {
+                        // Update
+                        updateInfo(myItem: item)
+                        imageExists.toggle()
+                    } else {
+                        // New
+                        restoreMyImage()
+                    }
+                }
+            }
+            .sheet(item: $formType) { $0 }
+            .alert("Image Updated", isPresented: $imageExists) {
+                Button("OK") {}
+            }
+        }
+    }
+    
+    func restoreMyImage() {
+        if let codableImage = shareService.codeableImage {
+            let imgURL = URL.documentsDirectory.appending(path: "\(codableImage.id).jpg")
+            let newImage = Item(context: viewContext)
+            if let data = try? Data(contentsOf: imgURL), let uiImage = UIImage(data: data) {
+                newImage.image = uiImage
+            }
+            newImage.name = codableImage.name
+            newImage.id = codableImage.id
+            try? viewContext.save()
+            try? FileManager().removeItem(at: imgURL)
+        }
+        shareService.codeableImage = nil
+    }
+    
+    func updateInfo(myItem: Item) {
+        if let codableImage = shareService.codeableImage {
+            let imgURL = URL.documentsDirectory.appending(path: "\(codableImage.id).jpg")
+            if let data = try? Data(contentsOf: imgURL), let uiImage = UIImage(data: data) {
+                myItem.image = uiImage
+            }
+            myItem.name = codableImage.name
+            myItem.id = codableImage.id
+            try? viewContext.save()
+            try? FileManager().removeItem(at: imgURL)
+        }
+        shareService.codeableImage = nil
+    }
+    
+    struct GridView: View {
+        var items: FetchedResults<Item>
+        var viewContext: NSManagedObjectContext
+        
+        var body: some View {
             List {
                 ForEach(items) { item in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        VStack {
+//                            Image(uiImage: item.uiImage)
+//                                .resizable()
+//                                .scaledToFill()
+//                                .frame(width: 100, height: 100)
+//                                .clipped()
+//                                .shadow(radius: 5.0)
+                            Text("Item \(item.nameText)")
+                        }
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Image(uiImage: item.uiImage)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 100, height: 100)
+                            .clipped()
+                            .shadow(radius: 5.0)
                     }
                 }
                 .onDelete(perform: deleteItems)
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+        }
+        
+        private func deleteItems(offsets: IndexSet) {
+            withAnimation {
+                offsets.map { items[$0] }.forEach(viewContext.delete)
+                
+                do {
+                    try viewContext.save()
+                } catch {
+                    // Replace this implementation with code to handle the error appropriately.
+                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    let nsError = error as NSError
+                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
                 }
             }
+        }
+    }
+    
+    struct EmptyGridView: View {
+        var body: some View {
             Text("Select an item")
         }
     }
-
+    
     private func addItem() {
         withAnimation {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
+            
             do {
                 try viewContext.save()
             } catch {

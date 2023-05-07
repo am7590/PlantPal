@@ -14,6 +14,17 @@
 		2919F33A2A0815710003194F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3392A0815710003194F /* Persistence.swift */; };
 		2919F33D2A0815710003194F /* SucculentAndPlantApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2919F33B2A0815710003194F /* SucculentAndPlantApp.xcdatamodeld */; };
 		2919F3462A0815830003194F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2919F3452A0815830003194F /* CloudKit.framework */; };
+		2919F34A2A08330F0003194F /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3492A08330F0003194F /* Item.swift */; };
+		2919F34D2A0834540003194F /* UIImageTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F34C2A0834540003194F /* UIImageTransformer.swift */; };
+		2919F34F2A08347B0003194F /* ImageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F34E2A08347B0003194F /* ImageContainer.swift */; };
+		2919F3522A083A070003194F /* NewSucculentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3512A083A070003194F /* NewSucculentViewModel.swift */; };
+		2919F3542A083B160003194F /* NewSucculentFormState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3532A083B160003194F /* NewSucculentFormState.swift */; };
+		2919F3562A083B770003194F /* NewSucculentFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3552A083B770003194F /* NewSucculentFormView.swift */; };
+		2919F3592A083C6E0003194F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3582A083C6E0003194F /* ImagePicker.swift */; };
+		2919F35B2A083C860003194F /* FIleManager+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F35A2A083C860003194F /* FIleManager+Image.swift */; };
+		2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F35C2A083FA80003194F /* PersistImageService.swift */; };
+		2919F3602A083FCF0003194F /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 2919F35F2A083FCF0003194F /* ZIPFoundation */; };
+		2919F3622A0840280003194F /* FileManager+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3612A0840280003194F /* FileManager+JSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +38,16 @@
 		2919F33E2A0815710003194F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2919F3452A0815830003194F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2919F3472A08158C0003194F /* SucculentAndPlantApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SucculentAndPlantApp.entitlements; sourceTree = "<group>"; };
+		2919F3492A08330F0003194F /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		2919F34C2A0834540003194F /* UIImageTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageTransformer.swift; sourceTree = "<group>"; };
+		2919F34E2A08347B0003194F /* ImageContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageContainer.swift; sourceTree = "<group>"; };
+		2919F3512A083A070003194F /* NewSucculentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSucculentViewModel.swift; sourceTree = "<group>"; };
+		2919F3532A083B160003194F /* NewSucculentFormState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSucculentFormState.swift; sourceTree = "<group>"; };
+		2919F3552A083B770003194F /* NewSucculentFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSucculentFormView.swift; sourceTree = "<group>"; };
+		2919F3582A083C6E0003194F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		2919F35A2A083C860003194F /* FIleManager+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIleManager+Image.swift"; sourceTree = "<group>"; };
+		2919F35C2A083FA80003194F /* PersistImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistImageService.swift; sourceTree = "<group>"; };
+		2919F3612A0840280003194F /* FileManager+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+JSON.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +56,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2919F3462A0815830003194F /* CloudKit.framework in Frameworks */,
+				2919F3602A083FCF0003194F /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,10 +86,11 @@
 				2919F3472A08158C0003194F /* SucculentAndPlantApp.entitlements */,
 				2919F3302A0815700003194F /* SucculentAndPlantAppApp.swift */,
 				2919F3322A0815700003194F /* ContentView.swift */,
+				2919F3572A083C640003194F /* Support */,
+				2919F3502A0839F40003194F /* New Succulent */,
 				2919F3342A0815710003194F /* Assets.xcassets */,
-				2919F3392A0815710003194F /* Persistence.swift */,
+				2919F3482A08327D0003194F /* Core Data */,
 				2919F33E2A0815710003194F /* Info.plist */,
-				2919F33B2A0815710003194F /* SucculentAndPlantApp.xcdatamodeld */,
 				2919F3362A0815710003194F /* Preview Content */,
 			);
 			path = SucculentAndPlantApp;
@@ -89,6 +112,47 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2919F3482A08327D0003194F /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				2919F33B2A0815710003194F /* SucculentAndPlantApp.xcdatamodeld */,
+				2919F3392A0815710003194F /* Persistence.swift */,
+				2919F35C2A083FA80003194F /* PersistImageService.swift */,
+				2919F3492A08330F0003194F /* Item.swift */,
+				2919F34B2A08343C0003194F /* Image Container */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		2919F34B2A08343C0003194F /* Image Container */ = {
+			isa = PBXGroup;
+			children = (
+				2919F34C2A0834540003194F /* UIImageTransformer.swift */,
+				2919F34E2A08347B0003194F /* ImageContainer.swift */,
+			);
+			path = "Image Container";
+			sourceTree = "<group>";
+		};
+		2919F3502A0839F40003194F /* New Succulent */ = {
+			isa = PBXGroup;
+			children = (
+				2919F3512A083A070003194F /* NewSucculentViewModel.swift */,
+				2919F3532A083B160003194F /* NewSucculentFormState.swift */,
+				2919F3552A083B770003194F /* NewSucculentFormView.swift */,
+			);
+			path = "New Succulent";
+			sourceTree = "<group>";
+		};
+		2919F3572A083C640003194F /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				2919F3582A083C6E0003194F /* ImagePicker.swift */,
+				2919F35A2A083C860003194F /* FIleManager+Image.swift */,
+				2919F3612A0840280003194F /* FileManager+JSON.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -105,6 +169,9 @@
 			dependencies = (
 			);
 			name = SucculentAndPlantApp;
+			packageProductDependencies = (
+				2919F35F2A083FCF0003194F /* ZIPFoundation */,
+			);
 			productName = SucculentAndPlantApp;
 			productReference = 2919F32D2A0815700003194F /* SucculentAndPlantApp.app */;
 			productType = "com.apple.product-type.application";
@@ -133,6 +200,9 @@
 				Base,
 			);
 			mainGroup = 2919F3242A0815700003194F;
+			packageReferences = (
+				2919F35E2A083FCF0003194F /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+			);
 			productRefGroup = 2919F32E2A0815700003194F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -160,9 +230,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				2919F33A2A0815710003194F /* Persistence.swift in Sources */,
+				2919F3542A083B160003194F /* NewSucculentFormState.swift in Sources */,
 				2919F3332A0815700003194F /* ContentView.swift in Sources */,
+				2919F3522A083A070003194F /* NewSucculentViewModel.swift in Sources */,
 				2919F33D2A0815710003194F /* SucculentAndPlantApp.xcdatamodeld in Sources */,
 				2919F3312A0815700003194F /* SucculentAndPlantAppApp.swift in Sources */,
+				2919F3562A083B770003194F /* NewSucculentFormView.swift in Sources */,
+				2919F35B2A083C860003194F /* FIleManager+Image.swift in Sources */,
+				2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */,
+				2919F3622A0840280003194F /* FileManager+JSON.swift in Sources */,
+				2919F3592A083C6E0003194F /* ImagePicker.swift in Sources */,
+				2919F34A2A08330F0003194F /* Item.swift in Sources */,
+				2919F34D2A0834540003194F /* UIImageTransformer.swift in Sources */,
+				2919F34F2A08347B0003194F /* ImageContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +447,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2919F35E2A083FCF0003194F /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.16;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2919F35F2A083FCF0003194F /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2919F35E2A083FCF0003194F /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2919F33B2A0815710003194F /* SucculentAndPlantApp.xcdatamodeld */ = {
