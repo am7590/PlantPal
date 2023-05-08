@@ -10,6 +10,7 @@ import CoreData
 import _PhotosUI_SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var router: Router
     @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var shareService: PersistImageService
     @StateObject private var imagePicker = ImagePicker()
@@ -23,7 +24,7 @@ struct ContentView: View {
     var gridItemLayout = [GridItem(.adaptive(minimum: 200))]
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $router.path) {
             GeometryReader { proxy in
                 let cellWidth = proxy.size.width/2.45
                 
@@ -34,23 +35,42 @@ struct ContentView: View {
                         ScrollView {
                             LazyVGrid(columns: gridItemLayout, spacing: 20) {
                                 ForEach(items) { item in
-                                    Button {
-                                        formState = .edit(item)
-                                    } label: {
-                                        Image(uiImage: item.uiImage)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: cellWidth, height: cellWidth)
-                                            .clipped()
-                                            .cornerRadius(24)
-                                            .shadow(radius: 8.0)
+                                        
+                                        Button {
+                                            print("poo hoo")
+                                            formState = .edit(item)
+                                        } label: {
+                                            Image(uiImage: item.uiImage)
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: cellWidth, height: cellWidth)
+                                                .clipped()
+                                                .cornerRadius(24)
+                                                .shadow(radius: 8.0)
+                                        }
                                     }
-                                }
-                                .onDelete(perform: deleteItems)
                             }
                         }
                     }
                 }
+                .onOpenURL { url in
+                    guard let scheme = url.scheme, scheme == "navStack" else { return }
+                    guard let item = url.host else { return }
+                    
+                    
+                    print("item: \(item)")
+                    for item in items {
+                        print(item.nameText)
+                    }
+                    if let foundItem = items.first(where: { $0.nameText.lowercased() == item }) {
+                        print("\n\n Found item \(foundItem.nameText)")
+                        router.reset()
+                        formState = .edit(foundItem)
+                    }
+                    
+                    print("\n\nURL: \(url)\n\n")
+                }
+                
                 .navigationTitle("All Succulents")
                 .searchable(text: $searchText, prompt: "Search")
                 .toolbar {

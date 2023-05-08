@@ -21,7 +21,7 @@ struct NewSucculentFormView: View {
     @State var amount = 0
     
     var body: some View {
-        NavigationStack {
+        VStack {
             Image(uiImage: viewModel.uiImage)
                 .resizable()
                 .scaledToFit()
@@ -84,43 +84,41 @@ struct NewSucculentFormView: View {
             .cornerRadius(24)
             .scrollContentBackground(.hidden)
             
-            //            HStack {
-            //                if viewModel.updating {
-            //                    PhotosPicker("Change Image",
-            //                                 selection: $imagePicker.imageSelection,
-            //                                 matching: .images,
-            //                                 photoLibrary: .shared())
-            //                    .buttonStyle(.bordered)
-            //                }
-            //                Button {
-            //                    if viewModel.updating {
-            //                        updateImage()
-            //                        dismiss()
-            //                    } else {
-            //                        let newImage = Item(context: moc)
-            //                        newImage.name = viewModel.name
-            //                        newImage.id = UUID().uuidString
-            //                        newImage.image = viewModel.uiImage
-            //                        try? moc.save()
-            //                        dismiss()
-            //                    }
-            //                } label: {
-            //                    Image(systemName: "checkmark")
-            //                }
-            //                .buttonStyle(.borderedProminent)
-            //                .tint(.green)
-            //                .disabled(viewModel.incomplete)
-            //            }
-            //
+            HStack {
+                Button {
+                    if viewModel.updating {
+                        updateImage()
+                        dismiss()
+                    } else {
+                        let newImage = Item(context: moc)
+                        newImage.name = viewModel.name
+                        newImage.id = UUID().uuidString
+                        newImage.image = viewModel.uiImage
+                        try? moc.save()
+                        dismiss()
+                    }
+                } label: {
+                    Image(systemName: "checkmark")
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.blue)
+                .disabled(viewModel.incomplete)
+            }
+            
             Spacer()
         }
         .padding()
         .textFieldStyle(.roundedBorder)
-        .navigationTitle(viewModel.updating ? "Update Image" : "New Image")
+        .navigationTitle(viewModel.updating ? "Update Succulent" : "New Succulent")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button("Cancel") {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Create") {
+                    let newImage = Item(context: moc)
+                    newImage.name = viewModel.name
+                    newImage.id = UUID().uuidString
+                    newImage.image = viewModel.uiImage
+                    try? moc.save()
                     dismiss()
                 }
                 .buttonStyle(.bordered)

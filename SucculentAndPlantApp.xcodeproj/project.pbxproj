@@ -25,6 +25,8 @@
 		2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F35C2A083FA80003194F /* PersistImageService.swift */; };
 		2919F3602A083FCF0003194F /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 2919F35F2A083FCF0003194F /* ZIPFoundation */; };
 		2919F3622A0840280003194F /* FileManager+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3612A0840280003194F /* FileManager+JSON.swift */; };
+		2919F3642A086ACF0003194F /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3632A086ACF0003194F /* TabNavigationView.swift */; };
+		2919F3672A086ECA0003194F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3662A086ECA0003194F /* Router.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		2919F35A2A083C860003194F /* FIleManager+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIleManager+Image.swift"; sourceTree = "<group>"; };
 		2919F35C2A083FA80003194F /* PersistImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistImageService.swift; sourceTree = "<group>"; };
 		2919F3612A0840280003194F /* FileManager+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+JSON.swift"; sourceTree = "<group>"; };
+		2919F3632A086ACF0003194F /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
+		2919F3662A086ECA0003194F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 			children = (
 				2919F3472A08158C0003194F /* SucculentAndPlantApp.entitlements */,
 				2919F3302A0815700003194F /* SucculentAndPlantAppApp.swift */,
+				2919F3652A086EB20003194F /* Navigation */,
 				2919F3322A0815700003194F /* ContentView.swift */,
 				2919F3572A083C640003194F /* Support */,
 				2919F3502A0839F40003194F /* New Succulent */,
@@ -151,6 +156,15 @@
 				2919F3612A0840280003194F /* FileManager+JSON.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		2919F3652A086EB20003194F /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				2919F3632A086ACF0003194F /* TabNavigationView.swift */,
+				2919F3662A086ECA0003194F /* Router.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,10 +251,12 @@
 				2919F3312A0815700003194F /* SucculentAndPlantAppApp.swift in Sources */,
 				2919F3562A083B770003194F /* NewSucculentFormView.swift in Sources */,
 				2919F35B2A083C860003194F /* FIleManager+Image.swift in Sources */,
+				2919F3672A086ECA0003194F /* Router.swift in Sources */,
 				2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */,
 				2919F3622A0840280003194F /* FileManager+JSON.swift in Sources */,
 				2919F3592A083C6E0003194F /* ImagePicker.swift in Sources */,
 				2919F34A2A08330F0003194F /* Item.swift in Sources */,
+				2919F3642A086ACF0003194F /* TabNavigationView.swift in Sources */,
 				2919F34D2A0834540003194F /* UIImageTransformer.swift in Sources */,
 				2919F34F2A08347B0003194F /* ImageContainer.swift in Sources */,
 			);

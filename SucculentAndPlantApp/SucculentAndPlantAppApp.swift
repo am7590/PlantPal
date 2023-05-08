@@ -9,12 +9,17 @@ import SwiftUI
 
 @main
 struct SucculentAndPlantAppApp: App {
+    // Deep linking
+    @StateObject var router = Router()
+    
+    // Persistence
     let persistenceController = PersistenceController.shared
     @StateObject var persistImage = PersistImageService()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(router)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(persistImage)
                 .onAppear {
