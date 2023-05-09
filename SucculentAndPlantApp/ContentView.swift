@@ -17,16 +17,17 @@ struct ContentView: View {
     @State private var formState: NewSucculentFormState?
     @State private var imageExists = false
     @State private var searchText = ""
+    @State private var isList = false
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name)])
     private var items: FetchedResults<Item>
     
-    var gridItemLayout = [GridItem(.adaptive(minimum: 200))]
+    var gridItemLayout = [GridItem(.adaptive(minimum: 150))]
     
     var body: some View {
         NavigationStack(path: $router.path) {
             GeometryReader { proxy in
-                let cellWidth = proxy.size.width/2.45
+                let cellWidth = proxy.size.width/2 - 24
                 
                 Group {
                     if items.isEmpty {
@@ -34,24 +35,15 @@ struct ContentView: View {
                             .padding(.leading, 24)
                     } else {
                         ScrollView {
-                            LazyVGrid(columns: gridItemLayout, spacing: 20) {
-                                ForEach(items) { item in
-                                    
-                                    Button {
-                                        print("poo hoo")
-                                        formState = .edit(item)
-                                    } label: {
-                                        Image(uiImage: item.uiImage)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: cellWidth, height: cellWidth)
-                                            .clipped()
-                                            .cornerRadius(24)
-                                            .shadow(radius: 8.0)
-                                    }
+                            if isList {
+                                listView(width: cellWidth)
+                            } else {
+                                LazyVGrid(columns: gridItemLayout, spacing: 16) {
+                                    listView(width: cellWidth)
                                 }
                             }
                         }
+                        .padding(.horizontal)
                     }
                 }
                 .onOpenURL { url in
@@ -65,6 +57,25 @@ struct ContentView: View {
                 .navigationTitle("All Succulents")
                 .searchable(text: $searchText, prompt: "Search")
                 .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Menu {
+                            Button {
+                                isList = false
+                            } label: {
+                                Label("Grid", systemImage: "rectangle.grid.2x2")
+                            }
+                            
+                            Button {
+                                isList = true
+                            } label: {
+                                Label("List", systemImage: "list.bullet")
+                            }
+                            
+                        } label: {
+                            Image(systemName: isList ? "list.bullet" : "rectangle.grid.2x2")
+                        }
+                    }
+                    
                     ToolbarItem(placement: .navigationBarTrailing) {
                         PhotosPicker(selection: $imagePicker.imageSelection,
                                      matching: .images,
@@ -105,6 +116,23 @@ struct ContentView: View {
         }
     }
     
+    func listView(width cellWidth: CGFloat) -> some View {
+        ForEach(items) { item in
+            Button {
+                print("poo hoo")
+                formState = .edit(item)
+            } label: {
+                Image(uiImage: item.uiImage)
+                    .resizable()
+                    .scaledToFill()
+                    .modifier(CustomFrameModifier(active: !isList, width: cellWidth))
+                    .clipped()
+                    .cornerRadius(24)
+                    .shadow(radius: 8.0)
+            }
+        }
+    }
+    
     func restoreMyImage() {
         if let codableImage = shareService.codeableImage {
             let imgURL = URL.documentsDirectory.appending(path: "\(codableImage.id).jpg")
@@ -134,48 +162,73 @@ struct ContentView: View {
         shareService.codeableImage = nil
     }
     
+//    private func deleteItems(offsets: IndexSet) {
+//        withAnimation {
+//            offsets.map { items[$0] }.forEach(viewContext.delete)
+//
+//            do {
+//                try viewContext.save()
+//            } catch {
+//                // Replace this implementation with code to handle the error appropriately.
+//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+//                let nsError = error as NSError
+//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//            }
+//        }
+//
+//    }
     
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-            
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//    private func addItem() {
+//        withAnimation {
+//            let newItem = Item(context: viewContext)
+//            newItem.timestamp = Date()
+//
+//            do {
+//                try viewContext.save()
+//            } catch {
+//                // Replace this implementation with code to handle the error appropriately.
+//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+//                let nsError = error as NSError
+//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//            }
+//        }
+//    }
+}
+
+//private let itemFormatter: DateFormatter = {
+//    let formatter = DateFormatter()
+//    formatter.dateStyle = .short
+//    formatter.timeStyle = .medium
+//    return formatter
+//}()
+
+struct LazyVGridModifier: ViewModifier {
+    var active : Bool
+    var gridItemLayout = [GridItem(.adaptive(minimum: 150))]
+    
+    @ViewBuilder func body(content: Content) -> some View {
+        if active {
+            LazyVGrid(columns: gridItemLayout, spacing: 16) {
+                content
             }
-        }
-        
-    }
-    
-    
-    
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-            
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+        } else {
+            content
         }
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
+struct CustomFrameModifier: ViewModifier {
+    var active: Bool
+    var width: CGFloat
+    
+    @ViewBuilder func body(content: Content) -> some View {
+        if active {
+            content.frame(width: width, height: width, alignment: .center)
+        } else {
+            content
+        }
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
