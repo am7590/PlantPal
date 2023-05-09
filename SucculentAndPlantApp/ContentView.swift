@@ -30,25 +30,26 @@ struct ContentView: View {
                 
                 Group {
                     if items.isEmpty {
-                        EmptyGridView()
+                        EmptyGridView(listType: .allSucculents)
+                            .padding(.leading, 24)
                     } else {
                         ScrollView {
                             LazyVGrid(columns: gridItemLayout, spacing: 20) {
                                 ForEach(items) { item in
-                                        
-                                        Button {
-                                            print("poo hoo")
-                                            formState = .edit(item)
-                                        } label: {
-                                            Image(uiImage: item.uiImage)
-                                                .resizable()
-                                                .scaledToFill()
-                                                .frame(width: cellWidth, height: cellWidth)
-                                                .clipped()
-                                                .cornerRadius(24)
-                                                .shadow(radius: 8.0)
-                                        }
+                                    
+                                    Button {
+                                        print("poo hoo")
+                                        formState = .edit(item)
+                                    } label: {
+                                        Image(uiImage: item.uiImage)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: cellWidth, height: cellWidth)
+                                            .clipped()
+                                            .cornerRadius(24)
+                                            .shadow(radius: 8.0)
                                     }
+                                }
                             }
                         }
                     }
@@ -56,21 +57,11 @@ struct ContentView: View {
                 .onOpenURL { url in
                     guard let scheme = url.scheme, scheme == "navStack" else { return }
                     guard let item = url.host else { return }
-                    
-                    
-                    print("item: \(item)")
-                    for item in items {
-                        print(item.nameText)
-                    }
                     if let foundItem = items.first(where: { $0.nameText.lowercased() == item }) {
-                        print("\n\n Found item \(foundItem.nameText)")
                         router.reset()
                         formState = .edit(foundItem)
                     }
-                    
-                    print("\n\nURL: \(url)\n\n")
                 }
-                
                 .navigationTitle("All Succulents")
                 .searchable(text: $searchText, prompt: "Search")
                 .toolbar {
@@ -143,33 +134,24 @@ struct ContentView: View {
         shareService.codeableImage = nil
     }
     
-
-        private func deleteItems(offsets: IndexSet) {
-            withAnimation {
-                offsets.map { items[$0] }.forEach(viewContext.delete)
-                
-                do {
-                    try viewContext.save()
-                } catch {
-                    // Replace this implementation with code to handle the error appropriately.
-                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    let nsError = error as NSError
-                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                }
+    
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { items[$0] }.forEach(viewContext.delete)
+            
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
+        }
         
     }
     
-    struct EmptyGridView: View {
-        var body: some View {
-            HStack {
-                Spacer()
-                Text("Empty")
-                Spacer()
-            }
-            .padding(.vertical)
-        }
-    }
+    
     
     private func addItem() {
         withAnimation {
