@@ -29,7 +29,6 @@ struct SucculentListView: View {
                             .padding(.leading, 24)
                     } else {
                         ScrollView {
-                            
                             if viewModel.isList {
                                 listView(width: cellWidth)
                             } else {
@@ -44,32 +43,7 @@ struct SucculentListView: View {
                 .navigationTitle("All Succulents")
                 .searchable(text: $viewModel.searchText, prompt: "Search")
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Menu {
-                            Button {
-                                viewModel.isList = false
-                            } label: {
-                                Label("Grid", systemImage: "rectangle.grid.2x2")
-                            }
-                            
-                            Button {
-                                viewModel.isList = true
-                            } label: {
-                                Label("List", systemImage: "list.bullet")
-                            }
-                            
-                        } label: {
-                            Image(systemName: viewModel.isList ? "list.bullet" : "rectangle.grid.2x2")
-                        }
-                    }
-                    
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        PhotosPicker(selection: $imagePicker.imageSelection,
-                                     matching: .images,
-                                     photoLibrary: .shared()) {
-                            Image(systemName: "plus")
-                        }
-                    }
+                    CustomToolbar()
                 }
                 .sheet(item: $viewModel.formState) { $0 }
                 .alert("Image Updated", isPresented: $viewModel.imageExists) {
