@@ -37,7 +37,6 @@ struct SucculentListView: View {
                                 }
                             }
                         }
-                        .padding(.horizontal)
                     }
                 }
                 .navigationTitle("All Succulents")
@@ -61,6 +60,9 @@ struct SucculentListView: View {
                 .onOpenURL { url in
                     handleDeepLinkingToItem(url: url)
                 }
+                .onAppear {
+                    //wiggle.toggle()
+                }
             }
         }
     }
@@ -68,7 +70,6 @@ struct SucculentListView: View {
     func listView(width cellWidth: CGFloat) -> some View {
         ForEach(items) { item in
             Button {
-                print("poo hoo")
                 viewModel.formState = .edit(item)
             } label: {
                 Image(uiImage: item.uiImage)
@@ -78,8 +79,13 @@ struct SucculentListView: View {
                     .clipped()
                     .cornerRadius(24)
                     .shadow(radius: 8.0)
+//                    .rotationEffect(.degrees(viewModel.wiggle ? 2.5 : 0))
+//                    .rotation3DEffect(.degrees(viewModel.wiggle ? 5 : 0), axis: (x: 0, y: viewModel.wiggle ? -5: 0, z: 0))
+//                    .animation(.easeInOut(duration: 0.15).repeat(while: viewModel.wiggle), value: viewModel.wiggle)
             }
         }
+        .padding(.horizontal)
+
     }
 }
 

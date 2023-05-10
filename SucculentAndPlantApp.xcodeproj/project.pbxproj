@@ -30,6 +30,7 @@
 		2919F3692A0ACE210003194F /* EmptyGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3682A0ACE210003194F /* EmptyGridView.swift */; };
 		294238872A0B089600CE0A63 /* SucculentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294238862A0B089600CE0A63 /* SucculentListViewModel.swift */; };
 		2942388A2A0B0B1500CE0A63 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294238892A0B0B1500CE0A63 /* Modifiers.swift */; };
+		2942388C2A0B232600CE0A63 /* Animation+Repeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942388B2A0B232600CE0A63 /* Animation+Repeat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		2919F3682A0ACE210003194F /* EmptyGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyGridView.swift; sourceTree = "<group>"; };
 		294238862A0B089600CE0A63 /* SucculentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentListViewModel.swift; sourceTree = "<group>"; };
 		294238892A0B0B1500CE0A63 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		2942388B2A0B232600CE0A63 /* Animation+Repeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+Repeat.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				2919F3582A083C6E0003194F /* ImagePicker.swift */,
 				2919F35A2A083C860003194F /* FIleManager+Image.swift */,
 				2919F3612A0840280003194F /* FileManager+JSON.swift */,
+				2942388B2A0B232600CE0A63 /* Animation+Repeat.swift */,
 				294238892A0B0B1500CE0A63 /* Modifiers.swift */,
 			);
 			path = Support;
@@ -271,6 +274,7 @@
 				2919F3642A086ACF0003194F /* TabNavigationView.swift in Sources */,
 				2919F34D2A0834540003194F /* UIImageTransformer.swift in Sources */,
 				2919F34F2A08347B0003194F /* ImageContainer.swift in Sources */,
+				2942388C2A0B232600CE0A63 /* Animation+Repeat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
