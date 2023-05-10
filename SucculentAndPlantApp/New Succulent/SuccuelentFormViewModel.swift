@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewSucculentViewModel: ObservableObject {
+class SuccuelentFormViewModel: ObservableObject {
     @Published var name = ""
     @Published var uiImage: UIImage
     @Published var date = Date.now

@@ -17,9 +17,9 @@
 		2919F34A2A08330F0003194F /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3492A08330F0003194F /* Item.swift */; };
 		2919F34D2A0834540003194F /* UIImageTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F34C2A0834540003194F /* UIImageTransformer.swift */; };
 		2919F34F2A08347B0003194F /* ImageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F34E2A08347B0003194F /* ImageContainer.swift */; };
-		2919F3522A083A070003194F /* NewSucculentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3512A083A070003194F /* NewSucculentViewModel.swift */; };
-		2919F3542A083B160003194F /* NewSucculentFormState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3532A083B160003194F /* NewSucculentFormState.swift */; };
-		2919F3562A083B770003194F /* NewSucculentFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3552A083B770003194F /* NewSucculentFormView.swift */; };
+		2919F3522A083A070003194F /* SuccuelentFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3512A083A070003194F /* SuccuelentFormViewModel.swift */; };
+		2919F3542A083B160003194F /* SucculentFormState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3532A083B160003194F /* SucculentFormState.swift */; };
+		2919F3562A083B770003194F /* SucculentFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3552A083B770003194F /* SucculentFormView.swift */; };
 		2919F3592A083C6E0003194F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3582A083C6E0003194F /* ImagePicker.swift */; };
 		2919F35B2A083C860003194F /* FIleManager+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F35A2A083C860003194F /* FIleManager+Image.swift */; };
 		2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F35C2A083FA80003194F /* PersistImageService.swift */; };
@@ -48,9 +48,9 @@
 		2919F3492A08330F0003194F /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		2919F34C2A0834540003194F /* UIImageTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageTransformer.swift; sourceTree = "<group>"; };
 		2919F34E2A08347B0003194F /* ImageContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageContainer.swift; sourceTree = "<group>"; };
-		2919F3512A083A070003194F /* NewSucculentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSucculentViewModel.swift; sourceTree = "<group>"; };
-		2919F3532A083B160003194F /* NewSucculentFormState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSucculentFormState.swift; sourceTree = "<group>"; };
-		2919F3552A083B770003194F /* NewSucculentFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSucculentFormView.swift; sourceTree = "<group>"; };
+		2919F3512A083A070003194F /* SuccuelentFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccuelentFormViewModel.swift; sourceTree = "<group>"; };
+		2919F3532A083B160003194F /* SucculentFormState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentFormState.swift; sourceTree = "<group>"; };
+		2919F3552A083B770003194F /* SucculentFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentFormView.swift; sourceTree = "<group>"; };
 		2919F3582A083C6E0003194F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		2919F35A2A083C860003194F /* FIleManager+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIleManager+Image.swift"; sourceTree = "<group>"; };
 		2919F35C2A083FA80003194F /* PersistImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistImageService.swift; sourceTree = "<group>"; };
@@ -153,9 +153,9 @@
 		2919F3502A0839F40003194F /* New Succulent */ = {
 			isa = PBXGroup;
 			children = (
-				2919F3512A083A070003194F /* NewSucculentViewModel.swift */,
-				2919F3532A083B160003194F /* NewSucculentFormState.swift */,
-				2919F3552A083B770003194F /* NewSucculentFormView.swift */,
+				2919F3512A083A070003194F /* SuccuelentFormViewModel.swift */,
+				2919F3532A083B160003194F /* SucculentFormState.swift */,
+				2919F3552A083B770003194F /* SucculentFormView.swift */,
 			);
 			path = "New Succulent";
 			sourceTree = "<group>";
@@ -259,16 +259,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2919F33A2A0815710003194F /* Persistence.swift in Sources */,
-				2919F3542A083B160003194F /* NewSucculentFormState.swift in Sources */,
+				2919F3542A083B160003194F /* SucculentFormState.swift in Sources */,
 				2919F3332A0815700003194F /* SucculentListView.swift in Sources */,
-				2919F3522A083A070003194F /* NewSucculentViewModel.swift in Sources */,
+				2919F3522A083A070003194F /* SuccuelentFormViewModel.swift in Sources */,
 				2919F33D2A0815710003194F /* SucculentAndPlantApp.xcdatamodeld in Sources */,
 				2942388E2A0B242200CE0A63 /* ShakeAnimation.swift in Sources */,
 				294238872A0B089600CE0A63 /* SucculentListViewModel.swift in Sources */,
 				2919F3692A0ACE210003194F /* EmptyGridView.swift in Sources */,
 				2942388A2A0B0B1500CE0A63 /* Modifiers.swift in Sources */,
 				2919F3312A0815700003194F /* SucculentAndPlantAppApp.swift in Sources */,
-				2919F3562A083B770003194F /* NewSucculentFormView.swift in Sources */,
+				2919F3562A083B770003194F /* SucculentFormView.swift in Sources */,
 				2919F35B2A083C860003194F /* FIleManager+Image.swift in Sources */,
 				2919F3672A086ECA0003194F /* Router.swift in Sources */,
 				2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */,

@@ -10,7 +10,7 @@ import CoreData
 import _PhotosUI_SwiftUI
 
 class SucculentListViewModel: ObservableObject {
-    @Published var formState: NewSucculentFormState?
+    @Published var formState: SucculentFormState?
     @Published var imageExists = false
     @Published var searchText = ""
     @Published var isList = false   // TODO: Hook up to UserDefaults

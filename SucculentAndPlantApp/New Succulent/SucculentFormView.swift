@@ -1,5 +1,5 @@
 //
-//  NewSucculentFormView.swift
+//  SucculentFormView.swift
 //  SucculentAndPlantApp
 //
 //  Created by Alek Michelson on 5/7/23.
@@ -8,8 +8,8 @@
 import SwiftUI
 import PhotosUI
 
-struct NewSucculentFormView: View {
-    @ObservedObject var viewModel: NewSucculentViewModel
+struct SucculentFormView: View {
+    @ObservedObject var viewModel: SuccuelentFormViewModel
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
     @StateObject var imagePicker = ImagePicker()
@@ -31,22 +31,35 @@ struct NewSucculentFormView: View {
                     .frame(width: width, height: width)
                     .cornerRadius(24)
 
-                List {
-                    Section {
-                        HStack {
-                            Spacer()
+                HStack {
+                    Button(action: {}) {
+                        VStack {
                             Image(systemName: "drop.fill")
-                                .foregroundColor(Color.accentColor)
-                            PhotosPicker("Water",
-                                         selection: $imagePicker.imageSelection,
-                                         matching: .images,
-                                         photoLibrary: .shared())
-                            Spacer()
+                            Text("Water")
                         }
-                        .bold()
+                        .padding(16)
+                        .frame(width: width/2 - 6)
+                        .background(Color.blue.opacity(0.25))
+                        .cornerRadius(24)
                     }
-                    .listRowBackground(Color(uiColor: .blue.withAlphaComponent(0.1)))
                     
+                    
+                    Button(action: {}) {
+                        VStack {
+                            Image(systemName: "fanblades.fill")
+                            Text("Fertilize")
+                        }
+                        .foregroundColor(.red)
+                        .padding()
+                        .frame(width: width/2 - 6)
+                        .background(Color.red.opacity(0.25))
+                        .cornerRadius(24)
+                    }
+                }
+                .frame(width: width + 8)
+                .padding(.top)
+                
+                List {
                     Section("General Info") {
                         TextField("Name", text: $viewModel.name)
                             .textFieldStyle(.plain)
@@ -172,6 +185,6 @@ struct NewSucculentFormView: View {
 
 struct NewSucculentFormView_Previews: PreviewProvider {
     static var previews: some View {
-        NewSucculentFormView(viewModel: NewSucculentViewModel(UIImage(systemName: "photo")!))
+        SucculentFormView(viewModel: SuccuelentFormViewModel(UIImage(systemName: "photo")!))
     }
 }
