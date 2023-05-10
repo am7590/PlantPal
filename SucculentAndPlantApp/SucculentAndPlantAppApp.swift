@@ -20,6 +20,7 @@ struct SucculentAndPlantAppApp: App {
     
     var body: some Scene {
         WindowGroup {
+            // ImageSliderContainer(imgArr: [UIImage(named: "succ1")!, UIImage(named: "succ2")!, UIImage(named: "succ3")!])
             SucculentListView()
                 .environmentObject(viewModel)
                 .environmentObject(router)
