@@ -15,13 +15,17 @@ struct SucculentAndPlantAppApp: App {
     // Persistence
     let persistenceController = PersistenceController.shared
     @StateObject var persistImage = PersistImageService()
+    @StateObject var viewModel = SucculentListViewModel()
+    @StateObject private var imagePicker = ImagePicker()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SucculentListView()
+                .environmentObject(viewModel)
                 .environmentObject(router)
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(persistImage)
+                .environmentObject(imagePicker)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .onAppear {
                     print("Document Directory", URL.documentsDirectory.path)
                 }
