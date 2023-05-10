@@ -21,91 +21,100 @@ struct NewSucculentFormView: View {
     @State var amount = 0
     
     var body: some View {
-        VStack {
-            Image(uiImage: viewModel.uiImage)
-                .resizable()
-                .scaledToFit()
-                .cornerRadius(24)
+        GeometryReader { proxy in
+            VStack {
+                let width = proxy.size.width - 28
+                
+                Image(uiImage: viewModel.uiImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: width, height: width)
+                    .cornerRadius(24)
 
-        
-            List {
-                Section {
-                    HStack {
-                        Spacer()
-                        Image(systemName: "drop.fill")
-                            .foregroundColor(Color.accentColor)
-                        PhotosPicker("Water",
-                                     selection: $imagePicker.imageSelection,
-                                     matching: .images,
-                                     photoLibrary: .shared())
-                        Spacer()
-                    }
-                    .bold()
-                }
-                .listRowBackground(Color(uiColor: .blue.withAlphaComponent(0.1)))
-                
-                Section("General Info") {
-                    TextField("Name", text: $viewModel.name)
-                        .textFieldStyle(.plain)
-                }
-                .listRowBackground(Color(uiColor: .secondarySystemBackground))
-                
-                Section("Water Plant") {
-                    Picker("Water", selection: $amount) {
-                        Text("As needed")
-                            .tag(0)
-                        ForEach(1..<11) { number in
-                            Text("every " + number.description + " days")
-                                .tag(number)
+                List {
+                    Section {
+                        HStack {
+                            Spacer()
+                            Image(systemName: "drop.fill")
+                                .foregroundColor(Color.accentColor)
+                            PhotosPicker("Water",
+                                         selection: $imagePicker.imageSelection,
+                                         matching: .images,
+                                         photoLibrary: .shared())
+                            Spacer()
                         }
+                        .bold()
                     }
+                    .listRowBackground(Color(uiColor: .blue.withAlphaComponent(0.1)))
                     
-                    HStack {
-                        Text("Last Watered")
-                        Spacer()
-                        if viewModel.dateHidden {
-                            Text("No Date")
-                            Button("Set Date") {
-                                viewModel.date = Date()
-                            }
-                        } else {
-                            HStack {
-                                DatePicker("", selection: $viewModel.date, in: ...Date(), displayedComponents: .date)
-                                //                                Button("Clear") {
-                                //                                    viewModel.date = Date.distantPast
-                                //                                }
+                    Section("General Info") {
+                        TextField("Name", text: $viewModel.name)
+                            .textFieldStyle(.plain)
+                    }
+                    .listRowBackground(Color(uiColor: .secondarySystemBackground))
+                    
+                    Section("Water Plant") {
+                        if !viewModel.isItem {
+                            Picker("Water", selection: $amount) {
+                                Text("As needed")
+                                    .tag(0)
+                                ForEach(1..<11) { number in
+                                    Text("every " + number.description + " days")
+                                        .tag(number)
+                                }
                             }
                         }
+                        
+                        HStack {
+                            Text("Last Watered")
+                            Spacer()
+                            if viewModel.dateHidden {
+                                Text("No Date")
+                                Button("Set Date") {
+                                    viewModel.date = Date()
+                                }
+                            } else {
+                                HStack {
+                                    DatePicker("", selection: $viewModel.date, in: ...Date(), displayedComponents: .date)
+                                    //                                Button("Clear") {
+                                    //                                    viewModel.date = Date.distantPast
+                                    //                                }
+                                }
+                            }
+                        }
+                        .buttonStyle(.bordered)
                     }
-                    .buttonStyle(.bordered)
+                    .listRowBackground(Color(uiColor: .secondarySystemBackground))
                 }
-                .listRowBackground(Color(uiColor: .secondarySystemBackground))
-            }
-            .cornerRadius(24)
-            .scrollContentBackground(.hidden)
-            
-            HStack {
-                Button {
-                    if viewModel.updating {
-                        updateImage()
-                        dismiss()
-                    } else {
-                        let newImage = Item(context: moc)
-                        newImage.name = viewModel.name
-                        newImage.id = UUID().uuidString
-                        newImage.image = viewModel.uiImage
-                        try? moc.save()
-                        dismiss()
+                .cornerRadius(24)
+                .scrollContentBackground(.hidden)
+                
+                if !viewModel.isItem {
+                    HStack {
+                        Button {
+                            if viewModel.updating {
+                                updateImage()
+                                dismiss()
+                            } else {
+                                let newImage = Item(context: moc)
+                                newImage.name = viewModel.name
+                                newImage.id = UUID().uuidString
+                                newImage.image = viewModel.uiImage
+                                try? moc.save()
+                                dismiss()
+                            }
+                        } label: {
+                            Image(systemName: "checkmark")
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.blue)
+                        .disabled(viewModel.incomplete)
                     }
-                } label: {
-                    Image(systemName: "checkmark")
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(.blue)
-                .disabled(viewModel.incomplete)
+                                
+                Spacer()
             }
             
-            Spacer()
         }
         .padding()
         .textFieldStyle(.roundedBorder)

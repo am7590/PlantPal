@@ -28,32 +28,19 @@ class SucculentListViewModel: ObservableObject {
     }
 }
 
-struct Shake: GeometryEffect {
-    var amount: CGFloat = 10
-    var shakesPerUnit = 3
-    var animatableData: CGFloat
-
-    func effectValue(size: CGSize) -> ProjectionTransform {
-        ProjectionTransform(CGAffineTransform(translationX:
-            amount * sin(animatableData * .pi * CGFloat(shakesPerUnit)),
-            y: 0))
-    }
-}
-
-
 extension SucculentListView {
     struct CustomToolbar: ToolbarContent {
         @EnvironmentObject var imagePicker: ImagePicker
         @EnvironmentObject var viewModel: SucculentListViewModel
         
         var body: some ToolbarContent {
-//            ToolbarItem(placement: .navigationBarLeading) {
-//                Button {
-//                    viewModel.wiggle.toggle()
-//                } label: {
-//                    Text("Edit")
-//                }
-//            }
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    viewModel.wiggle.toggle()
+                } label: {
+                    Text("Edit")
+                }
+            }
             
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {

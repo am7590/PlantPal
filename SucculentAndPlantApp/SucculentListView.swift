@@ -32,11 +32,12 @@ struct SucculentListView: View {
                             if viewModel.isList {
                                 listView(width: cellWidth)
                             } else {
-                                LazyVGrid(columns: viewModel.gridItemLayout, spacing: 16) {
+                                LazyVGrid(columns: viewModel.gridItemLayout, spacing: 12) {
                                     listView(width: cellWidth)
                                 }
                             }
                         }
+                        .padding(.horizontal)
                     }
                 }
                 .navigationTitle("All Succulents")
@@ -60,9 +61,6 @@ struct SucculentListView: View {
                 .onOpenURL { url in
                     handleDeepLinkingToItem(url: url)
                 }
-                .onAppear {
-                    //wiggle.toggle()
-                }
             }
         }
     }
@@ -79,13 +77,11 @@ struct SucculentListView: View {
                     .clipped()
                     .cornerRadius(24)
                     .shadow(radius: 8.0)
-//                    .rotationEffect(.degrees(viewModel.wiggle ? 2.5 : 0))
-//                    .rotation3DEffect(.degrees(viewModel.wiggle ? 5 : 0), axis: (x: 0, y: viewModel.wiggle ? -5: 0, z: 0))
-//                    .animation(.easeInOut(duration: 0.15).repeat(while: viewModel.wiggle), value: viewModel.wiggle)
+                    .rotationEffect(.degrees(viewModel.wiggle ? 2.5 : 0))
+                    .rotation3DEffect(.degrees(viewModel.wiggle ? 5 : 0), axis: (x: 0, y: viewModel.wiggle ? -5: 0, z: 0))
+                    .animation(.easeInOut(duration: 0.15).repeat(while: viewModel.wiggle), value: viewModel.wiggle)
             }
         }
-        .padding(.horizontal)
-
     }
 }
 

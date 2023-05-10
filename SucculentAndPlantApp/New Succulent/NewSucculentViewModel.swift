@@ -28,10 +28,13 @@ class NewSucculentViewModel: ObservableObject {
         name.isEmpty || uiImage == UIImage(systemName: "photo")!
     }
     
+    var isItem = false
+    
     init(_ myItem: Item) {
         name = myItem.nameText
         id = myItem.imageID
         uiImage = myItem.uiImage
         date = myItem.timeStamp
+        isItem = true
     }
 }
