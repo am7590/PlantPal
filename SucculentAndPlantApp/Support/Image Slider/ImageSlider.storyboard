@@ -56,7 +56,7 @@
                                 </connections>
                             </collectionView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="VC0-Uj-doX">
-                                <rect key="frame" x="20" y="333" width="335" height="26"/>
+                                <rect key="frame" x="20" y="345" width="335" height="26"/>
                                 <connections>
                                     <action selector="end:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="F8e-wT-lnm"/>
                                     <action selector="pageViewDidChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="qLu-Xm-yYt"/>
@@ -70,7 +70,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VC0-Uj-doX" secondAttribute="trailing" constant="20" id="157-Ca-4sv"/>
                             <constraint firstItem="LlQ-ty-U5P" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5jK-KL-LJ8"/>
                             <constraint firstItem="VC0-Uj-doX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="CXv-5F-qgc"/>
-                            <constraint firstItem="VC0-Uj-doX" firstAttribute="bottom" secondItem="LlQ-ty-U5P" secondAttribute="bottom" constant="-36" id="Jfg-dn-ZcZ"/>
+                            <constraint firstItem="VC0-Uj-doX" firstAttribute="bottom" secondItem="LlQ-ty-U5P" secondAttribute="bottom" constant="-24" id="Jfg-dn-ZcZ"/>
                             <constraint firstItem="LlQ-ty-U5P" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Vns-jv-xUM"/>
                             <constraint firstItem="LlQ-ty-U5P" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fcy-hd-jpq"/>
                         </constraints>

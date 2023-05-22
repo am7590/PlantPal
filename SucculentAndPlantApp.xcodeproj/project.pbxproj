@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		290FAA072A17022D00B98124 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 290FAA062A17022D00B98124 /* ZIPFoundation */; };
+		290FAA0C2A17085300B98124 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290FAA0B2A17085300B98124 /* ImagePicker.swift */; };
 		2919F3312A0815700003194F /* SucculentAndPlantAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3302A0815700003194F /* SucculentAndPlantAppApp.swift */; };
 		2919F3332A0815700003194F /* SucculentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3322A0815700003194F /* SucculentListView.swift */; };
 		2919F3352A0815710003194F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2919F3342A0815710003194F /* Assets.xcassets */; };
@@ -20,10 +22,9 @@
 		2919F3522A083A070003194F /* SuccuelentFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3512A083A070003194F /* SuccuelentFormViewModel.swift */; };
 		2919F3542A083B160003194F /* SucculentFormState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3532A083B160003194F /* SucculentFormState.swift */; };
 		2919F3562A083B770003194F /* SucculentFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3552A083B770003194F /* SucculentFormView.swift */; };
-		2919F3592A083C6E0003194F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3582A083C6E0003194F /* ImagePicker.swift */; };
+		2919F3592A083C6E0003194F /* ImageSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3582A083C6E0003194F /* ImageSelector.swift */; };
 		2919F35B2A083C860003194F /* FIleManager+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F35A2A083C860003194F /* FIleManager+Image.swift */; };
 		2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F35C2A083FA80003194F /* PersistImageService.swift */; };
-		2919F3602A083FCF0003194F /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 2919F35F2A083FCF0003194F /* ZIPFoundation */; };
 		2919F3622A0840280003194F /* FileManager+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3612A0840280003194F /* FileManager+JSON.swift */; };
 		2919F3642A086ACF0003194F /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3632A086ACF0003194F /* TabNavigationView.swift */; };
 		2919F3672A086ECA0003194F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3662A086ECA0003194F /* Router.swift */; };
@@ -37,7 +38,29 @@
 		2942389C2A0C539600CE0A63 /* ImageSliderContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942389B2A0C539600CE0A63 /* ImageSliderContainer.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		290FAA032A16FB3800B98124 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 290FA9FE2A16FB3800B98124 /* PhotoCapture.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 18A244C8244C789B005BC26B;
+			remoteInfo = PhotoCapture;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		290FA9F52A16FB3800B98124 /* CustomCameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCameraController.swift; sourceTree = "<group>"; };
+		290FA9F62A16FB3800B98124 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		290FA9F72A16FB3800B98124 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		290FA9F82A16FB3800B98124 /* PhotoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewView.swift; sourceTree = "<group>"; };
+		290FA9F92A16FB3800B98124 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		290FA9FB2A16FB3800B98124 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		290FA9FC2A16FB3800B98124 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		290FA9FD2A16FB3800B98124 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		290FA9FE2A16FB3800B98124 /* PhotoCapture.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = PhotoCapture.xcodeproj; sourceTree = "<group>"; };
+		290FAA012A16FB3800B98124 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		290FAA082A1703C500B98124 /* Capturing Photos 4.swiftpm */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "Capturing Photos 4.swiftpm"; path = "../../Downloads/Capturing Photos 4.swiftpm"; sourceTree = "<group>"; };
+		290FAA0B2A17085300B98124 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		2919F32D2A0815700003194F /* SucculentAndPlantApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SucculentAndPlantApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2919F3302A0815700003194F /* SucculentAndPlantAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentAndPlantAppApp.swift; sourceTree = "<group>"; };
 		2919F3322A0815700003194F /* SucculentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentListView.swift; sourceTree = "<group>"; };
@@ -54,7 +77,7 @@
 		2919F3512A083A070003194F /* SuccuelentFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccuelentFormViewModel.swift; sourceTree = "<group>"; };
 		2919F3532A083B160003194F /* SucculentFormState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentFormState.swift; sourceTree = "<group>"; };
 		2919F3552A083B770003194F /* SucculentFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentFormView.swift; sourceTree = "<group>"; };
-		2919F3582A083C6E0003194F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		2919F3582A083C6E0003194F /* ImageSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelector.swift; sourceTree = "<group>"; };
 		2919F35A2A083C860003194F /* FIleManager+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIleManager+Image.swift"; sourceTree = "<group>"; };
 		2919F35C2A083FA80003194F /* PersistImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistImageService.swift; sourceTree = "<group>"; };
 		2919F3612A0840280003194F /* FileManager+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+JSON.swift"; sourceTree = "<group>"; };
@@ -76,13 +99,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				2919F3462A0815830003194F /* CloudKit.framework in Frameworks */,
-				2919F3602A083FCF0003194F /* ZIPFoundation in Frameworks */,
+				290FAA072A17022D00B98124 /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		290FA9F22A16FB3800B98124 /* capture_photo */ = {
+			isa = PBXGroup;
+			children = (
+				290FA9F32A16FB3800B98124 /* PhotoCapture */,
+				290FAA012A16FB3800B98124 /* README.md */,
+			);
+			name = capture_photo;
+			path = ../../Projects/capture_photo;
+			sourceTree = "<group>";
+		};
+		290FA9F32A16FB3800B98124 /* PhotoCapture */ = {
+			isa = PBXGroup;
+			children = (
+				290FA9F42A16FB3800B98124 /* PhotoCapture */,
+				290FA9FE2A16FB3800B98124 /* PhotoCapture.xcodeproj */,
+			);
+			path = PhotoCapture;
+			sourceTree = "<group>";
+		};
+		290FA9F42A16FB3800B98124 /* PhotoCapture */ = {
+			isa = PBXGroup;
+			children = (
+				290FA9F52A16FB3800B98124 /* CustomCameraController.swift */,
+				290FA9F62A16FB3800B98124 /* HomeController.swift */,
+				290FA9F72A16FB3800B98124 /* UIView+Extension.swift */,
+				290FA9F82A16FB3800B98124 /* PhotoPreviewView.swift */,
+				290FA9F92A16FB3800B98124 /* Assets.xcassets */,
+				290FA9FA2A16FB3800B98124 /* LaunchScreen.storyboard */,
+				290FA9FC2A16FB3800B98124 /* AppDelegate.swift */,
+				290FA9FD2A16FB3800B98124 /* Info.plist */,
+			);
+			path = PhotoCapture;
+			sourceTree = "<group>";
+		};
+		290FA9FF2A16FB3800B98124 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				290FAA042A16FB3800B98124 /* PhotoCapture.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		2919F3242A0815700003194F = {
 			isa = PBXGroup;
 			children = (
@@ -105,9 +170,7 @@
 			children = (
 				2919F3472A08158C0003194F /* SucculentAndPlantApp.entitlements */,
 				2919F3302A0815700003194F /* SucculentAndPlantAppApp.swift */,
-				2919F3322A0815700003194F /* SucculentListView.swift */,
-				294238862A0B089600CE0A63 /* SucculentListViewModel.swift */,
-				2919F3682A0ACE210003194F /* EmptyGridView.swift */,
+				294238DA2A0E8ABC00CE0A63 /* Succulent List */,
 				2919F3652A086EB20003194F /* Navigation */,
 				2919F3572A083C640003194F /* Support */,
 				2919F3502A0839F40003194F /* Succulent Detail */,
@@ -130,7 +193,9 @@
 		2919F3442A0815830003194F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				290FA9F22A16FB3800B98124 /* capture_photo */,
 				2919F3452A0815830003194F /* CloudKit.framework */,
+				290FAA082A1703C500B98124 /* Capturing Photos 4.swiftpm */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -169,12 +234,12 @@
 		2919F3572A083C640003194F /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				2942389F2A0C664000CE0A63 /* Extensions */,
 				294238902A0C4EAB00CE0A63 /* Image Slider */,
-				2919F3582A083C6E0003194F /* ImagePicker.swift */,
-				2919F35A2A083C860003194F /* FIleManager+Image.swift */,
-				2919F3612A0840280003194F /* FileManager+JSON.swift */,
-				2942388B2A0B232600CE0A63 /* Animation+Repeat.swift */,
+				2919F3582A083C6E0003194F /* ImageSelector.swift */,
+				290FAA0B2A17085300B98124 /* ImagePicker.swift */,
 				294238892A0B0B1500CE0A63 /* Modifiers.swift */,
+				2919F3682A0ACE210003194F /* EmptyGridView.swift */,
 				2942388D2A0B242200CE0A63 /* ShakeAnimation.swift */,
 			);
 			path = Support;
@@ -199,6 +264,25 @@
 			path = "Image Slider";
 			sourceTree = "<group>";
 		};
+		2942389F2A0C664000CE0A63 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2919F35A2A083C860003194F /* FIleManager+Image.swift */,
+				2919F3612A0840280003194F /* FileManager+JSON.swift */,
+				2942388B2A0B232600CE0A63 /* Animation+Repeat.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		294238DA2A0E8ABC00CE0A63 /* Succulent List */ = {
+			isa = PBXGroup;
+			children = (
+				2919F3322A0815700003194F /* SucculentListView.swift */,
+				294238862A0B089600CE0A63 /* SucculentListViewModel.swift */,
+			);
+			path = "Succulent List";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -216,7 +300,7 @@
 			);
 			name = SucculentAndPlantApp;
 			packageProductDependencies = (
-				2919F35F2A083FCF0003194F /* ZIPFoundation */,
+				290FAA062A17022D00B98124 /* ZIPFoundation */,
 			);
 			productName = SucculentAndPlantApp;
 			productReference = 2919F32D2A0815700003194F /* SucculentAndPlantApp.app */;
@@ -247,16 +331,32 @@
 			);
 			mainGroup = 2919F3242A0815700003194F;
 			packageReferences = (
-				2919F35E2A083FCF0003194F /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+				290FAA052A17022D00B98124 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 			);
 			productRefGroup = 2919F32E2A0815700003194F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 290FA9FF2A16FB3800B98124 /* Products */;
+					ProjectRef = 290FA9FE2A16FB3800B98124 /* PhotoCapture.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				2919F32C2A0815700003194F /* SucculentAndPlantApp */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		290FAA042A16FB3800B98124 /* PhotoCapture.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = PhotoCapture.app;
+			remoteRef = 290FAA032A16FB3800B98124 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2919F32B2A0815700003194F /* Resources */ = {
@@ -293,16 +393,28 @@
 				2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */,
 				2942389C2A0C539600CE0A63 /* ImageSliderContainer.swift in Sources */,
 				2919F3622A0840280003194F /* FileManager+JSON.swift in Sources */,
-				2919F3592A083C6E0003194F /* ImagePicker.swift in Sources */,
+				2919F3592A083C6E0003194F /* ImageSelector.swift in Sources */,
 				2919F34A2A08330F0003194F /* Item.swift in Sources */,
 				2919F3642A086ACF0003194F /* TabNavigationView.swift in Sources */,
 				2919F34D2A0834540003194F /* UIImageTransformer.swift in Sources */,
+				290FAA0C2A17085300B98124 /* ImagePicker.swift in Sources */,
 				2919F34F2A08347B0003194F /* ImageContainer.swift in Sources */,
 				2942388C2A0B232600CE0A63 /* Animation+Repeat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		290FA9FA2A16FB3800B98124 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				290FA9FB2A16FB3800B98124 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2919F33F2A0815710003194F /* Debug */ = {
@@ -432,6 +544,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SucculentAndPlantApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "SAY YES";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -463,6 +576,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SucculentAndPlantApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "SAY YES";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -505,7 +619,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2919F35E2A083FCF0003194F /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+		290FAA052A17022D00B98124 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/weichsel/ZIPFoundation.git";
 			requirement = {
@@ -516,9 +630,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2919F35F2A083FCF0003194F /* ZIPFoundation */ = {
+		290FAA062A17022D00B98124 /* ZIPFoundation */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2919F35E2A083FCF0003194F /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			package = 290FAA052A17022D00B98124 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
 			productName = ZIPFoundation;
 		};
 /* End XCSwiftPackageProductDependency section */

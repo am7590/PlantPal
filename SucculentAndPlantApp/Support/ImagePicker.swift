@@ -2,35 +2,46 @@
 //  ImagePicker.swift
 //  SucculentAndPlantApp
 //
-//  Created by Alek Michelson on 5/7/23.
+//  Created by Alek Michelson on 5/18/23.
 //
 
+import UIKit
 import SwiftUI
-import PhotosUI
 
-@MainActor
-class ImagePicker: ObservableObject {
-    @Published var imageSelection: PhotosPickerItem? {
-        didSet {
-            Task {
-                try await loadTransferable(from:imageSelection)
-            }
-        }
-    }
-    @Published var image: Image?
-    @Published var uiImage: UIImage?
+struct ImagePickerView: UIViewControllerRepresentable {
     
-    
-    func loadTransferable(from imageSelection: PhotosPickerItem?) async throws {
-        do {
-            if let data = try await imageSelection?.loadTransferable(type: Data.self) {
-                if let uiImage = UIImage(data: data) {
-                    self.uiImage = uiImage
-                    self.image = Image(uiImage: uiImage)
-                }
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
+    @Binding var selectedImage: UIImage?
+    @Environment(\.presentationMode) var isPresented
+    var sourceType: UIImagePickerController.SourceType
+        
+    func makeUIViewController(context: Context) -> UIImagePickerController {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = self.sourceType
+        imagePicker.delegate = context.coordinator // confirming the delegate
+        return imagePicker
     }
+
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
+
+    }
+
+    // Connecting the Coordinator class with this struct
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(picker: self)
+    }
+}
+
+class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    var picker: ImagePickerView
+    
+    init(picker: ImagePickerView) {
+        self.picker = picker
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[.originalImage] as? UIImage else { return }
+        self.picker.selectedImage = selectedImage
+        self.picker.isPresented.wrappedValue.dismiss()
+    }
+    
 }
