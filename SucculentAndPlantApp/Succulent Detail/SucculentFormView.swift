@@ -14,17 +14,19 @@ struct SucculentFormView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
     @StateObject var imageSelector = ImageSelector()
+    @EnvironmentObject var imagePicker: ImageSelector
     
     @FetchRequest(sortDescriptors: [])
     var myImages: FetchedResults<Item>
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             GeometryReader { proxy in
                 VStack {
                     let width = proxy.size.width - 28
                     
-                    if let image = viewModel.uiImage {
+                    if let image = viewModel.uiImage, viewModel.isItem {
+                    
                         ImageSliderContainerView(imgArr: [image, image, image])
                             .frame(width: width, height: width + 36)
                             .cornerRadius(24)
@@ -70,7 +72,7 @@ struct SucculentFormView: View {
                         
                         waterPlantView()
                         
-                        selectImageView()
+                        selectImageView(width: width)
                     }
                     .cornerRadius(24)
                     .scrollContentBackground(.hidden)
@@ -173,33 +175,40 @@ struct SucculentFormView: View {
         }
     }
     
-    @ViewBuilder func selectImageView() -> some View {
+    @ViewBuilder func selectImageView(width imageWidth: CGFloat) -> some View {
         Section("Image") {
             VStack(alignment: .leading) {
                 Button("Take Photo...") {
-
+                    ImagePickerView(selectedImage: $imagePicker.image, sourceType: .camera)
                 }
                 .foregroundColor(Color(uiColor: .systemOrange))
-    //
+                //
                 Divider()
                 
                 HStack {
-                    Button("Choose from Existing") {
-
-                    }
+                    PhotosPicker("Choose image", selection: $imagePicker.imageSelection,
+                                 matching: .images,
+                                 photoLibrary: .shared())
                     .foregroundColor(.primary)
 
                     Spacer()
-
+                                       
                     Image(systemName: "chevron.right")
                         .foregroundColor(.gray)
                 }
                 
-                Divider()
-
+                if let image = viewModel.uiImage, let _ = imagePicker.imageSelection {
+                    Divider()
+                    
+                    HStack {
+                        Spacer()
+                        ImageSliderContainerView(imgArr: [image, image, image])
+                            .frame(width: imageWidth/2, height: imageWidth/2 + 36)
+                            .cornerRadius(24)
+                        Spacer()
+                    }
+                }
             }
-           
-//
         }
         .listRowBackground(Color(uiColor: .secondarySystemBackground))
     }
@@ -238,7 +247,7 @@ struct SucculentFormView: View {
             
         }
         .listRowBackground(Color(uiColor: .secondarySystemBackground))
-    
+        
     }
     
 }

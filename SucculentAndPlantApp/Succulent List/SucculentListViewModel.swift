@@ -15,7 +15,6 @@ class SucculentListViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var isList = false   // TODO: Hook up to UserDefaults
     @Published var wiggle: Bool = false
-
     
     @Environment(\.managedObjectContext) var viewContext
     
@@ -30,7 +29,6 @@ class SucculentListViewModel: ObservableObject {
 
 extension SucculentListView {
     struct CustomToolbar: ToolbarContent {
-        @EnvironmentObject var imagePicker: ImageSelector
         @EnvironmentObject var viewModel: SucculentListViewModel
         
         var body: some ToolbarContent {
@@ -62,12 +60,6 @@ extension SucculentListView {
             }
             
             ToolbarItem(placement: .navigationBarTrailing) {
-                //                PhotosPicker(selection: $imagePicker.imageSelection,
-                //                             matching: .images,
-                //                             photoLibrary: .shared()) {
-                
-                //
-                
                 Button {
                     viewModel.formState = .new(nil)
                 } label: {
