@@ -7,18 +7,16 @@
 
 import SwiftUI
 import PhotosUI
+import ImageCaptureCore
 
 struct SucculentFormView: View {
     @ObservedObject var viewModel: SuccuelentFormViewModel
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
-    @StateObject var imagePicker = ImagePicker()
+    @StateObject var imageSelector = ImageSelector()
     
     @FetchRequest(sortDescriptors: [])
-    private var myImages: FetchedResults<Item>
-    
-    @State private var name = ""
-    @State var amount = 0
+    var myImages: FetchedResults<Item>
     
     var body: some View {
         GeometryReader { proxy in
@@ -26,13 +24,13 @@ struct SucculentFormView: View {
                 let width = proxy.size.width - 28
                 
                 ImageSliderContainerView(imgArr: [viewModel.uiImage, viewModel.uiImage, viewModel.uiImage])
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fill)
+                //                    .resizable()
+                //                    .aspectRatio(contentMode: .fill)
                     .frame(width: width, height: width + 36)
                     .cornerRadius(24)
-
+                
                 HStack {
-                    Button(action: {}) {
+                    Button(action: { viewModel.waterAlertIsDispayed.toggle() }) {
                         VStack {
                             Image(systemName: "drop.fill")
                             Text("Water")
@@ -44,15 +42,15 @@ struct SucculentFormView: View {
                     }
                     
                     
-                    Button(action: {}) {
+                    Button(action: { viewModel.snoozeAlertIsDispayed.toggle() }) {
                         VStack {
-                            Image(systemName: "fanblades.fill")
-                            Text("Fertilize")
+                            Image(systemName: "moon.zzz.fill")
+                            Text("Snooze")
                         }
-                        .foregroundColor(.red)
+                        .foregroundColor(.secondary)
                         .padding()
                         .frame(width: width/2 - 6)
-                        .background(Color.red.opacity(0.25))
+                        .background(Color.secondary.opacity(0.25))
                         .cornerRadius(24)
                     }
                 }
@@ -60,7 +58,7 @@ struct SucculentFormView: View {
                 .padding(.top)
                 
                 List {
-                    Section("General Info") {
+                    Section("Name") {
                         TextField("Name", text: $viewModel.name)
                             .textFieldStyle(.plain)
                     }
@@ -68,7 +66,7 @@ struct SucculentFormView: View {
                     
                     Section("Water Plant") {
                         if !viewModel.isItem {
-                            Picker("Water", selection: $amount) {
+                            Picker("Water", selection: $viewModel.amount) {
                                 Text("As needed")
                                     .tag(0)
                                 ForEach(1..<11) { number in
@@ -77,7 +75,7 @@ struct SucculentFormView: View {
                                 }
                             }
                         }
-                        
+
                         HStack {
                             Text("Last Watered")
                             Spacer()
@@ -124,24 +122,20 @@ struct SucculentFormView: View {
                         .disabled(viewModel.incomplete)
                     }
                 }
-                                
+                
                 Spacer()
             }
             
         }
         .padding()
+        
         .textFieldStyle(.roundedBorder)
         .navigationTitle(viewModel.updating ? "Update Succulent" : "New Succulent")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Create") {
-                    let newImage = Item(context: moc)
-                    newImage.name = viewModel.name
-                    newImage.id = UUID().uuidString
-                    newImage.image = viewModel.uiImage
-                    try? moc.save()
-                    dismiss()
+                    viewModel.snoozeAlertIsDispayed.toggle()
                 }
                 .buttonStyle(.bordered)
             }
@@ -163,11 +157,21 @@ struct SucculentFormView: View {
                 }
             }
         }
-        .onChange(of: imagePicker.uiImage) { newImage in
+        .onChange(of: imageSelector.uiImage) { newImage in
             if let newImage {
                 viewModel.uiImage = newImage
             }
         }
+
+//            Button("Photo from Album") {
+//                let newImage = Item(context: moc)
+//                newImage.name = viewModel.name
+//                newImage.id = UUID().uuidString
+//                newImage.image = viewModel.uiImage
+//                try? moc.save()
+//                dismiss()
+//            }
+            Button("Cancel", role: .cancel) { }
     }
     
     func updateImage() {
