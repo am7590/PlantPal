@@ -9,7 +9,7 @@ import SwiftUI
 import PhotosUI
 
 @MainActor
-class ImagePicker: ObservableObject {
+class ImageSelector: ObservableObject {
     @Published var imageSelection: PhotosPickerItem? {
         didSet {
             Task {
@@ -19,7 +19,6 @@ class ImagePicker: ObservableObject {
     }
     @Published var image: Image?
     @Published var uiImage: UIImage?
-    
     
     func loadTransferable(from imageSelection: PhotosPickerItem?) async throws {
         do {

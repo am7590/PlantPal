@@ -65,10 +65,14 @@ extension SucculentListView {
                 //                PhotosPicker(selection: $imagePicker.imageSelection,
                 //                             matching: .images,
                 //                             photoLibrary: .shared()) {
-                Image(systemName: "plus")
+                
                 //
                 
-                
+                Button {
+                    viewModel.formState = .new(nil)
+                } label: {
+                    Image(systemName: "plus")
+                }
             }
         }
     }

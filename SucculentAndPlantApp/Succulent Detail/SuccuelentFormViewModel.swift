@@ -10,7 +10,7 @@ import SwiftUI
 
 class SuccuelentFormViewModel: ObservableObject {
     @Published var name = ""
-    @Published var uiImage: UIImage
+    @Published var uiImage: UIImage?
     @Published var date = Date.now
     
     // Alerts
@@ -28,7 +28,7 @@ class SuccuelentFormViewModel: ObservableObject {
         date == Date.distantPast
     }
     
-    init(_ uiImage: UIImage) {
+    init(_ uiImage: UIImage?) {
         self.uiImage = uiImage
     }
     
