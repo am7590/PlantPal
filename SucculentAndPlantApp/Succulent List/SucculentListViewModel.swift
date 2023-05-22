@@ -30,7 +30,7 @@ class SucculentListViewModel: ObservableObject {
 
 extension SucculentListView {
     struct CustomToolbar: ToolbarContent {
-        @EnvironmentObject var imagePicker: ImagePicker
+        @EnvironmentObject var imagePicker: ImageSelector
         @EnvironmentObject var viewModel: SucculentListViewModel
         
         var body: some ToolbarContent {
@@ -62,15 +62,16 @@ extension SucculentListView {
             }
             
             ToolbarItem(placement: .navigationBarTrailing) {
-                PhotosPicker(selection: $imagePicker.imageSelection,
-                             matching: .images,
-                             photoLibrary: .shared()) {
-                    Image(systemName: "plus")
-                }
+                //                PhotosPicker(selection: $imagePicker.imageSelection,
+                //                             matching: .images,
+                //                             photoLibrary: .shared()) {
+                Image(systemName: "plus")
+                //
+                
+                
             }
         }
     }
-
 }
 
 

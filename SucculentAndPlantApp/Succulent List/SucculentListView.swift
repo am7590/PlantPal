@@ -11,7 +11,7 @@ import _PhotosUI_SwiftUI
 
 struct SucculentListView: View {
     @EnvironmentObject var router: Router
-    @EnvironmentObject var imagePicker: ImagePicker
+    @EnvironmentObject var imagePicker: ImageSelector
     @EnvironmentObject var viewModel: SucculentListViewModel
     @EnvironmentObject var shareService: PersistImageService
     
@@ -29,13 +29,13 @@ struct SucculentListView: View {
                             .padding(.leading, 24)
                     } else {
                         ScrollView {
+                            // TODO: Make this a modifier?
                             if viewModel.isList {
                                 listView(width: cellWidth)
                             } else {
                                 LazyVGrid(columns: viewModel.gridItemLayout, spacing: 16) {
                                     listView(width: cellWidth)
                                         .padding(.horizontal)
-
                                 }
                             }
                         }

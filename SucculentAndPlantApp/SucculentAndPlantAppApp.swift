@@ -16,7 +16,7 @@ struct SucculentAndPlantAppApp: App {
     let persistenceController = PersistenceController.shared
     @StateObject var persistImage = PersistImageService()
     @StateObject var viewModel = SucculentListViewModel()
-    @StateObject private var imagePicker = ImagePicker()
+    @StateObject private var imagePicker = ImageSelector()
     
     var body: some Scene {
         WindowGroup {
