@@ -28,7 +28,7 @@ struct SucculentFormView: View {
                     if let image = viewModel.uiImage, viewModel.isItem {
                     
                         ImageSliderContainerView(imgArr: [image, image, image])
-                            .frame(width: width, height: width + 36)
+                            .frame(width: width, height: width + 48)
                             .cornerRadius(24)
                         
                         HStack {
@@ -145,8 +145,17 @@ struct SucculentFormView: View {
                     }
                 } else {
                     ToolbarItem(placement: .navigationBarTrailing) {
+                        // TODO: Make this tinted if the user has not filled out all fields
                         Button("Create") {
                             viewModel.snoozeAlertIsDispayed.toggle()
+                            
+                            // Create succulent
+                            let newImage = Item(context: moc)
+                            newImage.name = viewModel.name
+                            newImage.id = UUID().uuidString
+                            newImage.image = viewModel.uiImage
+                            try? moc.save()
+                            dismiss()
                         }
                         .buttonStyle(.bordered)
                     }
@@ -177,40 +186,45 @@ struct SucculentFormView: View {
     
     @ViewBuilder func selectImageView(width imageWidth: CGFloat) -> some View {
         Section("Image") {
-            VStack(alignment: .leading) {
-                Button("Take Photo...") {
-                    ImagePickerView(selectedImage: $imagePicker.image, sourceType: .camera)
-                }
-                .foregroundColor(Color(uiColor: .systemOrange))
-                //
-                Divider()
-                
-                HStack {
-                    PhotosPicker("Choose image", selection: $imagePicker.imageSelection,
-                                 matching: .images,
-                                 photoLibrary: .shared())
-                    .foregroundColor(.primary)
-
-                    Spacer()
-                                       
-                    Image(systemName: "chevron.right")
-                        .foregroundColor(.gray)
-                }
-                
-                if let image = viewModel.uiImage, let _ = imagePicker.imageSelection {
+                VStack(alignment: .leading) {
+                    Button("Take Photo...") {
+                        ImagePickerView(selectedImage: $imagePicker.image, sourceType: .camera)
+                        
+                    }
+                    .foregroundColor(Color(uiColor: .systemOrange))
+                    //
                     Divider()
                     
                     HStack {
+                        PhotosPicker("Choose Image", selection: $imagePicker.imageSelection,
+                                     matching: .images,
+                                     photoLibrary: .shared())
+                        .foregroundColor(.primary)
+                        
                         Spacer()
-                        ImageSliderContainerView(imgArr: [image, image, image])
-                            .frame(width: imageWidth/2, height: imageWidth/2 + 36)
-                            .cornerRadius(24)
-                        Spacer()
+                        
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
+                    }
+                    
+                    if let image = viewModel.uiImage, let _ = imagePicker.imageSelection {
+                        Divider()
+                        
+                        HStack {
+//                            Spacer()
+                            Image(uiImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+//                                .frame(width: imageWidth, height: imageWidth)
+                                //.aspectRatio(contentMode: .fit)
+                                .cornerRadius(24)
+//                            Spacer()
+                        }
                     }
                 }
             }
-        }
-        .listRowBackground(Color(uiColor: .secondarySystemBackground))
+            .listRowBackground(Color(uiColor: .secondarySystemBackground))
+        
     }
     
     @ViewBuilder func waterPlantView() -> some View {
