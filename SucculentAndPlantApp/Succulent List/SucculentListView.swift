@@ -95,7 +95,7 @@ struct SucculentListView: View {
                 .onTapGesture {
                     viewModel.formState = .edit(item)
                 }
-                .onLongPressGesture(minimumDuration: 2) {
+                .onLongPressGesture(minimumDuration: 1) {
                     viewModel.wiggle.toggle()
                 }
                 

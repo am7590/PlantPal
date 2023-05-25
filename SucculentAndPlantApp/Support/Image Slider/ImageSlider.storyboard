@@ -38,6 +38,10 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="111" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hr4-9D-YDR">
                                                     <rect key="frame" x="0.0" y="0.0" width="371" height="370"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="371" id="MVd-CX-sXq"/>
+                                                        <constraint firstAttribute="height" constant="371" id="MzD-yw-iG4"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                         </view>

@@ -13,16 +13,12 @@ struct ImageSliderContainerView: View {
     
     var body: some View {
         ImageSliderContainer(imgArr: imgArr)
-            //.padding()
-            //.cornerRadius(24)
-        
-        //.edgesIgnoringSafeArea(.all)
     }
 }
 
 struct ImageSliderContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageSliderContainerView(imgArr: [])
+        ImageSliderContainerView(imgArr: [UIImage(named: "succ1")!])
     }
 }
 
@@ -41,5 +37,4 @@ struct ImageSliderContainer: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: ImageSliderViewController, context: Context) {
         // Updates the state of the specified view controller with new information from SwiftUI.
     }
-    
 }

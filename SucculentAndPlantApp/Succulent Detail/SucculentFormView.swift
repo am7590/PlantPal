@@ -28,9 +28,7 @@ struct SucculentFormView: View {
                     if let image = viewModel.uiImage, viewModel.isItem {
                     
                         ImageSliderContainerView(imgArr: [image, image, image])
-                            .frame(width: width, height: width + 48)
                             .cornerRadius(24)
-                        
                         HStack {
                             Button(action: { viewModel.waterAlertIsDispayed.toggle() }) {
                                 VStack {
@@ -42,7 +40,6 @@ struct SucculentFormView: View {
                                 .background(Color.blue.opacity(0.25))
                                 .cornerRadius(24)
                             }
-                            
                             
                             Button(action: { viewModel.snoozeAlertIsDispayed.toggle() }) {
                                 VStack {
@@ -58,9 +55,7 @@ struct SucculentFormView: View {
                         }
                         .frame(width: width + 8)
                         .padding(.top)
-                        
                     }
-                    
                     
                     List {
                         // TODO: Open keypad and select this TextField upon opening .new view type
@@ -72,58 +67,25 @@ struct SucculentFormView: View {
                         
                         waterPlantView()
                         
-                        selectImageView(width: width)
+                        
+                        if !viewModel.isItem {
+                            selectImageView(width: width)
+                        }
                     }
                     .cornerRadius(24)
                     .scrollContentBackground(.hidden)
-                    
-                    
-                    //                if !viewModel.isItem {
-                    //                    HStack {
-                    //                        Button {
-                    //                            if viewModel.updating {
-                    //                                updateImage()
-                    //                                dismiss()
-                    //                            } else {
-                    //                                let newImage = Item(context: moc)
-                    //                                newImage.name = viewModel.name
-                    //                                newImage.id = UUID().uuidString
-                    //                                newImage.image = viewModel.uiImage
-                    //                                try? moc.save()
-                    //                                dismiss()
-                    //                            }
-                    //                        } label: {
-                    //                            Image(systemName: "checkmark")
-                    //                        }
-                    //                        .buttonStyle(.borderedProminent)
-                    //                        .tint(.blue)
-                    //                        .disabled(viewModel.incomplete)
-                    //                    }
-                    //                }
-                    
+                
                     Spacer()
                 }
                 
             }
             .padding()
-            
             .textFieldStyle(.roundedBorder)
             .onChange(of: imageSelector.uiImage) { newImage in
                 if let newImage {
                     viewModel.uiImage = newImage
                 }
             }
-            
-            //            Button("Photo from Album") {
-            //                let newImage = Item(context: moc)
-            //                newImage.name = viewModel.name
-            //                newImage.id = UUID().uuidString
-            //                newImage.image = viewModel.uiImage
-            //                try? moc.save()
-            //                dismiss()
-            //            }
-            // Button("Cancel", role: .cancel) { }
-            
             .navigationTitle(viewModel.updating ? "Update Succulent" : "New Succulent")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -157,7 +119,9 @@ struct SucculentFormView: View {
                             try? moc.save()
                             dismiss()
                         }
-                        .buttonStyle(.bordered)
+//                        .buttonStyle(.bordered)
+                        .buttonStyle(.borderedProminent)
+                                                .disabled(viewModel.incomplete)
                     }
                 }
                 
