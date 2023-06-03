@@ -19,6 +19,8 @@ struct SucculentFormView: View {
     @FetchRequest(sortDescriptors: [])
     var myImages: FetchedResults<Item>
     
+    @State private var showCameraSheet = false
+    
     var body: some View {
         NavigationStack {
             GeometryReader { proxy in
@@ -132,6 +134,9 @@ struct SucculentFormView: View {
                     .foregroundColor(Color(uiColor: .systemOrange))
                 }
             }
+            .sheet(isPresented: $showCameraSheet) {
+                CameraHostingView()
+            }
         }
         
     }
@@ -152,7 +157,7 @@ struct SucculentFormView: View {
         Section("Image") {
                 VStack(alignment: .leading) {
                     Button("Take Photo...") {
-                        ImagePickerView(selectedImage: $imagePicker.image, sourceType: .camera)
+                        showCameraSheet = true
                         
                     }
                     .foregroundColor(Color(uiColor: .systemOrange))
@@ -225,9 +230,7 @@ struct SucculentFormView: View {
             
         }
         .listRowBackground(Color(uiColor: .secondarySystemBackground))
-        
     }
-    
 }
 
 struct NewSucculentFormView_Previews: PreviewProvider {
