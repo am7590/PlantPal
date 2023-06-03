@@ -8,6 +8,10 @@
 import UIKit
 import AVFoundation
 
+protocol CameraControllerDelegate: AnyObject {
+    func cameraControllerDidCaptureImage(_ image: UIImage)
+}
+
 class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     // MARK: - Variables
@@ -28,6 +32,7 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     private let photoOutput = AVCapturePhotoOutput()
     
+    weak var delegate: CameraControllerDelegate?
     
     // MARK: - View LifeCycle
     override func viewDidLoad() {
@@ -136,6 +141,8 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         guard let imageData = photo.fileDataRepresentation() else { return }
         let previewImage = UIImage(data: imageData)
         print("imageData: \(previewImage)")
+        delegate?.cameraControllerDidCaptureImage(previewImage!)
+
         
         let photoPreviewContainer = PhotoPreviewView(frame: self.view.frame)
         photoPreviewContainer.photoImageView.image = previewImage

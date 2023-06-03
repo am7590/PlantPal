@@ -19,6 +19,8 @@ class SuccuelentFormViewModel: ObservableObject {
     
     @Published private var isImagePickerDisplay = false
     @Published var amount = 0
+    
+    let cameraHostingView = EmptyView()
         
     var id: String?
     

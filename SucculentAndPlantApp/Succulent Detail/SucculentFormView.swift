@@ -31,6 +31,9 @@ struct SucculentFormView: View {
                     
                         ImageSliderContainerView(imgArr: [image, image, image])
                             .cornerRadius(24)
+                            .padding(.horizontal)
+                            .frame(height: width)
+                        
                         HStack {
                             Button(action: { viewModel.waterAlertIsDispayed.toggle() }) {
                                 VStack {
@@ -89,7 +92,7 @@ struct SucculentFormView: View {
                     viewModel.uiImage = newImage
                 }
             }
-            .navigationTitle(viewModel.updating ? "Update Succulent" : "New Succulent")
+            .navigationTitle(viewModel.updating ? "Edit Succulent" : "New Succulent")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 if viewModel.updating {
@@ -139,7 +142,6 @@ struct SucculentFormView: View {
                 CameraHostingView()
             }
         }
-        
     }
     
     func updateImage() {
@@ -156,21 +158,14 @@ struct SucculentFormView: View {
     
     @ViewBuilder func selectImageView(width imageWidth: CGFloat) -> some View {
         
+        // Take photo
         VStack(alignment: .leading) {
-            
-            //Section("Image") {
-                // Take Photo
-                Button("Take Photo...") {
-                    showCameraSheet = true
-                    
-                }
-                .foregroundColor(Color(uiColor: .systemOrange))
-                
-                //                    Divider()
-                
-            //}
-           //
+            Button("Take Photo...") {
+                showCameraSheet = true
+            }
+            .foregroundColor(Color(uiColor: .systemOrange))
         }
+        
         // Choose image
         HStack {
             PhotosPicker("Choose Image", selection: $imagePicker.imageSelection,
@@ -186,21 +181,11 @@ struct SucculentFormView: View {
         
         // Display image
         if let image = viewModel.uiImage, let _ = imagePicker.imageSelection {
-            Divider()
-            
-            HStack {
-                //                            Spacer()
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                //                                .frame(width: imageWidth, height: imageWidth)
-                //.aspectRatio(contentMode: .fit)
-                    .cornerRadius(24)
-                //                            Spacer()
-            }
+            Image(uiImage: image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .cornerRadius(24)
         }
-        
-        
     }
     
     @ViewBuilder func waterPlantView() -> some View {

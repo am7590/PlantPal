@@ -13,7 +13,7 @@ struct CameraHostingView: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> CameraController {
         let cameraController = CameraController()
-        //cameraController.delegate = context.coordinator
+        cameraController.delegate = context.coordinator
         return cameraController
     }
     
@@ -25,25 +25,15 @@ struct CameraHostingView: UIViewControllerRepresentable {
         Coordinator(self)
     }
     
-    class Coordinator: NSObject, AVCapturePhotoCaptureDelegate {
+    class Coordinator: NSObject, CameraControllerDelegate {
         let parent: CameraHostingView
         
         init(_ parent: CameraHostingView) {
             self.parent = parent
         }
         
-        func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-            print("photoOutput")
-            
-            guard let imageData = photo.fileDataRepresentation(),
-                  let image = UIImage(data: imageData) else {
-                return
-            }
-            
-            print("image: \(image)")
-            
-           // parent.previewImage = image
-            //parent.dismiss()
+        func cameraControllerDidCaptureImage(_ image: UIImage) {
+            print("!!! selected \(image)")
         }
     }
 }
