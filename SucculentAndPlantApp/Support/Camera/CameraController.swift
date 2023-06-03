@@ -15,7 +15,7 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
-        button.tintColor = .systemOrange
+        button.tintColor = .systemBlue
         return button
     }()
     
@@ -53,9 +53,9 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
             takePhotoButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
             takePhotoButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
             
-            takePhotoButton.backgroundColor = .systemOrange
+            takePhotoButton.backgroundColor = .systemBlue
             takePhotoButton.layer.cornerRadius = 24
-        }
+    }
     
     
     private func openCamera() {

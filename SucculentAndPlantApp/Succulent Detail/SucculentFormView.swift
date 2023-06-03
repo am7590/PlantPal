@@ -72,6 +72,7 @@ struct SucculentFormView: View {
                         
                         if !viewModel.isItem {
                             selectImageView(width: width)
+                                .listRowBackground(Color(uiColor: .secondarySystemBackground))
                         }
                     }
                     .cornerRadius(24)
@@ -154,45 +155,51 @@ struct SucculentFormView: View {
     }
     
     @ViewBuilder func selectImageView(width imageWidth: CGFloat) -> some View {
-        Section("Image") {
-                VStack(alignment: .leading) {
-                    Button("Take Photo...") {
-                        showCameraSheet = true
-                        
-                    }
-                    .foregroundColor(Color(uiColor: .systemOrange))
-                    //
-                    Divider()
+        
+        VStack(alignment: .leading) {
+            
+            //Section("Image") {
+                // Take Photo
+                Button("Take Photo...") {
+                    showCameraSheet = true
                     
-                    HStack {
-                        PhotosPicker("Choose Image", selection: $imagePicker.imageSelection,
-                                     matching: .images,
-                                     photoLibrary: .shared())
-                        .foregroundColor(.primary)
-                        
-                        Spacer()
-                        
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.gray)
-                    }
-                    
-                    if let image = viewModel.uiImage, let _ = imagePicker.imageSelection {
-                        Divider()
-                        
-                        HStack {
-//                            Spacer()
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-//                                .frame(width: imageWidth, height: imageWidth)
-                                //.aspectRatio(contentMode: .fit)
-                                .cornerRadius(24)
-//                            Spacer()
-                        }
-                    }
                 }
+                .foregroundColor(Color(uiColor: .systemOrange))
+                
+                //                    Divider()
+                
+            //}
+           //
+        }
+        // Choose image
+        HStack {
+            PhotosPicker("Choose Image", selection: $imagePicker.imageSelection,
+                         matching: .images,
+                         photoLibrary: .shared())
+            .foregroundColor(.primary)
+            
+            Spacer()
+            
+            Image(systemName: "chevron.right")
+                .foregroundColor(.gray)
+        }
+        
+        // Display image
+        if let image = viewModel.uiImage, let _ = imagePicker.imageSelection {
+            Divider()
+            
+            HStack {
+                //                            Spacer()
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                //                                .frame(width: imageWidth, height: imageWidth)
+                //.aspectRatio(contentMode: .fit)
+                    .cornerRadius(24)
+                //                            Spacer()
             }
-            .listRowBackground(Color(uiColor: .secondarySystemBackground))
+        }
+        
         
     }
     
