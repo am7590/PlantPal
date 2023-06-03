@@ -122,6 +122,7 @@ struct SucculentFormView: View {
                             newImage.name = viewModel.name
                             newImage.id = UUID().uuidString
                             newImage.image = viewModel.uiImage
+                            newImage.position = NSNumber(value: myImages.count)
                             try? moc.save()
                             dismiss()
                         }

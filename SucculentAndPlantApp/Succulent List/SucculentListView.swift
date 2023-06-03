@@ -9,6 +9,46 @@ import SwiftUI
 import CoreData
 import _PhotosUI_SwiftUI
 
+struct MyDropDelegate: DropDelegate {
+    let item: Item
+    @Binding var items: [Item]
+    @State var draggedItem: Item?
+
+    func performDrop(info: DropInfo) -> Bool {
+        return true
+    }
+
+    func dropEntered(info: DropInfo) {
+        guard let draggedItem = self.draggedItem else {
+            return
+        }
+
+        if draggedItem != item {
+            let from = items.firstIndex(of: draggedItem)!
+            let to = items.firstIndex(of: item)!
+
+            withAnimation {
+                // Update the position attribute of the objects
+                let fromPosition = draggedItem.position
+                let toPosition = item.position
+                draggedItem.position = toPosition
+                item.position = fromPosition
+
+                // Swap the items in the items array
+                items.swapAt(from, to)
+
+                // Save the changes to the managed object context
+                do {
+                    try draggedItem.managedObjectContext?.save()
+                    try item.managedObjectContext?.save()
+                } catch {
+                    print("Failed to save context: \(error)")
+                }
+            }
+        }
+    }
+}
+
 struct SucculentListView: View {
     @EnvironmentObject var router: Router
     @EnvironmentObject var imagePicker: ImageSelector
@@ -16,7 +56,10 @@ struct SucculentListView: View {
     @EnvironmentObject var shareService: PersistImageService
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name)])
-    var items: FetchedResults<Item>
+    var fetchedItems: FetchedResults<Item>
+    
+    @State private var items: [Item] = []
+    @State var draggedItem: Item?
     
     var body: some View {
         NavigationStack(path: $router.path) {
@@ -29,7 +72,6 @@ struct SucculentListView: View {
                             .padding(.leading, 24)
                     } else {
                         ScrollView {
-                            // TODO: Make this a modifier?
                             if viewModel.isList {
                                 listView(width: cellWidth)
                             } else {
@@ -55,7 +97,7 @@ struct SucculentListView: View {
                     viewModel.handleImageChange(newImage)
                 }
                 .onChange(of: shareService.codeableImage) { codableImage in
-                    updateOrRestoreImage(codableImage, items)
+                    updateOrRestoreImage(codableImage, fetchedItems)
                 }
                 .onChange(of: viewModel.searchText) { value in
                     updateItemsFromSearchQuery(value)
@@ -63,12 +105,17 @@ struct SucculentListView: View {
                 .onOpenURL { url in
                     handleDeepLinkingToItem(url: url)
                 }
+                .onAppear {
+                    items = Array(fetchedItems)
+                }
             }
         }
     }
     
     func listView(width cellWidth: CGFloat) -> some View {
-        ForEach(items) { item in
+        ForEach(items, id: \.self) { item in
+            let dropDelegate = MyDropDelegate(item: item, items: $items, draggedItem: draggedItem)
+            
             Button {
                 viewModel.formState = .edit(item)
             } label: {
@@ -80,17 +127,12 @@ struct SucculentListView: View {
                         .clipped()
                         .cornerRadius(24)
                         .shadow(radius: 8.0)
-                        
-//                    if viewModel.wiggle {
-//                        Image(systemName: "minus.circle.fill")
-//                            .resizable()
-//                            .frame(width: 25, height: 25)
-//                            .shadow(radius: 2.0)
-//                            .foregroundColor(Color(uiColor: UIColor.lightGray))
-//                    }
+                        .onDrag {
+                                draggedItem = item // Update the draggedItem binding
+                                return NSItemProvider(object: NSString()) // Provide a dummy object for the drag
+                            }
                 }
                 .rotationEffect(.degrees(viewModel.wiggle ? 2.5 : 0))
-                //.rotation3DEffect(.degrees(viewModel.wiggle ? 5 : 0), axis: (x: 0, y: viewModel.wiggle ? -5: 0, z: 0))
                 .animation(.easeInOut(duration: 0.14).repeat(while: viewModel.wiggle), value: viewModel.wiggle)
                 .onTapGesture {
                     viewModel.formState = .edit(item)
@@ -98,18 +140,20 @@ struct SucculentListView: View {
                 .onLongPressGesture(minimumDuration: 1) {
                     viewModel.wiggle.toggle()
                 }
-                
             }
-            
+            .onDrop(of: [UTType.text], delegate: dropDelegate)
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        SucculentListView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
-}
+
+
+
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SucculentListView(draggedItem: $viewModel.draggedItem).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+//    }
+//}
 
 //struct LazyVGridModifier: ViewModifier {
 //    var active : Bool

@@ -19,6 +19,7 @@ extension Item: Identifiable {
     @NSManaged public var name: String?
     @NSManaged public var timestamp: Date?
     @NSManaged public var image: UIImage?
+    @NSManaged public var position: NSNumber?
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Item> {
         return NSFetchRequest<Item>(entityName: "Item")
@@ -40,5 +41,9 @@ extension Item {
     
     var uiImage: UIImage {
         image ?? UIImage(systemName: "exclamationmark.triangle.fill")!
+    }
+    
+    var gridPosition: Int {
+        Int(truncating: position ?? 0)
     }
 }

@@ -40,6 +40,8 @@ class SuccuelentFormViewModel: ObservableObject {
     
     var isItem = false
     
+    var count = 0
+    
     init(_ myItem: Item) {
         name = myItem.nameText
         id = myItem.imageID

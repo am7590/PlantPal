@@ -87,16 +87,16 @@ extension SucculentListView {
     
     func updateItemsFromSearchQuery(_ value: String) {
         if viewModel.searchText != "" {
-            items.nsPredicate = NSPredicate(format: "name CONTAINS[c] %@", viewModel.searchText)
+            fetchedItems.nsPredicate = NSPredicate(format: "name CONTAINS[c] %@", viewModel.searchText)
         } else {
-            items.nsPredicate = nil
+            fetchedItems.nsPredicate = nil
         }
     }
     
     func handleDeepLinkingToItem(url: URL) {
         guard let scheme = url.scheme, scheme == "navStack" else { return }
         guard let item = url.host else { return }
-        if let foundItem = items.first(where: { $0.nameText.lowercased() == item }) {
+        if let foundItem = fetchedItems.first(where: { $0.nameText.lowercased() == item }) {
             router.reset()
             viewModel.formState = .edit(foundItem)
         }
