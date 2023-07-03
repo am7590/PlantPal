@@ -113,7 +113,6 @@ struct SucculentFormView: View {
                     }
                 } else {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        // TODO: Make this tinted if the user has not filled out all fields
                         Button("Create") {
                             viewModel.snoozeAlertIsDispayed.toggle()
                             
@@ -126,7 +125,6 @@ struct SucculentFormView: View {
                             try? moc.save()
                             dismiss()
                         }
-//                        .buttonStyle(.bordered)
                         .buttonStyle(.borderedProminent)
                                                 .disabled(viewModel.incomplete)
                     }
@@ -140,7 +138,9 @@ struct SucculentFormView: View {
                 }
             }
             .sheet(isPresented: $showCameraSheet) {
-                CameraHostingView()
+                CameraHostingView(viewModel: viewModel)
+                
+//                CameraHostingView(previewImage: UIImage(date: $imagePicker.imageSelection))
             }
         }
     }
@@ -181,7 +181,7 @@ struct SucculentFormView: View {
         }
         
         // Display image
-        if let image = viewModel.uiImage, let _ = imagePicker.imageSelection {
+        if let image = viewModel.uiImage {  // , let _ = imagePicker.imageSelection
             Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)

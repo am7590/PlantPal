@@ -9,7 +9,8 @@ import SwiftUI
 import AVFoundation
 
 struct CameraHostingView: UIViewControllerRepresentable {
-    //@Binding var previewImage: UIImage?
+//    @State var previewImage: UIImage?
+    @ObservedObject var viewModel: SuccuelentFormViewModel
     
     func makeUIViewController(context: Context) -> CameraController {
         let cameraController = CameraController()
@@ -34,6 +35,8 @@ struct CameraHostingView: UIViewControllerRepresentable {
         
         func cameraControllerDidCaptureImage(_ image: UIImage) {
             print("!!! selected \(image)")
+//            parent.previewImage = image
+            parent.viewModel.uiImage = image
         }
     }
 }
