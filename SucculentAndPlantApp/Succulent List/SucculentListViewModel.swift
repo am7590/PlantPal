@@ -14,7 +14,7 @@ class SucculentListViewModel: ObservableObject {
     @Published var imageExists = false
     @Published var searchText = ""
     @Published var isList = false   // TODO: Hook up to UserDefaults
-    @Published var wiggle: Bool = false
+    @Published var wiggle = false
     
     @Environment(\.managedObjectContext) var viewContext
     
