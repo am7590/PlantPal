@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ImagePageSliderView: View {
     let images: [UIImage]
+    let width: CGFloat
     @Binding var currentIndex: Int
     
     var body: some View {
@@ -17,19 +18,20 @@ struct ImagePageSliderView: View {
                 ForEach(0..<images.count, id: \.self) { index in
                     Image(uiImage: images[index])
                         .resizable()
-                        .scaledToFit()
+                        .scaledToFill()
+                        .frame(width: width, height: width)
                         .tag(index)
                 }
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .animation(.easeInOut)
             
             PageControl(numberOfPages: images.count, currentPage: $currentIndex)
                 .padding(.vertical, 10)
+                .id(UUID()) // Add an identifier to force recreation of PageControl
         }
     }
 }
-
 
 struct PageControl: UIViewRepresentable {
     var numberOfPages: Int
@@ -48,6 +50,9 @@ struct PageControl: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIPageControl, context: Context) {
+        if uiView.numberOfPages != numberOfPages {
+            uiView.numberOfPages = numberOfPages
+        }
         uiView.currentPage = currentPage
     }
     

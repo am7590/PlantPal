@@ -32,7 +32,7 @@ struct SucculentFormView: View {
                     
                     if viewModel.isItem {
                         
-                        ImagePageSliderView(images: viewModel.uiImage, currentIndex: $viewModel.imagePageSliderIndex)
+                        ImagePageSliderView(images: viewModel.uiImage, width: width, currentIndex: $viewModel.imagePageSliderIndex)
                             .cornerRadius(16)
                             .padding(.horizontal)
                            // .frame(height: width)
