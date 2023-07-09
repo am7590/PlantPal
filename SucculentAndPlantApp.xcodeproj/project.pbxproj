@@ -29,6 +29,7 @@
 		2919F3642A086ACF0003194F /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3632A086ACF0003194F /* TabNavigationView.swift */; };
 		2919F3672A086ECA0003194F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3662A086ECA0003194F /* Router.swift */; };
 		2919F3692A0ACE210003194F /* EmptyGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3682A0ACE210003194F /* EmptyGridView.swift */; };
+		2935A9A92A5321F2007DAFC5 /* MyDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2935A9A82A5321F2007DAFC5 /* MyDropDelegate.swift */; };
 		294238872A0B089600CE0A63 /* SucculentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294238862A0B089600CE0A63 /* SucculentListViewModel.swift */; };
 		2942388A2A0B0B1500CE0A63 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294238892A0B0B1500CE0A63 /* Modifiers.swift */; };
 		2942388C2A0B232600CE0A63 /* Animation+Repeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942388B2A0B232600CE0A63 /* Animation+Repeat.swift */; };
@@ -39,6 +40,7 @@
 		297ECD242A2BA5F700739538 /* CameraHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD232A2BA5F700739538 /* CameraHostingView.swift */; };
 		297ECD262A2BA61600739538 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD252A2BA61600739538 /* CameraController.swift */; };
 		297ECD282A2BA66E00739538 /* PhotoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD272A2BA66E00739538 /* PhotoPreviewView.swift */; };
+		29E05A162A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,7 @@
 		2919F3632A086ACF0003194F /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
 		2919F3662A086ECA0003194F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2919F3682A0ACE210003194F /* EmptyGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyGridView.swift; sourceTree = "<group>"; };
+		2935A9A82A5321F2007DAFC5 /* MyDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDropDelegate.swift; sourceTree = "<group>"; };
 		294238862A0B089600CE0A63 /* SucculentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentListViewModel.swift; sourceTree = "<group>"; };
 		294238892A0B0B1500CE0A63 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		2942388B2A0B232600CE0A63 /* Animation+Repeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+Repeat.swift"; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 		297ECD232A2BA5F700739538 /* CameraHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHostingView.swift; sourceTree = "<group>"; };
 		297ECD252A2BA61600739538 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		297ECD272A2BA66E00739538 /* PhotoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewView.swift; sourceTree = "<group>"; };
+		29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+ClipToBounds.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +216,7 @@
 				2919F35A2A083C860003194F /* FIleManager+Image.swift */,
 				2919F3612A0840280003194F /* FileManager+JSON.swift */,
 				2942388B2A0B232600CE0A63 /* Animation+Repeat.swift */,
+				29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -220,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				2919F3322A0815700003194F /* SucculentListView.swift */,
+				2935A9A82A5321F2007DAFC5 /* MyDropDelegate.swift */,
 				294238862A0B089600CE0A63 /* SucculentListViewModel.swift */,
 			);
 			path = "Succulent List";
@@ -321,8 +327,10 @@
 				2942388E2A0B242200CE0A63 /* ShakeAnimation.swift in Sources */,
 				294238872A0B089600CE0A63 /* SucculentListViewModel.swift in Sources */,
 				2919F3692A0ACE210003194F /* EmptyGridView.swift in Sources */,
+				2935A9A92A5321F2007DAFC5 /* MyDropDelegate.swift in Sources */,
 				2942388A2A0B0B1500CE0A63 /* Modifiers.swift in Sources */,
 				297ECD242A2BA5F700739538 /* CameraHostingView.swift in Sources */,
+				29E05A162A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift in Sources */,
 				2919F3312A0815700003194F /* SucculentAndPlantAppApp.swift in Sources */,
 				2919F3562A083B770003194F /* SucculentFormView.swift in Sources */,
 				2919F35B2A083C860003194F /* FIleManager+Image.swift in Sources */,

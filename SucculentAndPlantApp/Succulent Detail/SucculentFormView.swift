@@ -28,34 +28,57 @@ struct SucculentFormView: View {
                     let width = proxy.size.width - 28
                     
                     if let image = viewModel.uiImage, viewModel.isItem {
-                    
+                        
                         ImageSliderContainerView(imgArr: [image, image, image])
-                            .cornerRadius(24)
+                            .cornerRadius(16)
                             .padding(.horizontal)
                             .frame(height: width)
                         
                         HStack {
                             Button(action: { viewModel.waterAlertIsDispayed.toggle() }) {
-                                VStack {
-                                    Image(systemName: "drop.fill")
-                                    Text("Water")
+                                HStack {
+                                    VStack(alignment: .leading, spacing: 6) {
+                                        Image(systemName: "drop.fill")
+                                            .font(.title)
+                                        Text("Water")
+                                            .bold()
+                                            .font(.subheadline)
+                                        
+//                                        Text("Today")
+//                                            .foregroundColor(.secondary)
+//                                            .font(.caption)
+                                    }
+                                    
+                                    Spacer()
                                 }
                                 .padding(16)
                                 .frame(width: width/2 - 6)
                                 .background(Color.blue.opacity(0.25))
-                                .cornerRadius(24)
+                                .cornerRadius(12)
                             }
                             
                             Button(action: { viewModel.snoozeAlertIsDispayed.toggle() }) {
-                                VStack {
-                                    Image(systemName: "moon.zzz.fill")
-                                    Text("Snooze")
+                                HStack {
+                                    VStack(alignment: .leading, spacing: 6) {
+                                        Image(systemName: "moon.zzz.fill")
+                                            .font(.title)
+                                        
+                                        Text("Water Later")
+                                            .bold()
+                                            .font(.subheadline)
+                                        
+//                                        Text("Water another time")
+//                                            .foregroundColor(.clear)
+//                                            .font(.caption)
+                                    }
+                                    
+                                    Spacer()
                                 }
                                 .foregroundColor(.secondary)
                                 .padding()
                                 .frame(width: width/2 - 6)
                                 .background(Color.secondary.opacity(0.25))
-                                .cornerRadius(24)
+                                .cornerRadius(12)
                             }
                         }
                         .frame(width: width + 8)
@@ -80,7 +103,7 @@ struct SucculentFormView: View {
                     }
                     .cornerRadius(24)
                     .scrollContentBackground(.hidden)
-                
+                    
                     Spacer()
                 }
                 
@@ -126,7 +149,7 @@ struct SucculentFormView: View {
                             dismiss()
                         }
                         .buttonStyle(.borderedProminent)
-                                                .disabled(viewModel.incomplete)
+                        .disabled(viewModel.incomplete)
                     }
                 }
                 
@@ -140,7 +163,7 @@ struct SucculentFormView: View {
             .sheet(isPresented: $showCameraSheet) {
                 CameraHostingView(viewModel: viewModel)
                 
-//                CameraHostingView(previewImage: UIImage(date: $imagePicker.imageSelection))
+                //                CameraHostingView(previewImage: UIImage(date: $imagePicker.imageSelection))
             }
         }
     }
@@ -181,7 +204,7 @@ struct SucculentFormView: View {
         }
         
         // Display image
-        if let image = viewModel.uiImage {  // , let _ = imagePicker.imageSelection
+        if let image = viewModel.uiImage {
             Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)

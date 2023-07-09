@@ -94,9 +94,10 @@ struct SucculentListView: View {
                         .cornerRadius(24)
                         .shadow(radius: 8.0)
                         .onDrag {
-                                draggedItem = item // Update the draggedItem binding
-                                return NSItemProvider(object: NSString()) // Provide a dummy object for the drag
-                            }
+                            viewModel.wiggle = false
+                            draggedItem = item
+                            return NSItemProvider(object: NSString())
+                        }
                 }
                 .rotationEffect(.degrees(viewModel.wiggle ? 2.5 : 0))
                 .animation(.easeInOut(duration: 0.14).repeat(while: viewModel.wiggle), value: viewModel.wiggle)
