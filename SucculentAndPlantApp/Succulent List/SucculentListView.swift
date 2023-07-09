@@ -20,7 +20,7 @@ struct SucculentListView: View {
     
     @State private var items: [Item] = []
     @State var draggedItem: Item?
-    
+        
     var body: some View {
         NavigationStack(path: $router.path) {
             GeometryReader { proxy in

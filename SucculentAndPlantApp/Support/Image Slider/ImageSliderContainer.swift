@@ -9,23 +9,17 @@ import UIKit
 import SwiftUI
 
 struct ImageSliderContainerView: View {
-    var imgArr: [UIImage]
+    @ObservedObject var viewModel: SuccuelentFormViewModel
     
     var body: some View {
-        ImageSliderContainer(imgArr: imgArr)
-    }
-}
-
-struct ImageSliderContainerView_Previews: PreviewProvider {
-    static var previews: some View {
-        ImageSliderContainerView(imgArr: [UIImage(named: "succ1")!])
+        ImageSliderContainer(imgArr: $viewModel.uiImage)
     }
 }
 
 struct ImageSliderContainer: UIViewControllerRepresentable {
     typealias UIViewControllerType = ImageSliderViewController
     
-    var imgArr: [UIImage]
+    @Binding var imgArr: [UIImage]
     
     func makeUIViewController(context: Context) -> ImageSliderViewController {
         let storyboard = UIStoryboard(name: "ImageSlider", bundle: Bundle.main)

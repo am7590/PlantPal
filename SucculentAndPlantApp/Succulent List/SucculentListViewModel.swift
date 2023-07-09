@@ -61,7 +61,7 @@ extension SucculentListView {
             
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    viewModel.formState = .new(nil)
+                    viewModel.formState = .new([])
                 } label: {
                     Image(systemName: "plus")
                 }

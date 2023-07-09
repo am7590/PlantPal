@@ -10,7 +10,12 @@ import SwiftUI
 
 class SuccuelentFormViewModel: ObservableObject {
     @Published var name = ""
-    @Published var uiImage: [UIImage]?
+    @Published var uiImage: [UIImage] = [] {
+        didSet {
+            // dismiss SuccuelentFormView
+            print("Count: \(uiImage.count)")
+        }
+    }
     @Published var date = Date.now
     
     // Alerts
@@ -19,6 +24,9 @@ class SuccuelentFormViewModel: ObservableObject {
     
     @Published private var isImagePickerDisplay = false
     @Published var amount = 0
+    
+    @Published var imagePageSliderIndex = 0
+
     
     let cameraHostingView = EmptyView()
         
@@ -30,7 +38,7 @@ class SuccuelentFormViewModel: ObservableObject {
         date == Date.distantPast
     }
     
-    init(_ uiImage: [UIImage]?) {
+    init(_ uiImage: [UIImage]) {
         self.uiImage = uiImage
     }
     

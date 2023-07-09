@@ -20,6 +20,9 @@ struct SucculentFormView: View {
     var myImages: FetchedResults<Item>
     
     @State private var showCameraSheet = false
+    @State private var showPhotoSelectionSheet = false
+    
+    @State var newImageSelection: PhotosPickerItem?
     
     var body: some View {
         NavigationStack {
@@ -27,12 +30,12 @@ struct SucculentFormView: View {
                 VStack {
                     let width = proxy.size.width - 28
                     
-                    if let image = viewModel.uiImage, viewModel.isItem {
+                    if viewModel.isItem {
                         
-                        ImageSliderContainerView(imgArr: [image, image, image])
+                        ImagePageSliderView(images: viewModel.uiImage, currentIndex: $viewModel.imagePageSliderIndex)
                             .cornerRadius(16)
                             .padding(.horizontal)
-                            .frame(height: width)
+                           // .frame(height: width)
                         
                         HStack {
                             Button(action: { viewModel.waterAlertIsDispayed.toggle() }) {
@@ -43,12 +46,12 @@ struct SucculentFormView: View {
                                         Text("Water")
                                             .bold()
                                             .font(.subheadline)
-                                        
+
 //                                        Text("Today")
 //                                            .foregroundColor(.secondary)
 //                                            .font(.caption)
                                     }
-                                    
+
                                     Spacer()
                                 }
                                 .padding(16)
@@ -56,22 +59,22 @@ struct SucculentFormView: View {
                                 .background(Color.blue.opacity(0.25))
                                 .cornerRadius(12)
                             }
-                            
+
                             Button(action: { viewModel.snoozeAlertIsDispayed.toggle() }) {
                                 HStack {
                                     VStack(alignment: .leading, spacing: 6) {
                                         Image(systemName: "moon.zzz.fill")
                                             .font(.title)
-                                        
+
                                         Text("Water Later")
                                             .bold()
                                             .font(.subheadline)
-                                        
+
 //                                        Text("Water another time")
 //                                            .foregroundColor(.clear)
 //                                            .font(.caption)
                                     }
-                                    
+
                                     Spacer()
                                 }
                                 .foregroundColor(.secondary)
@@ -92,10 +95,10 @@ struct SucculentFormView: View {
                                 .textFieldStyle(.plain)
                         }
                         .listRowBackground(Color(uiColor: .secondarySystemBackground))
-                        
+
                         waterPlantView()
-                        
-                        
+
+
                         if !viewModel.isItem {
                             selectImageView(width: width)
                                 .listRowBackground(Color(uiColor: .secondarySystemBackground))
@@ -103,7 +106,7 @@ struct SucculentFormView: View {
                     }
                     .cornerRadius(24)
                     .scrollContentBackground(.hidden)
-                    
+//
                     Spacer()
                 }
                 
@@ -112,7 +115,7 @@ struct SucculentFormView: View {
             .textFieldStyle(.roundedBorder)
             .onChange(of: imageSelector.uiImage) { newImage in
                 if let newImage {
-                    viewModel.uiImage = newImage
+                    viewModel.uiImage.append(newImage)
                 }
             }
             .navigationTitle(viewModel.updating ? "Edit Succulent" : "New Succulent")
@@ -165,6 +168,47 @@ struct SucculentFormView: View {
                 
                 //                CameraHostingView(previewImage: UIImage(date: $imagePicker.imageSelection))
             }
+//            .sheet(isPresented: $viewModel.waterAlertIsDispayed) {
+//                Text("Womp")
+//                    .onTapGesture {
+//                        showCameraSheet = true
+////                        viewModel.uiImage?.append(UIImage(systemName: "trash")!)
+////                        updateImage()
+//                    }
+//            }
+            .alert("Add Plant Photo", isPresented: $viewModel.waterAlertIsDispayed) {
+                Button("Take Photo") {
+                    showCameraSheet = true
+                }
+                Button("Upload Photo") {
+                    showPhotoSelectionSheet = true
+                }
+                Button("Cancel", role: .cancel) { }
+            }
+            .sheet(isPresented: $showPhotoSelectionSheet, onDismiss: {
+                viewModel.imagePageSliderIndex = viewModel.uiImage.count-1
+
+            }) {
+                PhotosPicker("Choose Image", selection: $newImageSelection,
+                             matching: .images,
+                             photoLibrary: .shared())
+                .foregroundColor(.primary)
+            }
+            .onChange(of: newImageSelection) { newItem in
+                Task {
+                    do {
+                        if let data = try await newItem?.loadTransferable(type: Data.self) {
+                            if let uiImage = UIImage(data: data) {
+                                viewModel.uiImage.append(uiImage)
+                                updateImage()
+                                print("Appending: \(uiImage)")
+                            }
+                        }
+                    } catch {
+                        print("womp womp: \(error.localizedDescription)")
+                    }
+                }
+            }
         }
     }
     
@@ -204,7 +248,7 @@ struct SucculentFormView: View {
         }
         
         // Display image
-        if let image = viewModel.uiImage {
+        if let image = viewModel.uiImage.first {
             Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -251,6 +295,6 @@ struct SucculentFormView: View {
 
 struct NewSucculentFormView_Previews: PreviewProvider {
     static var previews: some View {
-        SucculentFormView(viewModel: SuccuelentFormViewModel(UIImage(systemName: "photo")!))
+        SucculentFormView(viewModel: SuccuelentFormViewModel([UIImage(systemName: "photo")!]))
     }
 }
