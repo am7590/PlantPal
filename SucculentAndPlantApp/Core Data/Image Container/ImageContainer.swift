@@ -21,7 +21,7 @@ class ImagesContainer {
             .path else {
             fatalError("Could not find peresistent container")
         }
-        print("Core Data", path)
+//        print("Core Data", path)
         guard let description = persistentCloudKitContainer.persistentStoreDescriptions.first else {
             fatalError("Failed to initialize persistent container")
         }

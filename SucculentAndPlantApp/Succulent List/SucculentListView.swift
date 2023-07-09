@@ -56,7 +56,9 @@ struct SucculentListView: View {
                     Button("OK") {}
                 }
                 .onChange(of: imagePicker.uiImage) { newImage in
-                    viewModel.handleImageChange(newImage)
+                    if let newImage {
+                        viewModel.handleImageChange([newImage])
+                    }
                 }
                 .onChange(of: shareService.codeableImage) { codableImage in
                     updateOrRestoreImage(codableImage, fetchedItems)
@@ -86,7 +88,7 @@ struct SucculentListView: View {
                 viewModel.formState = .edit(item)
             } label: {
                 ZStack(alignment: .topLeading) {
-                    Image(uiImage: item.uiImage)
+                    Image(uiImage: item.uiImage.first!)
                         .resizable()
                         .scaledToFill()
                         .modifier(CustomFrameModifier(active: !viewModel.isList, width: cellWidth))

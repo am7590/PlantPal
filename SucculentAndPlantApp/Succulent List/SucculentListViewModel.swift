@@ -20,7 +20,7 @@ class SucculentListViewModel: ObservableObject {
     
     var gridItemLayout = [GridItem(.adaptive(minimum: 150))]
     
-    func handleImageChange(_ newImage: UIImage?) {
+    func handleImageChange(_ newImage: [UIImage]?) {
         if let newImage {
             formState = .new(newImage)
         }
@@ -105,23 +105,23 @@ extension SucculentListView {
     func restoreMyImage() {
         if let codableImage = shareService.codeableImage {
             let imgURL = URL.documentsDirectory.appending(path: "\(codableImage.id).jpg")
-            let newImage = Item(context: viewModel.viewContext)
             if let data = try? Data(contentsOf: imgURL), let uiImage = UIImage(data: data) {
-                newImage.image = uiImage
+                let newImage = Item(context: viewModel.viewContext)
+                newImage.image = [uiImage] // Store the restored image as a list containing a single image
+                newImage.name = codableImage.name
+                newImage.id = codableImage.id
+                try? viewModel.viewContext.save()
+                try? FileManager().removeItem(at: imgURL)
             }
-            newImage.name = codableImage.name
-            newImage.id = codableImage.id
-            try?viewModel.viewContext.save()
-            try? FileManager().removeItem(at: imgURL)
         }
         shareService.codeableImage = nil
     }
-    
+
     func updateInfo(myItem: Item) {
         if let codableImage = shareService.codeableImage {
             let imgURL = URL.documentsDirectory.appending(path: "\(codableImage.id).jpg")
             if let data = try? Data(contentsOf: imgURL), let uiImage = UIImage(data: data) {
-                myItem.image = uiImage
+                myItem.image = [uiImage] // Update the image as a list containing a single image
             }
             myItem.name = codableImage.name
             myItem.id = codableImage.id
@@ -130,4 +130,5 @@ extension SucculentListView {
         }
         shareService.codeableImage = nil
     }
+
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum SucculentFormState: Identifiable, View {
-    case new(UIImage?)
+    case new([UIImage]?)
     case edit(Item)
     
     var id: String {

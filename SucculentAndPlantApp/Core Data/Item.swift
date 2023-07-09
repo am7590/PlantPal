@@ -18,7 +18,7 @@ extension Item: Identifiable {
     @NSManaged public var id: String?
     @NSManaged public var name: String?
     @NSManaged public var timestamp: Date?
-    @NSManaged public var image: UIImage?
+    @NSManaged public var image: [UIImage]?
     @NSManaged public var position: NSNumber?
     
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Item> {
@@ -39,8 +39,8 @@ extension Item {
         timestamp ?? Date.now
     }
     
-    var uiImage: UIImage {
-        image ?? UIImage(systemName: "exclamationmark.triangle.fill")!
+    var uiImage: [UIImage] {
+        image ?? [UIImage(systemName: "exclamationmark.triangle.fill")!]
     }
     
     var gridPosition: Int {

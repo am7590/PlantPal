@@ -13,7 +13,7 @@ class ImageSelector: ObservableObject {
     @Published var imageSelection: PhotosPickerItem? {
         didSet {
             Task {
-                try await loadTransferable(from:imageSelection)
+                try await loadTransferable(from: imageSelection)
             }
         }
     }

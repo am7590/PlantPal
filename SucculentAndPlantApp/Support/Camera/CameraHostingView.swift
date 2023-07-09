@@ -36,7 +36,7 @@ struct CameraHostingView: UIViewControllerRepresentable {
         func cameraControllerDidCaptureImage(_ image: UIImage) {
             print("!!! selected \(image)")
 //            parent.previewImage = image
-            parent.viewModel.uiImage = image
+            parent.viewModel.uiImage?.append(image)
         }
     }
 }
