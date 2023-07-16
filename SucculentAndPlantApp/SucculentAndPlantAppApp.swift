@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct SucculentAndPlantAppApp: App {
+    // App Delegate (APNS)
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     // Deep linking
     @StateObject var router = Router()
     
