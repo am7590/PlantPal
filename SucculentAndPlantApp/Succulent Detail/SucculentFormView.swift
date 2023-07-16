@@ -21,6 +21,7 @@ struct SucculentFormView: View {
     
     @State private var showCameraSheet = false
     @State private var showPhotoSelectionSheet = false
+    @State private var showHealthCheckSheet = false
     
     @State var newImageSelection: PhotosPickerItem?
     
@@ -32,7 +33,7 @@ struct SucculentFormView: View {
                     
                     if viewModel.isItem {
                         
-                        ImagePageSliderView(images: viewModel.uiImage, width: width, currentIndex: $viewModel.imagePageSliderIndex)
+                        ImagePageSliderView(images: viewModel.uiImage, currentIndex: $viewModel.imagePageSliderIndex)
                             .cornerRadius(16)
                             .padding(.horizontal)
                            // .frame(height: width)
@@ -60,13 +61,13 @@ struct SucculentFormView: View {
                                 .cornerRadius(12)
                             }
 
-                            Button(action: { viewModel.snoozeAlertIsDispayed.toggle() }) {
+                            Button(action: { showHealthCheckSheet.toggle() }) {
                                 HStack {
                                     VStack(alignment: .leading, spacing: 6) {
-                                        Image(systemName: "moon.zzz.fill")
+                                        Image(systemName: "heart.text.square")
                                             .font(.title)
 
-                                        Text("Water Later")
+                                        Text("Health Check")
                                             .bold()
                                             .font(.subheadline)
 
@@ -171,14 +172,9 @@ struct SucculentFormView: View {
                 
                 //                CameraHostingView(previewImage: UIImage(date: $imagePicker.imageSelection))
             }
-//            .sheet(isPresented: $viewModel.waterAlertIsDispayed) {
-//                Text("Womp")
-//                    .onTapGesture {
-//                        showCameraSheet = true
-////                        viewModel.uiImage?.append(UIImage(systemName: "trash")!)
-////                        updateImage()
-//                    }
-//            }
+            .sheet(isPresented: $showHealthCheckSheet) {
+                HealthReportView(image: viewModel.uiImage.first!)
+            }
             .alert("Add Plant Photo", isPresented: $viewModel.waterAlertIsDispayed) {
                 Button("Take Photo") {
                     showCameraSheet = true

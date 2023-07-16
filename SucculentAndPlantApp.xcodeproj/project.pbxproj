@@ -40,6 +40,8 @@
 		297ECD282A2BA66E00739538 /* PhotoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD272A2BA66E00739538 /* PhotoPreviewView.swift */; };
 		29B38A1F2A5B565D00023032 /* ImagePageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B38A1E2A5B565D00023032 /* ImagePageSliderView.swift */; };
 		29E05A162A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */; };
+		29F02D012A64682C001D2FF3 /* HealthReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D002A64682C001D2FF3 /* HealthReportView.swift */; };
+		29F02D032A64742E001D2FF3 /* HealthAssessmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D022A64742E001D2FF3 /* HealthAssessmentResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		297ECD272A2BA66E00739538 /* PhotoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewView.swift; sourceTree = "<group>"; };
 		29B38A1E2A5B565D00023032 /* ImagePageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageSliderView.swift; sourceTree = "<group>"; };
 		29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+ClipToBounds.swift"; sourceTree = "<group>"; };
+		29F02D002A64682C001D2FF3 /* HealthReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthReportView.swift; sourceTree = "<group>"; };
+		29F02D022A64742E001D2FF3 /* HealthAssessmentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAssessmentResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,7 @@
 				2919F3512A083A070003194F /* SuccuelentFormViewModel.swift */,
 				2919F3532A083B160003194F /* SucculentFormState.swift */,
 				2919F3552A083B770003194F /* SucculentFormView.swift */,
+				29F02CFF2A646821001D2FF3 /* Health Report */,
 			);
 			path = "Succulent Detail";
 			sourceTree = "<group>";
@@ -236,6 +241,15 @@
 				297ECD272A2BA66E00739538 /* PhotoPreviewView.swift */,
 			);
 			path = Camera;
+			sourceTree = "<group>";
+		};
+		29F02CFF2A646821001D2FF3 /* Health Report */ = {
+			isa = PBXGroup;
+			children = (
+				29F02D002A64682C001D2FF3 /* HealthReportView.swift */,
+				29F02D022A64742E001D2FF3 /* HealthAssessmentResponse.swift */,
+			);
+			path = "Health Report";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2919F33A2A0815710003194F /* Persistence.swift in Sources */,
+				29F02D032A64742E001D2FF3 /* HealthAssessmentResponse.swift in Sources */,
 				2919F3542A083B160003194F /* SucculentFormState.swift in Sources */,
 				2919F3332A0815700003194F /* SucculentListView.swift in Sources */,
 				2919F3522A083A070003194F /* SuccuelentFormViewModel.swift in Sources */,
@@ -330,6 +345,7 @@
 				2919F3312A0815700003194F /* SucculentAndPlantAppApp.swift in Sources */,
 				2919F3562A083B770003194F /* SucculentFormView.swift in Sources */,
 				2919F35B2A083C860003194F /* FIleManager+Image.swift in Sources */,
+				29F02D012A64682C001D2FF3 /* HealthReportView.swift in Sources */,
 				29B38A1F2A5B565D00023032 /* ImagePageSliderView.swift in Sources */,
 				2919F3672A086ECA0003194F /* Router.swift in Sources */,
 				2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */,

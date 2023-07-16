@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ImagePageSliderView: View {
     let images: [UIImage]
-    let width: CGFloat
     @Binding var currentIndex: Int
     
     var body: some View {
@@ -26,6 +25,14 @@ struct ImagePageSliderView: View {
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             
             VStack {
+//                HStack {
+//                    Spacer()
+//                    Image(systemName: "arrow.up.heart.fill")
+//                        .font(.title.bold())
+//                        .foregroundColor(.white)
+//                        .padding(.top, 35)
+//                        .padding(.trailing, 10)
+//                }
                 
                 Spacer()
                 
