@@ -96,6 +96,8 @@ struct SucculentFormView: View {
                         Section("Name") {
                             TextField("", text: $viewModel.name)
                                 .textFieldStyle(.plain)
+                        
+                            NavigationLink("Identify", destination: IdentificationView(image: viewModel.uiImage.first!))
                         }
                         .listRowBackground(Color(uiColor: .secondarySystemBackground))
 
