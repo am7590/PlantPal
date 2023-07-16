@@ -10,51 +10,45 @@ struct HealthReportView: View {
     @State var healthData: HealthAssessmentResponse?
     
     var body: some View {
-        switch loadState {
-        case .loading:
-            ProgressView("Loading Health Report...")
-                .onAppear {
-                    fetchData(image: image)
-                }
-        case .loaded:
-            if let healthData = healthData {
-                VStack {
-                    Text("Health Report")
-                        .font(.title)
-                        .bold()
-                        .padding()
-                    
-                    Text("Is Healthy: \(healthData.result.isHealthy.binary ? "Yes" : "No")")
-                        .font(.headline)
-                        .padding()
-                    
-                    if let diseaseSuggestions = healthData.result.disease.suggestions.first {
-                        Text("Suggested Disease: \(diseaseSuggestions.name)")
-                            .font(.headline)
-                            .padding()
-                        
-                        Text("Probability: \(diseaseSuggestions.probability)")
-                            .font(.subheadline)
-                            .padding()
-                        
-                        if !diseaseSuggestions.similarImages.isEmpty {
-                            ScrollView(.horizontal) {
-                                HStack(spacing: 10) {
-                                    ForEach(diseaseSuggestions.similarImages, id: \.id) { image in
-                                        RemoteImage(urlString: image.url)
-                                            .frame(width: 100, height: 100)
+        NavigationView {
+            VStack {
+                switch loadState {
+                case .loading:
+                    ProgressView("Loading Health Report...")
+                        .onAppear {
+                            fetchData(image: image)
+                        }
+                case .loaded:
+                    if let healthData = healthData {
+                        List {
+                            Section {
+                                Text("Is Healthy: ")
+                                    .font(.headline)
+                                + Text("\(healthData.result.isHealthy.binary ? "Yes" : "No")")
+                                    .font(.headline)
+                                    .foregroundColor(healthData.result.isHealthy.binary ? .green : .red)
+                                
+                                ForEach(healthData.result.disease.suggestions, id: \.id) { suggestion in
+                                    NavigationLink(destination: DiseaseDetailView(suggestion: suggestion)) {
+                                        VStack(alignment: .leading) {
+                                            Text(suggestion.name.capitalized)
+                                                .font(.headline)
+                                            Text("Probability: \(suggestion.probability)")
+                                                .font(.subheadline)
+                                        }
                                     }
                                 }
-                                .padding()
                             }
                         }
+                        .listStyle(InsetGroupedListStyle())
+                    } else {
+                        Text("Failed to load health data")
                     }
+                case .failed:
+                    Text("Failed to load. Please try again.")
                 }
-            } else {
-                Text("Failed to load health data")
             }
-        case .failed:
-            Text("Failed to load. Please try again.")
+            .navigationTitle("Health Report")
         }
     }
 }
@@ -80,7 +74,7 @@ extension HealthReportView {
         request.httpMethod = "POST"
         request.setValue("S6VUgIM03MvELLMGtMQBEpVuBvtaG0b0UOGoma3iT2oO2OuMYH", forHTTPHeaderField: "Api-Key")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
+        
         let requestBody: [String: Any] = [
             "images": [base64Image],
             "latitude": 43.1318877,
@@ -96,7 +90,7 @@ extension HealthReportView {
             self.loadState = .failed
             return
         }
-
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 print("Error:", error)
@@ -137,6 +131,34 @@ extension HealthReportView {
                 self.loadState = .failed
             }
         }.resume()
+    }
+}
+
+struct DiseaseDetailView: View {
+    let suggestion: Disease
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Probability: \(suggestion.probability)")
+                .font(.headline)
+            
+            Text("Similar Images:")
+                .font(.headline)
+            ScrollView(.horizontal) {
+                HStack(spacing: 10) {
+                    ForEach(suggestion.similarImages, id: \.id) { image in
+                        RemoteImage(urlString: image.url)
+                            .frame(width: 200, height: 200)
+                            .cornerRadius(16)
+                    }
+                }
+                .padding()
+            }
+
+            Spacer()
+        }
+        .padding()
+        .navigationBarTitle(Text(suggestion.name.capitalized), displayMode: .large)
     }
 }
 
