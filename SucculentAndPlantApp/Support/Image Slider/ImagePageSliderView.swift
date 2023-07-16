@@ -13,23 +13,28 @@ struct ImagePageSliderView: View {
     @Binding var currentIndex: Int
     
     var body: some View {
-        VStack {
+        ZStack {
             TabView(selection: $currentIndex) {
                 ForEach(0..<images.count, id: \.self) { index in
                     Image(uiImage: images[index])
                         .resizable()
-                        .scaledToFill()
-                        .frame(width: width, height: width)
+                        .scaledToFit()
+                        .cornerRadius(16)
                         .tag(index)
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .animation(.easeInOut)
             
-            PageControl(numberOfPages: images.count, currentPage: $currentIndex)
-                .padding(.vertical, 10)
+            VStack {
+                
+                Spacer()
+                
+                PageControl(numberOfPages: images.count, currentPage: $currentIndex)
+                .padding(.bottom, 30)
                 .id(UUID()) // Add an identifier to force recreation of PageControl
+            }
         }
+        .animation(.linear)
     }
 }
 

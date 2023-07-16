@@ -88,7 +88,7 @@ struct SucculentListView: View {
                 viewModel.formState = .edit(item)
             } label: {
                 ZStack(alignment: .topLeading) {
-                    Image(uiImage: item.uiImage.first!)
+                    Image(uiImage: item.uiImage.first ?? UIImage(systemName: "trash")!)
                         .resizable()
                         .scaledToFill()
                         .modifier(CustomFrameModifier(active: !viewModel.isList, width: cellWidth))

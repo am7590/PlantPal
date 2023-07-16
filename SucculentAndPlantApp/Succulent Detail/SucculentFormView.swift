@@ -86,6 +86,8 @@ struct SucculentFormView: View {
                         }
                         .frame(width: width + 8)
                         .padding(.top)
+                        .background(.clear)
+
                     }
                     
                     List {
@@ -111,6 +113,7 @@ struct SucculentFormView: View {
                 }
                 
             }
+            
             .padding()
             .textFieldStyle(.roundedBorder)
             .onChange(of: imageSelector.uiImage) { newImage in
