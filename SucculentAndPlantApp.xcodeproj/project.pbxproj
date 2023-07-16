@@ -21,7 +21,6 @@
 		2919F34F2A08347B0003194F /* ImageContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F34E2A08347B0003194F /* ImageContainer.swift */; };
 		2919F3522A083A070003194F /* SuccuelentFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3512A083A070003194F /* SuccuelentFormViewModel.swift */; };
 		2919F3542A083B160003194F /* SucculentFormState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3532A083B160003194F /* SucculentFormState.swift */; };
-		2919F3562A083B770003194F /* SucculentFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3552A083B770003194F /* SucculentFormView.swift */; };
 		2919F3592A083C6E0003194F /* ImageSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3582A083C6E0003194F /* ImageSelector.swift */; };
 		2919F35B2A083C860003194F /* FIleManager+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F35A2A083C860003194F /* FIleManager+Image.swift */; };
 		2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F35C2A083FA80003194F /* PersistImageService.swift */; };
@@ -39,11 +38,16 @@
 		297ECD262A2BA61600739538 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD252A2BA61600739538 /* CameraController.swift */; };
 		297ECD282A2BA66E00739538 /* PhotoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD272A2BA66E00739538 /* PhotoPreviewView.swift */; };
 		29B38A1F2A5B565D00023032 /* ImagePageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B38A1E2A5B565D00023032 /* ImagePageSliderView.swift */; };
+		29B9CD0A2A64A2BB00E7BAAD /* SucculentFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9CD092A64A2BB00E7BAAD /* SucculentFormView.swift */; };
 		29E05A162A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */; };
-		29F02D012A64682C001D2FF3 /* HealthReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D002A64682C001D2FF3 /* HealthReportView.swift */; };
 		29F02D032A64742E001D2FF3 /* HealthAssessmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D022A64742E001D2FF3 /* HealthAssessmentResponse.swift */; };
 		29F02D062A64809B001D2FF3 /* IdentificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D052A64809B001D2FF3 /* IdentificationView.swift */; };
 		29F02D082A6480F7001D2FF3 /* IdentificationReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D072A6480F7001D2FF3 /* IdentificationReponse.swift */; };
+		29F02D0B2A648C60001D2FF3 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D0A2A648C60001D2FF3 /* RemoteImage.swift */; };
+		29F02D0D2A648CA7001D2FF3 /* HealthReportView+FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D0C2A648CA7001D2FF3 /* HealthReportView+FetchData.swift */; };
+		29F02D0F2A648CF8001D2FF3 /* IdentificationView+FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D0E2A648CF8001D2FF3 /* IdentificationView+FetchData.swift */; };
+		29F02D112A648D29001D2FF3 /* ReportsLoadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D102A648D29001D2FF3 /* ReportsLoadState.swift */; };
+		29F02D332A64A125001D2FF3 /* HealthReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D322A64A125001D2FF3 /* HealthReportView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +67,6 @@
 		2919F34E2A08347B0003194F /* ImageContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageContainer.swift; sourceTree = "<group>"; };
 		2919F3512A083A070003194F /* SuccuelentFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccuelentFormViewModel.swift; sourceTree = "<group>"; };
 		2919F3532A083B160003194F /* SucculentFormState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentFormState.swift; sourceTree = "<group>"; };
-		2919F3552A083B770003194F /* SucculentFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentFormView.swift; sourceTree = "<group>"; };
 		2919F3582A083C6E0003194F /* ImageSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelector.swift; sourceTree = "<group>"; };
 		2919F35A2A083C860003194F /* FIleManager+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FIleManager+Image.swift"; sourceTree = "<group>"; };
 		2919F35C2A083FA80003194F /* PersistImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistImageService.swift; sourceTree = "<group>"; };
@@ -81,11 +84,16 @@
 		297ECD252A2BA61600739538 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		297ECD272A2BA66E00739538 /* PhotoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewView.swift; sourceTree = "<group>"; };
 		29B38A1E2A5B565D00023032 /* ImagePageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageSliderView.swift; sourceTree = "<group>"; };
+		29B9CD092A64A2BB00E7BAAD /* SucculentFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentFormView.swift; sourceTree = "<group>"; };
 		29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+ClipToBounds.swift"; sourceTree = "<group>"; };
-		29F02D002A64682C001D2FF3 /* HealthReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthReportView.swift; sourceTree = "<group>"; };
 		29F02D022A64742E001D2FF3 /* HealthAssessmentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAssessmentResponse.swift; sourceTree = "<group>"; };
 		29F02D052A64809B001D2FF3 /* IdentificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationView.swift; sourceTree = "<group>"; };
 		29F02D072A6480F7001D2FF3 /* IdentificationReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationReponse.swift; sourceTree = "<group>"; };
+		29F02D0A2A648C60001D2FF3 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
+		29F02D0C2A648CA7001D2FF3 /* HealthReportView+FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthReportView+FetchData.swift"; sourceTree = "<group>"; };
+		29F02D0E2A648CF8001D2FF3 /* IdentificationView+FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IdentificationView+FetchData.swift"; sourceTree = "<group>"; };
+		29F02D102A648D29001D2FF3 /* ReportsLoadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsLoadState.swift; sourceTree = "<group>"; };
+		29F02D322A64A125001D2FF3 /* HealthReportView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthReportView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,10 +185,9 @@
 			isa = PBXGroup;
 			children = (
 				2919F3512A083A070003194F /* SuccuelentFormViewModel.swift */,
+				29B9CD092A64A2BB00E7BAAD /* SucculentFormView.swift */,
 				2919F3532A083B160003194F /* SucculentFormState.swift */,
-				2919F3552A083B770003194F /* SucculentFormView.swift */,
-				29F02D042A648091001D2FF3 /* Identification */,
-				29F02CFF2A646821001D2FF3 /* Health Report */,
+				29F02D092A648C15001D2FF3 /* Reports */,
 			);
 			path = "Succulent Detail";
 			sourceTree = "<group>";
@@ -251,7 +258,8 @@
 		29F02CFF2A646821001D2FF3 /* Health Report */ = {
 			isa = PBXGroup;
 			children = (
-				29F02D002A64682C001D2FF3 /* HealthReportView.swift */,
+				29F02D322A64A125001D2FF3 /* HealthReportView.swift */,
+				29F02D0C2A648CA7001D2FF3 /* HealthReportView+FetchData.swift */,
 				29F02D022A64742E001D2FF3 /* HealthAssessmentResponse.swift */,
 			);
 			path = "Health Report";
@@ -261,9 +269,21 @@
 			isa = PBXGroup;
 			children = (
 				29F02D052A64809B001D2FF3 /* IdentificationView.swift */,
+				29F02D0E2A648CF8001D2FF3 /* IdentificationView+FetchData.swift */,
 				29F02D072A6480F7001D2FF3 /* IdentificationReponse.swift */,
 			);
 			path = Identification;
+			sourceTree = "<group>";
+		};
+		29F02D092A648C15001D2FF3 /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				29F02D0A2A648C60001D2FF3 /* RemoteImage.swift */,
+				29F02D102A648D29001D2FF3 /* ReportsLoadState.swift */,
+				29F02CFF2A646821001D2FF3 /* Health Report */,
+				29F02D042A648091001D2FF3 /* Identification */,
+			);
+			path = Reports;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,24 +363,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				2919F33A2A0815710003194F /* Persistence.swift in Sources */,
+				29F02D0B2A648C60001D2FF3 /* RemoteImage.swift in Sources */,
 				29F02D032A64742E001D2FF3 /* HealthAssessmentResponse.swift in Sources */,
 				2919F3542A083B160003194F /* SucculentFormState.swift in Sources */,
 				2919F3332A0815700003194F /* SucculentListView.swift in Sources */,
 				29F02D082A6480F7001D2FF3 /* IdentificationReponse.swift in Sources */,
+				29F02D332A64A125001D2FF3 /* HealthReportView.swift in Sources */,
 				2919F3522A083A070003194F /* SuccuelentFormViewModel.swift in Sources */,
 				295F875D2A6313230021CA70 /* AppDelegate.swift in Sources */,
 				2919F33D2A0815710003194F /* SucculentAndPlantApp.xcdatamodeld in Sources */,
 				2942388E2A0B242200CE0A63 /* ShakeAnimation.swift in Sources */,
 				294238872A0B089600CE0A63 /* SucculentListViewModel.swift in Sources */,
+				29F02D0D2A648CA7001D2FF3 /* HealthReportView+FetchData.swift in Sources */,
+				29B9CD0A2A64A2BB00E7BAAD /* SucculentFormView.swift in Sources */,
 				2919F3692A0ACE210003194F /* EmptyGridView.swift in Sources */,
 				2935A9A92A5321F2007DAFC5 /* MyDropDelegate.swift in Sources */,
+				29F02D112A648D29001D2FF3 /* ReportsLoadState.swift in Sources */,
 				2942388A2A0B0B1500CE0A63 /* Modifiers.swift in Sources */,
 				297ECD242A2BA5F700739538 /* CameraHostingView.swift in Sources */,
 				29E05A162A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift in Sources */,
 				2919F3312A0815700003194F /* SucculentAndPlantAppApp.swift in Sources */,
-				2919F3562A083B770003194F /* SucculentFormView.swift in Sources */,
 				2919F35B2A083C860003194F /* FIleManager+Image.swift in Sources */,
-				29F02D012A64682C001D2FF3 /* HealthReportView.swift in Sources */,
+				29F02D0F2A648CF8001D2FF3 /* IdentificationView+FetchData.swift in Sources */,
 				29B38A1F2A5B565D00023032 /* ImagePageSliderView.swift in Sources */,
 				2919F3672A086ECA0003194F /* Router.swift in Sources */,
 				2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */,

@@ -39,4 +39,3 @@ struct SimilarImage: Codable {
     let similarity: Double
     let urlSmall: String
 }
-
