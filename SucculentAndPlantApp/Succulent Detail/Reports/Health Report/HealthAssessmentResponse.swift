@@ -9,6 +9,10 @@ import SwiftUI
 
 struct HealthAssessmentResponse: Codable {
     let result: HealthResult
+    
+    var color: Color {
+        result.isHealthy.binary ? .green : .red
+    }
 }
 
 struct HealthResult: Codable {

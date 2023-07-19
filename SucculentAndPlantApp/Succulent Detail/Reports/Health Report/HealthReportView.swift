@@ -19,16 +19,24 @@ struct HealthReportView: View {
                     if let healthData = healthData {
                         List {
                             Section {
-                                Text("This plant is ")
-                                    .font(.headline)
-                                + Text("\(healthData.result.isHealthy.binary ? "HEALTHY" : "NOT HEALTHY")")
-                                    .font(.headline)
-                                    .foregroundColor(healthData.result.isHealthy.binary ? .green : .red)
+                                HStack {
+                                    Spacer()
+                                    VStack {
+                                        CircularProgressView(progress: healthData.result.isHealthy.probability, color: healthData.color, size: .large, showProgress: true)
+                                            .frame(width: 100, height: 100)
+                                            .padding()
+                                        
+                                        Text("\(healthData.result.isHealthy.binary ? "HEALTHY" : "NOT HEALTHY")")
+                                            .font(.title2.bold())
+                                            .foregroundColor(healthData.result.isHealthy.binary ? .green : .red)
+                                    }
+                                    Spacer()
+                                }
                             }
                             
                             Section("Potential diseases") {
                                 ForEach(healthData.result.disease.suggestions, id: \.id) { suggestion in
-                                    NavigationLink(destination: DiseaseDetailView(suggestion: suggestion)) {
+                                    NavigationLink(destination: DiseaseDetailView(suggestion: suggestion, color: healthData.color)) {
                                         VStack(alignment: .leading) {
                                             Text(suggestion.name.capitalized)
                                                 .font(.headline)
@@ -59,31 +67,33 @@ struct HealthReportView_Previews: PreviewProvider {
 
 struct DiseaseDetailView: View {
     let suggestion: Disease
+    let color: Color
     
     var body: some View {
         List {
-            Section(suggestion.name.capitalized) {
+            Section() {
                 
-                Text("\(String(suggestion.probability*100))% Chance")
-                    .font(.headline)
-                
-                VStack {
-                    Text("Similar Images:")
-                        .font(.headline)
+                HStack {
+                    CircularProgressView(progress: suggestion.probability, color: color, size: .small, showProgress: true)
+                        .frame(width: 45, height: 45)
+                        .padding()
                     
+                    Text(suggestion.name.capitalized)
+                        .font(.title3)
+                }
+            }
+            Section("Similar images") {
+                VStack(alignment: .center) {
                     ForEach(suggestion.similarImages, id: \.id) { image in
                         RemoteImage(urlString: image.url)
-                            .frame(width: 150, height: 150)
+                            .frame(width: 250, height: 250)
                             .cornerRadius(16)
                     }
-                    .padding()
                 }
                 
-                Spacer()
             }
         }
         .padding(.horizontal)
         
     }
 }
-

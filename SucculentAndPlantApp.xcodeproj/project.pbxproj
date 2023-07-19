@@ -39,6 +39,7 @@
 		297ECD282A2BA66E00739538 /* PhotoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD272A2BA66E00739538 /* PhotoPreviewView.swift */; };
 		29B38A1F2A5B565D00023032 /* ImagePageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B38A1E2A5B565D00023032 /* ImagePageSliderView.swift */; };
 		29B9CD0A2A64A2BB00E7BAAD /* SucculentFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9CD092A64A2BB00E7BAAD /* SucculentFormView.swift */; };
+		29B9CD262A68268200E7BAAD /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9CD252A68268200E7BAAD /* CircularProgressView.swift */; };
 		29E05A162A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */; };
 		29F02D032A64742E001D2FF3 /* HealthAssessmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D022A64742E001D2FF3 /* HealthAssessmentResponse.swift */; };
 		29F02D062A64809B001D2FF3 /* IdentificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D052A64809B001D2FF3 /* IdentificationView.swift */; };
@@ -85,6 +86,7 @@
 		297ECD272A2BA66E00739538 /* PhotoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewView.swift; sourceTree = "<group>"; };
 		29B38A1E2A5B565D00023032 /* ImagePageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageSliderView.swift; sourceTree = "<group>"; };
 		29B9CD092A64A2BB00E7BAAD /* SucculentFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentFormView.swift; sourceTree = "<group>"; };
+		29B9CD252A68268200E7BAAD /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+ClipToBounds.swift"; sourceTree = "<group>"; };
 		29F02D022A64742E001D2FF3 /* HealthAssessmentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAssessmentResponse.swift; sourceTree = "<group>"; };
 		29F02D052A64809B001D2FF3 /* IdentificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationView.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				2919F3512A083A070003194F /* SuccuelentFormViewModel.swift */,
+				29B9CD252A68268200E7BAAD /* CircularProgressView.swift */,
 				29B9CD092A64A2BB00E7BAAD /* SucculentFormView.swift */,
 				2919F3532A083B160003194F /* SucculentFormState.swift */,
 				29F02D092A648C15001D2FF3 /* Reports */,
@@ -364,6 +367,7 @@
 			files = (
 				2919F33A2A0815710003194F /* Persistence.swift in Sources */,
 				29F02D0B2A648C60001D2FF3 /* RemoteImage.swift in Sources */,
+				29B9CD262A68268200E7BAAD /* CircularProgressView.swift in Sources */,
 				29F02D032A64742E001D2FF3 /* HealthAssessmentResponse.swift in Sources */,
 				2919F3542A083B160003194F /* SucculentFormState.swift in Sources */,
 				2919F3332A0815700003194F /* SucculentListView.swift in Sources */,
