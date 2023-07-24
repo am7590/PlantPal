@@ -98,7 +98,7 @@ struct SucculentFormView: View {
                                 .textFieldStyle(.plain)
                         
                             if let image = viewModel.uiImage.first {
-                                NavigationLink("Identify", destination: IdentificationView(image: image))
+                                NavigationLink(UserDefaults.standard.getIdentification(for: viewModel.name), destination: IdentificationView(image: image, plantName: viewModel.name))
                             }
                             
                         }

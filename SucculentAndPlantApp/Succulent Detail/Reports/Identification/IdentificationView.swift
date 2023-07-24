@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct IdentificationView: View {
+    @Environment(\.dismiss) var dismiss
     let image: UIImage
+    let plantName: String
     @State var loadState: ReportLoadState = .loading
     @State var identificationData: IdentificationResponse?
     
@@ -23,9 +25,9 @@ struct IdentificationView: View {
             case .loaded:
                 if let identificationData = identificationData {
                     List {
-                        Section {
-                            if let suggestions = identificationData.result?.classification?.suggestions {
-                                ForEach(suggestions, id: \.id) { suggestion in
+                        if let suggestions = identificationData.result?.classification?.suggestions {
+                            ForEach(suggestions, id: \.id) { suggestion in
+                                Section {
                                     VStack(alignment: .leading, spacing: 4) {
                                         
                                         HStack {
@@ -38,26 +40,31 @@ struct IdentificationView: View {
                                                 .font(.title)
                                         }
                                         
-                                        
-                                        
-                                        
                                         if let similarImages = suggestion.similarImages {
                                             ScrollView(.horizontal) {
                                                 HStack(spacing: 10) {
                                                     ForEach(similarImages, id: \.id) { image in
-                                                        RemoteImage(urlString: image.url)
-                                                            .frame(width: 150, height: 150)
-                                                            .cornerRadius(16)
+                                                        if let url = URL(string: image.url),
+                                                           let imageData = try? Data(contentsOf: url),
+                                                           let uiImage = UIImage(data: imageData) {
+                                                            RemoteImage(image: uiImage)
+                                                                .frame(width: 150, height: 150)
+                                                                .cornerRadius(16)
+                                                        }
                                                     }
                                                 }
                                             }
                                         }
                                     }
+                                    .onTapGesture {
+                                        UserDefaults.standard.hasBeenIdentified(for: plantName, with: suggestion.name)
+                                        dismiss()
+                                    }
                                 }
-                            } else {
-                                Text("Plant Not Identified")
-                                    .font(.headline)
                             }
+                        } else {
+                            Text("Plant Not Identified")
+                                .font(.headline)
                         }
                     }
                     .listStyle(InsetGroupedListStyle())
@@ -68,13 +75,13 @@ struct IdentificationView: View {
                 Text("Failed to load. Please try again.")
             }
         }
-        .navigationTitle("Plant Identification")
+        .navigationTitle("Tap to Identify")
     }
 }
 
 struct IdentificationView_Previews: PreviewProvider {
     static var previews: some View {
-        let response = IdentificationResponse(result: IdentificationResult(classification: IdentificationClassification(suggestions: [IdentificationSuggestion(id: "0", name: "Suggestion #1", probability: 0.24, similarImages: [])])))
-        IdentificationView(image: UIImage(systemName: "leaf")!, loadState: .loaded, identificationData: response)
+        let response = IdentificationResponse(result: IdentificationResult(classification: IdentificationClassification(suggestions: [IdentificationSuggestion(id: "0", name: "Suggestion #1", probability: 0.51, similarImages: []), IdentificationSuggestion(id: "1", name: "Suggestion #2", probability: 0.45, similarImages: []), IdentificationSuggestion(id: "2", name: "Suggestion #3", probability: 0.3, similarImages: [])])))
+        IdentificationView(image: UIImage(systemName: "leaf")!, plantName: "Womp Womp", loadState: .loaded, identificationData: response)
     }
 }
