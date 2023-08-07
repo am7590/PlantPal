@@ -30,7 +30,7 @@ struct CircularProgressView: View {
                 )
             
             Circle()
-                .trim(from: 0, to: progress)
+                .trim(from: 0, to: CGFloat(progress))
                 .stroke(
                     color,
                     style: StrokeStyle(
@@ -38,8 +38,8 @@ struct CircularProgressView: View {
                         lineCap: .round
                     )
                 )
+                .animation(.linear(duration: 10), value: progress)
                 .rotationEffect(.degrees(-90))
-                .animation(.easeOut, value: progress)
         }
     }
 }

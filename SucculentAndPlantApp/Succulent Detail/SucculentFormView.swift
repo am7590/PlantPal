@@ -34,61 +34,18 @@ struct SucculentFormView: View {
                     if viewModel.isItem {
                         
                         ImagePageSliderView(images: viewModel.uiImage, currentIndex: $viewModel.imagePageSliderIndex)
-                            .cornerRadius(16)
+                         //   .cornerRadius(16)
                             .padding(.horizontal)
+                            .padding(.vertical, 16)
                            // .frame(height: width)
                         
                         HStack {
-                            Button(action: { viewModel.waterAlertIsDispayed.toggle() }) {
-                                HStack {
-                                    VStack(alignment: .leading, spacing: 6) {
-                                        Image(systemName: "drop.fill")
-                                            .font(.title)
-                                        Text("Water")
-                                            .bold()
-                                            .font(.subheadline)
-
-//                                        Text("Today")
-//                                            .foregroundColor(.secondary)
-//                                            .font(.caption)
-                                    }
-
-                                    Spacer()
-                                }
-                                .padding(16)
-                                .frame(width: width/2 - 6)
-                                .background(Color.blue.opacity(0.25))
-                                .cornerRadius(12)
-                            }
-
-                            Button(action: { showHealthCheckSheet.toggle() }) {
-                                HStack {
-                                    VStack(alignment: .leading, spacing: 6) {
-                                        Image(systemName: "heart.text.square")
-                                            .font(.title)
-
-                                        Text("Health Check")
-                                            .bold()
-                                            .font(.subheadline)
-
-//                                        Text("Water another time")
-//                                            .foregroundColor(.clear)
-//                                            .font(.caption)
-                                    }
-
-                                    Spacer()
-                                }
-                                .foregroundColor(.secondary)
-                                .padding()
-                                .frame(width: width/2 - 6)
-                                .background(Color.secondary.opacity(0.25))
-                                .cornerRadius(12)
-                            }
+                            waterButton(width: width)
+                            healthCheckButton(width: width)
                         }
-                        .frame(width: width + 8)
-                        .padding(.top)
-                        .background(.clear)
+                        .padding(.top, 32)
 
+                        .background(.clear)
                     }
                     
                     List {
@@ -96,11 +53,11 @@ struct SucculentFormView: View {
                         Section("Name") {
                             TextField("", text: $viewModel.name)
                                 .textFieldStyle(.plain)
-                        
+
                             if let image = viewModel.uiImage.first {
-                                NavigationLink(UserDefaults.standard.getIdentification(for: viewModel.name), destination: IdentificationView(image: image, plantName: viewModel.name))
+                                NavigationLink("Identify", destination: IdentificationView(image: image, plantName: viewModel.name))
                             }
-                            
+
                         }
                         .listRowBackground(Color(uiColor: .secondarySystemBackground))
 
@@ -112,9 +69,9 @@ struct SucculentFormView: View {
                                 .listRowBackground(Color(uiColor: .secondarySystemBackground))
                         }
                     }
-                    .cornerRadius(24)
+                    .cornerRadius(16)
                     .scrollContentBackground(.hidden)
-//
+
                     Spacer()
                 }
                 
@@ -146,11 +103,12 @@ struct SucculentFormView: View {
                             .tint(.red)
                         }
                     }
-                } else {
+                }
+                else {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button("Create") {
                             viewModel.snoozeAlertIsDispayed.toggle()
-                            
+
                             // Create succulent
                             let newImage = Item(context: moc)
                             newImage.name = viewModel.name
@@ -228,6 +186,56 @@ struct SucculentFormView: View {
         }
     }
     
+    @ViewBuilder func waterButton(width: CGFloat) -> some View {
+        Button(action: { viewModel.waterAlertIsDispayed.toggle() }) {
+            HStack {
+                VStack(alignment: .leading, spacing: 6) {
+                    Image(systemName: "drop.fill")
+                        .font(.title)
+                    Text("Water")
+                        .bold()
+                        .font(.subheadline)
+
+//                                        Text("Today")
+//                                            .foregroundColor(.secondary)
+//                                            .font(.caption)
+                }
+
+                Spacer()
+            }
+            .padding(16)
+            .frame(width: width/2 - 6)
+            .background(Color.blue.opacity(0.25))
+            .cornerRadius(12)
+        }
+    }
+    
+    @ViewBuilder func healthCheckButton(width: CGFloat) -> some View {
+        Button(action: { showHealthCheckSheet.toggle() }) {
+            HStack {
+                VStack(alignment: .leading, spacing: 6) {
+                    Image(systemName: "heart.text.square")
+                        .font(.title)
+
+                    Text("Health Check")
+                        .bold()
+                        .font(.subheadline)
+
+//                                        Text("Water another time")
+//                                            .foregroundColor(.clear)
+//                                            .font(.caption)
+                }
+
+                Spacer()
+            }
+            .foregroundColor(.secondary)
+            .padding()
+            .frame(width: width/2 - 6)
+            .background(Color.secondary.opacity(0.25))
+            .cornerRadius(12)
+        }
+    }
+    
     @ViewBuilder func selectImageView(width imageWidth: CGFloat) -> some View {
         
         // Take photo
@@ -256,7 +264,7 @@ struct SucculentFormView: View {
             Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .cornerRadius(24)
+                .cornerRadius(16)
         }
     }
     

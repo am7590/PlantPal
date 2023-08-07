@@ -13,35 +13,33 @@ struct ImagePageSliderView: View {
     
     var body: some View {
         ZStack {
-            TabView(selection: $currentIndex) {
-                ForEach(0..<images.count, id: \.self) { index in
-                    Image(uiImage: images[index])
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(16)
-                        .tag(index)
+            GeometryReader { proxy in
+                let width = proxy.size.width
+                
+                TabView(selection: $currentIndex) {
+                    ForEach(0..<images.count, id: \.self) { index in
+                        Image(uiImage: images[index])
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: width, height: 300, alignment: .center)
+                            .tag(index)
+                            .clipped()
+                            .cornerRadius(16)
+                            .shadow(radius: 4.0)
+                    }
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                
+                VStack {
+                    Spacer()
+                    
+                    PageControl(numberOfPages: images.count, currentPage: $currentIndex)
+                        .padding(.bottom, -50)
+                        .id(UUID()) // Add an identifier to force recreation of PageControl
                 }
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            
-            VStack {
-//                HStack {
-//                    Spacer()
-//                    Image(systemName: "arrow.up.heart.fill")
-//                        .font(.title.bold())
-//                        .foregroundColor(.white)
-//                        .padding(.top, 35)
-//                        .padding(.trailing, 10)
-//                }
-                
-                Spacer()
-                
-                PageControl(numberOfPages: images.count, currentPage: $currentIndex)
-                .padding(.bottom, 30)
-                .id(UUID()) // Add an identifier to force recreation of PageControl
-            }
+            .animation(.linear)
         }
-        .animation(.linear)
     }
 }
 
