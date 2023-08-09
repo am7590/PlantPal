@@ -4,6 +4,7 @@ struct HealthReportView: View {
     let image: UIImage
     @State var loadState: ReportLoadState = .loading
     @State var healthData: HealthAssessmentResponse?
+    @State var diseases = [Disease]()
     @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
@@ -70,30 +71,37 @@ struct DiseaseDetailView: View {
     let color: Color
     
     var body: some View {
-        List {
-            Section() {
-                
-                HStack {
-                    CircularProgressView(progress: suggestion.probability, color: color, size: .small, showProgress: true)
-                        .frame(width: 45, height: 45)
-                        .padding()
+        GeometryReader { proxy in
+            let imageWidth = proxy.size.width - 128
+            List {
+                Section() {
                     
-                    Text(suggestion.name.capitalized)
-                        .font(.title3)
-                }
-            }
-            Section("Similar images") {
-                VStack(alignment: .center) {
-                    ForEach(suggestion.similarImages, id: \.id) { image in
-                        RemoteImage(urlString: image.url)
-                            .frame(width: 250, height: 250)
-                            .cornerRadius(16)
+                    HStack {
+                        CircularProgressView(progress: suggestion.probability, color: color, size: .small, showProgress: true)
+                            .frame(width: 45, height: 45)
+                            .padding()
+                        
+                        Text(suggestion.name.capitalized)
+                            .font(.title3)
                     }
                 }
-                
+                Section("Similar images") {
+                    VStack(alignment: .center) {
+                        ForEach(suggestion.similarImages, id: \.id) { image in
+                            if let url = URL(string: image.url),
+                               let imageData = try? Data(contentsOf: url),
+                               let uiImage = UIImage(data: imageData) {
+                                RemoteImage(image: uiImage)
+                                    .frame(width: imageWidth, height: imageWidth)
+                                    .cornerRadius(16)
+                            }
+                            
+                        }
+                    }
+                    
+                }
             }
+            .padding(.horizontal)
         }
-        .padding(.horizontal)
-        
     }
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum SucculentFormState: Identifiable, View {
+enum SucculentFormState: Identifiable, View, Equatable {
     case new([UIImage])
     case edit(Item)
     
@@ -23,10 +23,10 @@ enum SucculentFormState: Identifiable, View {
     var body: some View {
         switch self {
         case .new(let image):
-            return  SucculentFormView(viewModel: SuccuelentFormViewModel(image))
+            return SucculentFormView(viewModel: SuccuelentFormViewModel(image))
             
         case .edit(let item):
-            return  SucculentFormView(viewModel: SuccuelentFormViewModel(item))
+            return SucculentFormView(viewModel: SuccuelentFormViewModel(item))
         }
     }
 }

@@ -41,6 +41,10 @@ class SuccuelentFormViewModel: ObservableObject {
     init(_ uiImage: [UIImage]) {
         self.uiImage = uiImage
     }
+
+    func setName(with name: String) {
+        self.name = name
+    }
     
     var incomplete: Bool {
         name.isEmpty || uiImage == nil

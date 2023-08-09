@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct RemoteImage: View {
-    let urlString: String
+    let image: UIImage?
     
     var body: some View {
-        if let url = URL(string: urlString),
-           let imageData = try? Data(contentsOf: url),
-           let uiImage = UIImage(data: imageData) {
-            Image(uiImage: uiImage)
+        if let image {
+            Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
         } else {

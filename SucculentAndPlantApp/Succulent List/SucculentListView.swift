@@ -93,7 +93,7 @@ struct SucculentListView: View {
                         .scaledToFill()
                         .modifier(CustomFrameModifier(active: !viewModel.isList, width: cellWidth))
                         .clipped()
-                        .cornerRadius(24)
+                        .cornerRadius(16)
                         .shadow(radius: 8.0)
                         .onDrag {
                             viewModel.wiggle = false

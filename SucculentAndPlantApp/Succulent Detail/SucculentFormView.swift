@@ -34,17 +34,14 @@ struct SucculentFormView: View {
                     if viewModel.isItem {
                         
                         ImagePageSliderView(images: viewModel.uiImage, currentIndex: $viewModel.imagePageSliderIndex)
-                         //   .cornerRadius(16)
-                            .padding(.horizontal)
+                            .padding([.horizontal, .top])
                             .padding(.vertical, 16)
-                           // .frame(height: width)
                         
                         HStack {
                             waterButton(width: width)
                             healthCheckButton(width: width)
                         }
                         .padding(.top, 32)
-
                         .background(.clear)
                     }
                     
@@ -292,9 +289,6 @@ struct SucculentFormView: View {
                 } else {
                     HStack {
                         DatePicker("", selection: $viewModel.date, in: ...Date(), displayedComponents: .date)
-                        //                                Button("Clear") {
-                        //                                    viewModel.date = Date.distantPast
-                        //                                }
                     }
                 }
             }

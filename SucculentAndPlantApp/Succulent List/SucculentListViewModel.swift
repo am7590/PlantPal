@@ -23,6 +23,7 @@ class SucculentListViewModel: ObservableObject {
     func handleImageChange(_ newImage: [UIImage]?) {
         if let newImage {
             formState = .new(newImage)
+            
         }
     }
 }
@@ -32,14 +33,6 @@ extension SucculentListView {
         @EnvironmentObject var viewModel: SucculentListViewModel
         
         var body: some ToolbarContent {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    viewModel.wiggle.toggle()
-                } label: {
-                    Text("Edit")
-                }
-            }
-            
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {
                     Button {
@@ -86,6 +79,8 @@ extension SucculentListView {
     }
     
     func updateItemsFromSearchQuery(_ value: String) {
+        print("value \(value)")
+        
         if viewModel.searchText != "" {
             fetchedItems.nsPredicate = NSPredicate(format: "name CONTAINS[c] %@", viewModel.searchText)
         } else {
