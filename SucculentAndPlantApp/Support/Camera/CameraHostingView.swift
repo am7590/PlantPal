@@ -11,6 +11,7 @@ import AVFoundation
 struct CameraHostingView: UIViewControllerRepresentable {
 //    @State var previewImage: UIImage?
     @ObservedObject var viewModel: SuccuelentFormViewModel
+    public var appendedNewImage: (() -> Void)?
     
     func makeUIViewController(context: Context) -> CameraController {
         let cameraController = CameraController()
@@ -37,6 +38,7 @@ struct CameraHostingView: UIViewControllerRepresentable {
             print("!!! selected \(image)")
 //            parent.previewImage = image
             parent.viewModel.uiImage.append(image)
+            self.parent.appendedNewImage?()
         }
     }
 }

@@ -36,12 +36,13 @@ struct SucculentFormView: View {
                         ImagePageSliderView(images: viewModel.uiImage, currentIndex: $viewModel.imagePageSliderIndex)
                             .padding([.horizontal, .top])
                             .padding(.vertical, 16)
+                            .padding(.top, 16)
                         
                         HStack {
                             waterButton(width: width)
                             healthCheckButton(width: width)
                         }
-                        .padding(.top, 32)
+                        .padding(.top, 54)
                         .background(.clear)
                     }
                     
@@ -50,17 +51,16 @@ struct SucculentFormView: View {
                         Section("Name") {
                             TextField("", text: $viewModel.name)
                                 .textFieldStyle(.plain)
-
-                            if let image = viewModel.uiImage.first, viewModel.isItem {
-                                NavigationLink("Identify", destination: IdentificationView(image: image, plantName: viewModel.name))
+                            
+                            if viewModel.isItem {
+                                NavigationLink("Identify", destination: IdentificationView(images: viewModel.uiImage, plantName: viewModel.name))
                             }
-
                         }
                         .listRowBackground(Color(uiColor: .secondarySystemBackground))
-
+                        
                         waterPlantView()
-
-
+                        
+                        
                         if !viewModel.isItem {
                             selectImageView(width: width)
                                 .listRowBackground(Color(uiColor: .secondarySystemBackground))
@@ -68,7 +68,7 @@ struct SucculentFormView: View {
                     }
                     .cornerRadius(16)
                     .scrollContentBackground(.hidden)
-
+                    
                     Spacer()
                 }
                 
@@ -105,7 +105,7 @@ struct SucculentFormView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button("Create") {
                             viewModel.snoozeAlertIsDispayed.toggle()
-
+                            
                             // Create succulent
                             let newImage = Item(context: moc)
                             newImage.name = viewModel.name
@@ -127,11 +127,13 @@ struct SucculentFormView: View {
                     .foregroundColor(Color(uiColor: .systemOrange))
                 }
             }
-            .sheet(isPresented: $showCameraSheet) {
-                CameraHostingView(viewModel: viewModel)
+            .sheet(isPresented: $showCameraSheet, onDismiss: {
                 
-                //                CameraHostingView(previewImage: UIImage(date: $imagePicker.imageSelection))
-            }
+            }, content: {
+                CameraHostingView(viewModel: viewModel) {
+                    updateImage()  // After photo is appeneded in CameraHostingView
+                }
+            })
             .sheet(isPresented: $showHealthCheckSheet) {
                 HealthReportView(image: viewModel.uiImage.first!)
             }
@@ -152,7 +154,6 @@ struct SucculentFormView: View {
                             if let uiImage = UIImage(data: data) {
                                 viewModel.uiImage.append(uiImage)
                                 updateImage()
-                                print("Appending: \(uiImage)")
                             }
                         }
                     } catch {
@@ -161,7 +162,6 @@ struct SucculentFormView: View {
                 }
             }
             .onChange(of: imagePicker.imageSelection) { image in
-                
                 Task {
                     do {
                         if let data = try await image?.loadTransferable(type: Data.self) {
@@ -175,8 +175,6 @@ struct SucculentFormView: View {
                         print("womp womp: \(error.localizedDescription)")
                     }
                 }
-                
-                print("Image: \(image)")
             }
         }
     }
@@ -186,9 +184,11 @@ struct SucculentFormView: View {
            let selectedImage = myImages.first(where: {$0.id == id}) {
             selectedImage.name = viewModel.name
             selectedImage.image = viewModel.uiImage
-            //            FileManager().saveImage(with: id, image: viewModel.uiImage)
             if moc.hasChanges {
                 try? moc.save()
+            }
+            withAnimation {
+                viewModel.imagePageSliderIndex = viewModel.uiImage.count-1
             }
         }
     }
@@ -202,12 +202,8 @@ struct SucculentFormView: View {
                     Text("Water")
                         .bold()
                         .font(.subheadline)
-
-//                                        Text("Today")
-//                                            .foregroundColor(.secondary)
-//                                            .font(.caption)
                 }
-
+                
                 Spacer()
             }
             .padding(16)
@@ -223,16 +219,16 @@ struct SucculentFormView: View {
                 VStack(alignment: .leading, spacing: 6) {
                     Image(systemName: "heart.text.square")
                         .font(.title)
-
+                    
                     Text("Health Check")
                         .bold()
                         .font(.subheadline)
-
-//                                        Text("Water another time")
-//                                            .foregroundColor(.clear)
-//                                            .font(.caption)
+                    
+                    //                                        Text("Water another time")
+                    //                                            .foregroundColor(.clear)
+                    //                                            .font(.caption)
                 }
-
+                
                 Spacer()
             }
             .foregroundColor(.secondary)
