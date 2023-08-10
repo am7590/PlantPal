@@ -31,7 +31,7 @@ enum ErrorHandlingType {
     var subtitle: String {
         switch self {
         case .noData:
-            return "Tap the + button to create a new plant or succulent"
+            return "Tap + to create a new plant or succulent"
         case .failedToLoad:
             return "Womp Womp :("
         }
