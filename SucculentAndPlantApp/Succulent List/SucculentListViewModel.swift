@@ -78,12 +78,10 @@ extension SucculentListView {
     }
     
     func updateItemsFromSearchQuery(_ value: String) {
-        print("value \(value)")
-        
-        if viewModel.searchText != "" {
-            fetchedItems.nsPredicate = NSPredicate(format: "name CONTAINS[c] %@", viewModel.searchText)
+        if value.isEmpty {
+            items = Array(fetchedItems)
         } else {
-            fetchedItems.nsPredicate = nil
+            items = fetchedItems.filter({ $0.name?.contains(value) ?? false })
         }
     }
     

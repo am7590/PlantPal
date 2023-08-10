@@ -18,7 +18,7 @@ struct SucculentListView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name)])
     var fetchedItems: FetchedResults<Item>
     
-    @State private var items: [Item] = []
+    @State var items: [Item] = []
     @State var draggedItem: Item?
         
     var body: some View {
