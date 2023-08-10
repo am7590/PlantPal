@@ -72,16 +72,18 @@ extension IdentificationView {
                     if let suggestions = response.result?.classification?.suggestions {
                         for suggestion in suggestions {
                             print("Plant Name:", suggestion.name)
+                            similarImages[suggestion.name] = []
                             if let similarImages = suggestion.similarImages {
                                 for similarImage in similarImages {
                                     print("Similar Image URL:", similarImage.url)
+                                    setImageFromStringrURL(stringUrl: similarImage.url, imageKey: suggestion.name)
                                 }
                             }
                         }
                     } else {
                         print("Plant Not Identified")
                     }
-                    
+                                        
                     self.loadState = .loaded
                 }
                 
@@ -90,6 +92,21 @@ extension IdentificationView {
                 self.loadState = .failed
             }
         }.resume()
+    }
+    
+    func setImageFromStringrURL(stringUrl: String, imageKey: String) {
+      if let url = URL(string: stringUrl) {
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+          // Error handling...
+          guard let imageData = data else { return }
+
+          DispatchQueue.main.async {
+              if let image = UIImage(data: imageData) {
+                  similarImages[imageKey]?.append(image)
+              }
+          }
+        }.resume()
+      }
     }
 }
 

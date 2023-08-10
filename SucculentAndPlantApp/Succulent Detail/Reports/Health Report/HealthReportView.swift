@@ -5,6 +5,7 @@ struct HealthReportView: View {
     @State var loadState: ReportLoadState = .loading
     @State var healthData: HealthAssessmentResponse?
     @State var diseases = [Disease]()
+    @State var similarImages = [String: [UIImage]]()
     @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
@@ -19,12 +20,14 @@ struct HealthReportView: View {
                 case .loaded:
                     if let healthData = healthData {
                         List {
+                            GeometryReader { proxy in
+                                let imageWidth = proxy.size.width-24
                             Section {
                                 HStack {
                                     Spacer()
                                     VStack {
                                         CircularProgressView(progress: healthData.result.isHealthy.probability, color: healthData.color, size: .large, showProgress: true)
-                                            .frame(width: 100, height: 100)
+                                            .frame(width: imageWidth, height: imageWidth)
                                             .padding()
                                         
                                         Text("\(healthData.result.isHealthy.binary ? "HEALTHY" : "NOT HEALTHY")")
@@ -37,7 +40,7 @@ struct HealthReportView: View {
                             
                             Section("Potential diseases") {
                                 ForEach(healthData.result.disease.suggestions, id: \.id) { suggestion in
-                                    NavigationLink(destination: DiseaseDetailView(suggestion: suggestion, color: healthData.color)) {
+                                    NavigationLink(destination: DiseaseDetailView(suggestion: suggestion, color: healthData.color, similarImages: $similarImages)) {
                                         VStack(alignment: .leading) {
                                             Text(suggestion.name.capitalized)
                                                 .font(.headline)
@@ -46,6 +49,7 @@ struct HealthReportView: View {
                                 }
                             }
                         }
+                    }
                         .listStyle(InsetGroupedListStyle())
                     } else {
                         Text("Failed to load health data")
@@ -69,6 +73,7 @@ struct HealthReportView_Previews: PreviewProvider {
 struct DiseaseDetailView: View {
     let suggestion: Disease
     let color: Color
+    @Binding var similarImages: [String: [UIImage]]
     
     var body: some View {
         GeometryReader { proxy in
@@ -87,15 +92,12 @@ struct DiseaseDetailView: View {
                 }
                 Section("Similar images") {
                     VStack(alignment: .center) {
-                        ForEach(suggestion.similarImages, id: \.id) { image in
-                            if let url = URL(string: image.url),
-                               let imageData = try? Data(contentsOf: url),
-                               let uiImage = UIImage(data: imageData) {
-                                RemoteImage(image: uiImage)
-                                    .frame(width: imageWidth, height: imageWidth)
+                        if let images = similarImages[suggestion.name] {
+                            ForEach(images, id: \.self) { image in
+                                Image(uiImage: image)
+                                    .frame(width: 150, height: 150)
                                     .cornerRadius(16)
                             }
-                            
                         }
                     }
                     

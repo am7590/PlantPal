@@ -13,6 +13,7 @@ struct IdentificationView: View {
     let plantName: String
     @State var loadState: ReportLoadState = .loading
     @State var identificationData: IdentificationResponse?
+    @State var similarImages = [String: [UIImage]]()
     
     var body: some View {
         VStack {
@@ -40,19 +41,16 @@ struct IdentificationView: View {
                                                 .font(.title)
                                         }
                                         
-                                        if let similarImages = suggestion.similarImages {
-                                            ScrollView(.horizontal) {
-                                                HStack(spacing: 10) {
-                                                    ForEach(similarImages, id: \.id) { image in
-                                                        if let url = URL(string: image.url),
-                                                           let imageData = try? Data(contentsOf: url),
-                                                           let uiImage = UIImage(data: imageData) {
-                                                            RemoteImage(image: uiImage)
-                                                                .frame(width: 150, height: 150)
-                                                                .cornerRadius(16)
-                                                        }
+                                        ScrollView(.horizontal) {
+                                            HStack(spacing: 10) {
+                                                if let images = similarImages[suggestion.name] {
+                                                    ForEach(images, id: \.self) { image in
+                                                        Image(uiImage: image)
+                                                            .frame(width: 150, height: 150)
+                                                            .cornerRadius(16)
                                                     }
                                                 }
+                                                
                                             }
                                         }
                                     }

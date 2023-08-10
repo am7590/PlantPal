@@ -69,11 +69,14 @@ extension HealthReportView {
                 
                 for suggestion in response.result.disease.suggestions {
                     print("Disease Name:", suggestion.name)
+                    similarImages[suggestion.name] = []
                     print("Probability:", suggestion.probability)
                     print("Similar Images:")
-                    for similarImage in suggestion.similarImages {
-                        print("Image URL:", similarImage.url)
-                    }
+                        for image in suggestion.similarImages {
+                            print("Similar Image URL:", image.url)
+                            setImageFromStringrURL(stringUrl: image.url, imageKey: suggestion.name)
+                        }
+                    
                 }
                 
                 self.loadState = .loaded
@@ -83,5 +86,20 @@ extension HealthReportView {
                 self.loadState = .failed
             }
         }.resume()
+    }
+    
+    func setImageFromStringrURL(stringUrl: String, imageKey: String) {
+      if let url = URL(string: stringUrl) {
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+          // Error handling...
+          guard let imageData = data else { return }
+
+          DispatchQueue.main.async {
+              if let image = UIImage(data: imageData) {
+                  similarImages[imageKey]?.append(image)
+              }
+          }
+        }.resume()
+      }
     }
 }
