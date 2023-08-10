@@ -51,7 +51,7 @@ struct SucculentFormView: View {
                             TextField("", text: $viewModel.name)
                                 .textFieldStyle(.plain)
 
-                            if let image = viewModel.uiImage.first {
+                            if let image = viewModel.uiImage.first, viewModel.isItem {
                                 NavigationLink("Identify", destination: IdentificationView(image: image, plantName: viewModel.name))
                             }
 
@@ -152,7 +152,7 @@ struct SucculentFormView: View {
                              matching: .images,
                              photoLibrary: .shared())
                 .foregroundColor(.primary)
-            }
+            } // parent.viewModel.uiImage.append(image)
             .onChange(of: newImageSelection) { newItem in
                 Task {
                     do {
@@ -167,6 +167,24 @@ struct SucculentFormView: View {
                         print("womp womp: \(error.localizedDescription)")
                     }
                 }
+            }
+            .onChange(of: imagePicker.imageSelection) { image in
+                
+                Task {
+                    do {
+                        if let data = try await image?.loadTransferable(type: Data.self) {
+                            if let uiImage = UIImage(data: data) {
+                                viewModel.uiImage.append(uiImage)
+                                updateImage()
+                                print("Appending: \(uiImage)")
+                            }
+                        }
+                    } catch {
+                        print("womp womp: \(error.localizedDescription)")
+                    }
+                }
+                
+                print("Image: \(image)")
             }
         }
     }

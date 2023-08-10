@@ -23,7 +23,6 @@ class SucculentListViewModel: ObservableObject {
     func handleImageChange(_ newImage: [UIImage]?) {
         if let newImage {
             formState = .new(newImage)
-            
         }
     }
 }
