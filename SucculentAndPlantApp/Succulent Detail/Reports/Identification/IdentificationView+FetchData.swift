@@ -8,14 +8,20 @@
 import SwiftUI
 
 extension IdentificationView {
-    func fetchData(image: UIImage) {
-        guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            print("Failed to convert image to data")
-            self.loadState = .failed
-            return
-        }
+    func fetchData(images: [UIImage]) {
         
-        let base64Image = imageData.base64EncodedString()
+        var base64Images = [String]()
+        
+        for image in images {
+            guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+                print("Failed to convert image to data")
+                self.loadState = .failed
+                return
+            }
+            
+            let base64Image = imageData.base64EncodedString()
+            base64Images.append(base64Image)
+        }
         
         let apiUrl = URL(string: "https://plant.id/api/v3/identification")!
         var request = URLRequest(url: apiUrl)
@@ -23,8 +29,9 @@ extension IdentificationView {
         request.setValue("S6VUgIM03MvELLMGtMQBEpVuBvtaG0b0UOGoma3iT2oO2OuMYH", forHTTPHeaderField: "Api-Key")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        // TODO: Fetch user location
         let requestBody: [String: Any] = [
-            "images": [base64Image],
+            "images": base64Images,
             "latitude": 43.1318877,
             "longitude": -77.6374956,
             "similar_images": true
@@ -51,9 +58,7 @@ extension IdentificationView {
                 self.loadState = .failed
                 return
             }
-            
-            print("Data: \(String(data: data, encoding: .utf8))")
-            
+                    
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
