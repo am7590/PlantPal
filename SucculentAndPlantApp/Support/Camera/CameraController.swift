@@ -19,7 +19,7 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
-        button.tintColor = .systemBlue
+        button.tintColor = .systemGreen
         return button
     }()
     
@@ -43,34 +43,49 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     // MARK: - Private Methods
     private func setupUI() {
-            view.addSubview(backButton)
-            view.addSubview(takePhotoButton)
-            
-            backButton.translatesAutoresizingMaskIntoConstraints = false
-            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
-            backButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-            backButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-            backButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-            
-            takePhotoButton.translatesAutoresizingMaskIntoConstraints = false
-            takePhotoButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
-            takePhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-            takePhotoButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-            takePhotoButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
-            
-            takePhotoButton.backgroundColor = .systemBlue
-            takePhotoButton.layer.cornerRadius = 24
+        view.addSubview(backButton)
+        view.addSubview(takePhotoButton)
+        
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
+        backButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+        backButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        backButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        takePhotoButton.translatesAutoresizingMaskIntoConstraints = false
+        takePhotoButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -15).isActive = true
+        takePhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        takePhotoButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        takePhotoButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        takePhotoButton.backgroundColor = .systemGreen
+        takePhotoButton.layer.cornerRadius = 24
+
+        let outlineView = UIView()
+        outlineView.translatesAutoresizingMaskIntoConstraints = false
+        outlineView.layer.cornerRadius = 16
+        outlineView.layer.borderWidth = 4
+        outlineView.layer.borderColor = UIColor.systemGreen.cgColor
+        outlineView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+        view.addSubview(outlineView)
+        
+        NSLayoutConstraint.activate([
+            outlineView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 225),
+            outlineView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -175),
+            outlineView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            outlineView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+        ])
+
     }
-    
     
     private func openCamera() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
-        case .authorized: // the user has already authorized to access the camera.
+        case .authorized:
             self.setupCaptureSession()
             
-        case .notDetermined: // the user has not yet asked for camera access.
+        case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { (granted) in
-                if granted { // if user has granted to access the camera.
+                if granted {
                     print("the user has granted to access the camera")
                     DispatchQueue.main.async {
                         self.setupCaptureSession()
