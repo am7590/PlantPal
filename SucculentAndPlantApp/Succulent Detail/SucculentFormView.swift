@@ -144,15 +144,7 @@ struct SucculentFormView: View {
                 }
                 Button("Cancel", role: .cancel) { }
             }
-            .sheet(isPresented: $showPhotoSelectionSheet, onDismiss: {
-                viewModel.imagePageSliderIndex = viewModel.uiImage.count-1
-
-            }) {
-                PhotosPicker("Choose Image", selection: $newImageSelection,
-                             matching: .images,
-                             photoLibrary: .shared())
-                .foregroundColor(.primary)
-            } // parent.viewModel.uiImage.append(image)
+            .photosPicker(isPresented: $showPhotoSelectionSheet, selection: $newImageSelection)
             .onChange(of: newImageSelection) { newItem in
                 Task {
                     do {
