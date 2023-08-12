@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HealthReportView: View {
     let image: UIImage
+    let plantName: String
     @State var loadState: ReportLoadState = .loading
     @State var healthData: HealthAssessmentResponse?
     @State var diseases = [Disease]()
@@ -15,7 +16,7 @@ struct HealthReportView: View {
                 case .loading:
                     ProgressView("Loading Health Report...")
                         .onAppear {
-                            fetchData(image: image)
+                            fetchData(for: plantName ,image: image)
                         }
                 case .loaded:
                     if let healthData = healthData {
@@ -66,7 +67,7 @@ struct HealthReportView: View {
 struct HealthReportView_Previews: PreviewProvider {
     static var previews: some View {
         let data = HealthAssessmentResponse(result: HealthResult(isHealthy: HealthPrediction(probability: 0.5421, binary: false, threshold: 0.5), disease: DiseaseSuggestion(suggestions: [Disease(id: "0", name: "Disease #1", probability: 0.243231, similarImages: [])])))
-        HealthReportView(image: UIImage(systemName: "trash")!, loadState: .loaded, healthData: data)
+        HealthReportView(image: UIImage(systemName: "trash")!, plantName: "Plant", loadState: .loaded, healthData: data)
     }
 }
 

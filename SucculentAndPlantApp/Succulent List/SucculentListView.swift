@@ -87,18 +87,28 @@ struct SucculentListView: View {
                 viewModel.formState = .edit(item)
             } label: {
                 ZStack(alignment: .topLeading) {
-                    Image(uiImage: item.uiImage.first ?? UIImage(systemName: "trash")!)
+
+                    
+                    
+                    
+                    Image(uiImage: item.uiImage.last ?? UIImage(systemName: "trash")!)
                         .resizable()
                         .scaledToFill()
                         .modifier(CustomFrameModifier(active: !viewModel.isList, width: cellWidth))
                         .clipped()
                         .cornerRadius(16)
                         .shadow(radius: 8.0)
-                        .onDrag {
-                            viewModel.wiggle = false
-                            draggedItem = item
-                            return NSItemProvider(object: NSString())
-                        }
+                       
+                    
+                    
+//                    if UserDefaults.standard.getHealthScore(for: item.nameText) != 0 {
+//                        CircularProgressView(progress: UserDefaults.standard.getHealthScore(for: item.nameText), color: UserDefaults.standard.getHealthScore(for: item.nameText) < 50 ? .red : .green, size: CircularProgressViewSize.small, showProgress: true)
+//                    }
+                }
+                .onDrag {
+                    viewModel.wiggle = false
+                    draggedItem = item
+                    return NSItemProvider(object: NSString())
                 }
                 .rotationEffect(.degrees(viewModel.wiggle ? 2.5 : 0))
                 .animation(.easeInOut(duration: 0.14).repeat(while: viewModel.wiggle), value: viewModel.wiggle)

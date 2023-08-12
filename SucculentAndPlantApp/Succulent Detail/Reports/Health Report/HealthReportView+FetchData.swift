@@ -10,7 +10,7 @@
 import SwiftUI
 
 extension HealthReportView {
-    func fetchData(image: UIImage) {
+    func fetchData(for plantName: String, image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             print("Failed to convert image to data")
             self.loadState = .failed
@@ -63,6 +63,11 @@ extension HealthReportView {
                 
                 // Access the health assessment results
                 self.healthData = response
+                
+                // Cache health score
+                if let healthScore = self.healthData?.result.isHealthy.probability {
+                    UserDefaults.standard.hasBeenHealthScored(for: "\(plantName)+HealthData", with: healthScore)
+                }
                 
                 // Print the health assessment results
                 print("Is Healthy:", response.result.isHealthy.binary)

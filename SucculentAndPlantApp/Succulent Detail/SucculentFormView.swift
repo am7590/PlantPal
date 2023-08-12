@@ -53,13 +53,12 @@ struct SucculentFormView: View {
                                 .textFieldStyle(.plain)
                             
                             if viewModel.isItem {
-                                NavigationLink("Identify", destination: IdentificationView(images: viewModel.uiImage, plantName: viewModel.name))
+                                NavigationLink(UserDefaults.standard.getIdentification(for: viewModel.name), destination: IdentificationView(images: viewModel.uiImage, plantName: viewModel.name))
                             }
                         }
                         .listRowBackground(Color(uiColor: .secondarySystemBackground))
                         
                         waterPlantView()
-                        
                         
                         if !viewModel.isItem {
                             selectImageView(width: width)
@@ -135,7 +134,7 @@ struct SucculentFormView: View {
                 }
             })
             .sheet(isPresented: $showHealthCheckSheet) {
-                HealthReportView(image: viewModel.uiImage.first!)
+                HealthReportView(image: viewModel.uiImage.first!, plantName: viewModel.name)
             }
             .alert("Add Plant Photo", isPresented: $viewModel.waterAlertIsDispayed) {
                 Button("Take Photo") {

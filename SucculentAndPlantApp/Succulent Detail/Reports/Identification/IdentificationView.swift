@@ -55,6 +55,7 @@ struct IdentificationView: View {
                                         }
                                     }
                                     .onTapGesture {
+                                        print("Setting \(suggestion.name) identification to \(plantName)")
                                         UserDefaults.standard.hasBeenIdentified(for: plantName, with: suggestion.name)
                                         dismiss()
                                     }
