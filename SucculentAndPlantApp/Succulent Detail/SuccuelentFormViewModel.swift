@@ -47,7 +47,7 @@ class SuccuelentFormViewModel: ObservableObject {
     }
     
     var incomplete: Bool {
-        name.isEmpty || uiImage == nil
+        name.isEmpty || uiImage.isEmpty
     }
     
     var isItem = false
