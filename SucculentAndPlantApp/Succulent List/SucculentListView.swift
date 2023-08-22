@@ -54,11 +54,11 @@ struct SucculentListView: View {
                 .alert("Image Updated", isPresented: $viewModel.imageExists) {
                     Button("OK") {}
                 }
-                .onChange(of: imagePicker.uiImage) { newImage in
-                    if let newImage {
-                        viewModel.handleImageChange([newImage])
-                    }
-                }
+//                .onChange(of: imagePicker.uiImage) { newImage in
+//                    if let newImage {
+//                        viewModel.handleImageChange([newImage])
+//                    }
+//                }
                 .onChange(of: shareService.codeableImage) { codableImage in
                     updateOrRestoreImage(codableImage, fetchedItems)
                 }

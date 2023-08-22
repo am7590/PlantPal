@@ -207,6 +207,7 @@ struct SucculentFormView: View {
             }
             .padding(16)
             .frame(width: width/2 - 6)
+            .frame(height: 85)
             .background(Color.blue.opacity(0.25))
             .cornerRadius(12)
         }
@@ -233,6 +234,7 @@ struct SucculentFormView: View {
             .foregroundColor(.secondary)
             .padding()
             .frame(width: width/2 - 6)
+            .frame(height: 85)
             .background(Color.secondary.opacity(0.25))
             .cornerRadius(12)
         }

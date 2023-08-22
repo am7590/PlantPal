@@ -29,16 +29,16 @@ struct ImagePageSliderView: View {
                     }
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                
+                .animation(.easeOut(duration: 0.5))
+
                 VStack {
                     Spacer()
                     
                     PageControl(numberOfPages: images.count, currentPage: $currentIndex)
                         .padding(.bottom, -50)
-                        .id(UUID()) // Add an identifier to force recreation of PageControl
+                        .id(UUID())
                 }
             }
-            .animation(.linear)
         }
     }
 }
@@ -55,6 +55,7 @@ struct PageControl: UIViewRepresentable {
         let pageControl = UIPageControl()
         pageControl.numberOfPages = numberOfPages
         pageControl.currentPage = currentPage
+        pageControl.backgroundStyle = .prominent
         pageControl.addTarget(context.coordinator, action: #selector(Coordinator.updateCurrentPage(sender:)), for: .valueChanged)
         return pageControl
     }
