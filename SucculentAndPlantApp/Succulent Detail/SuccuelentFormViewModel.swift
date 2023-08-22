@@ -62,39 +62,3 @@ class SuccuelentFormViewModel: ObservableObject {
         isItem = true
     }
 }
-
-
-//extension SucculentFormView {
-//    struct CustomToolbar: ToolbarContent {
-//        var body: some ToolbarContent {
-//            ToolbarItem(placement: .navigationBarTrailing) {
-//                Button("Create") {
-//                    let newImage = Item(context: moc)
-//                    newImage.name = viewModel.name
-//                    newImage.id = UUID().uuidString
-//                    newImage.image = viewModel.uiImage
-//                    try? moc.save()
-//                    dismiss()
-//                }
-//                .buttonStyle(.bordered)
-//            }
-//            if viewModel.updating {
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    HStack {
-//                        Button {
-//                            if let selectedImage = myImages.first(where: {$0.id == viewModel.id}) {
-//                                moc.delete(selectedImage)
-//                                try? moc.save()
-//                            }
-//                            dismiss()
-//                        } label: {
-//                            Image(systemName: "trash")
-//                        }
-//                        .buttonStyle(.borderedProminent)
-//                        .tint(.red)
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
