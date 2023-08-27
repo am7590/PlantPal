@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct SucculentAndPlantAppApp: App {
+    // Splash screen
+    @StateObject private var splashScreenState = SplashScreenManager()
+    
     // App Delegate (APNS)
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
@@ -23,19 +26,31 @@ struct SucculentAndPlantAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            // ImageSliderContainer(imgArr: [UIImage(named: "succ1")!, UIImage(named: "succ2")!, UIImage(named: "succ3")!])
-            SucculentListView()
-                .environmentObject(viewModel)
-                .environmentObject(router)
-                .environmentObject(persistImage)
-                .environmentObject(imagePicker)
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .onAppear {
-                    print("Document Directory", URL.documentsDirectory.path)
+            Group {
+                if splashScreenState.launchState != .finished {
+                    SplashScreenView()
+                        .task {
+                            // Wait for CoreData and UserDefaults to be accessible
+                            if UIApplication.shared.isProtectedDataAvailable {
+                                self.splashScreenState.dismiss()
+                            }
+                        }
+                } else {
+                    SucculentListView()
+                        .environmentObject(viewModel)
+                        .environmentObject(router)
+                        .environmentObject(persistImage)
+                        .environmentObject(imagePicker)
+                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                        .onAppear {
+                            print("Document Directory", URL.documentsDirectory.path)
+                        }
+                        .onOpenURL { url in
+                            persistImage.restore(url: url)
+                        }
                 }
-                .onOpenURL { url in
-                    persistImage.restore(url: url)
-                }
+            }
+            .environmentObject(splashScreenState)
         }
     }
 }

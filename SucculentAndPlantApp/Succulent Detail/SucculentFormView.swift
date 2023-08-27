@@ -48,10 +48,12 @@ struct SucculentFormView: View {
                     
                     List {
                         // TODO: Open keypad and select this TextField upon opening .new view type
-                        Section("Name") {
-                            TextField("", text: $viewModel.name)
-                                .textFieldStyle(.plain)
-                            
+                        Section(!viewModel.isItem ? "Name" : "") {
+                            if !viewModel.isItem {
+                                TextField("", text: $viewModel.name)
+                                    .textFieldStyle(.plain)
+                            }
+                         
                             if viewModel.isItem {
                                 NavigationLink(UserDefaults.standard.getIdentification(for: viewModel.name), destination: IdentificationView(images: viewModel.uiImage, plantName: viewModel.name))
                             }
@@ -80,7 +82,7 @@ struct SucculentFormView: View {
                     viewModel.uiImage.append(newImage)
                 }
             }
-            .navigationTitle(viewModel.updating ? "Edit Succulent" : "New Succulent")
+            .navigationTitle(viewModel.updating ? "\(viewModel.name)" : "New Succulent")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 if viewModel.updating {
