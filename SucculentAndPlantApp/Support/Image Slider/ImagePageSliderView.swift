@@ -30,7 +30,8 @@ struct ImagePageSliderView: View {
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .animation(.easeOut(duration: 0.5))
-
+                .padding(.horizontal, -20) // Apply negative horizontal padding
+                
                 VStack {
                     Spacer()
                     
