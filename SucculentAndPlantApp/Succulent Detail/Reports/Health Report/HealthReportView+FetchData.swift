@@ -22,7 +22,7 @@ extension HealthReportView {
         let apiUrl = URL(string: "https://plant.id/api/v3/health_assessment")!
         var request = URLRequest(url: apiUrl)
         request.httpMethod = "POST"
-        request.setValue("S6VUgIM03MvELLMGtMQBEpVuBvtaG0b0UOGoma3iT2oO2OuMYH", forHTTPHeaderField: "Api-Key")
+        request.setValue("7UXCHJb3p6QJrgOWgEtPlxqgydX94vfZbFZdQHTFWlH6PqnDKZ", forHTTPHeaderField: "Api-Key")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let requestBody: [String: Any] = [

@@ -16,6 +16,8 @@ struct SucculentFormView: View {
     @StateObject var imageSelector = ImageSelector()
     @EnvironmentObject var imagePicker: ImageSelector
     
+    @State var navLinkValue = ""
+    
     @FetchRequest(sortDescriptors: [])
     var myImages: FetchedResults<Item>
     
@@ -55,7 +57,10 @@ struct SucculentFormView: View {
                             }
                          
                             if viewModel.isItem {
-                                NavigationLink(UserDefaults.standard.getIdentification(for: viewModel.name), destination: IdentificationView(images: viewModel.uiImage, plantName: viewModel.name))
+                                NavigationLink(navLinkValue, destination: IdentificationView(images: viewModel.uiImage, plantName: viewModel.name))
+                                    .onDisappear {
+                                        refreshUserDefaults()
+                                    }
                             }
                         }
                         .listRowBackground(Color(uiColor: .secondarySystemBackground))
@@ -74,7 +79,9 @@ struct SucculentFormView: View {
                 }
                 
             }
-            
+            .onAppear {
+                refreshUserDefaults()
+            }
             .padding()
             .textFieldStyle(.roundedBorder)
             .onChange(of: imageSelector.uiImage) { newImage in
@@ -178,6 +185,10 @@ struct SucculentFormView: View {
                 }
             }
         }
+    }
+    
+    func refreshUserDefaults() {
+        self.navLinkValue = UserDefaults.standard.getIdentification(for: viewModel.name)
     }
     
     func updateImage() {

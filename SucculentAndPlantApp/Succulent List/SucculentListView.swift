@@ -43,7 +43,7 @@ struct SucculentListView: View {
                         .padding(.horizontal)
                     }
                 }
-                .navigationTitle("All Succulents")
+                .navigationTitle("All Plants")
                 .searchable(text: $viewModel.searchText, prompt: "Search")
                 .toolbar {
                     CustomToolbar()
