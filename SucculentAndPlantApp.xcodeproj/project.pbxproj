@@ -28,6 +28,9 @@
 		2919F3642A086ACF0003194F /* TabNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3632A086ACF0003194F /* TabNavigationView.swift */; };
 		2919F3672A086ECA0003194F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3662A086ECA0003194F /* Router.swift */; };
 		2919F3692A0ACE210003194F /* ErrorHandlingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3682A0ACE210003194F /* ErrorHandlingView.swift */; };
+		2924DD172A9BE89E00BD9299 /* SplashScreenState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924DD162A9BE89E00BD9299 /* SplashScreenState.swift */; };
+		2924DD192A9BE8BA00BD9299 /* SplashScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924DD182A9BE8BA00BD9299 /* SplashScreenManager.swift */; };
+		2924DD1B2A9BE91300BD9299 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2924DD1A2A9BE91300BD9299 /* SplashScreenView.swift */; };
 		2935A9A92A5321F2007DAFC5 /* MyDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2935A9A82A5321F2007DAFC5 /* MyDropDelegate.swift */; };
 		294238872A0B089600CE0A63 /* SucculentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294238862A0B089600CE0A63 /* SucculentListViewModel.swift */; };
 		2942388A2A0B0B1500CE0A63 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294238892A0B0B1500CE0A63 /* Modifiers.swift */; };
@@ -54,7 +57,7 @@
 
 /* Begin PBXFileReference section */
 		290FAA0B2A17085300B98124 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		2919F32D2A0815700003194F /* SucculentAndPlantApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SucculentAndPlantApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2919F32D2A0815700003194F /* PlantPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlantPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2919F3302A0815700003194F /* SucculentAndPlantAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentAndPlantAppApp.swift; sourceTree = "<group>"; };
 		2919F3322A0815700003194F /* SucculentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentListView.swift; sourceTree = "<group>"; };
 		2919F3342A0815710003194F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +79,9 @@
 		2919F3632A086ACF0003194F /* TabNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationView.swift; sourceTree = "<group>"; };
 		2919F3662A086ECA0003194F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2919F3682A0ACE210003194F /* ErrorHandlingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlingView.swift; sourceTree = "<group>"; };
+		2924DD162A9BE89E00BD9299 /* SplashScreenState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenState.swift; sourceTree = "<group>"; };
+		2924DD182A9BE8BA00BD9299 /* SplashScreenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenManager.swift; sourceTree = "<group>"; };
+		2924DD1A2A9BE91300BD9299 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		2935A9A82A5321F2007DAFC5 /* MyDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDropDelegate.swift; sourceTree = "<group>"; };
 		294238862A0B089600CE0A63 /* SucculentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentListViewModel.swift; sourceTree = "<group>"; };
 		294238892A0B0B1500CE0A63 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
@@ -125,7 +131,7 @@
 		2919F32E2A0815700003194F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2919F32D2A0815700003194F /* SucculentAndPlantApp.app */,
+				2919F32D2A0815700003194F /* PlantPal.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,6 +142,7 @@
 				2919F3472A08158C0003194F /* SucculentAndPlantApp.entitlements */,
 				2919F3302A0815700003194F /* SucculentAndPlantAppApp.swift */,
 				295F875C2A6313230021CA70 /* AppDelegate.swift */,
+				2924DD152A9BE88E00BD9299 /* Splash Screen */,
 				294238DA2A0E8ABC00CE0A63 /* Succulent List */,
 				2919F3652A086EB20003194F /* Navigation */,
 				2919F3572A083C640003194F /* Support */,
@@ -220,6 +227,16 @@
 				2919F3662A086ECA0003194F /* Router.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		2924DD152A9BE88E00BD9299 /* Splash Screen */ = {
+			isa = PBXGroup;
+			children = (
+				2924DD162A9BE89E00BD9299 /* SplashScreenState.swift */,
+				2924DD182A9BE8BA00BD9299 /* SplashScreenManager.swift */,
+				2924DD1A2A9BE91300BD9299 /* SplashScreenView.swift */,
+			);
+			path = "Splash Screen";
 			sourceTree = "<group>";
 		};
 		294238902A0C4EAB00CE0A63 /* Image Slider */ = {
@@ -320,7 +337,7 @@
 				290FAA062A17022D00B98124 /* ZIPFoundation */,
 			);
 			productName = SucculentAndPlantApp;
-			productReference = 2919F32D2A0815700003194F /* SucculentAndPlantApp.app */;
+			productReference = 2919F32D2A0815700003194F /* PlantPal.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -399,13 +416,16 @@
 				29E05A162A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift in Sources */,
 				2919F3312A0815700003194F /* SucculentAndPlantAppApp.swift in Sources */,
 				2919F35B2A083C860003194F /* FIleManager+Image.swift in Sources */,
+				2924DD1B2A9BE91300BD9299 /* SplashScreenView.swift in Sources */,
 				29F02D0F2A648CF8001D2FF3 /* IdentificationView+FetchData.swift in Sources */,
 				29B38A1F2A5B565D00023032 /* ImagePageSliderView.swift in Sources */,
 				2919F3672A086ECA0003194F /* Router.swift in Sources */,
 				2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */,
 				2919F3622A0840280003194F /* FileManager+JSON.swift in Sources */,
 				2919F3592A083C6E0003194F /* ImageSelector.swift in Sources */,
+				2924DD192A9BE8BA00BD9299 /* SplashScreenManager.swift in Sources */,
 				2919F34A2A08330F0003194F /* Item.swift in Sources */,
+				2924DD172A9BE89E00BD9299 /* SplashScreenState.swift in Sources */,
 				2919F3642A086ACF0003194F /* TabNavigationView.swift in Sources */,
 				2919F34D2A0834540003194F /* UIImageTransformer.swift in Sources */,
 				290FAA0C2A17085300B98124 /* ImagePicker.swift in Sources */,
@@ -562,7 +582,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alek.SucculentAndPlantApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PlantPal;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -597,7 +617,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alek.SucculentAndPlantApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PlantPal;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

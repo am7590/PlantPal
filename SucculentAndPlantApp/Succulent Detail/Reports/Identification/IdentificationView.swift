@@ -24,7 +24,7 @@ struct IdentificationView: View {
                         fetchData(images: images)
                     }
             case .loaded:
-                if let identificationData = identificationData {
+                if let identificationData {
                     List {
                         if let suggestions = identificationData.result?.classification?.suggestions {
                             ForEach(suggestions, id: \.id) { suggestion in

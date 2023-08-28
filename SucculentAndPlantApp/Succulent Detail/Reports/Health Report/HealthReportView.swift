@@ -11,62 +11,65 @@ struct HealthReportView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                switch loadState {
-                case .loading:
-                    ProgressView("Loading Health Report...")
-                        .onAppear {
-                            fetchData(for: plantName ,image: image)
-                        }
-                case .loaded:
-                    if let healthData = healthData {
-                        List {
-                            GeometryReader { proxy in
-                                let imageWidth = proxy.size.width-24
-                            Section {
-                                HStack {
-                                    Spacer()
-                                    VStack {
-                                        CircularProgressView(progress: healthData.result.isHealthy.probability, color: healthData.color, size: .large, showProgress: true)
-                                            .frame(width: imageWidth, height: imageWidth)
-                                            .padding()
-                                        
-                                        Text("\(healthData.result.isHealthy.binary ? "HEALTHY" : "NOT HEALTHY")")
-                                            .font(.title2.bold())
-                                            .foregroundColor(healthData.result.isHealthy.binary ? .green : .red)
-                                    }
-                                    Spacer()
-                                }
+            GeometryReader { proxy in
+                let imageWidth = proxy.size.width-24
+                
+                VStack {
+                    switch loadState {
+                    case .loading:
+                        ProgressView("Loading Health Report...")
+                            .onAppear {
+                                fetchData(for: plantName, image: image)
                             }
-                            
-                            Section("Potential diseases") {
-                                ForEach(healthData.result.disease.suggestions, id: \.id) { suggestion in
-                                    NavigationLink(destination: DiseaseDetailView(suggestion: suggestion, color: healthData.color, similarImages: $similarImages)) {
-                                        VStack(alignment: .leading) {
-                                            Text(suggestion.name.capitalized)
-                                                .font(.headline)
+                    case .loaded:
+                        if let healthData {
+                            List {
+                                Section {
+                                    HStack {
+                                        Spacer()
+                                        VStack {
+                                            CircularProgressView(progress: healthData.result.isHealthy.probability, color: healthData.color, size: .large, showProgress: true)
+                                                .frame(width: imageWidth/3, height: imageWidth/3)
+                                                .padding()
+                                            
+                                            Text("\(healthData.result.isHealthy.binary ? "HEALTHY" : "NOT HEALTHY")")
+                                                .font(.title2.bold())
+                                                .foregroundColor(healthData.result.isHealthy.binary ? .green : .red)
+                                        }
+                                        Spacer()
+                                    }
+                                    
+                                    Section() {
+                                        ForEach(healthData.result.disease.suggestions, id: \.id) { suggestion in
+                                            NavigationLink(destination: DiseaseDetailView(suggestion: suggestion, color: healthData.color, similarImages: $similarImages)) {
+                                                VStack(alignment: .leading) {
+                                                    Text(suggestion.name.capitalized)
+                                                        .font(.headline)
+                                                }
+                                            }
                                         }
                                     }
                                 }
+                                .listRowSeparator(.hidden)
                             }
+                            .listStyle(InsetGroupedListStyle())
+                            
+                        } else {
+                            Text("Failed to load health data")
                         }
+                    case .failed:
+                        Text("Failed to load. Please try again.")
                     }
-                        .listStyle(InsetGroupedListStyle())
-                    } else {
-                        Text("Failed to load health data")
-                    }
-                case .failed:
-                    Text("Failed to load. Please try again.")
                 }
+                .navigationTitle("Health Report")
             }
-            .navigationTitle("Health Report")
         }
     }
 }
 
 struct HealthReportView_Previews: PreviewProvider {
     static var previews: some View {
-        let data = HealthAssessmentResponse(result: HealthResult(isHealthy: HealthPrediction(probability: 0.5421, binary: false, threshold: 0.5), disease: DiseaseSuggestion(suggestions: [Disease(id: "0", name: "Disease #1", probability: 0.243231, similarImages: [])])))
+        let data = HealthAssessmentResponse(result: HealthResult(isHealthy: HealthPrediction(probability: 0.5421, binary: false, threshold: 0.5), disease: DiseaseSuggestion(suggestions: [Disease(id: "0", name: "Disease #1", probability: 0.243231, similarImages: []), Disease(id: "1", name: "Disease #2", probability: 0.243231, similarImages: []), Disease(id: "2", name: "Disease #3", probability: 0.243231, similarImages: [])])))
         HealthReportView(image: UIImage(systemName: "trash")!, plantName: "Plant", loadState: .loaded, healthData: data)
     }
 }
@@ -80,7 +83,7 @@ struct DiseaseDetailView: View {
         GeometryReader { proxy in
             let imageWidth = proxy.size.width - 128
             List {
-                Section() {
+                Section {
                     
                     HStack {
                         CircularProgressView(progress: suggestion.probability, color: color, size: .small, showProgress: true)
@@ -101,7 +104,6 @@ struct DiseaseDetailView: View {
                             }
                         }
                     }
-                    
                 }
             }
             .padding(.horizontal)
