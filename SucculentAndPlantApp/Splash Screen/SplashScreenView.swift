@@ -15,15 +15,21 @@ struct SplashScreenView: View {
     let color2 = Color(red: 172/255, green: 106/255, blue: 69/255)
     
     @ViewBuilder
-    private var image: some View {  // Mark 3
-        Image("IconImage")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 200, height: 200)
+    private var image: some View {
+        VStack {
+            Image("IconImage")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
+            
+            Text("PlantPal")
+                .font(.custom("Papyrus", fixedSize: 48))
+                .bold()
+        }
     }
     
     @ViewBuilder
-    private var backgroundColor: some View {  // Mark 3
+    private var backgroundColor: some View {
         LinearGradient(gradient: Gradient(colors: [color1, color2]), startPoint: .topLeading, endPoint: .topTrailing)
             .ignoresSafeArea()
     }
