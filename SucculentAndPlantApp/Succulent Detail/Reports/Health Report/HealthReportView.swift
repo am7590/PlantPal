@@ -12,15 +12,23 @@ struct HealthReportView: View {
     var body: some View {
         NavigationView {
             GeometryReader { proxy in
-                let imageWidth = proxy.size.width-24
+                let imageWidth = proxy.size.width - 24
                 
                 VStack {
                     switch loadState {
                     case .loading:
-                        ProgressView("Loading Health Report...")
-                            .onAppear {
-                                fetchData(for: plantName, image: image)
+                        VStack {
+                            Spacer()
+                            HStack {
+                                Spacer()
+                                ProgressView("Loading Health Report...")
+                                    .onAppear {
+                                        fetchData(for: plantName, image: image)
+                                    }
+                                Spacer()
                             }
+                            Spacer()
+                        }
                     case .loaded:
                         if let healthData {
                             List {
@@ -31,14 +39,14 @@ struct HealthReportView: View {
                                             CircularProgressView(progress: healthData.result.isHealthy.probability, color: healthData.color, size: .large, showProgress: true)
                                                 .frame(width: imageWidth/3, height: imageWidth/3)
                                                 .padding()
-                                            
+
                                             Text("\(healthData.result.isHealthy.binary ? "HEALTHY" : "NOT HEALTHY")")
                                                 .font(.title2.bold())
                                                 .foregroundColor(healthData.result.isHealthy.binary ? .green : .red)
                                         }
                                         Spacer()
                                     }
-                                    
+
                                     Section() {
                                         ForEach(healthData.result.disease.suggestions, id: \.id) { suggestion in
                                             NavigationLink(destination: DiseaseDetailView(suggestion: suggestion, color: healthData.color, similarImages: $similarImages)) {
@@ -53,7 +61,7 @@ struct HealthReportView: View {
                                 .listRowSeparator(.hidden)
                             }
                             .listStyle(InsetGroupedListStyle())
-                            
+
                         } else {
                             Text("Failed to load health data")
                         }

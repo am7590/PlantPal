@@ -44,6 +44,7 @@
 		29B9CD0A2A64A2BB00E7BAAD /* SucculentFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9CD092A64A2BB00E7BAAD /* SucculentFormView.swift */; };
 		29B9CD262A68268200E7BAAD /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9CD252A68268200E7BAAD /* CircularProgressView.swift */; };
 		29B9CD432A69ED4700E7BAAD /* UserDefaults+Identification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9CD422A69ED4700E7BAAD /* UserDefaults+Identification.swift */; };
+		29D00FA32AA120F100DCC448 /* AlternateItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D00FA22AA120F100DCC448 /* AlternateItemCell.swift */; };
 		29E05A162A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */; };
 		29F02D032A64742E001D2FF3 /* HealthAssessmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D022A64742E001D2FF3 /* HealthAssessmentResponse.swift */; };
 		29F02D062A64809B001D2FF3 /* IdentificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D052A64809B001D2FF3 /* IdentificationView.swift */; };
@@ -53,6 +54,7 @@
 		29F02D0F2A648CF8001D2FF3 /* IdentificationView+FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D0E2A648CF8001D2FF3 /* IdentificationView+FetchData.swift */; };
 		29F02D112A648D29001D2FF3 /* ReportsLoadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D102A648D29001D2FF3 /* ReportsLoadState.swift */; };
 		29F02D332A64A125001D2FF3 /* HealthReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D322A64A125001D2FF3 /* HealthReportView.swift */; };
+		29F03F362AE3427E00F60AF4 /* BRYXBanner in Frameworks */ = {isa = PBXBuildFile; productRef = 29F03F352AE3427E00F60AF4 /* BRYXBanner */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +97,7 @@
 		29B9CD092A64A2BB00E7BAAD /* SucculentFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentFormView.swift; sourceTree = "<group>"; };
 		29B9CD252A68268200E7BAAD /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		29B9CD422A69ED4700E7BAAD /* UserDefaults+Identification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Identification.swift"; sourceTree = "<group>"; };
+		29D00FA22AA120F100DCC448 /* AlternateItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternateItemCell.swift; sourceTree = "<group>"; };
 		29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+ClipToBounds.swift"; sourceTree = "<group>"; };
 		29F02D022A64742E001D2FF3 /* HealthAssessmentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAssessmentResponse.swift; sourceTree = "<group>"; };
 		29F02D052A64809B001D2FF3 /* IdentificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationView.swift; sourceTree = "<group>"; };
@@ -113,6 +116,7 @@
 			files = (
 				2919F3462A0815830003194F /* CloudKit.framework in Frameworks */,
 				290FAA072A17022D00B98124 /* ZIPFoundation in Frameworks */,
+				29F03F362AE3427E00F60AF4 /* BRYXBanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				2919F3322A0815700003194F /* SucculentListView.swift */,
+				29D00FA22AA120F100DCC448 /* AlternateItemCell.swift */,
 				2935A9A82A5321F2007DAFC5 /* MyDropDelegate.swift */,
 				294238862A0B089600CE0A63 /* SucculentListViewModel.swift */,
 			);
@@ -335,6 +340,7 @@
 			name = SucculentAndPlantApp;
 			packageProductDependencies = (
 				290FAA062A17022D00B98124 /* ZIPFoundation */,
+				29F03F352AE3427E00F60AF4 /* BRYXBanner */,
 			);
 			productName = SucculentAndPlantApp;
 			productReference = 2919F32D2A0815700003194F /* PlantPal.app */;
@@ -366,6 +372,7 @@
 			mainGroup = 2919F3242A0815700003194F;
 			packageReferences = (
 				290FAA052A17022D00B98124 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+				29F03F342AE3427E00F60AF4 /* XCRemoteSwiftPackageReference "BRYXBanner" */,
 			);
 			productRefGroup = 2919F32E2A0815700003194F /* Products */;
 			projectDirPath = "";
@@ -422,6 +429,7 @@
 				2919F3672A086ECA0003194F /* Router.swift in Sources */,
 				2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */,
 				2919F3622A0840280003194F /* FileManager+JSON.swift in Sources */,
+				29D00FA32AA120F100DCC448 /* AlternateItemCell.swift in Sources */,
 				2919F3592A083C6E0003194F /* ImageSelector.swift in Sources */,
 				2924DD192A9BE8BA00BD9299 /* SplashScreenManager.swift in Sources */,
 				2919F34A2A08330F0003194F /* Item.swift in Sources */,
@@ -563,7 +571,7 @@
 				CODE_SIGN_ENTITLEMENTS = SucculentAndPlantApp/SucculentAndPlantApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"SucculentAndPlantApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 7W5ZSCHZ2W;
 				ENABLE_PREVIEWS = YES;
@@ -580,7 +588,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alek.SucculentAndPlantApp;
 				PRODUCT_NAME = PlantPal;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -598,7 +606,7 @@
 				CODE_SIGN_ENTITLEMENTS = SucculentAndPlantApp/SucculentAndPlantApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"SucculentAndPlantApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 7W5ZSCHZ2W;
 				ENABLE_PREVIEWS = YES;
@@ -615,7 +623,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alek.SucculentAndPlantApp;
 				PRODUCT_NAME = PlantPal;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -657,6 +665,14 @@
 				minimumVersion = 0.9.16;
 			};
 		};
+		29F03F342AE3427E00F60AF4 /* XCRemoteSwiftPackageReference "BRYXBanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bryx-inc/BRYXBanner.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -664,6 +680,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 290FAA052A17022D00B98124 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
 			productName = ZIPFoundation;
+		};
+		29F03F352AE3427E00F60AF4 /* BRYXBanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29F03F342AE3427E00F60AF4 /* XCRemoteSwiftPackageReference "BRYXBanner" */;
+			productName = BRYXBanner;
 		};
 /* End XCSwiftPackageProductDependency section */
 

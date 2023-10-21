@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import _PhotosUI_SwiftUI
+import BRYXBanner
 
 class SucculentListViewModel: ObservableObject {
     @Published var formState: SucculentFormState?
@@ -85,13 +86,34 @@ extension SucculentListView {
         }
     }
     
-    func handleDeepLinkingToItem(url: URL) {
-        guard let scheme = url.scheme, scheme == "navStack" else { return }
-        guard let item = url.host else { return }
-        if let foundItem = fetchedItems.first(where: { $0.nameText.lowercased() == item }) {
-            router.reset()
-            viewModel.formState = .edit(foundItem)
-        }
+    func handleDeepLinkingToItem(url: String) {
+        print("url: \(url)")
+        
+        let parsedURL = url
+                        .replacingOccurrences(of: "navStack\\", with: "", options: NSString.CompareOptions.literal, range: nil)
+                        .trimmingCharacters(in: .whitespaces)
+        print("!!!! \(parsedURL.capitalized)")
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            
+            print("!!! \(fetchedItems.count)")
+            for item in fetchedItems {
+                print("!!! \(item.nameText)")
+            }
+            
+            if let foundItem = fetchedItems.first(where: { $0.nameText.trimmingCharacters(in: .whitespaces) == parsedURL || $0.nameText.trimmingCharacters(in: .whitespaces) == parsedURL.capitalized }) {
+                print("!!! modify: \(foundItem)")
+//                router.reset()
+                viewModel.formState = .edit(foundItem)
+                
+                
+                let banner = Banner(title: "Handeled Notification", subtitle: "", image: UIImage(named: "Icon"), backgroundColor: UIColor(red: 48.00/255.0, green: 174.0/255.0, blue: 51.5/255.0, alpha: 1.000))
+                banner.dismissesOnTap = true
+                banner.show(duration: 1.0)
+                
+            }
+        })
+        
     }
 
     func restoreMyImage() {

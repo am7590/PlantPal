@@ -7,13 +7,19 @@
 
 import UIKit
 import UserNotifications
+import BRYXBanner
 
-class AppDelegate: NSObject, UIApplicationDelegate {
+extension NSNotification {
+    static let deepLink = Notification.Name.init("DeepLink")
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         registerForRemoteNotification()
         UIApplication.shared.registerForRemoteNotifications()
+        UNUserNotificationCenter.current().delegate = self
         return true
     }
     
@@ -45,4 +51,31 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             UIApplication.shared.registerForRemoteNotifications()
         }
     }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) async -> UIBackgroundFetchResult {
+        return .newData
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+
+        let userInfo = response.notification.request.content.userInfo
+        let aps = userInfo["url"] as! [String : Any]
+        
+       
+        NotificationCenter.default.post(name: NSNotification.deepLink, object: aps)
+        
+        completionHandler()
+    }
+    
+    
+//
+//    func userNotificationCenter(_ center: UNUserNotificationCenter,  willPresent notification: UNNotification, withCompletionHandler   completionHandler: @escaping (_ options:   UNNotificationPresentationOptions) -> Void) {
+//            let userInfo = notification.request.content.userInfo
+//            let aps = userInfo["url"] as! [String : Any]
+//
+//            NotificationCenter.default.post(name: NSNotification.deepLink, object: aps)
+//           // This line is NEEDED, otherwise push will not be fired
+//           completionHandler([.alert, .badge, .sound]) // Display notification depending on your needed
+//       }
+    
 }

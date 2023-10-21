@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import _PhotosUI_SwiftUI
+import BRYXBanner
 
 struct SucculentListView: View {
     @EnvironmentObject var router: Router
@@ -18,6 +19,8 @@ struct SucculentListView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name)])
     var fetchedItems: FetchedResults<Item>
     
+    let pub = NotificationCenter.default.publisher(for: NSNotification.deepLink)
+
     @State var items: [Item] = []
     @State var draggedItem: Item?
         
@@ -68,8 +71,19 @@ struct SucculentListView: View {
                 .onAppear {
                     refreshFetchedItems()
                 }
-                .onOpenURL { url in
-                    handleDeepLinkingToItem(url: url)
+//                .onOpenURL { url in
+//                    handleDeepLinkingToItem(url: url)
+//                }
+                .onReceive(pub) { obj in
+//
+//                    let banner = Banner(title: "Handeled Notification onReceive", subtitle: "\(obj)", image: UIImage(named: "Icon"), backgroundColor: UIColor(red:48.00/255.0, green:174.0/255.0, blue:51.5/255.0, alpha:1.000))
+//                    banner.dismissesOnTap = true
+//                    banner.show(duration: 3.0)
+                    
+                    
+                    if let userInfo = obj.object as? [String:String], let url = userInfo["url"] as? String {
+                        handleDeepLinkingToItem(url: url)
+                    }
                 }
             }
         }
