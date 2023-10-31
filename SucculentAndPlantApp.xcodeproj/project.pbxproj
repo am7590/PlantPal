@@ -36,6 +36,8 @@
 		2942388A2A0B0B1500CE0A63 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294238892A0B0B1500CE0A63 /* Modifiers.swift */; };
 		2942388C2A0B232600CE0A63 /* Animation+Repeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942388B2A0B232600CE0A63 /* Animation+Repeat.swift */; };
 		2942388E2A0B242200CE0A63 /* ShakeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942388D2A0B242200CE0A63 /* ShakeAnimation.swift */; };
+		29588A3E2AF178790043DA65 /* store.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29588A3C2AF178790043DA65 /* store.grpc.swift */; };
+		29588A3F2AF178790043DA65 /* store.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29588A3D2AF178790043DA65 /* store.pb.swift */; };
 		295F875D2A6313230021CA70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295F875C2A6313230021CA70 /* AppDelegate.swift */; };
 		297ECD242A2BA5F700739538 /* CameraHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD232A2BA5F700739538 /* CameraHostingView.swift */; };
 		297ECD262A2BA61600739538 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD252A2BA61600739538 /* CameraController.swift */; };
@@ -55,6 +57,11 @@
 		29F02D112A648D29001D2FF3 /* ReportsLoadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D102A648D29001D2FF3 /* ReportsLoadState.swift */; };
 		29F02D332A64A125001D2FF3 /* HealthReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D322A64A125001D2FF3 /* HealthReportView.swift */; };
 		29F03F362AE3427E00F60AF4 /* BRYXBanner in Frameworks */ = {isa = PBXBuildFile; productRef = 29F03F352AE3427E00F60AF4 /* BRYXBanner */; };
+		29FDA71F2AF168DD008E8EE2 /* CGRPCZlib in Frameworks */ = {isa = PBXBuildFile; productRef = 29FDA71E2AF168DD008E8EE2 /* CGRPCZlib */; };
+		29FDA7212AF168DD008E8EE2 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 29FDA7202AF168DD008E8EE2 /* GRPC */; };
+		29FDA7232AF168DD008E8EE2 /* protoc-gen-grpc-swift in Frameworks */ = {isa = PBXBuildFile; productRef = 29FDA7222AF168DD008E8EE2 /* protoc-gen-grpc-swift */; };
+		29FDA7252AF16921008E8EE2 /* GRPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FDA7242AF16921008E8EE2 /* GRPCManager.swift */; };
+		29FDA7272AF16993008E8EE2 /* GRPCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FDA7262AF16993008E8EE2 /* GRPCViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +96,8 @@
 		294238892A0B0B1500CE0A63 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		2942388B2A0B232600CE0A63 /* Animation+Repeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+Repeat.swift"; sourceTree = "<group>"; };
 		2942388D2A0B242200CE0A63 /* ShakeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeAnimation.swift; sourceTree = "<group>"; };
+		29588A3C2AF178790043DA65 /* store.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = store.grpc.swift; sourceTree = "<group>"; };
+		29588A3D2AF178790043DA65 /* store.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = store.pb.swift; sourceTree = "<group>"; };
 		295F875C2A6313230021CA70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		297ECD232A2BA5F700739538 /* CameraHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHostingView.swift; sourceTree = "<group>"; };
 		297ECD252A2BA61600739538 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
@@ -107,6 +116,8 @@
 		29F02D0E2A648CF8001D2FF3 /* IdentificationView+FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IdentificationView+FetchData.swift"; sourceTree = "<group>"; };
 		29F02D102A648D29001D2FF3 /* ReportsLoadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsLoadState.swift; sourceTree = "<group>"; };
 		29F02D322A64A125001D2FF3 /* HealthReportView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthReportView.swift; sourceTree = "<group>"; };
+		29FDA7242AF16921008E8EE2 /* GRPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCManager.swift; sourceTree = "<group>"; };
+		29FDA7262AF16993008E8EE2 /* GRPCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRPCViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +126,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2919F3462A0815830003194F /* CloudKit.framework in Frameworks */,
+				29FDA7212AF168DD008E8EE2 /* GRPC in Frameworks */,
+				29FDA7232AF168DD008E8EE2 /* protoc-gen-grpc-swift in Frameworks */,
+				29FDA71F2AF168DD008E8EE2 /* CGRPCZlib in Frameworks */,
 				290FAA072A17022D00B98124 /* ZIPFoundation in Frameworks */,
 				29F03F362AE3427E00F60AF4 /* BRYXBanner in Frameworks */,
 			);
@@ -145,7 +159,10 @@
 			children = (
 				2919F3472A08158C0003194F /* SucculentAndPlantApp.entitlements */,
 				2919F3302A0815700003194F /* SucculentAndPlantAppApp.swift */,
+				29FDA7242AF16921008E8EE2 /* GRPCManager.swift */,
+				29FDA7262AF16993008E8EE2 /* GRPCViewModel.swift */,
 				295F875C2A6313230021CA70 /* AppDelegate.swift */,
+				29588A3B2AF178790043DA65 /* grpc */,
 				2924DD152A9BE88E00BD9299 /* Splash Screen */,
 				294238DA2A0E8ABC00CE0A63 /* Succulent List */,
 				2919F3652A086EB20003194F /* Navigation */,
@@ -273,6 +290,15 @@
 			path = "Succulent List";
 			sourceTree = "<group>";
 		};
+		29588A3B2AF178790043DA65 /* grpc */ = {
+			isa = PBXGroup;
+			children = (
+				29588A3C2AF178790043DA65 /* store.grpc.swift */,
+				29588A3D2AF178790043DA65 /* store.pb.swift */,
+			);
+			path = grpc;
+			sourceTree = "<group>";
+		};
 		297ECD212A2BA59E00739538 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +367,9 @@
 			packageProductDependencies = (
 				290FAA062A17022D00B98124 /* ZIPFoundation */,
 				29F03F352AE3427E00F60AF4 /* BRYXBanner */,
+				29FDA71E2AF168DD008E8EE2 /* CGRPCZlib */,
+				29FDA7202AF168DD008E8EE2 /* GRPC */,
+				29FDA7222AF168DD008E8EE2 /* protoc-gen-grpc-swift */,
 			);
 			productName = SucculentAndPlantApp;
 			productReference = 2919F32D2A0815700003194F /* PlantPal.app */;
@@ -373,6 +402,7 @@
 			packageReferences = (
 				290FAA052A17022D00B98124 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 				29F03F342AE3427E00F60AF4 /* XCRemoteSwiftPackageReference "BRYXBanner" */,
+				29FDA71D2AF168DD008E8EE2 /* XCRemoteSwiftPackageReference "grpc-swift" */,
 			);
 			productRefGroup = 2919F32E2A0815700003194F /* Products */;
 			projectDirPath = "";
@@ -403,6 +433,7 @@
 				2919F33A2A0815710003194F /* Persistence.swift in Sources */,
 				29F02D0B2A648C60001D2FF3 /* RemoteImage.swift in Sources */,
 				29B9CD262A68268200E7BAAD /* CircularProgressView.swift in Sources */,
+				29FDA7252AF16921008E8EE2 /* GRPCManager.swift in Sources */,
 				29F02D032A64742E001D2FF3 /* HealthAssessmentResponse.swift in Sources */,
 				2919F3542A083B160003194F /* SucculentFormState.swift in Sources */,
 				2919F3332A0815700003194F /* SucculentListView.swift in Sources */,
@@ -427,11 +458,14 @@
 				29F02D0F2A648CF8001D2FF3 /* IdentificationView+FetchData.swift in Sources */,
 				29B38A1F2A5B565D00023032 /* ImagePageSliderView.swift in Sources */,
 				2919F3672A086ECA0003194F /* Router.swift in Sources */,
+				29FDA7272AF16993008E8EE2 /* GRPCViewModel.swift in Sources */,
+				29588A3F2AF178790043DA65 /* store.pb.swift in Sources */,
 				2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */,
 				2919F3622A0840280003194F /* FileManager+JSON.swift in Sources */,
 				29D00FA32AA120F100DCC448 /* AlternateItemCell.swift in Sources */,
 				2919F3592A083C6E0003194F /* ImageSelector.swift in Sources */,
 				2924DD192A9BE8BA00BD9299 /* SplashScreenManager.swift in Sources */,
+				29588A3E2AF178790043DA65 /* store.grpc.swift in Sources */,
 				2919F34A2A08330F0003194F /* Item.swift in Sources */,
 				2924DD172A9BE89E00BD9299 /* SplashScreenState.swift in Sources */,
 				2919F3642A086ACF0003194F /* TabNavigationView.swift in Sources */,
@@ -673,6 +707,14 @@
 				minimumVersion = 0.8.5;
 			};
 		};
+		29FDA71D2AF168DD008E8EE2 /* XCRemoteSwiftPackageReference "grpc-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/grpc/grpc-swift.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.19.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -685,6 +727,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 29F03F342AE3427E00F60AF4 /* XCRemoteSwiftPackageReference "BRYXBanner" */;
 			productName = BRYXBanner;
+		};
+		29FDA71E2AF168DD008E8EE2 /* CGRPCZlib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29FDA71D2AF168DD008E8EE2 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = CGRPCZlib;
+		};
+		29FDA7202AF168DD008E8EE2 /* GRPC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29FDA71D2AF168DD008E8EE2 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = GRPC;
+		};
+		29FDA7222AF168DD008E8EE2 /* protoc-gen-grpc-swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29FDA71D2AF168DD008E8EE2 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = "protoc-gen-grpc-swift";
 		};
 /* End XCSwiftPackageProductDependency section */
 
