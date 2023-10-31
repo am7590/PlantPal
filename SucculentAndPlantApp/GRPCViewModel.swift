@@ -11,12 +11,12 @@ import Foundation
 class GRPCViewModel: ObservableObject {
     @Published var result = ""  // Only for debugging
 
-    func createNewPlant(name: String) {
+    func createNewPlant(identifier: String, name: String) {
         // TODO: create sku
         // NEEDS to be background or main thread will hang
         Task(priority: .background) {
             do {
-                let response = try await self.createPlantEntry(with: name)
+                let response = try await self.createPlantEntry(identifier: identifier, name: name)
                 print("%%% success")
                 await self.updateUIResult(with: response)
             } catch {
@@ -40,12 +40,15 @@ class GRPCViewModel: ObservableObject {
                 
                 if let lastWatered = lastWatered {
                     currentPlantInfo?.lastWatered = lastWatered
+                    print("%%% updated lastWatered")
                 }
                 if let lastHealthCheck = lastHealthCheck {
                     currentPlantInfo?.lastHealthCheck = lastHealthCheck
+                    print("%%% updated lastHealthCheck")
                 }
                 if let lastIdentification = lastIdentification {
                     currentPlantInfo?.lastIdentification = lastIdentification
+                    print("%%% updated lastIdentification")
                 }
                 currentPlantInfo?.name = name
                 
@@ -70,14 +73,14 @@ extension GRPCViewModel {
 
 // MARK: Interact with gRPC server
 extension GRPCViewModel {
-    private func createPlantEntry(with name: String) async throws -> String {
+    private func createPlantEntry(identifier: String, name: String) async throws -> String {
         // Directly create a channel for the specific RPC call
         let channel = GRPCManager.shared.createChannel()
         let client = Plant_PlantServiceNIOClient(channel: channel)
         
         let response = try await client.add(.with { req in
             var storeID = Plant_PlantIdentifier()
-            storeID.sku = "696969"
+            storeID.sku = identifier
             storeID.deviceIdentifier = "47c3d1239a3242d1a7768ae81daa9cde5c133d9b13d13e5b30520c7b4b0a9170"
             req.identifier = storeID
             
@@ -121,7 +124,9 @@ extension GRPCViewModel {
         let response = try await client.updatePlant(.with { req in
             req.identifier = identifier
             req.information = updatedInfo
-        }).status
+        })
+            .status
+            .get()
         
         Task {
             _ = try? await channel.close().get()

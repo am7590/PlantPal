@@ -58,7 +58,7 @@ struct SucculentFormView: View {
                             }
                          
                             if viewModel.isItem {
-                                NavigationLink(navLinkValue, destination: IdentificationView(images: viewModel.uiImage, plantName: viewModel.name))
+                                NavigationLink(navLinkValue, destination: IdentificationView(viewModel: viewModel, grpcViewModel: grpcViewModel))
                                     .onDisappear {
                                         refreshUserDefaults()
                                     }
@@ -124,7 +124,7 @@ struct SucculentFormView: View {
                             try? moc.save()
                             dismiss()
                             
-                            grpcViewModel.createNewPlant(name: viewModel.name)
+                            grpcViewModel.createNewPlant(identifier: newImage.id ?? "69420", name: viewModel.name)
 
                         }
                         .buttonStyle(.borderedProminent)
@@ -148,14 +148,16 @@ struct SucculentFormView: View {
                 }
             })
             .sheet(isPresented: $showHealthCheckSheet) {
-                HealthReportView(image: viewModel.uiImage.first!, plantName: viewModel.name)
+                HealthReportView(viewModel: viewModel, grpcViewModel: grpcViewModel)
             }
             .alert("Add Plant Photo", isPresented: $viewModel.waterAlertIsDispayed) {
                 Button("Take Photo") {
                     showCameraSheet = true
+                    grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: Int64(Date().timeIntervalSince1970), lastHealthCheck: nil, lastIdentification: nil)
                 }
                 Button("Upload Photo") {
                     showPhotoSelectionSheet = true
+                    grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: Int64(Date().timeIntervalSince1970), lastHealthCheck: nil, lastIdentification: nil)
                 }
                 Button("Cancel", role: .cancel) { }
             }
@@ -189,6 +191,9 @@ struct SucculentFormView: View {
                     }
                 }
             }
+            .onChange(of: viewModel.date) { _ in
+                grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: Int64(viewModel.date.timeIntervalSince1970), lastHealthCheck: nil, lastIdentification: nil)
+            }
         }
     }
     
@@ -211,7 +216,10 @@ struct SucculentFormView: View {
     }
     
     @ViewBuilder func waterButton(width: CGFloat) -> some View {
-        Button(action: { viewModel.waterAlertIsDispayed.toggle() }) {
+        Button(action: {
+            viewModel.waterAlertIsDispayed.toggle()
+            
+        }) {
             HStack {
                 VStack(alignment: .leading, spacing: 6) {
                     Image(systemName: "drop.fill")
@@ -310,6 +318,7 @@ struct SucculentFormView: View {
                     Text("No Date")
                     Button("Set Date") {
                         viewModel.date = Date()
+                        
                     }
                 } else {
                     HStack {

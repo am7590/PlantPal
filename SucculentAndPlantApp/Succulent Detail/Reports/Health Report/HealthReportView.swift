@@ -1,14 +1,14 @@
 import SwiftUI
 
 struct HealthReportView: View {
-    let image: UIImage
-    let plantName: String
+    @StateObject var viewModel: SuccuelentFormViewModel
+    @StateObject var grpcViewModel: GRPCViewModel
     @State var loadState: ReportLoadState = .loading
     @State var healthData: HealthAssessmentResponse?
     @State var diseases = [Disease]()
     @State var similarImages = [String: [UIImage]]()
     @Environment(\.colorScheme) private var colorScheme
-    
+
     var body: some View {
         NavigationView {
             GeometryReader { proxy in
@@ -23,7 +23,7 @@ struct HealthReportView: View {
                                 Spacer()
                                 ProgressView("Loading Health Report...")
                                     .onAppear {
-                                        fetchData(for: plantName, image: image)
+                                        fetchData(for: viewModel.name, image: viewModel.uiImage.first!)
                                     }
                                 Spacer()
                             }
@@ -61,6 +61,9 @@ struct HealthReportView: View {
                                 .listRowSeparator(.hidden)
                             }
                             .listStyle(InsetGroupedListStyle())
+                            .onAppear {
+                                grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: nil, lastHealthCheck: Int64(Date().timeIntervalSince1970), lastIdentification: nil)
+                            }
 
                         } else {
                             Text("Failed to load health data")
@@ -75,12 +78,12 @@ struct HealthReportView: View {
     }
 }
 
-struct HealthReportView_Previews: PreviewProvider {
-    static var previews: some View {
-        let data = HealthAssessmentResponse(result: HealthResult(isHealthy: HealthPrediction(probability: 0.5421, binary: false, threshold: 0.5), disease: DiseaseSuggestion(suggestions: [Disease(id: "0", name: "Disease #1", probability: 0.243231, similarImages: []), Disease(id: "1", name: "Disease #2", probability: 0.243231, similarImages: []), Disease(id: "2", name: "Disease #3", probability: 0.243231, similarImages: [])])))
-        HealthReportView(image: UIImage(systemName: "trash")!, plantName: "Plant", loadState: .loaded, healthData: data)
-    }
-}
+//struct HealthReportView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let data = HealthAssessmentResponse(result: HealthResult(isHealthy: HealthPrediction(probability: 0.5421, binary: false, threshold: 0.5), disease: DiseaseSuggestion(suggestions: [Disease(id: "0", name: "Disease #1", probability: 0.243231, similarImages: []), Disease(id: "1", name: "Disease #2", probability: 0.243231, similarImages: []), Disease(id: "2", name: "Disease #3", probability: 0.243231, similarImages: [])])))
+//        HealthReportView(image: UIImage(systemName: "trash")!, plantName: "Plant", loadState: .loaded, healthData: data)
+//    }
+//}
 
 struct DiseaseDetailView: View {
     let suggestion: Disease

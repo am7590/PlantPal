@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
-
+// viewModel.uiImage, plantName: viewModel.name
 struct IdentificationView: View {
     @Environment(\.dismiss) var dismiss
-    let images: [UIImage]
-    let plantName: String
+    @StateObject var viewModel: SuccuelentFormViewModel
+    @StateObject var grpcViewModel: GRPCViewModel
     @State var loadState: ReportLoadState = .loading
     @State var identificationData: IdentificationResponse?
     @State var similarImages = [String: [UIImage]]()
@@ -21,7 +21,7 @@ struct IdentificationView: View {
             case .loading:
                 ProgressView("Identifying Plant...")
                     .onAppear {
-                        fetchData(images: images)
+                        fetchData(images: viewModel.uiImage)
                     }
             case .loaded:
                 if let identificationData {
@@ -54,10 +54,11 @@ struct IdentificationView: View {
                                             }
                                         }
                                     }
-                                    .onTapGesture {
-                                        print("Setting \(suggestion.name) identification to \(plantName)")
-                                        UserDefaults.standard.hasBeenIdentified(for: plantName, with: suggestion.name)
+                                    .onAppear {
+                                        print("Setting \(suggestion.name) identification to \(viewModel.name)")
+                                        UserDefaults.standard.hasBeenIdentified(for: viewModel.name, with: suggestion.name)
                                         dismiss()
+                                        grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: nil, lastHealthCheck: nil, lastIdentification: Int64(Date().timeIntervalSince1970))
                                     }
                                 }
                             }
@@ -78,9 +79,9 @@ struct IdentificationView: View {
     }
 }
 
-struct IdentificationView_Previews: PreviewProvider {
-    static var previews: some View {
-        let response = IdentificationResponse(result: IdentificationResult(classification: IdentificationClassification(suggestions: [IdentificationSuggestion(id: "0", name: "Suggestion #1", probability: 0.51, similarImages: []), IdentificationSuggestion(id: "1", name: "Suggestion #2", probability: 0.45, similarImages: []), IdentificationSuggestion(id: "2", name: "Suggestion #3", probability: 0.3, similarImages: [])])))
-        IdentificationView(images: [UIImage(systemName: "leaf")!], plantName: "Womp Womp", loadState: .loaded, identificationData: response)
-    }
-}
+//struct IdentificationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let response = IdentificationResponse(result: IdentificationResult(classification: IdentificationClassification(suggestions: [IdentificationSuggestion(id: "0", name: "Suggestion #1", probability: 0.51, similarImages: []), IdentificationSuggestion(id: "1", name: "Suggestion #2", probability: 0.45, similarImages: []), IdentificationSuggestion(id: "2", name: "Suggestion #3", probability: 0.3, similarImages: [])])))
+//        IdentificationView(images: [UIImage(systemName: "leaf")!], plantName: "Womp Womp", loadState: .loaded, identificationData: response)
+//    }
+//}
