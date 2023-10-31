@@ -8,8 +8,8 @@
 import SwiftUI
 
 enum SucculentFormState: Identifiable, View {
-    case new([UIImage])
-    case edit(Item)
+    case new([UIImage], GRPCViewModel)
+    case edit(Item, GRPCViewModel)
     
     var id: String {
         switch self {
@@ -22,11 +22,11 @@ enum SucculentFormState: Identifiable, View {
     
     var body: some View {
         switch self {
-        case .new(let image):
-            return SucculentFormView(viewModel: SuccuelentFormViewModel(image))
+        case .new(let image, let viewModel):
+            return SucculentFormView(viewModel: SuccuelentFormViewModel(image), grpcViewModel: viewModel)
             
-        case .edit(let item):
-            return SucculentFormView(viewModel: SuccuelentFormViewModel(item))
+        case .edit(let item, let viewModel):
+            return SucculentFormView(viewModel: SuccuelentFormViewModel(item), grpcViewModel: viewModel)
         }
     }
 }

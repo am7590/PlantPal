@@ -15,6 +15,9 @@ struct SucculentAndPlantAppApp: App {
     // App Delegate (APNS)
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
+    // gRPC
+    @StateObject var grpcViewModel = GRPCViewModel()
+    
     // Deep linking
     @StateObject var router = Router()
     
@@ -37,6 +40,7 @@ struct SucculentAndPlantAppApp: App {
                         }
                 } else {
                     SucculentListView()
+                        .environmentObject(grpcViewModel)
                         .environmentObject(viewModel)
                         .environmentObject(router)
                         .environmentObject(persistImage)

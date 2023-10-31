@@ -159,9 +159,9 @@
 			children = (
 				2919F3472A08158C0003194F /* SucculentAndPlantApp.entitlements */,
 				2919F3302A0815700003194F /* SucculentAndPlantAppApp.swift */,
+				295F875C2A6313230021CA70 /* AppDelegate.swift */,
 				29FDA7242AF16921008E8EE2 /* GRPCManager.swift */,
 				29FDA7262AF16993008E8EE2 /* GRPCViewModel.swift */,
-				295F875C2A6313230021CA70 /* AppDelegate.swift */,
 				29588A3B2AF178790043DA65 /* grpc */,
 				2924DD152A9BE88E00BD9299 /* Splash Screen */,
 				294238DA2A0E8ABC00CE0A63 /* Succulent List */,

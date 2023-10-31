@@ -21,9 +21,9 @@ class SucculentListViewModel: ObservableObject {
     
     var gridItemLayout = [GridItem(.adaptive(minimum: 150))]
     
-    func handleImageChange(_ newImage: [UIImage]?) {
+    func handleImageChange(_ newImage: [UIImage]?, viewModel: GRPCViewModel) {
         if let newImage {
-            formState = .new(newImage)
+            formState = .new(newImage, viewModel)
         }
     }
 }
@@ -54,7 +54,7 @@ extension SucculentListView {
             
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    viewModel.formState = .new([])
+                    viewModel.formState = .new([], GRPCViewModel())
                 } label: {
                     Image(systemName: "plus")
                 }
@@ -86,7 +86,7 @@ extension SucculentListView {
         }
     }
     
-    func handleDeepLinkingToItem(url: String) {
+    func handleDeepLinkingToItem(url: String, grpcViewModel: GRPCViewModel) {
         print("url: \(url)")
         
         let parsedURL = url
@@ -104,7 +104,7 @@ extension SucculentListView {
             if let foundItem = fetchedItems.first(where: { $0.nameText.trimmingCharacters(in: .whitespaces) == parsedURL || $0.nameText.trimmingCharacters(in: .whitespaces) == parsedURL.capitalized }) {
                 print("!!! modify: \(foundItem)")
 //                router.reset()
-                viewModel.formState = .edit(foundItem)
+                viewModel.formState = .edit(foundItem, grpcViewModel)
                 
                 
                 let banner = Banner(title: "Handeled Notification", subtitle: "", image: UIImage(named: "Icon"), backgroundColor: UIColor(red: 48.00/255.0, green: 174.0/255.0, blue: 51.5/255.0, alpha: 1.000))

@@ -11,14 +11,16 @@ import Foundation
 class GRPCViewModel: ObservableObject {
     @Published var result = ""  // Only for debugging
 
-    func createNewPlant(with name: String) {
+    func createNewPlant(name: String) {
         // TODO: create sku
         // NEEDS to be background or main thread will hang
         Task(priority: .background) {
             do {
                 let response = try await self.createPlantEntry(with: name)
+                print("%%% success")
                 await self.updateUIResult(with: response)
             } catch {
+                print("%%% error: \(error.localizedDescription)")
                 await self.updateUIResult(with: error.localizedDescription)
             }
         }
@@ -75,7 +77,7 @@ extension GRPCViewModel {
         
         let response = try await client.add(.with { req in
             var storeID = Plant_PlantIdentifier()
-            storeID.sku = "00001"
+            storeID.sku = "696969"
             storeID.deviceIdentifier = "47c3d1239a3242d1a7768ae81daa9cde5c133d9b13d13e5b30520c7b4b0a9170"
             req.identifier = storeID
             
@@ -86,10 +88,11 @@ extension GRPCViewModel {
             storeInfo.lastIdentification = Int64(Date.now.timeIntervalSince1970)
             
             req.information = storeInfo
-        }).response
-        
-        // Try to avoid blocking operations
-        // Instead of try? channel.close().wait()
+        })
+            .response
+            .get()
+
+        // Close channel
         Task {
             _ = try? await channel.close().get()
         }

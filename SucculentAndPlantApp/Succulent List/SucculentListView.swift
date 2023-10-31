@@ -15,6 +15,7 @@ struct SucculentListView: View {
     @EnvironmentObject var imagePicker: ImageSelector
     @EnvironmentObject var viewModel: SucculentListViewModel
     @EnvironmentObject var shareService: PersistImageService
+    @EnvironmentObject var grpcViewModel: GRPCViewModel
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name)])
     var fetchedItems: FetchedResults<Item>
@@ -82,7 +83,7 @@ struct SucculentListView: View {
                     
                     
                     if let userInfo = obj.object as? [String:String], let url = userInfo["url"] as? String {
-                        handleDeepLinkingToItem(url: url)
+                        handleDeepLinkingToItem(url: url, grpcViewModel: grpcViewModel)
                     }
                 }
             }
@@ -98,7 +99,7 @@ struct SucculentListView: View {
             let dropDelegate = MyDropDelegate(item: item, items: $items, draggedItem: draggedItem)
             
             Button {
-                viewModel.formState = .edit(item)
+                viewModel.formState = .edit(item, grpcViewModel)
             } label: {
                 ZStack(alignment: .topLeading) {
 
@@ -127,7 +128,7 @@ struct SucculentListView: View {
                 .rotationEffect(.degrees(viewModel.wiggle ? 2.5 : 0))
                 .animation(.easeInOut(duration: 0.14).repeat(while: viewModel.wiggle), value: viewModel.wiggle)
                 .onTapGesture {
-                    viewModel.formState = .edit(item)
+                    viewModel.formState = .edit(item, grpcViewModel)
                 }
                 .onLongPressGesture(minimumDuration: 1) {
                     viewModel.wiggle.toggle()

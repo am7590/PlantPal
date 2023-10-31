@@ -11,6 +11,7 @@ import ImageCaptureCore
 
 struct SucculentFormView: View {
     @ObservedObject var viewModel: SuccuelentFormViewModel
+    @ObservedObject var grpcViewModel: GRPCViewModel
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
     @StateObject var imageSelector = ImageSelector()
@@ -122,6 +123,9 @@ struct SucculentFormView: View {
                             newImage.position = NSNumber(value: myImages.count)
                             try? moc.save()
                             dismiss()
+                            
+                            grpcViewModel.createNewPlant(name: viewModel.name)
+
                         }
                         .buttonStyle(.borderedProminent)
                         .disabled(viewModel.incomplete)
@@ -140,6 +144,7 @@ struct SucculentFormView: View {
             }, content: {
                 CameraHostingView(viewModel: viewModel) {
                     updateImage()  // After photo is appeneded in CameraHostingView
+                    // If gRPC call is successful, change "last watered"
                 }
             })
             .sheet(isPresented: $showHealthCheckSheet) {
@@ -321,6 +326,6 @@ struct SucculentFormView: View {
 
 struct NewSucculentFormView_Previews: PreviewProvider {
     static var previews: some View {
-        SucculentFormView(viewModel: SuccuelentFormViewModel([UIImage(systemName: "photo")!]))
+        SucculentFormView(viewModel: SuccuelentFormViewModel([UIImage(systemName: "photo")!]), grpcViewModel: GRPCViewModel())
     }
 }
