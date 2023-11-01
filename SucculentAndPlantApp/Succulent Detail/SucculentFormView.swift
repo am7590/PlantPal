@@ -81,7 +81,9 @@ struct SucculentFormView: View {
                 
             }
             .onAppear {
-                refreshUserDefaults()
+                if !viewModel.name.isEmpty {
+                    refreshUserDefaults()
+                }
             }
             .padding()
             .textFieldStyle(.roundedBorder)
@@ -192,7 +194,7 @@ struct SucculentFormView: View {
                 }
             }
             .onChange(of: viewModel.date) { newDate in
-                if let id = UserDefaults.standard.getUUID(for: viewModel.name) {
+                if let id = UserDefaults.standard.getUUID(for: viewModel.name), !viewModel.name.isEmpty {
                     let interval = viewModel.date.timeIntervalSince1970 * 86400
                     grpcViewModel.updateExistingPlant(with: id, name: viewModel.name, lastWatered: Int64(interval), lastHealthCheck: nil, lastIdentification: nil)
                     UserDefaults.standard.hasBeenWatered(for: viewModel.name, with: newDate)
@@ -210,7 +212,7 @@ struct SucculentFormView: View {
     
     func refreshUserDefaults() {
         self.navLinkValue = UserDefaults.standard.getIdentification(for: viewModel.name)
-        viewModel.date = UserDefaults.standard.getLastWatered(for: viewModel.name)
+        viewModel.date = UserDefaults.standard.getLastWatered(for: viewModel.name)!
         viewModel.amount = UserDefaults.standard.getWateringInterval(for: viewModel.name)
         
         print("viewModel.date \(viewModel.date); viewModel.amount \(viewModel.amount)")

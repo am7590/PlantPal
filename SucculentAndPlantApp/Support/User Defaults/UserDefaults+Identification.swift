@@ -21,6 +21,10 @@ extension UserDefaults {
         static func uniqueIdentification(for plant: String) -> String {
             return "uuid:\(plant)"
         }
+        
+        static func dateIdentification(for plant: String) -> String {
+            return "date:\(plant)"
+        }
     }
 
     var identification: String {
@@ -45,9 +49,9 @@ extension UserDefaults {
     }
     
     func hasBeenWatered(for plant: String, with additionalInfo: Date) {
-        let key = UserDefaultsKey.wateringIdentification(for: plant)
-        let newValue = additionalInfo.timeIntervalSince1970
-        set(newValue, forKey: key+"w")
+        let key = UserDefaultsKey.dateIdentification(for: plant)
+        let newValue = additionalInfo
+        set(newValue, forKey: key)
     }
     
     func hasChangedInterval(for plant: String, with additionalInfo: Int) {
@@ -70,8 +74,8 @@ extension UserDefaults {
         return double(forKey: UserDefaultsKey.identification(for: plant)) 
     }
     
-    func getLastWatered(for plant: String) -> Date {
-        return Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: UserDefaultsKey.identification(for: plant)+"w"))
+    func getLastWatered(for plant: String) -> Date? {
+        return value(forKey: UserDefaultsKey.dateIdentification(for: plant)) as? Date
     }
     
     func getWateringInterval(for plant: String) -> Int {
