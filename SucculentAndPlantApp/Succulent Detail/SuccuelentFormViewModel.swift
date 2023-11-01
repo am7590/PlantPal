@@ -8,6 +8,8 @@
 import UIKit
 import SwiftUI
 
+// TODO: Refactor code from SucculentFormView
+
 class SuccuelentFormViewModel: ObservableObject {
     @Published var name = ""
     @Published var uiImage: [UIImage] = [] {

@@ -17,10 +17,8 @@ class GRPCViewModel: ObservableObject {
         Task(priority: .background) {
             do {
                 let response = try await self.createPlantEntry(identifier: identifier, name: name)
-                print("%%% success")
                 await self.updateUIResult(with: response)
             } catch {
-                print("%%% error: \(error.localizedDescription)")
                 await self.updateUIResult(with: error.localizedDescription)
             }
         }
@@ -40,21 +38,22 @@ class GRPCViewModel: ObservableObject {
                 
                 if let lastWatered = lastWatered {
                     currentPlantInfo?.lastWatered = lastWatered
-                    print("%%% updated lastWatered")
+                    print("updated lastWatered")
                 }
                 if let lastHealthCheck = lastHealthCheck {
                     currentPlantInfo?.lastHealthCheck = lastHealthCheck
-                    print("%%% updated lastHealthCheck")
+                    print("updated lastHealthCheck")
                 }
                 if let lastIdentification = lastIdentification {
                     currentPlantInfo?.lastIdentification = lastIdentification
-                    print("%%% updated lastIdentification")
+                    print("updated lastIdentification")
                 }
                 currentPlantInfo?.name = name
                 
                 let response = try await self.updatePlantEntry(with: plantID, updatedInfo: currentPlantInfo!)
                 await self.updateUIResult(with: response)
             } catch {
+                print(error.localizedDescription)
                 await self.updateUIResult(with: error.localizedDescription)
             }
         }

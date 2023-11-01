@@ -35,12 +35,12 @@ struct SucculentFormView: View {
                     let width = proxy.size.width - 28
                     
                     if viewModel.isItem {
-                        
+
                         ImagePageSliderView(images: viewModel.uiImage, currentIndex: $viewModel.imagePageSliderIndex)
                             .padding([.horizontal, .top])
                             .padding(.vertical, 16)
                             .padding(.top, 16)
-                        
+
                         HStack {
                             waterButton(width: width)
                             healthCheckButton(width: width)
@@ -51,12 +51,12 @@ struct SucculentFormView: View {
                     
                     List {
                         // TODO: Open keypad and select this TextField upon opening .new view type
-                        Section(!viewModel.isItem ? "Name" : "") {
+                        Section(viewModel.isItem ? "Species ID" : "Name") {
                             if !viewModel.isItem {
                                 TextField("", text: $viewModel.name)
                                     .textFieldStyle(.plain)
                             }
-                         
+
                             if viewModel.isItem {
                                 NavigationLink(navLinkValue, destination: IdentificationView(viewModel: viewModel, grpcViewModel: grpcViewModel))
                                     .onDisappear {
@@ -65,9 +65,9 @@ struct SucculentFormView: View {
                             }
                         }
                         .listRowBackground(Color(uiColor: .secondarySystemBackground))
-                        
+
                         waterPlantView()
-                        
+
                         if !viewModel.isItem {
                             selectImageView(width: width)
                                 .listRowBackground(Color(uiColor: .secondarySystemBackground))
@@ -75,7 +75,7 @@ struct SucculentFormView: View {
                     }
                     .cornerRadius(16)
                     .scrollContentBackground(.hidden)
-                    
+
                     Spacer()
                 }
                 
@@ -97,7 +97,7 @@ struct SucculentFormView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         HStack {
                             Button {
-                                if let selectedImage = myImages.first(where: {$0.id == viewModel.id}) {
+                                if let selectedImage = myImages.first(where: { $0.id == viewModel.id }) {
                                     moc.delete(selectedImage)
                                     try? moc.save()
                                 }
@@ -109,8 +109,7 @@ struct SucculentFormView: View {
                             .tint(.red)
                         }
                     }
-                }
-                else {
+                } else {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button("Create") {
                             viewModel.snoozeAlertIsDispayed.toggle()
@@ -125,7 +124,8 @@ struct SucculentFormView: View {
                             dismiss()
                             
                             grpcViewModel.createNewPlant(identifier: newImage.id ?? "69420", name: viewModel.name)
-
+                            UserDefaults.standard.hasGeneratedUUID(for: viewModel.name, with: newImage.id!)
+                            
                         }
                         .buttonStyle(.borderedProminent)
                         .disabled(viewModel.incomplete)
@@ -191,14 +191,29 @@ struct SucculentFormView: View {
                     }
                 }
             }
-            .onChange(of: viewModel.date) { _ in
-                grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: Int64(viewModel.date.timeIntervalSince1970), lastHealthCheck: nil, lastIdentification: nil)
+            .onChange(of: viewModel.date) { newDate in
+                if let id = UserDefaults.standard.getUUID(for: viewModel.name) {
+                    let interval = viewModel.date.timeIntervalSince1970 * 86400
+                    grpcViewModel.updateExistingPlant(with: id, name: viewModel.name, lastWatered: Int64(interval), lastHealthCheck: nil, lastIdentification: nil)
+                    UserDefaults.standard.hasBeenWatered(for: viewModel.name, with: newDate)
+                }
+            }
+            .onChange(of: viewModel.amount) { newAmount in
+                if let id = UserDefaults.standard.getUUID(for: viewModel.name) {
+                    let interval = viewModel.date.timeIntervalSince1970 * 86400
+                    grpcViewModel.updateExistingPlant(with: id, name: viewModel.name, lastWatered: Int64(interval), lastHealthCheck: nil, lastIdentification: nil)
+                    UserDefaults.standard.hasChangedInterval(for: viewModel.name, with: newAmount)
+                }
             }
         }
     }
     
     func refreshUserDefaults() {
         self.navLinkValue = UserDefaults.standard.getIdentification(for: viewModel.name)
+        viewModel.date = UserDefaults.standard.getLastWatered(for: viewModel.name)
+        viewModel.amount = UserDefaults.standard.getWateringInterval(for: viewModel.name)
+        
+        print("viewModel.date \(viewModel.date); viewModel.amount \(viewModel.amount)")
     }
     
     func updateImage() {
@@ -298,19 +313,10 @@ struct SucculentFormView: View {
         }
     }
     
+    
+    
     @ViewBuilder func waterPlantView() -> some View {
-        Section("Water Plant") {
-            if !viewModel.isItem {
-                Picker("Water", selection: $viewModel.amount) {
-                    Text("As needed")
-                        .tag(0)
-                    ForEach(1..<11) { number in
-                        Text("every " + number.description + " days")
-                            .tag(number)
-                    }
-                }
-            }
-            
+        Section("Watering") {
             HStack {
                 Text("Last Watered")
                 Spacer()
@@ -318,7 +324,7 @@ struct SucculentFormView: View {
                     Text("No Date")
                     Button("Set Date") {
                         viewModel.date = Date()
-                        
+
                     }
                 } else {
                     HStack {
@@ -328,6 +334,14 @@ struct SucculentFormView: View {
             }
             .buttonStyle(.bordered)
             
+            Picker(viewModel.isItem ? "Watering" : "Water", selection: $viewModel.amount) {
+                Text("As needed")
+                    .tag(0)
+                ForEach(1..<11) { number in
+                    Text("every " + number.description + " days")
+                        .tag(number)
+                }
+            }
         }
         .listRowBackground(Color(uiColor: .secondarySystemBackground))
     }
