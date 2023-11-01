@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import BRYXBanner
+import UIKit
 
 // Do NOT use @MainActor or a thread priority inversion will occur.
 class GRPCViewModel: ObservableObject {
@@ -20,6 +22,11 @@ class GRPCViewModel: ObservableObject {
                 await self.updateUIResult(with: response)
             } catch {
                 await self.updateUIResult(with: error.localizedDescription)
+                
+                Task {
+                    let banner = await Banner(title: "Womp Womp", subtitle: "\(error.localizedDescription)", image: UIImage(named: "alert"), backgroundColor: UIColor(red: 48.00/255.0, green: 174.0/255.0, blue: 51.5/255.0, alpha: 1.000))
+                    await banner.show(duration: 5.0)
+                }
             }
         }
     }
@@ -55,6 +62,11 @@ class GRPCViewModel: ObservableObject {
             } catch {
                 print(error.localizedDescription)
                 await self.updateUIResult(with: error.localizedDescription)
+                
+                Task {
+                    let banner = await Banner(title: "Womp Womp", subtitle: "\(error.localizedDescription)", image: UIImage(named: "alert"), backgroundColor: UIColor(red: 48.00/255.0, green: 174.0/255.0, blue: 51.5/255.0, alpha: 1.000))
+                    await banner.show(duration: 5.0)
+                }
             }
         }
     }

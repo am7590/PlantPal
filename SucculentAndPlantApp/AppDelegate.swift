@@ -7,7 +7,6 @@
 
 import UIKit
 import UserNotifications
-import BRYXBanner
 
 extension NSNotification {
     static let deepLink = Notification.Name.init("DeepLink")

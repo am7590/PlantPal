@@ -8,7 +8,6 @@
 import SwiftUI
 import CoreData
 import _PhotosUI_SwiftUI
-import BRYXBanner
 
 struct SucculentListView: View {
     @EnvironmentObject var router: Router
