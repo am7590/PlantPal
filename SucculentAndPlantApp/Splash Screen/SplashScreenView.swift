@@ -22,8 +22,8 @@ struct SplashScreenView: View {
                 .scaledToFit()
                 .frame(width: 200, height: 200)
             
-            Text("PlantPal")
-                .font(.custom("Papyrus", fixedSize: 48))
+            Text("plantpal")
+                .font(.custom("Geist-Thin", fixedSize: 48))
                 .bold()
         }
     }
