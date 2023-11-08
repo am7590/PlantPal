@@ -70,6 +70,29 @@ class GRPCViewModel: ObservableObject {
             }
         }
     }
+    
+    func removePlantEntry(with identifier: String) {
+            let plantID = Plant_PlantIdentifier.with {
+                $0.sku = identifier
+                // Assuming deviceIdentifier is the same for all entries and known ahead of time
+                $0.deviceIdentifier = "47c3d1239a3242d1a7768ae81daa9cde5c133d9b13d13e5b30520c7b4b0a9170"
+            }
+            
+            Task(priority: .background) {
+                do {
+                    let response = try await self.removePlant(from: plantID)
+                    print("Removed plant with response: \(response)")
+                    await self.updateUIResult(with: response.status)
+                } catch {
+                    await self.updateUIResult(with: error.localizedDescription)
+                    
+                    Task {
+                        let banner = await Banner(title: "Removal Failed", subtitle: "\(error.localizedDescription)", image: UIImage(named: "alert"), backgroundColor: UIColor.red)
+                        await banner.show(duration: 3.0)
+                    }
+                }
+            }
+        }
 }
 
 // MARK: Update UI
@@ -145,5 +168,21 @@ extension GRPCViewModel {
         
         return "Works"
     }
+    
+    private func removePlant(from identifier: Plant_PlantIdentifier) async throws -> Plant_PlantResponse {
+            let channel = GRPCManager.shared.createChannel()
+            let client = Plant_PlantServiceNIOClient(channel: channel)
+            
+            let response = try await client.remove(identifier)
+                .response
+                .get()
+            
+            // Close channel asynchronously
+            Task {
+                _ = try? await channel.close().get()
+            }
+            
+            return response
+        }
 
 }
