@@ -18,6 +18,7 @@ extension Item: Identifiable {
     @NSManaged public var id: String?
     @NSManaged public var name: String?
     @NSManaged public var timestamp: Date?
+    @NSManaged public var interval: NSNumber?
     @NSManaged public var image: [UIImage]?
     @NSManaged public var position: NSNumber?
     
@@ -37,6 +38,10 @@ extension Item {
     
     var timeStamp: Date {
         timestamp ?? Date.now
+    }
+    
+    var waterInterval: Int {
+        Int(interval ?? 0)
     }
     
     var uiImage: [UIImage] {

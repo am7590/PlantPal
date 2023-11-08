@@ -23,10 +23,10 @@ enum SucculentFormState: Identifiable, View {
     var body: some View {
         switch self {
         case .new(let image, let viewModel):
-            return SucculentFormView(viewModel: SuccuelentFormViewModel(image), grpcViewModel: viewModel)
+            return SucculentFormView(item: nil, viewModel: SuccuelentFormViewModel(image), grpcViewModel: viewModel)
             
         case .edit(let item, let viewModel):
-            return SucculentFormView(viewModel: SuccuelentFormViewModel(item), grpcViewModel: viewModel)
+            return SucculentFormView(item: item, viewModel: SuccuelentFormViewModel(item), grpcViewModel: viewModel)
         }
     }
 }

@@ -10,6 +10,7 @@ import PhotosUI
 import ImageCaptureCore
 
 struct SucculentFormView: View {
+    let item: Item?
     @ObservedObject var viewModel: SuccuelentFormViewModel
     @ObservedObject var grpcViewModel: GRPCViewModel
     @Environment(\.managedObjectContext) var moc
@@ -117,16 +118,18 @@ struct SucculentFormView: View {
                             viewModel.snoozeAlertIsDispayed.toggle()
                             
                             // Create succulent
-                            let newImage = Item(context: moc)
-                            newImage.name = viewModel.name
-                            newImage.id = UUID().uuidString
-                            newImage.image = viewModel.uiImage
-                            newImage.position = NSNumber(value: myImages.count)
+                            let newItem = Item(context: moc)
+                            newItem.name = viewModel.name
+                            newItem.id = UUID().uuidString
+                            newItem.image = viewModel.uiImage
+                            newItem.position = NSNumber(value: myImages.count)
+                            newItem.timestamp = viewModel.date
+                            newItem.interval = (viewModel.amount) as NSNumber
                             try? moc.save()
                             dismiss()
                             
-                            grpcViewModel.createNewPlant(identifier: newImage.id ?? "69420", name: viewModel.name)
-                            UserDefaults.standard.hasGeneratedUUID(for: viewModel.name, with: newImage.id!)
+                            grpcViewModel.createNewPlant(identifier: newItem.id ?? "69420", name: viewModel.name)
+                            UserDefaults.standard.hasGeneratedUUID(for: viewModel.name, with: newItem.id!)
                             
                         }
                         .buttonStyle(.borderedProminent)
@@ -195,16 +198,23 @@ struct SucculentFormView: View {
             }
             .onChange(of: viewModel.date) { newDate in
                 if let id = UserDefaults.standard.getUUID(for: viewModel.name), !viewModel.name.isEmpty {
+                    // TODO: Move this to viewModel
+                    
                     let interval = viewModel.date.timeIntervalSince1970 * 86400
                     grpcViewModel.updateExistingPlant(with: id, name: viewModel.name, lastWatered: Int64(interval), lastHealthCheck: nil, lastIdentification: nil)
-                    UserDefaults.standard.hasBeenWatered(for: viewModel.name, with: newDate)
+    
+                    item?.timestamp = viewModel.date
+                    try? moc.save()
                 }
             }
             .onChange(of: viewModel.amount) { newAmount in
                 if let id = UserDefaults.standard.getUUID(for: viewModel.name) {
+                    // TODO: Move this to viewModel
+                    
                     let interval = viewModel.date.timeIntervalSince1970 * 86400
                     grpcViewModel.updateExistingPlant(with: id, name: viewModel.name, lastWatered: Int64(interval), lastHealthCheck: nil, lastIdentification: nil)
-                    UserDefaults.standard.hasChangedInterval(for: viewModel.name, with: newAmount)
+                    item?.interval = ((viewModel.amount) as NSNumber)
+                    try? moc.save()
                 }
             }
         }
@@ -212,10 +222,10 @@ struct SucculentFormView: View {
     
     func refreshUserDefaults() {
         self.navLinkValue = UserDefaults.standard.getIdentification(for: viewModel.name)
-        viewModel.date = UserDefaults.standard.getLastWatered(for: viewModel.name)!
-        viewModel.amount = UserDefaults.standard.getWateringInterval(for: viewModel.name)
         
-        print("viewModel.date \(viewModel.date); viewModel.amount \(viewModel.amount)")
+        // TODO: Move this to viewModel
+        viewModel.date = item?.timestamp ?? Date.now
+        viewModel.amount = Int(item?.interval ?? 0)
     }
     
     func updateImage() {
@@ -349,8 +359,8 @@ struct SucculentFormView: View {
     }
 }
 
-struct NewSucculentFormView_Previews: PreviewProvider {
-    static var previews: some View {
-        SucculentFormView(viewModel: SuccuelentFormViewModel([UIImage(systemName: "photo")!]), grpcViewModel: GRPCViewModel())
-    }
-}
+//struct NewSucculentFormView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SucculentFormView(item: ,viewModel: SuccuelentFormViewModel([UIImage(systemName: "photo")!]), grpcViewModel: GRPCViewModel())
+//    }
+//}

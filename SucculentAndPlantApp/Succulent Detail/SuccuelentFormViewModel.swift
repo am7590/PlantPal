@@ -18,14 +18,7 @@ class SuccuelentFormViewModel: ObservableObject {
             print("Count: \(uiImage.count)")
         }
     }
-    @Published var date = Date.now {
-        didSet {
-            if !name.isEmpty {
-                UserDefaults.standard.hasBeenWatered(for: name, with: date)
-                print("date: \(date)")
-            }
-        }
-    }
+    @Published var date = Date.now
     
     // Alerts
     @Published var waterAlertIsDispayed = false

@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 import _PhotosUI_SwiftUI
 
-struct SucculentListView: View {
+struct SucculentListView: View {    
     @EnvironmentObject var router: Router
     @EnvironmentObject var imagePicker: ImageSelector
     @EnvironmentObject var viewModel: SucculentListViewModel
