@@ -42,6 +42,8 @@
 		297ECD242A2BA5F700739538 /* CameraHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD232A2BA5F700739538 /* CameraHostingView.swift */; };
 		297ECD262A2BA61600739538 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD252A2BA61600739538 /* CameraController.swift */; };
 		297ECD282A2BA66E00739538 /* PhotoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD272A2BA66E00739538 /* PhotoPreviewView.swift */; };
+		297F42382AFB37A100167243 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F42372AFB37A100167243 /* NotificationService.swift */; };
+		297F423A2AFB4CFF00167243 /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F42392AFB4CFF00167243 /* NSNotification.swift */; };
 		2982494B2AFA868100463CE5 /* MPLUSRounded1c-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2982494A2AFA868100463CE5 /* MPLUSRounded1c-Medium.ttf */; };
 		2982494D2AFA879900463CE5 /* MPLUSRounded1c-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2982494C2AFA879900463CE5 /* MPLUSRounded1c-Light.ttf */; };
 		2982494F2AFA88F200463CE5 /* GeistVF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2982494E2AFA88F200463CE5 /* GeistVF.ttf */; };
@@ -108,6 +110,8 @@
 		297ECD232A2BA5F700739538 /* CameraHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHostingView.swift; sourceTree = "<group>"; };
 		297ECD252A2BA61600739538 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		297ECD272A2BA66E00739538 /* PhotoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewView.swift; sourceTree = "<group>"; };
+		297F42372AFB37A100167243 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		297F42392AFB4CFF00167243 /* NSNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
 		2982494A2AFA868100463CE5 /* MPLUSRounded1c-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Medium.ttf"; sourceTree = "<group>"; };
 		2982494C2AFA879900463CE5 /* MPLUSRounded1c-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Light.ttf"; sourceTree = "<group>"; };
 		2982494E2AFA88F200463CE5 /* GeistVF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GeistVF.ttf; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 				2919F3472A08158C0003194F /* SucculentAndPlantApp.entitlements */,
 				2919F3302A0815700003194F /* SucculentAndPlantAppApp.swift */,
 				295F875C2A6313230021CA70 /* AppDelegate.swift */,
+				297F42372AFB37A100167243 /* NotificationService.swift */,
 				29588A402AF1F9AE0043DA65 /* gRPC Helpers */,
 				29588A3B2AF178790043DA65 /* grpc */,
 				2924DD152A9BE88E00BD9299 /* Splash Screen */,
@@ -287,6 +292,7 @@
 				2919F3612A0840280003194F /* FileManager+JSON.swift */,
 				2942388B2A0B232600CE0A63 /* Animation+Repeat.swift */,
 				29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */,
+				297F42392AFB4CFF00167243 /* NSNotification.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -498,9 +504,11 @@
 				29F02D0F2A648CF8001D2FF3 /* IdentificationView+FetchData.swift in Sources */,
 				29B38A1F2A5B565D00023032 /* ImagePageSliderView.swift in Sources */,
 				2919F3672A086ECA0003194F /* Router.swift in Sources */,
+				297F42382AFB37A100167243 /* NotificationService.swift in Sources */,
 				29FDA7272AF16993008E8EE2 /* GRPCViewModel.swift in Sources */,
 				29588A3F2AF178790043DA65 /* store.pb.swift in Sources */,
 				2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */,
+				297F423A2AFB4CFF00167243 /* NSNotification.swift in Sources */,
 				2919F3622A0840280003194F /* FileManager+JSON.swift in Sources */,
 				29D00FA32AA120F100DCC448 /* AlternateItemCell.swift in Sources */,
 				2919F3592A083C6E0003194F /* ImageSelector.swift in Sources */,

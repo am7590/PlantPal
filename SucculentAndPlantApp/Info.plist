@@ -24,6 +24,8 @@
 	</array>
 	<key>NSCameraUsageDescription - 2</key>
 	<string>Why not?</string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

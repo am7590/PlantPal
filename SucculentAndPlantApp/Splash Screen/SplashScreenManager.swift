@@ -17,7 +17,6 @@ class SplashScreenManager: ObservableObject {
     func dismiss() {
         Task {
             launchState = .dismiss
-            try? await Task.sleep(for: Duration.seconds(1))
             self.launchState = .finished
         }
     }

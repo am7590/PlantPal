@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import BRYXBanner
 import _PhotosUI_SwiftUI
 
 struct SucculentListView: View {    
@@ -75,13 +76,7 @@ struct SucculentListView: View {
 //                    handleDeepLinkingToItem(url: url)
 //                }
                 .onReceive(pub) { obj in
-//
-//                    let banner = Banner(title: "Handeled Notification onReceive", subtitle: "\(obj)", image: UIImage(named: "Icon"), backgroundColor: UIColor(red:48.00/255.0, green:174.0/255.0, blue:51.5/255.0, alpha:1.000))
-//                    banner.dismissesOnTap = true
-//                    banner.show(duration: 3.0)
-                    
-                    
-                    if let userInfo = obj.object as? [String:String], let url = userInfo["url"] as? String {
+                    if let userInfo = obj.object as? [String:String], let url = userInfo["url"] {
                         handleDeepLinkingToItem(url: url, grpcViewModel: grpcViewModel)
                     }
                 }
