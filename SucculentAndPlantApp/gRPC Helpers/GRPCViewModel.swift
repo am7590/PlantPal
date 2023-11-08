@@ -14,11 +14,11 @@ class GRPCViewModel: ObservableObject {
     @Published var result = ""  // Only for debugging
 
     func createNewPlant(identifier: String, name: String) {
-        // TODO: create sku
         // NEEDS to be background or main thread will hang
         Task(priority: .background) {
             do {
                 let response = try await self.createPlantEntry(identifier: identifier, name: name)
+                print("response: \(response)")
                 await self.updateUIResult(with: response)
             } catch {
                 await self.updateUIResult(with: error.localizedDescription)

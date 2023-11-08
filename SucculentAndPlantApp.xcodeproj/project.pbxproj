@@ -42,6 +42,12 @@
 		297ECD242A2BA5F700739538 /* CameraHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD232A2BA5F700739538 /* CameraHostingView.swift */; };
 		297ECD262A2BA61600739538 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD252A2BA61600739538 /* CameraController.swift */; };
 		297ECD282A2BA66E00739538 /* PhotoPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD272A2BA66E00739538 /* PhotoPreviewView.swift */; };
+		2982494B2AFA868100463CE5 /* MPLUSRounded1c-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2982494A2AFA868100463CE5 /* MPLUSRounded1c-Medium.ttf */; };
+		2982494D2AFA879900463CE5 /* MPLUSRounded1c-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2982494C2AFA879900463CE5 /* MPLUSRounded1c-Light.ttf */; };
+		2982494F2AFA88F200463CE5 /* GeistVF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2982494E2AFA88F200463CE5 /* GeistVF.ttf */; };
+		298249512AFA894F00463CE5 /* MPLUSRounded1c-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298249502AFA894F00463CE5 /* MPLUSRounded1c-Thin.ttf */; };
+		298249542AFA897C00463CE5 /* Geist-UltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 298249522AFA897C00463CE5 /* Geist-UltraLight.otf */; };
+		298249552AFA897C00463CE5 /* Geist-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 298249532AFA897C00463CE5 /* Geist-Thin.otf */; };
 		29B38A1F2A5B565D00023032 /* ImagePageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B38A1E2A5B565D00023032 /* ImagePageSliderView.swift */; };
 		29B9CD0A2A64A2BB00E7BAAD /* SucculentFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9CD092A64A2BB00E7BAAD /* SucculentFormView.swift */; };
 		29B9CD262A68268200E7BAAD /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9CD252A68268200E7BAAD /* CircularProgressView.swift */; };
@@ -102,6 +108,12 @@
 		297ECD232A2BA5F700739538 /* CameraHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHostingView.swift; sourceTree = "<group>"; };
 		297ECD252A2BA61600739538 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		297ECD272A2BA66E00739538 /* PhotoPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewView.swift; sourceTree = "<group>"; };
+		2982494A2AFA868100463CE5 /* MPLUSRounded1c-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Medium.ttf"; sourceTree = "<group>"; };
+		2982494C2AFA879900463CE5 /* MPLUSRounded1c-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Light.ttf"; sourceTree = "<group>"; };
+		2982494E2AFA88F200463CE5 /* GeistVF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GeistVF.ttf; sourceTree = "<group>"; };
+		298249502AFA894F00463CE5 /* MPLUSRounded1c-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Thin.ttf"; sourceTree = "<group>"; };
+		298249522AFA897C00463CE5 /* Geist-UltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geist-UltraLight.otf"; sourceTree = "<group>"; };
+		298249532AFA897C00463CE5 /* Geist-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geist-Thin.otf"; sourceTree = "<group>"; };
 		29B38A1E2A5B565D00023032 /* ImagePageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageSliderView.swift; sourceTree = "<group>"; };
 		29B9CD092A64A2BB00E7BAAD /* SucculentFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentFormView.swift; sourceTree = "<group>"; };
 		29B9CD252A68268200E7BAAD /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
@@ -160,8 +172,7 @@
 				2919F3472A08158C0003194F /* SucculentAndPlantApp.entitlements */,
 				2919F3302A0815700003194F /* SucculentAndPlantAppApp.swift */,
 				295F875C2A6313230021CA70 /* AppDelegate.swift */,
-				29FDA7242AF16921008E8EE2 /* GRPCManager.swift */,
-				29FDA7262AF16993008E8EE2 /* GRPCViewModel.swift */,
+				29588A402AF1F9AE0043DA65 /* gRPC Helpers */,
 				29588A3B2AF178790043DA65 /* grpc */,
 				2924DD152A9BE88E00BD9299 /* Splash Screen */,
 				294238DA2A0E8ABC00CE0A63 /* Succulent List */,
@@ -228,6 +239,7 @@
 		2919F3572A083C640003194F /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				298249492AFA867500463CE5 /* Fonts */,
 				29B9CD412A69ED2600E7BAAD /* User Defaults */,
 				2942389F2A0C664000CE0A63 /* Extensions */,
 				294238902A0C4EAB00CE0A63 /* Image Slider */,
@@ -299,6 +311,15 @@
 			path = grpc;
 			sourceTree = "<group>";
 		};
+		29588A402AF1F9AE0043DA65 /* gRPC Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				29FDA7242AF16921008E8EE2 /* GRPCManager.swift */,
+				29FDA7262AF16993008E8EE2 /* GRPCViewModel.swift */,
+			);
+			path = "gRPC Helpers";
+			sourceTree = "<group>";
+		};
 		297ECD212A2BA59E00739538 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +328,19 @@
 				297ECD272A2BA66E00739538 /* PhotoPreviewView.swift */,
 			);
 			path = Camera;
+			sourceTree = "<group>";
+		};
+		298249492AFA867500463CE5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2982494E2AFA88F200463CE5 /* GeistVF.ttf */,
+				298249502AFA894F00463CE5 /* MPLUSRounded1c-Thin.ttf */,
+				298249532AFA897C00463CE5 /* Geist-Thin.otf */,
+				298249522AFA897C00463CE5 /* Geist-UltraLight.otf */,
+				2982494A2AFA868100463CE5 /* MPLUSRounded1c-Medium.ttf */,
+				2982494C2AFA879900463CE5 /* MPLUSRounded1c-Light.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		29B9CD412A69ED2600E7BAAD /* User Defaults */ = {
@@ -418,8 +452,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				298249542AFA897C00463CE5 /* Geist-UltraLight.otf in Resources */,
+				298249552AFA897C00463CE5 /* Geist-Thin.otf in Resources */,
+				2982494B2AFA868100463CE5 /* MPLUSRounded1c-Medium.ttf in Resources */,
 				2919F3382A0815710003194F /* Preview Assets.xcassets in Resources */,
 				2919F3352A0815710003194F /* Assets.xcassets in Resources */,
+				2982494F2AFA88F200463CE5 /* GeistVF.ttf in Resources */,
+				2982494D2AFA879900463CE5 /* MPLUSRounded1c-Light.ttf in Resources */,
+				298249512AFA894F00463CE5 /* MPLUSRounded1c-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

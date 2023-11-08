@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct SucculentAndPlantAppApp: App {
+struct SucculentAndPlantAppApp: App {    
     // Splash screen
     @StateObject private var splashScreenState = SplashScreenManager()
     
