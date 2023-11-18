@@ -14,12 +14,14 @@ class GRPCManager {
     
     static let shared = GRPCManager()
     
+    var userDeviceToken = ""
+    
     init() {
         self.eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
     }
     
     func createChannel() -> ClientConnection {
-        return ClientConnection.insecure(group: self.eventLoopGroup).connect(host: "http://5.161.64.60", port: 6969)
+        return ClientConnection.insecure(group: self.eventLoopGroup).connect(host: "5.161.64.60", port: 6969)
     }
     
     deinit {

@@ -38,7 +38,9 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
     
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("Token: \(deviceToken.map { String(format: "%02.2hhx", $0) }.joined()))")
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print("Token: \(token)")
+        GRPCManager.shared.userDeviceToken = token
     }
     
     

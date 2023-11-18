@@ -24,7 +24,7 @@ class GRPCViewModel: ObservableObject {
                 await self.updateUIResult(with: error.localizedDescription)
                 
                 Task {
-                    let banner = await Banner(title: "Womp Womp", subtitle: "\(error.localizedDescription)", image: UIImage(named: "alert"), backgroundColor: UIColor(red: 48.00/255.0, green: 174.0/255.0, blue: 51.5/255.0, alpha: 1.000))
+                    let banner = await Banner(title: "Womp Womp", subtitle: "\(error.localizedDescription)", image: UIImage(named: "alert"), backgroundColor: .red)
                     await banner.show(duration: 5.0)
                 }
             }
@@ -35,7 +35,7 @@ class GRPCViewModel: ObservableObject {
             
         let plantID = Plant_PlantIdentifier.with {
             $0.sku = identifier
-            $0.deviceIdentifier = "47c3d1239a3242d1a7768ae81daa9cde5c133d9b13d13e5b30520c7b4b0a9170"
+            $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
         }
         
         Task(priority: .background) {
@@ -75,7 +75,7 @@ class GRPCViewModel: ObservableObject {
             let plantID = Plant_PlantIdentifier.with {
                 $0.sku = identifier
                 // Assuming deviceIdentifier is the same for all entries and known ahead of time
-                $0.deviceIdentifier = "47c3d1239a3242d1a7768ae81daa9cde5c133d9b13d13e5b30520c7b4b0a9170"
+                $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
             }
             
             Task(priority: .background) {
@@ -115,7 +115,7 @@ extension GRPCViewModel {
         let response = try await client.add(.with { req in
             var storeID = Plant_PlantIdentifier()
             storeID.sku = identifier
-            storeID.deviceIdentifier = "47c3d1239a3242d1a7768ae81daa9cde5c133d9b13d13e5b30520c7b4b0a9170"
+            storeID.deviceIdentifier = GRPCManager.shared.userDeviceToken
             req.identifier = storeID
             
             var storeInfo = Plant_PlantInformation()
@@ -129,6 +129,8 @@ extension GRPCViewModel {
             .response
             .get()
 
+        print("Response: \(response.debugDescription)")
+        
         // Close channel
         Task {
             _ = try? await channel.close().get()
