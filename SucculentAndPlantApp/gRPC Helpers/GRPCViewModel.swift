@@ -15,7 +15,7 @@ class GRPCViewModel: ObservableObject {
 
     func createNewPlant(identifier: String, name: String) {
         // NEEDS to be background or main thread will hang
-        Task(priority: .background) {
+        Task(priority: .background) { 
             do {
                 let response = try await self.createPlantEntry(identifier: identifier, name: name)
                 print("response: \(response)")

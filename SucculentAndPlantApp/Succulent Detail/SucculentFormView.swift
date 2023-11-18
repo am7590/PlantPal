@@ -104,6 +104,10 @@ struct SucculentFormView: View {
                                     moc.delete(selectedImage)
                                     try? moc.save()
                                 }
+                                
+                                // I want to see on the server if 0 gets sent a lot
+                                grpcViewModel.removePlantEntry(with: viewModel.id ?? "0")
+                                
                                 dismiss()
                             } label: {
                                 Image(systemName: "trash")

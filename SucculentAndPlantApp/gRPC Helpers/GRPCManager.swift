@@ -19,7 +19,7 @@ class GRPCManager {
     }
     
     func createChannel() -> ClientConnection {
-        return ClientConnection.insecure(group: self.eventLoopGroup).connect(host: "localhost", port: 9001)
+        return ClientConnection.insecure(group: self.eventLoopGroup).connect(host: "http://5.161.64.60", port: 6969)
     }
     
     deinit {
