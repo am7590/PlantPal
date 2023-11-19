@@ -42,25 +42,38 @@ struct SucculentAndPlantAppApp: App {
                             }
                         }
                 } else {
-                    SucculentListView()
-                        .environmentObject(grpcViewModel)
-                        .environmentObject(viewModel)
-                        .environmentObject(router)
-                        .environmentObject(persistImage)
-                        .environmentObject(imagePicker)
-                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                        .onAppear {
-                            print("Document Directory", URL.documentsDirectory.path)
-                        }
-                        .onOpenURL { url in
-                            print("%%%$%% \(url)")
-                            
-                            let banner = Banner(title: "open url", subtitle: "\(url)", image: UIImage(named: "Icon"), backgroundColor: UIColor(red: 48.00/255.0, green: 174.0/255.0, blue: 51.5/255.0, alpha: 1.000))
-                            banner.dismissesOnTap = true
-                            banner.show(duration: 5.0)
-                            
-                            persistImage.restore(url: url)
-                        }
+                    TabView {
+                        SucculentListView()
+                            .environmentObject(grpcViewModel)
+                            .environmentObject(viewModel)
+                            .environmentObject(router)
+                            .environmentObject(persistImage)
+                            .environmentObject(imagePicker)
+                            .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                            .onAppear {
+                                print("Document Directory", URL.documentsDirectory.path)
+                            }
+                            .onOpenURL { url in
+                                print("%%%$%% \(url)")
+                                
+                                let banner = Banner(title: "open url", subtitle: "\(url)", image: UIImage(named: "Icon"), backgroundColor: UIColor(red: 48.00/255.0, green: 174.0/255.0, blue: 51.5/255.0, alpha: 1.000))
+                                banner.dismissesOnTap = true
+                                banner.show(duration: 5.0)
+                                
+                                persistImage.restore(url: url)
+                            }
+                            .tabItem {
+                                Label("Plants", systemImage: "leaf.fill")
+                            }
+                        
+                        TrendsView()
+                            .badge("!")
+                            .tabItem {
+                                Label("Trends", systemImage: "chart.bar.fill")
+                            }
+
+                    }
+                    .tint(.primary)                    
                 }
             }
             .environmentObject(splashScreenState)

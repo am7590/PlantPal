@@ -33,24 +33,6 @@ extension SucculentListView {
         @EnvironmentObject var viewModel: SucculentListViewModel
         
         var body: some ToolbarContent {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Menu {
-                    Button {
-                        viewModel.isList = false
-                    } label: {
-                        Label("Grid", systemImage: "rectangle.grid.2x2")
-                    }
-                    
-                    Button {
-                        viewModel.isList = true
-                    } label: {
-                        Label("List", systemImage: "list.bullet")
-                    }
-                    
-                } label: {
-                    Image(systemName: viewModel.isList ? "list.bullet" : "rectangle.grid.2x2")
-                }
-            }
             
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
@@ -58,6 +40,31 @@ extension SucculentListView {
                 } label: {
                     Image(systemName: "plus")
                 }
+                .foregroundColor(.primary)
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu() {
+                    Menu {
+                        Button {
+                            viewModel.isList = false
+                        } label: {
+                            Label("Grid", systemImage: "rectangle.grid.2x2")
+                        }
+                        
+                        Button {
+                            viewModel.isList = true
+                        } label: {
+                            Label("List", systemImage: "list.bullet")
+                        }
+                        
+                    } label: {
+                        Label("Group by", systemImage: viewModel.isList ? "list.bullet" : "rectangle.grid.2x2")
+                    }
+                } label: {
+                    Label("", systemImage: "ellipsis.circle")
+                }
+                .foregroundColor(.primary)
             }
         }
     }
@@ -90,10 +97,10 @@ extension SucculentListView {
         print("url: \(url)")
         
         let parsedURL = url
-                        .replacingOccurrences(of: "navStack\\", with: "", options: NSString.CompareOptions.literal, range: nil)
-                        .trimmingCharacters(in: .whitespaces)
+            .replacingOccurrences(of: "navStack\\", with: "", options: NSString.CompareOptions.literal, range: nil)
+            .trimmingCharacters(in: .whitespaces)
         print("!!!! \(parsedURL.capitalized)")
-
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
             
             print("!!! \(fetchedItems.count)")
@@ -103,7 +110,7 @@ extension SucculentListView {
             
             if let foundItem = fetchedItems.first(where: { $0.nameText.trimmingCharacters(in: .whitespaces) == parsedURL || $0.nameText.trimmingCharacters(in: .whitespaces) == parsedURL.capitalized }) {
                 print("!!! modify: \(foundItem)")
-//                router.reset()
+                //                router.reset()
                 viewModel.formState = .edit(foundItem, grpcViewModel)
                 
                 
@@ -115,7 +122,7 @@ extension SucculentListView {
         })
         
     }
-
+    
     func restoreMyImage() {
         if let codableImage = shareService.codeableImage {
             let imgURL = URL.documentsDirectory.appending(path: "\(codableImage.id).jpg")
@@ -130,7 +137,7 @@ extension SucculentListView {
         }
         shareService.codeableImage = nil
     }
-
+    
     func updateInfo(myItem: Item) {
         if let codableImage = shareService.codeableImage {
             let imgURL = URL.documentsDirectory.appending(path: "\(codableImage.id).jpg")
@@ -144,5 +151,5 @@ extension SucculentListView {
         }
         shareService.codeableImage = nil
     }
-
+    
 }
