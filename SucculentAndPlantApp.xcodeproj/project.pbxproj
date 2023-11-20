@@ -57,6 +57,7 @@
 		29D00FA32AA120F100DCC448 /* AlternateItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D00FA22AA120F100DCC448 /* AlternateItemCell.swift */; };
 		29E05A162A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */; };
 		29E0CA122B0A8C04004173CC /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E0CA112B0A8C04004173CC /* TrendsView.swift */; };
+		29E0CA142B0AE09B004173CC /* Double+stringFormal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E0CA132B0AE09B004173CC /* Double+stringFormal.swift */; };
 		29F02D032A64742E001D2FF3 /* HealthAssessmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D022A64742E001D2FF3 /* HealthAssessmentResponse.swift */; };
 		29F02D062A64809B001D2FF3 /* IdentificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D052A64809B001D2FF3 /* IdentificationView.swift */; };
 		29F02D082A6480F7001D2FF3 /* IdentificationReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D072A6480F7001D2FF3 /* IdentificationReponse.swift */; };
@@ -126,6 +127,7 @@
 		29D00FA22AA120F100DCC448 /* AlternateItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlternateItemCell.swift; sourceTree = "<group>"; };
 		29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+ClipToBounds.swift"; sourceTree = "<group>"; };
 		29E0CA112B0A8C04004173CC /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
+		29E0CA132B0AE09B004173CC /* Double+stringFormal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+stringFormal.swift"; sourceTree = "<group>"; };
 		29F02D022A64742E001D2FF3 /* HealthAssessmentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAssessmentResponse.swift; sourceTree = "<group>"; };
 		29F02D052A64809B001D2FF3 /* IdentificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationView.swift; sourceTree = "<group>"; };
 		29F02D072A6480F7001D2FF3 /* IdentificationReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationReponse.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			children = (
 				2919F35A2A083C860003194F /* FIleManager+Image.swift */,
 				2919F3612A0840280003194F /* FileManager+JSON.swift */,
+				29E0CA132B0AE09B004173CC /* Double+stringFormal.swift */,
 				2942388B2A0B232600CE0A63 /* Animation+Repeat.swift */,
 				29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */,
 				297F42392AFB4CFF00167243 /* NSNotification.swift */,
@@ -518,6 +521,7 @@
 				297ECD242A2BA5F700739538 /* CameraHostingView.swift in Sources */,
 				29E05A162A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift in Sources */,
 				2919F3312A0815700003194F /* SucculentAndPlantAppApp.swift in Sources */,
+				29E0CA142B0AE09B004173CC /* Double+stringFormal.swift in Sources */,
 				2919F35B2A083C860003194F /* FIleManager+Image.swift in Sources */,
 				2924DD1B2A9BE91300BD9299 /* SplashScreenView.swift in Sources */,
 				29F02D0F2A648CF8001D2FF3 /* IdentificationView+FetchData.swift in Sources */,
@@ -673,7 +677,7 @@
 				CODE_SIGN_ENTITLEMENTS = SucculentAndPlantApp/SucculentAndPlantApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"SucculentAndPlantApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 7W5ZSCHZ2W;
 				ENABLE_PREVIEWS = YES;
@@ -690,7 +694,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alek.SucculentAndPlantApp;
 				PRODUCT_NAME = PlantPal;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -711,7 +715,7 @@
 				CODE_SIGN_ENTITLEMENTS = SucculentAndPlantApp/SucculentAndPlantApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"SucculentAndPlantApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 7W5ZSCHZ2W;
 				ENABLE_PREVIEWS = YES;
@@ -728,7 +732,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alek.SucculentAndPlantApp;
 				PRODUCT_NAME = PlantPal;
 				PROVISIONING_PROFILE_SPECIFIER = "";

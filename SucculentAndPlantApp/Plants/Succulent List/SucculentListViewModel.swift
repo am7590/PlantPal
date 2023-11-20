@@ -44,7 +44,7 @@ extension SucculentListView {
             }
             
             ToolbarItem(placement: .navigationBarTrailing) {
-                Menu() {
+                Menu {
                     Menu {
                         Button {
                             viewModel.isList = false

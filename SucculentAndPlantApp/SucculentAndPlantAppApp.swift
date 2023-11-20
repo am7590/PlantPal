@@ -67,16 +67,18 @@ struct SucculentAndPlantAppApp: App {
                             }
                         
                         TrendsView()
-                            .badge("!")
+//                            .badge("!")
                             .tabItem {
                                 Label("Trends", systemImage: "chart.bar.fill")
                             }
 
                     }
-                    .tint(.primary)                    
+                    .tint(.primary)
+                    
                 }
             }
             .environmentObject(splashScreenState)
         }
     }
 }
+
