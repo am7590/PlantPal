@@ -49,6 +49,7 @@ struct TrendsView: View {
                         }
                     }
                 }
+                .redacted(reason: .placeholder)
                 
                 Section {
                     VStack {
@@ -85,8 +86,9 @@ struct TrendsView: View {
                         }
                     }
                 }
+                .redacted(reason: .placeholder)
             }
-            .navigationTitle("Health Trends")
+            .navigationTitle("Coming soon...")  //Health Trends
             .toolbar {
                 TrendsToolbar()
             }
@@ -111,7 +113,7 @@ extension TrendsView {
                         Image(systemName: ".")
                     }
                 } label: {
-                    Label("", systemImage: "ellipsis.circle")
+                    Label("", systemImage: "")  // ellipsis.circle
 
                 }
                 .foregroundColor(.primary)
