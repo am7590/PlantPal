@@ -49,7 +49,7 @@ struct TrendsView: View {
                         }
                     }
                 }
-                .redacted(reason: .placeholder)
+//                .redacted(reason: .placeholder)
                 
                 Section {
                     VStack {
@@ -86,9 +86,9 @@ struct TrendsView: View {
                         }
                     }
                 }
-                .redacted(reason: .placeholder)
+//                .redacted(reason: .placeholder)
             }
-            .navigationTitle("Coming soon...")  //Health Trends
+            .navigationTitle("Health Trends")  //Health Trends
             .toolbar {
                 TrendsToolbar()
             }

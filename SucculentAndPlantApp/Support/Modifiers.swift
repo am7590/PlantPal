@@ -17,7 +17,41 @@ struct CustomFrameModifier: ViewModifier {
         if active {
             content.frame(width: width, height: width, alignment: .center)
         } else {
-            content
+            HStack {
+                
+                VStack(alignment: .leading) {
+                    Group {
+                        Text("Spikey Guy").font(.title3).bold()
+                            .padding(.leading)
+
+                        Text("Bergeranthus concavus").italic()
+                            .padding(.leading)
+
+                    }
+               
+                    Spacer()
+                    HStack {
+                        VStack {
+                            CircularProgressView(progress: 0.04, color: .red, size: .small, showProgress: true)
+                                .frame(width: 50, height: 50)
+                            Text("Health")
+                                .font(.caption.bold())
+                        }
+                        .padding(.leading, 22)
+
+                        Spacer()
+                    }
+                 
+                    Spacer()
+                    
+                }
+                content.frame(width: width, height: width, alignment: .center)
+                    .scaledToFill()
+                    .clipped()
+                    .cornerRadius(16)
+                    .shadow(radius: 8.0)
+                
+            }
         }
     }
 }

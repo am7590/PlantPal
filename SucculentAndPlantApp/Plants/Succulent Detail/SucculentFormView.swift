@@ -255,9 +255,13 @@ struct SucculentFormView: View {
                 VStack(alignment: .leading, spacing: 6) {
                     Image(systemName: "drop.fill")
                         .font(.title)
+                        .tint(.blue)
+
                     Text("Water")
                         .bold()
                         .font(.subheadline)
+                        .tint(.blue)
+
                 }
                 
                 Spacer()
