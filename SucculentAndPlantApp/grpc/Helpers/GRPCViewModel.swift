@@ -42,10 +42,11 @@ class GRPCViewModel: ObservableObject {
             do {
                 // Fetch the current information
                 var currentPlantInfo = try await self.fetchPlantInfo(using: plantID)
+                print(currentPlantInfo?.lastWatered)
                 
-                if let lastWatered = lastWatered {
+                if let serverLastWatered = currentPlantInfo?.lastWatered, let lastWatered = lastWatered, serverLastWatered != lastWatered {
                     currentPlantInfo?.lastWatered = lastWatered
-                    print("updated lastWatered")
+                    print("updated lastWatered: \(lastWatered)")
                 }
                 if let lastHealthCheck = lastHealthCheck {
                     currentPlantInfo?.lastHealthCheck = lastHealthCheck

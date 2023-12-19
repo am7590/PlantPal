@@ -201,7 +201,7 @@ struct SucculentFormView: View {
                 }
             }
             .onChange(of: viewModel.date) { newDate in
-                if let id = UserDefaults.standard.getUUID(for: viewModel.name), !viewModel.name.isEmpty {
+                if let id = UserDefaults.standard.getUUID(for: viewModel.name), !viewModel.name.isEmpty, viewModel.date != Date.now.stripTime() {
                     // TODO: Move this to viewModel
                     
                     let interval = viewModel.date.timeIntervalSince1970 * 86400
@@ -212,7 +212,7 @@ struct SucculentFormView: View {
                 }
             }
             .onChange(of: viewModel.amount) { newAmount in
-                if let id = UserDefaults.standard.getUUID(for: viewModel.name) {
+                if let id = UserDefaults.standard.getUUID(for: viewModel.name), newAmount != 0 {
                     // TODO: Move this to viewModel
                     
                     let interval = viewModel.date.timeIntervalSince1970 * 86400

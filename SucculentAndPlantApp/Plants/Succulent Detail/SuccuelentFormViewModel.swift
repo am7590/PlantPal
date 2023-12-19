@@ -18,7 +18,7 @@ class SuccuelentFormViewModel: ObservableObject {
             print("Count: \(uiImage.count)")
         }
     }
-    @Published var date = Date.now
+    @Published var date = Date.now.stripTime()
     
     // Alerts
     @Published var waterAlertIsDispayed = false
@@ -62,4 +62,15 @@ class SuccuelentFormViewModel: ObservableObject {
         uiImage = myItem.uiImage
         isItem = true
     }
+}
+
+
+extension Date {
+
+    func stripTime() -> Date {
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: self)
+        let date = Calendar.current.date(from: components)
+        return date!
+    }
+
 }

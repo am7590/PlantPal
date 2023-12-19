@@ -18,6 +18,7 @@ class SplashScreenManager: ObservableObject {
         Task {
             launchState = .dismiss
             self.launchState = .finished
+            Logger.plantPal.debug("Splash screen is being dismissed")
         }
     }
 }
