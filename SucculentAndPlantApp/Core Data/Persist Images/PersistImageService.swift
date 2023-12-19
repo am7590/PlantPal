@@ -9,12 +9,8 @@ import Foundation
 import ZIPFoundation
 import UIKit
 
-struct CodableImage: Codable, Equatable {
-    let dateTaken: Date
-    let id: String
-    let name: String
-}
-
+// Manages persistance of CoreData objects
+// Handles restoring and the zipping of image files
 class PersistImageService: ObservableObject {
     @Published var codeableImage: CodableImage?
     static let ext = "myimg"

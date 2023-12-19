@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-/// Toggle between list or grid image frames
+// Toggle between list or grid image frames
 struct CustomFrameModifier: ViewModifier {
     var active: Bool
     var width: CGFloat

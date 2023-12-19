@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/am7590/Development/Projects/SucculentAndPlantApp/PlantPal.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

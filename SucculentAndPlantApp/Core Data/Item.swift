@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 import UIKit
 
+// TODO: Rename to something more specific?
 @objc(Item)
 public class Item: NSManagedObject {
     

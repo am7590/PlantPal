@@ -9,6 +9,7 @@ import Foundation
 import NIO
 import GRPC
 
+// Singleton that manages the gRPC channel
 class GRPCManager {
     private var eventLoopGroup: MultiThreadedEventLoopGroup!
     

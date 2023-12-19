@@ -7,9 +7,10 @@
 
 import SwiftUI
 import AVFoundation
+import os
 
+// SwiftUI wrapper around CameraController
 struct CameraHostingView: UIViewControllerRepresentable {
-//    @State var previewImage: UIImage?
     @ObservedObject var viewModel: SuccuelentFormViewModel
     public var appendedNewImage: (() -> Void)?
     
@@ -20,7 +21,7 @@ struct CameraHostingView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: CameraController, context: Context) {
-        // Update any properties of the view controller if needed
+
     }
     
     func makeCoordinator() -> Coordinator {
@@ -35,8 +36,7 @@ struct CameraHostingView: UIViewControllerRepresentable {
         }
         
         func cameraControllerDidCaptureImage(_ image: UIImage) {
-            print("!!! selected \(image)")
-//            parent.previewImage = image
+            Logger.plantPal.debug("\(#function) selected image \(image)")
             parent.viewModel.uiImage.append(image)
             self.parent.appendedNewImage?()
         }

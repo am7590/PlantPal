@@ -7,7 +7,7 @@
 
 import OSLog
 
-// View logs in Console app
+// You can view logs in Console app
 extension Logger {
     private static var subsystem = Bundle.main.bundleIdentifier!
     

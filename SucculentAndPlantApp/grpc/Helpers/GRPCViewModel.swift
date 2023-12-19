@@ -9,13 +9,13 @@ import Foundation
 import BRYXBanner
 import UIKit
 
-// Do NOT use @MainActor or a thread priority inversion will occur.
+// Do NOT use @MainActor or a thread priority inversion will occur!!!
 class GRPCViewModel: ObservableObject {
     @Published var result = ""  // Only for debugging
-
+    
     func createNewPlant(identifier: String, name: String) {
         // NEEDS to be background or main thread will hang
-        Task(priority: .background) { 
+        Task(priority: .background) {
             do {
                 let response = try await self.createPlantEntry(identifier: identifier, name: name)
                 print("response: \(response)")
@@ -32,7 +32,7 @@ class GRPCViewModel: ObservableObject {
     }
     
     func updateExistingPlant(with identifier: String, name: String, lastWatered: Int64?, lastHealthCheck: Int64?, lastIdentification: Int64?) {
-            
+        
         let plantID = Plant_PlantIdentifier.with {
             $0.sku = identifier
             $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
@@ -73,27 +73,27 @@ class GRPCViewModel: ObservableObject {
     }
     
     func removePlantEntry(with identifier: String) {
-            let plantID = Plant_PlantIdentifier.with {
-                $0.sku = identifier
-                // Assuming deviceIdentifier is the same for all entries and known ahead of time
-                $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
-            }
-            
-            Task(priority: .background) {
-                do {
-                    let response = try await self.removePlant(from: plantID)
-                    print("Removed plant with response: \(response)")
-                    await self.updateUIResult(with: response.status)
-                } catch {
-                    await self.updateUIResult(with: error.localizedDescription)
-                    
-                    Task {
-                        let banner = await Banner(title: "Removal Failed", subtitle: "\(error.localizedDescription)", image: UIImage(named: "alert"), backgroundColor: UIColor.red)
-                        await banner.show(duration: 3.0)
-                    }
+        let plantID = Plant_PlantIdentifier.with {
+            $0.sku = identifier
+            // Assuming deviceIdentifier is the same for all entries and known ahead of time
+            $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
+        }
+        
+        Task(priority: .background) {
+            do {
+                let response = try await self.removePlant(from: plantID)
+                print("Removed plant with response: \(response)")
+                await self.updateUIResult(with: response.status)
+            } catch {
+                await self.updateUIResult(with: error.localizedDescription)
+                
+                Task {
+                    let banner = await Banner(title: "Removal Failed", subtitle: "\(error.localizedDescription)", image: UIImage(named: "alert"), backgroundColor: UIColor.red)
+                    await banner.show(duration: 3.0)
                 }
             }
         }
+    }
 }
 
 // MARK: Update UI
@@ -129,7 +129,7 @@ extension GRPCViewModel {
         })
             .response
             .get()
-
+        
         print("Response: \(response.debugDescription)")
         
         // Close channel
@@ -139,7 +139,7 @@ extension GRPCViewModel {
         
         return "brik works!" // do I need a real response here?
     }
- 
+    
     private func fetchPlantInfo(using identifier: Plant_PlantIdentifier) async throws -> Plant_PlantInformation? {
         let channel = GRPCManager.shared.createChannel()
         let client = Plant_PlantServiceNIOClient(channel: channel)
@@ -153,7 +153,7 @@ extension GRPCViewModel {
         
         return information
     }
-
+    
     private func updatePlantEntry(with identifier: Plant_PlantIdentifier, updatedInfo: Plant_PlantInformation) async throws -> String {
         let channel = GRPCManager.shared.createChannel()
         let client = Plant_PlantServiceNIOClient(channel: channel)
@@ -173,19 +173,18 @@ extension GRPCViewModel {
     }
     
     private func removePlant(from identifier: Plant_PlantIdentifier) async throws -> Plant_PlantResponse {
-            let channel = GRPCManager.shared.createChannel()
-            let client = Plant_PlantServiceNIOClient(channel: channel)
-            
-            let response = try await client.remove(identifier)
-                .response
-                .get()
-            
-            // Close channel asynchronously
-            Task {
-                _ = try? await channel.close().get()
-            }
-            
-            return response
+        let channel = GRPCManager.shared.createChannel()
+        let client = Plant_PlantServiceNIOClient(channel: channel)
+        
+        let response = try await client.remove(identifier)
+            .response
+            .get()
+        
+        // Close channel asynchronously
+        Task {
+            _ = try? await channel.close().get()
         }
-
+        
+        return response
+    }
 }

@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// Generic error views
+// Add to the enum to make more error responses
+
 enum ErrorHandlingType {
     case noData, failedToLoad
     

@@ -7,6 +7,7 @@
 
 import CoreData
 
+// Controls CoreData and CloudKit
 struct PersistenceController {
     static let shared = PersistenceController()
 

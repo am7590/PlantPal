@@ -45,6 +45,4 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         
         self.picker.isPresented.wrappedValue.dismiss()
     }
-
-    
 }

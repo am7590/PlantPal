@@ -7,7 +7,7 @@
 
 import SwiftUI
 import BRYXBanner
-
+import os
 
 @main
 struct SucculentAndPlantAppApp: App {    

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import os
 
 extension FileManager {
 
@@ -14,7 +15,7 @@ extension FileManager {
         do {
             try json.write(to: url, atomically: false, encoding: .utf8)
         } catch {
-            print("Could not save json")
+            Logger.plantPal.error("Could not save json to url: \(url) with error \(error)")
         }
     }
     
@@ -24,11 +25,11 @@ extension FileManager {
             do {
                 return try JSONDecoder().decode(CodableImage.self, from: data)
             } catch {
-                print(error.localizedDescription)
+                Logger.plantPal.error("\(#function) \(error.localizedDescription)")
                 return nil
             }
         } catch {
-            print(error.localizedDescription)
+            Logger.plantPal.error("\(#function) \(error.localizedDescription)")
             return nil
         }
     }
@@ -40,7 +41,7 @@ extension FileManager {
         do {
             try moveItem(at: oldURL, to: newURL)
         } catch {
-            print(error.localizedDescription)
+            Logger.plantPal.error("\(#function) \(error.localizedDescription)")
         }
     }
 }

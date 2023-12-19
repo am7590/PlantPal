@@ -8,8 +8,9 @@
 import UIKit
 import UserNotifications
 import BRYXBanner
+import os
 
-// I could not get push notifications working correctly with SwiftUI alone so I added this to handle notifications
+// I could not get push notification handling working correctly with SwiftUI :(
 class AppDelegate: NSObject, UIApplicationDelegate {
     
     public var payloadURL: [String: Any]? {

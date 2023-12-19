@@ -21,10 +21,11 @@ class ImagesContainer {
             .path else {
             fatalError("Could not find peresistent container")
         }
-//        print("Core Data", path)
+
         guard let description = persistentCloudKitContainer.persistentStoreDescriptions.first else {
             fatalError("Failed to initialize persistent container")
         }
+        
         description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         persistentCloudKitContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         persistentCloudKitContainer.viewContext.automaticallyMergesChangesFromParent = true
