@@ -57,7 +57,6 @@ struct IdentificationView: View {
                                     
                                 }
                                 .onTapGesture {
-                                    print("Setting \(suggestion.name) identification to \(viewModel.name)")
                                     UserDefaults.standard.hasBeenIdentified(for: viewModel.name, with: suggestion.name)
                                     dismiss()
                                     grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: nil, lastHealthCheck: nil, lastIdentification: Int64(Date().timeIntervalSince1970))

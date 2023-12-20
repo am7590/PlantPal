@@ -8,11 +8,13 @@
 // MARK: This will be refactored out when I implement GRPC
 
 import SwiftUI
+import os
 
+// TODO: Cache this on the gRPC server
 extension HealthReportView {
     func fetchData(for plantName: String, image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-            print("Failed to convert image to data")
+            Logger.networking.debug("Failed to compress jpeg")
             self.loadState = .failed
             return
         }
@@ -36,7 +38,7 @@ extension HealthReportView {
             let jsonData = try JSONSerialization.data(withJSONObject: requestBody, options: [])
             request.httpBody = jsonData
         } catch {
-            print("Failed to serialize JSON:", error)
+//            print("Failed to serialize JSON:", error)
             self.loadState = .failed
             return
         }
@@ -49,12 +51,12 @@ extension HealthReportView {
             }
             
             guard let data = data else {
-                print("No data received")
+//                print("No data received")
                 self.loadState = .failed
                 return
             }
             
-            print("Data: \(String(data: data, encoding: .utf8))")
+//            print("Data: \(String(data: data, encoding: .utf8))")
             
             do {
                 let decoder = JSONDecoder()
@@ -70,24 +72,23 @@ extension HealthReportView {
                 }
                 
                 // Print the health assessment results
-                print("Is Healthy:", response.result.isHealthy.binary)
+//                print("Is Healthy:", response.result.isHealthy.binary)
                 
                 for suggestion in response.result.disease.suggestions {
-                    print("Disease Name:", suggestion.name)
+//                    print("Disease Name:", suggestion.name)
                     similarImages[suggestion.name] = []
-                    print("Probability:", suggestion.probability)
-                    print("Similar Images:")
+//                    print("Probability:", suggestion.probability)
+//                    print("Similar Images:")
                         for image in suggestion.similarImages {
-                            print("Similar Image URL:", image.url)
+//                            print("Similar Image URL:", image.url)
                             setImageFromStringrURL(stringUrl: image.url, imageKey: suggestion.name)
                         }
-                    
                 }
                 
                 self.loadState = .loaded
                 
             } catch {
-                print("Error decoding JSON:", error)
+//                print("Error decoding JSON:", error)
                 self.loadState = .failed
             }
         }.resume()

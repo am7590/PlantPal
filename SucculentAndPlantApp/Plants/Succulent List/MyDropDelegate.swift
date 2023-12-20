@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import os
 
+// Handles dragging and dropping of items in the list/grid
 struct MyDropDelegate: DropDelegate {
     let item: Item
     @Binding var items: [Item]
@@ -40,7 +42,7 @@ struct MyDropDelegate: DropDelegate {
                     try draggedItem.managedObjectContext?.save()
                     try item.managedObjectContext?.save()
                 } catch {
-                    print("Failed to save context: \(error)")
+                    Logger.plantPal.error("\(#function) Failed to save context: \(error)")
                 }
             }
         }

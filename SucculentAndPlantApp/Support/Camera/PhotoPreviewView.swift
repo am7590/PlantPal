@@ -7,6 +7,7 @@
 
 import UIKit
 import Photos
+import os
 
 class PhotoPreviewView: UIView {
     
@@ -82,15 +83,12 @@ class PhotoPreviewView: UIView {
                 do {
                     try PHPhotoLibrary.shared().performChangesAndWait {
                         PHAssetChangeRequest.creationRequestForAsset(from: previewImage)
-                        print("photo has saved in library...")
                         self.handleCancel()
                     }
                 } catch let error {
-                    print("failed to save photo in library: ", error)
+                    Logger.plantPal.error("\(#function) Failed to save photo in library: \(error.localizedDescription)")
                 }
-            } else {
-                print("Something went wrong with permission...")
-            }
+            } 
         }
     }
 }

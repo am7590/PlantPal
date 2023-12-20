@@ -8,8 +8,8 @@
 import SwiftUI
 
 enum SucculentFormState: Identifiable, View {
-    case new([UIImage], GRPCViewModel)
-    case edit(Item, GRPCViewModel)
+    case new([UIImage], GRPCViewModel) // Create a plant
+    case edit(Item, GRPCViewModel)     // Edit/Detail view
     
     var id: String {
         switch self {

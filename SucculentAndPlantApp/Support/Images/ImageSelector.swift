@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import os
 
 @MainActor
 class ImageSelector: ObservableObject {
@@ -29,7 +30,7 @@ class ImageSelector: ObservableObject {
                 }
             }
         } catch {
-            print(error.localizedDescription)
+            Logger.plantPal.error("\(#function) \(error.localizedDescription)")
         }
     }
 }

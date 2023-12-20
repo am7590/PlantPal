@@ -8,27 +8,18 @@
 import UIKit
 import SwiftUI
 
-// TODO: Refactor code from SucculentFormView
-
 class SuccuelentFormViewModel: ObservableObject {
     @Published var name = ""
-    @Published var uiImage: [UIImage] = [] {
-        didSet {
-            // dismiss SuccuelentFormView
-            print("Count: \(uiImage.count)")
-        }
-    }
+    @Published var uiImage: [UIImage] = []
     @Published var date = Date.now.stripTime()
     
-    // Alerts
+    // Alerts for when buttons are tapped
     @Published var waterAlertIsDispayed = false
     @Published var snoozeAlertIsDispayed = false
     
     @Published private var isImagePickerDisplay = false
     @Published var amount = 0
-    
     @Published var imagePageSliderIndex = 0
-
     
     let cameraHostingView = EmptyView()
         
@@ -62,15 +53,4 @@ class SuccuelentFormViewModel: ObservableObject {
         uiImage = myItem.uiImage
         isItem = true
     }
-}
-
-
-extension Date {
-
-    func stripTime() -> Date {
-        let components = Calendar.current.dateComponents([.year, .month, .day], from: self)
-        let date = Calendar.current.date(from: components)
-        return date!
-    }
-
 }

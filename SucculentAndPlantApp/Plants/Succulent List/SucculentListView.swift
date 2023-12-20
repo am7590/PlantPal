@@ -17,6 +17,7 @@ struct SucculentListView: View {
     @EnvironmentObject var shareService: PersistImageService
     @EnvironmentObject var grpcViewModel: GRPCViewModel
     
+    // Plants fetched from CoreData
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name)])
     var fetchedItems: FetchedResults<Item>
     
@@ -32,8 +33,10 @@ struct SucculentListView: View {
                 
                 Group {
                     if items.isEmpty {
+                        // User has no plants; tell them to create one
                         ErrorHandlingView(listType: .noData)
                     } else {
+                        // List user's plants in list or grid form
                         ScrollView {
                             if viewModel.isList {
                                 listView(width: cellWidth)
@@ -58,11 +61,6 @@ struct SucculentListView: View {
                 .alert("Image Updated", isPresented: $viewModel.imageExists) {
                     Button("OK") {}
                 }
-//                .onChange(of: imagePicker.uiImage) { newImage in
-//                    if let newImage {
-//                        viewModel.handleImageChange([newImage])
-//                    }
-//                }
                 .onChange(of: shareService.codeableImage) { codableImage in
                     updateOrRestoreImage(codableImage, fetchedItems)
                 }
@@ -72,9 +70,6 @@ struct SucculentListView: View {
                 .onAppear {
                     refreshFetchedItems()
                 }
-//                .onOpenURL { url in
-//                    handleDeepLinkingToItem(url: url)
-//                }
                 .onReceive(pub) { obj in
                     if let userInfo = obj.object as? [String:String], let url = userInfo["url"] {
                         handleDeepLinkingToItem(url: url, grpcViewModel: grpcViewModel)
@@ -84,6 +79,7 @@ struct SucculentListView: View {
         }
     }
     
+    // Triggers refresh from CoreData
     func refreshFetchedItems() {
         items = Array(fetchedItems)
     }
@@ -96,10 +92,6 @@ struct SucculentListView: View {
                 viewModel.formState = .edit(item, grpcViewModel)
             } label: {
                 ZStack(alignment: .topLeading) {
-
-                    
-                    
-                    
                     Image(uiImage: item.uiImage.last ?? UIImage(systemName: "trash")!)
                         .resizable()
                         .scaledToFill()
@@ -107,12 +99,6 @@ struct SucculentListView: View {
                         .clipped()
                         .cornerRadius(16)
                         .shadow(radius: 8.0)
-                       
-                    
-                    
-//                    if UserDefaults.standard.getHealthScore(for: item.nameText) != 0 {
-//                        CircularProgressView(progress: UserDefaults.standard.getHealthScore(for: item.nameText), color: UserDefaults.standard.getHealthScore(for: item.nameText) < 50 ? .red : .green, size: CircularProgressViewSize.small, showProgress: true)
-//                    }
                 }
                 .onDrag {
                     viewModel.wiggle = false

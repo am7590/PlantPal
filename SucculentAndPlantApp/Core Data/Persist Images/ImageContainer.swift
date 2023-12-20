@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import os
 
 class ImagesContainer {
     let persistentCloudKitContainer: NSPersistentCloudKitContainer
@@ -31,7 +32,7 @@ class ImagesContainer {
         persistentCloudKitContainer.viewContext.automaticallyMergesChangesFromParent = true
         persistentCloudKitContainer.loadPersistentStores { _, error in
             if let error {
-                print(error.localizedDescription)
+                Logger.plantPal.error("\(#function) \(error.localizedDescription)")
             }
         }
     }

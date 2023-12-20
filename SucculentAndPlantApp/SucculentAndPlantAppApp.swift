@@ -14,7 +14,7 @@ struct SucculentAndPlantAppApp: App {
     // Splash screen
     @StateObject private var splashScreenState = SplashScreenManager()
     
-    // App Delegate (APNS)
+    // App Delegate (for APNs stuff)
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     // gRPC
@@ -67,10 +67,8 @@ struct SucculentAndPlantAppApp: App {
                             .tabItem {
                                 Label("Trends", systemImage: "chart.bar.fill")
                             }
-                        
                     }
                     .tint(.primary)
-                    
                 }
             }
             .environmentObject(splashScreenState)

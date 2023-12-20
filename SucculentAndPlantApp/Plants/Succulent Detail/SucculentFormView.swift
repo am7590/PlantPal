@@ -8,6 +8,7 @@
 import SwiftUI
 import PhotosUI
 import ImageCaptureCore
+import os
 
 struct SucculentFormView: View {
     let item: Item?
@@ -181,7 +182,7 @@ struct SucculentFormView: View {
                             }
                         }
                     } catch {
-                        print("womp womp: \(error.localizedDescription)")
+                        Logger.plantPal.error("\(#function) \(error.localizedDescription)")
                     }
                 }
             }
@@ -192,11 +193,10 @@ struct SucculentFormView: View {
                             if let uiImage = UIImage(data: data) {
                                 viewModel.uiImage.append(uiImage)
                                 updateImage()
-                                print("Appending: \(uiImage)")
                             }
                         }
                     } catch {
-                        print("womp womp: \(error.localizedDescription)")
+                        Logger.plantPal.error("\(#function) \(error.localizedDescription)")
                     }
                 }
             }

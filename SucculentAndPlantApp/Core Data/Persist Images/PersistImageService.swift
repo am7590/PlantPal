@@ -8,6 +8,7 @@
 import Foundation
 import ZIPFoundation
 import UIKit
+import os
 
 // Manages persistance of CoreData objects
 // Handles restoring and the zipping of image files
@@ -24,7 +25,7 @@ class PersistImageService: ObservableObject {
             FileManager().saveImage(with: codableImage.id, image: uiImage)
             zipFiles(id: codableImage.id)
         } catch {
-            print("Could not encode data")
+            Logger.plantPal.error("\(#function) Could not encode data: \(error)")
         }
     }
     
@@ -42,7 +43,7 @@ class PersistImageService: ObservableObject {
             do {
                 try FileManager().unzipItem(at: zipURL, to: URL.documentsDirectory)
             } catch {
-                print(error.localizedDescription)
+                Logger.plantPal.error("\(#function) \(error.localizedDescription)")
             }
             if let codeableImage = FileManager().decodeJSON(from: URL.documentsDirectory.appending(path: jsonName)) {
                 self.codeableImage = codeableImage
@@ -65,7 +66,7 @@ class PersistImageService: ObservableObject {
             try FileManager().removeItem(at: jsonURL)
             try FileManager().removeItem(at: imageURL)
         } catch {
-            print(error.localizedDescription)
+            Logger.plantPal.error("\(#function) \(error.localizedDescription)")
         }
     }
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// TODO: Cache this on the gRPC server
 extension IdentificationView {
     func fetchData(images: [UIImage]) {
         
@@ -14,7 +15,8 @@ extension IdentificationView {
         
         for image in images {
             guard let imageData = image.jpegData(compressionQuality: 0.8) else {
-                print("Failed to convert image to data")
+//                print("Failed to convert image to data")
+                
                 self.loadState = .failed
                 return
             }
@@ -41,20 +43,20 @@ extension IdentificationView {
             let jsonData = try JSONSerialization.data(withJSONObject: requestBody, options: [])
             request.httpBody = jsonData
         } catch {
-            print("Failed to serialize JSON:", error)
+//            print("Failed to serialize JSON:", error)
             self.loadState = .failed
             return
         }
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                print("Error:", error)
+//                print("Error:", error)
                 self.loadState = .failed
                 return
             }
             
             guard let data = data else {
-                print("No data received")
+//                print("No data received")
                 self.loadState = .failed
                 return
             }
@@ -71,24 +73,24 @@ extension IdentificationView {
                     // Print the identification results
                     if let suggestions = response.result?.classification?.suggestions {
                         for suggestion in suggestions {
-                            print("Plant Name:", suggestion.name)
+//                            print("Plant Name:", suggestion.name)
                             similarImages[suggestion.name] = []
                             if let similarImages = suggestion.similarImages {
                                 for similarImage in similarImages {
-                                    print("Similar Image URL:", similarImage.url)
+//                                    print("Similar Image URL:", similarImage.url)
                                     setImageFromStringrURL(stringUrl: similarImage.url, imageKey: suggestion.name)
                                 }
                             }
                         }
                     } else {
-                        print("Plant Not Identified")
+//                        print("Plant Not Identified")
                     }
                                         
                     self.loadState = .loaded
                 }
                 
             } catch {
-                print("Error decoding JSON:", error)
+//                print("Error decoding JSON:", error)
                 self.loadState = .failed
             }
         }.resume()
@@ -97,7 +99,6 @@ extension IdentificationView {
     func setImageFromStringrURL(stringUrl: String, imageKey: String) {
       if let url = URL(string: stringUrl) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-          // Error handling...
           guard let imageData = data else { return }
 
           DispatchQueue.main.async {

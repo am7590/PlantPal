@@ -8,6 +8,7 @@
 import Foundation
 import BRYXBanner
 import UIKit
+import os
 
 // Do NOT use @MainActor or a thread priority inversion will occur!!!
 class GRPCViewModel: ObservableObject {
@@ -18,13 +19,13 @@ class GRPCViewModel: ObservableObject {
         Task(priority: .background) {
             do {
                 let response = try await self.createPlantEntry(identifier: identifier, name: name)
-                print("response: \(response)")
+                Logger.networking.debug("Received response: \(response)")
                 await self.updateUIResult(with: response)
             } catch {
                 await self.updateUIResult(with: error.localizedDescription)
                 
                 Task {
-                    let banner = await Banner(title: "Womp Womp", subtitle: "\(error.localizedDescription)", image: UIImage(named: "alert"), backgroundColor: .red)
+                    let banner = await Banner(title: "Could not create a new plant", subtitle: "\(error.localizedDescription)", image: UIImage(named: "alert"), backgroundColor: .red)
                     await banner.show(duration: 5.0)
                 }
             }
@@ -40,32 +41,34 @@ class GRPCViewModel: ObservableObject {
         
         Task(priority: .background) {
             do {
-                // Fetch the current information
+                // Fetch the current item's information
                 var currentPlantInfo = try await self.fetchPlantInfo(using: plantID)
-                print(currentPlantInfo?.lastWatered)
                 
+                // Check if lastWatered field was updated
                 if let serverLastWatered = currentPlantInfo?.lastWatered, let lastWatered = lastWatered, serverLastWatered != lastWatered {
                     currentPlantInfo?.lastWatered = lastWatered
-                    print("updated lastWatered: \(lastWatered)")
                 }
+                
+                // Check if last health check date was updated
                 if let lastHealthCheck = lastHealthCheck {
                     currentPlantInfo?.lastHealthCheck = lastHealthCheck
-                    print("updated lastHealthCheck")
                 }
+                
+                // Check if last ID date was updated
                 if let lastIdentification = lastIdentification {
                     currentPlantInfo?.lastIdentification = lastIdentification
-                    print("updated lastIdentification")
                 }
+                
                 currentPlantInfo?.name = name
                 
                 let response = try await self.updatePlantEntry(with: plantID, updatedInfo: currentPlantInfo!)
                 await self.updateUIResult(with: response)
             } catch {
-                print(error.localizedDescription)
+                Logger.plantPal.error("\(#function) \(error.localizedDescription)")
                 await self.updateUIResult(with: error.localizedDescription)
                 
                 Task {
-                    let banner = await Banner(title: "Womp Womp", subtitle: "\(error.localizedDescription)", image: UIImage(named: "alert"), backgroundColor: UIColor(red: 48.00/255.0, green: 174.0/255.0, blue: 51.5/255.0, alpha: 1.000))
+                    let banner = await Banner(title: "Could not update", subtitle: "\(error.localizedDescription)", image: UIImage(named: "alert"), backgroundColor: UIColor(red: 48.00/255.0, green: 174.0/255.0, blue: 51.5/255.0, alpha: 1.000))
                     await banner.show(duration: 5.0)
                 }
             }
@@ -75,6 +78,7 @@ class GRPCViewModel: ObservableObject {
     func removePlantEntry(with identifier: String) {
         let plantID = Plant_PlantIdentifier.with {
             $0.sku = identifier
+            
             // Assuming deviceIdentifier is the same for all entries and known ahead of time
             $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
         }
@@ -82,7 +86,7 @@ class GRPCViewModel: ObservableObject {
         Task(priority: .background) {
             do {
                 let response = try await self.removePlant(from: plantID)
-                print("Removed plant with response: \(response)")
+                Logger.plantPal.debug("\(#function) Removed plant with response: \(response.debugDescription)")
                 await self.updateUIResult(with: response.status)
             } catch {
                 await self.updateUIResult(with: error.localizedDescription)
@@ -130,7 +134,7 @@ extension GRPCViewModel {
             .response
             .get()
         
-        print("Response: \(response.debugDescription)")
+        Logger.networking.debug("\(#function) \(response.debugDescription)")
         
         // Close channel
         Task {

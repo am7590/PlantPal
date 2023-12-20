@@ -127,10 +127,10 @@ extension TrendsView {
 struct GraphView: View {
     // Environment Scheme
     @Environment(\.colorScheme) var scheme
-    // MARK: State Chart Data For Animation Changes
+    // State Chart Data For Animation Changes
     @State var sampleAnalytics: [DataItem] = []
 
-    // MARK: Gesture Properties
+    // Gesture Properties
     @State var currentActiveItem: DataItem?
     @State var plotWidth: CGFloat = 0
     
