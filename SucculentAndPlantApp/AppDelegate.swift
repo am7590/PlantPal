@@ -30,6 +30,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         UIApplication.shared.registerForRemoteNotifications()
         UNUserNotificationCenter.current().delegate = self
         
+        // Instantiate GRPCManager with gRPC channel
+        _ = GRPCManager.shared
+        
         return true
     }
     

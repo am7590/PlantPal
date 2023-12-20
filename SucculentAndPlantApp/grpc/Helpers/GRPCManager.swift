@@ -18,7 +18,10 @@ class GRPCManager {
     var userDeviceToken = ""
     
     init() {
-        self.eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
+        // Needs to be in background or priority inversion will occur
+        Task(priority: .background) {
+            self.eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
+        }
     }
     
     func createChannel() -> ClientConnection {

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 // Toggle between list or grid image frames
 struct CustomFrameModifier: ViewModifier {
     var active: Bool
@@ -19,23 +18,37 @@ struct CustomFrameModifier: ViewModifier {
         } else {
             HStack {
                 
+                content.frame(width: width, height: width, alignment: .center)
+                    .scaledToFill()
+                    .clipped()
+                    .cornerRadius(16)
+                    .shadow(radius: 8.0)
+                
+                
                 VStack(alignment: .leading) {
+                    
                     Group {
                         Text("Spikey Guy").font(.title3).bold()
                             .padding(.leading)
 
-                        Text("Bergeranthus concavus").italic()
+                        Text("Bergeranthus concavus").font(.subheadline).italic()
                             .padding(.leading)
 
                     }
+//                    .padding(.top)
                
                     Spacer()
                     HStack {
+                        
+                        Spacer()
                         VStack {
-                            CircularProgressView(progress: 0.04, color: .red, size: .small, showProgress: true)
-                                .frame(width: 50, height: 50)
-                            Text("Health")
+                            Spacer()
+                            CircularProgressView(progress: 0.55, color: .green, size: .small, showProgress: true)
+                                .frame(width: 60, height: 60)
+                            Spacer()
+                            Text("Healthy")
                                 .font(.caption.bold())
+                            Spacer()
                         }
                         .padding(.leading, 22)
 
@@ -45,12 +58,7 @@ struct CustomFrameModifier: ViewModifier {
                     Spacer()
                     
                 }
-                content.frame(width: width, height: width, alignment: .center)
-                    .scaledToFill()
-                    .clipped()
-                    .cornerRadius(16)
-                    .shadow(radius: 8.0)
-                
+               
             }
         }
     }

@@ -29,23 +29,23 @@ struct TrendsView: View {
                             VStack {
                                 CircularProgressView(progress: 0.49, color: .green, size: .small, showProgress: true)
                                     .frame(width: 42, height: 42)
-                                Text("Health")
+                                Text("Healthy")
                                     .font(.caption.bold())
                             }
                             .padding()
-
-                            Spacer()
-                            
-                            VStack {
-                                CircularProgressView(progress: 0.04, color: .red, size: .small, showProgress: true)
-                                    .frame(width: 42, height: 42)
-                                Text("Down")
-                                    .font(.caption.bold())
-                            }
-                            .padding()
-
-                            
-                            Spacer()
+//
+//                            Spacer()
+//
+//                            VStack {
+//                                CircularProgressView(progress: 0.04, color: .red, size: .small, showProgress: true)
+//                                    .frame(width: 42, height: 42)
+//                                Text("Down")
+//                                    .font(.caption.bold())
+//                            }
+//                            .padding()
+//
+//
+//                            Spacer()
                         }
                     }
                 }
@@ -66,23 +66,23 @@ struct TrendsView: View {
                             VStack {
                                 CircularProgressView(progress: 0.04, color: .red, size: .small, showProgress: true)
                                     .frame(width: 42, height: 42)
-                                Text("Health")
+                                Text("Unhealthy")
                                     .font(.caption.bold())
                             }
                             .padding()
 
-                            Spacer()
+//                            Spacer()
                             
-                            VStack {
-                                CircularProgressView(progress: 0.03, color: .red, size: .small, showProgress: true)
-                                    .frame(width: 42, height: 42)
-                                Text("Down")
-                                    .font(.caption.bold())
-                            }
-                            .padding()
+//                            VStack {
+//                                CircularProgressView(progress: 0.03, color: .red, size: .small, showProgress: true)
+//                                    .frame(width: 42, height: 42)
+//                                Text("Down")
+//                                    .font(.caption.bold())
+//                            }
+//                            .padding()
 
                             
-                            Spacer()
+//                            Spacer()
                         }
                     }
                 }
@@ -186,7 +186,7 @@ struct GraphView: View {
     
     func animateGraph(fromChange: Bool = false){
         for (index, _) in sampleAnalytics.enumerated() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * (fromChange ? 0.03 : 0.05))  {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * (fromChange ? 0.03 : 0.01))  {
                 withAnimation(fromChange ? .easeInOut(duration: 0.6) : .interactiveSpring(response: 0.8, dampingFraction: 0.8, blendDuration: 0.8)) {
                     sampleAnalytics[index].animate = true
                 }
