@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import os
 
 class SplashScreenManager: ObservableObject {
     
@@ -18,6 +19,7 @@ class SplashScreenManager: ObservableObject {
         Task {
             launchState = .dismiss
             self.launchState = .finished
+            Logger.plantPal.debug("Splash screen is being dismissed")
         }
     }
 }

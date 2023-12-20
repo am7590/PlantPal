@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import os
 
 extension FileManager {
     func retrieveImage(with id: String) -> UIImage? {
@@ -14,7 +15,7 @@ extension FileManager {
             let imageData = try Data(contentsOf: url)
             return UIImage(data: imageData)
         } catch {
-            //            print(error.localizedDescription)
+            Logger.plantPal.error("Could not retrieve image from url: \(url) with error: \(error)")
             return nil
         }
     }
@@ -25,10 +26,10 @@ extension FileManager {
                 let url = URL.documentsDirectory.appendingPathComponent("\(id).jpg")
                 try data.write(to: url)
             } catch {
-                print(error.localizedDescription)
+                Logger.plantPal.error("\(#function) \(error.localizedDescription)")
             }
         } else {
-            print("Could not save image")
+            Logger.plantPal.error("Could not save image: \(id)")
         }
     }
     
@@ -41,7 +42,7 @@ extension FileManager {
                 print(error.localizedDescription)
             }
         } else {
-            print("Image does not exist")
+            Logger.plantPal.error("\(#function) Could not delete image: \(id)")
         }
     }
 }

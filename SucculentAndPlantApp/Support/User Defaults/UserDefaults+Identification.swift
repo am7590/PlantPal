@@ -7,6 +7,8 @@
 
 import Foundation
 
+// This has been depreciated
+// It should be deleted soon?
 extension UserDefaults {
 
     public enum UserDefaultsKey {

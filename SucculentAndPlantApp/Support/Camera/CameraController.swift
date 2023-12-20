@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import os
 
 protocol CameraControllerDelegate: AnyObject {
     func cameraControllerDidCaptureImage(_ image: UIImage)
@@ -86,26 +87,26 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { (granted) in
                 if granted {
-                    print("the user has granted to access the camera")
+                    Logger.plantPal.debug("Opening camera")
                     DispatchQueue.main.async {
                         self.setupCaptureSession()
                     }
                 } else {
-                    print("the user has not granted to access the camera")
+                    Logger.plantPal.error("User did not grant permission to use the camera. Dismissing...")
                     self.handleDismiss()
                 }
             }
             
         case .denied:
-            print("the user has denied previously to access the camera.")
+            Logger.plantPal.error("The user has denied previously to access the camera. Dismissing...")
             self.handleDismiss()
             
         case .restricted:
-            print("the user can't give camera access due to some restriction.")
+            Logger.plantPal.error("The user can't give camera access due to some restriction. Dismissing...")
             self.handleDismiss()
             
         default:
-            print("something has wrong due to we can't access the camera.")
+            Logger.plantPal.error("Cannot access camera. Dismissing...")
             self.handleDismiss()
         }
     }
@@ -120,7 +121,7 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
                     captureSession.addInput(input)
                 }
             } catch let error {
-                print("Failed to set input device with error: \(error)")
+                Logger.plantPal.error("AVCaptureSession failed to set input device with error: \(error)")
             }
             
             if captureSession.canAddOutput(photoOutput) {
@@ -155,9 +156,8 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let imageData = photo.fileDataRepresentation() else { return }
         let previewImage = UIImage(data: imageData)
-        print("imageData: \(previewImage)")
+        Logger.plantPal.debug("Finished proccing photo: \(previewImage.debugDescription)")
         delegate?.cameraControllerDidCaptureImage(previewImage!)
-
         
         let photoPreviewContainer = PhotoPreviewView(frame: self.view.frame)
         photoPreviewContainer.photoImageView.image = previewImage

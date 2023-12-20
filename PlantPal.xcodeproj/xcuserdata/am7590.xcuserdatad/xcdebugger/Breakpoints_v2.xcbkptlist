@@ -1,0 +1,927 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "3C4CADAC-FC8A-4238-8C4D-2DE9B7579E24"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E1F63C40-600D-403C-BAD7-74EF7CA6C7E0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/Succulent Detail/SucculentFormState.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "107A1653-A8F2-4BC3-B7B6-7A3712197D82"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/Succulent Detail/SucculentFormState.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A7F69100-62F7-4E6E-A6CE-100B097C99E6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/Succulent Detail/SucculentFormState.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "38B51AB0-09D6-4A5F-8E4F-2F9A547BC9A7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/Succulent Detail/SuccuelentFormViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "uiImage"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C3BA6C05-662E-4189-947E-F48D83E0642B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/Succulent Detail/SucculentFormView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "C3BA6C05-662E-4189-947E-F48D83E0642B - 7610870bc666d8fb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #8 (Swift.Optional&lt;_PhotosUI_SwiftUI.PhotosPickerItem&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, perform: (&#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in SucculentAndPlantApp.SucculentFormView.body.getter : some"
+                  moduleName = "SucculentAndPlantApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/Succulent%20Detail/SucculentFormView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
+                  offsetFromSymbolStart = "536">
+               </Location>
+               <Location
+                  uuid = "C3BA6C05-662E-4189-947E-F48D83E0642B - ac989c0da5bd247d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #8 (Swift.Optional&lt;_PhotosUI_SwiftUI.PhotosPickerItem&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, perform: (&#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in SucculentAndPlantApp.SucculentFormView.body.getter : some"
+                  moduleName = "SucculentAndPlantApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/Succulent%20Detail/SucculentFormView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
+                  offsetFromSymbolStart = "352">
+               </Location>
+               <Location
+                  uuid = "C3BA6C05-662E-4189-947E-F48D83E0642B - 7610870bc666d8fb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #8 (Swift.Optional&lt;_PhotosUI_SwiftUI.PhotosPickerItem&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, perform: (&#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in SucculentAndPlantApp.SucculentFormView.body.getter : some"
+                  moduleName = "SucculentAndPlantApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/Succulent%20Detail/SucculentFormView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
+                  offsetFromSymbolStart = "676">
+               </Location>
+               <Location
+                  uuid = "C3BA6C05-662E-4189-947E-F48D83E0642B - ac989c0da5bd247d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #8 (Swift.Optional&lt;_PhotosUI_SwiftUI.PhotosPickerItem&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, perform: (&#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in SucculentAndPlantApp.SucculentFormView.body.getter : some"
+                  moduleName = "SucculentAndPlantApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/Succulent%20Detail/SucculentFormView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
+                  offsetFromSymbolStart = "492">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "61B017BC-8490-4E63-9C56-DB837119EB15"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/Succulent List/SucculentListViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "handleDeepLinkingToItem(url:grpcViewModel:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "61B017BC-8490-4E63-9C56-DB837119EB15 - 285462aa3d49d972"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPal.SucculentListView.handleDeepLinkingToItem(url: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/Succulent%20List/SucculentListViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "828">
+               </Location>
+               <Location
+                  uuid = "61B017BC-8490-4E63-9C56-DB837119EB15 - 285462aa3d49d972"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPal.SucculentListView.handleDeepLinkingToItem(url: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/Succulent%20List/SucculentListViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "1148">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1DB76480-3B6A-4A16-B743-A637F5E8198E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/gRPC Helpers/GRPCViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "createNewPlant(identifier:name:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1DB76480-3B6A-4A16-B743-A637F5E8198E - e19ccfc5101fde7f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "1DB76480-3B6A-4A16-B743-A637F5E8198E - e4e1b61bdf3fc70"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "1DB76480-3B6A-4A16-B743-A637F5E8198E - 5b21a49ad9c79a71"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "1DB76480-3B6A-4A16-B743-A637F5E8198E - 421a00cdc0859777"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(8) suspend resume partial function for closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  uuid = "1DB76480-3B6A-4A16-B743-A637F5E8198E - c069ed8a57975cf6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async -&gt; () in closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "1DB76480-3B6A-4A16-B743-A637F5E8198E - e19ccfc5101fde7f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "1DB76480-3B6A-4A16-B743-A637F5E8198E - d35f204f4360d933"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "672">
+               </Location>
+               <Location
+                  uuid = "1DB76480-3B6A-4A16-B743-A637F5E8198E - bea99b7cebcee47f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) await resume partial function for closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "1DB76480-3B6A-4A16-B743-A637F5E8198E - 421a00cdc0859731"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(8) suspend resume partial function for closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "885D3411-1E64-4751-9F7D-96EE5713A133"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A74105D6-D7F8-4694-8682-21E46A6DEFF4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/Succulent Detail/SucculentFormView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1F013A0B-8AEE-475B-92F1-4B65551BE56E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/gRPC Helpers/GRPCViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "createNewPlant(identifier:name:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1F013A0B-8AEE-475B-92F1-4B65551BE56E - 35cae1724d5a5dbb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "480">
+               </Location>
+               <Location
+                  uuid = "1F013A0B-8AEE-475B-92F1-4B65551BE56E - 33d9856833626bef"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) await resume partial function for closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "1F013A0B-8AEE-475B-92F1-4B65551BE56E - a485c1f0c27f1bb9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "1F013A0B-8AEE-475B-92F1-4B65551BE56E - 7d2771b302ccfcb8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "132">
+               </Location>
+               <Location
+                  uuid = "1F013A0B-8AEE-475B-92F1-4B65551BE56E - ce6c11348dab3f59"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "272">
+               </Location>
+               <Location
+                  uuid = "1F013A0B-8AEE-475B-92F1-4B65551BE56E - d11d87ed2d794c4d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "1F013A0B-8AEE-475B-92F1-4B65551BE56E - 7d2771b302ccfd5b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  uuid = "1F013A0B-8AEE-475B-92F1-4B65551BE56E - d35f204f4360d85c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "96">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "85AD614F-636D-4DBA-B417-4A8E096BC345"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/Succulent Detail/SucculentFormView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DFF62567-EA64-4FEA-82ED-11DCFC923C4E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/gRPC Helpers/GRPCViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "createNewPlant(identifier:name:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DFF62567-EA64-4FEA-82ED-11DCFC923C4E - 3c8c7d40008ed13d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  uuid = "DFF62567-EA64-4FEA-82ED-11DCFC923C4E - 4390f2739dde8670"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "240">
+               </Location>
+               <Location
+                  uuid = "DFF62567-EA64-4FEA-82ED-11DCFC923C4E - 4390f2739dde8636"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "220">
+               </Location>
+               <Location
+                  uuid = "DFF62567-EA64-4FEA-82ED-11DCFC923C4E - ce6c11348dab3f3e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "DFF62567-EA64-4FEA-82ED-11DCFC923C4E - 4390f2739dde8636"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.createNewPlant(identifier: Swift.String, name: Swift.String) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "228">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DFA85FDB-5628-44BA-8306-4CFBC66DF8D7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/gRPC Helpers/GRPCViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "createPlantEntry(identifier:name:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DFA85FDB-5628-44BA-8306-4CFBC66DF8D7 - 9c209a7267b4b775"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for PlantPal.GRPCViewModel.createPlantEntry(identifier: Swift.String, name: Swift.String) async throws -&gt; Swift.String"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "240">
+               </Location>
+               <Location
+                  uuid = "DFA85FDB-5628-44BA-8306-4CFBC66DF8D7 - 9c209a7267b4b775"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for PlantPal.GRPCViewModel.createPlantEntry(identifier: Swift.String, name: Swift.String) async throws -&gt; Swift.String"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "204">
+               </Location>
+               <Location
+                  uuid = "DFA85FDB-5628-44BA-8306-4CFBC66DF8D7 - 65675c06c0200977"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPal.GRPCViewModel.createPlantEntry(identifier: Swift.String, name: Swift.String) async throws -&gt; Swift.String"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  uuid = "DFA85FDB-5628-44BA-8306-4CFBC66DF8D7 - 9c209a7267b4b737"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for PlantPal.GRPCViewModel.createPlantEntry(identifier: Swift.String, name: Swift.String) async throws -&gt; Swift.String"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "152">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "174D7B2C-B828-442F-8951-4C10FD0278E0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/gRPC Helpers/GRPCViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "createPlantEntry(identifier:name:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4233F524-6DEC-4F02-BA64-F56674637445"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/gRPC Helpers/GRPCViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "updateExistingPlant(with:name:lastWatered:lastHealthCheck:lastIdentification:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4233F524-6DEC-4F02-BA64-F56674637445 - dc202bef47d33055"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPal.GRPCViewModel.updateExistingPlant(with: Swift.String, name: Swift.String, lastWatered: Swift.Optional&lt;Swift.Int64&gt;, lastHealthCheck: Swift.Optional&lt;Swift.Int64&gt;, lastIdentification: Swift.Optional&lt;Swift.Int64&gt;) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "376">
+               </Location>
+               <Location
+                  uuid = "4233F524-6DEC-4F02-BA64-F56674637445 - abef70aaeeb58c29"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout PlantPal.Plant_PlantIdentifier) -&gt; () in PlantPal.GRPCViewModel.updateExistingPlant(with: Swift.String, name: Swift.String, lastWatered: Swift.Optional&lt;Swift.Int64&gt;, lastHealthCheck: Swift.Optional&lt;Swift.Int64&gt;, lastIdentification: Swift.Optional&lt;Swift.Int64&gt;) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FBF52746-B881-4908-BDF8-E5DABA960401"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/gRPC Helpers/GRPCViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "updateExistingPlant(with:name:lastWatered:lastHealthCheck:lastIdentification:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FBF52746-B881-4908-BDF8-E5DABA960401 - f8161e5dd20c7c41"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #2 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.updateExistingPlant(with: Swift.String, name: Swift.String, lastWatered: Swift.Optional&lt;Swift.Int64&gt;, lastHealthCheck: Swift.Optional&lt;Swift.Int64&gt;, lastIdentification: Swift.Optional&lt;Swift.Int64&gt;) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "532">
+               </Location>
+               <Location
+                  uuid = "FBF52746-B881-4908-BDF8-E5DABA960401 - f8161e5dd20c7c41"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #2 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.updateExistingPlant(with: Swift.String, name: Swift.String, lastWatered: Swift.Optional&lt;Swift.Int64&gt;, lastHealthCheck: Swift.Optional&lt;Swift.Int64&gt;, lastIdentification: Swift.Optional&lt;Swift.Int64&gt;) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "612">
+               </Location>
+               <Location
+                  uuid = "FBF52746-B881-4908-BDF8-E5DABA960401 - f8161e5dd20c7c41"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #2 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.updateExistingPlant(with: Swift.String, name: Swift.String, lastWatered: Swift.Optional&lt;Swift.Int64&gt;, lastHealthCheck: Swift.Optional&lt;Swift.Int64&gt;, lastIdentification: Swift.Optional&lt;Swift.Int64&gt;) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "528">
+               </Location>
+               <Location
+                  uuid = "FBF52746-B881-4908-BDF8-E5DABA960401 - f8161e5dd20c7c41"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #2 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.updateExistingPlant(with: Swift.String, name: Swift.String, lastWatered: Swift.Optional&lt;Swift.Int64&gt;, lastHealthCheck: Swift.Optional&lt;Swift.Int64&gt;, lastIdentification: Swift.Optional&lt;Swift.Int64&gt;) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "608">
+               </Location>
+               <Location
+                  uuid = "FBF52746-B881-4908-BDF8-E5DABA960401 - f8161e5dd20c7c41"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #2 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.updateExistingPlant(with: Swift.String, name: Swift.String, lastWatered: Swift.Optional&lt;Swift.Int64&gt;, lastHealthCheck: Swift.Optional&lt;Swift.Int64&gt;, lastIdentification: Swift.Optional&lt;Swift.Int64&gt;) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "580">
+               </Location>
+               <Location
+                  uuid = "FBF52746-B881-4908-BDF8-E5DABA960401 - f8161e5dd20c7c41"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #2 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.updateExistingPlant(with: Swift.String, name: Swift.String, lastWatered: Swift.Optional&lt;Swift.Int64&gt;, lastHealthCheck: Swift.Optional&lt;Swift.Int64&gt;, lastIdentification: Swift.Optional&lt;Swift.Int64&gt;) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "780">
+               </Location>
+               <Location
+                  uuid = "FBF52746-B881-4908-BDF8-E5DABA960401 - f8161e5dd20c7c41"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #2 @Sendable () async -&gt; () in PlantPal.GRPCViewModel.updateExistingPlant(with: Swift.String, name: Swift.String, lastWatered: Swift.Optional&lt;Swift.Int64&gt;, lastHealthCheck: Swift.Optional&lt;Swift.Int64&gt;, lastIdentification: Swift.Optional&lt;Swift.Int64&gt;) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/SucculentAndPlantApp/SucculentAndPlantApp/gRPC%20Helpers/GRPCViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "868">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4B0E0160-1FA9-499C-8778-07C63D68689B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Library/Developer/Xcode/DerivedData/PlantPal-bkjlkkiyodzyugeqsnxguufckypd/SourcePackages/checkouts/swift-nio/Sources/NIOPosix/MultiThreadedEventLoopGroup.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "setupThreadAndEventLoop(name:parentGroup:selectorFactory:initializer:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "33E7D03E-9AF2-4136-9CED-81212DB5F3F9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/grpc/Helpers/GRPCManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "init()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

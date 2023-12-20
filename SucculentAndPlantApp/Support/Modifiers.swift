@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-
-/// Toggle between list or grid image frames
+// Toggle between list or grid image frames
 struct CustomFrameModifier: ViewModifier {
     var active: Bool
     var width: CGFloat
@@ -17,7 +16,50 @@ struct CustomFrameModifier: ViewModifier {
         if active {
             content.frame(width: width, height: width, alignment: .center)
         } else {
-            content
+            HStack {
+                
+                content.frame(width: width, height: width, alignment: .center)
+                    .scaledToFill()
+                    .clipped()
+                    .cornerRadius(16)
+                    .shadow(radius: 8.0)
+                
+                
+                VStack(alignment: .leading) {
+                    
+                    Group {
+                        Text("Spikey Guy").font(.title3).bold()
+                            .padding(.leading)
+
+                        Text("Bergeranthus concavus").font(.subheadline).italic()
+                            .padding(.leading)
+
+                    }
+//                    .padding(.top)
+               
+                    Spacer()
+                    HStack {
+                        
+                        Spacer()
+                        VStack {
+                            Spacer()
+                            CircularProgressView(progress: 0.55, color: .green, size: .small, showProgress: true)
+                                .frame(width: 60, height: 60)
+                            Spacer()
+                            Text("Healthy")
+                                .font(.caption.bold())
+                            Spacer()
+                        }
+                        .padding(.leading, 22)
+
+                        Spacer()
+                    }
+                 
+                    Spacer()
+                    
+                }
+               
+            }
         }
     }
 }

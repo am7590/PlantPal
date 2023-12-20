@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// Generic error views
+// Add to the enum to make more error responses
+
 enum ErrorHandlingType {
     case noData, failedToLoad
     
@@ -31,7 +34,7 @@ enum ErrorHandlingType {
     var subtitle: String {
         switch self {
         case .noData:
-            return "Tap + to create a new plant or succulent"
+            return "Tap + to add a plant and start tracking its health"
         case .failedToLoad:
             return "Womp Womp :("
         }
