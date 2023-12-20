@@ -11,3 +11,7 @@ Join the TestFlight: https://testflight.apple.com/join/NI5fZIlp
 - Most data is kept on CoreData and persisted with CloudKit
 - gRPC server (build in Rust) which essentially wraps Postgres: https://github.com/am7590/PlantPal-GRPC-Postgres
 - APNs microservice which dispatches push notifications: https://github.com/am7590/PlantPal-APNs
+
+## Dependencies
+- grpc-swift: https://github.com/grpc/grpc-swift
+- BRYXBanner: https://github.com/bryx-inc/BRYXBanner
