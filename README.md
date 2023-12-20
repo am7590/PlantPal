@@ -5,7 +5,7 @@ Join the TestFlight: https://testflight.apple.com/join/NI5fZIlp
 - Remember to water your plants with scheduled push notifications
 - Identify the species of your plant
 - Perform health checks and watch as your plant's health improves over time
-- Upload a new photo of your plant each time you water it to build a time lapse
+- Upload a new photo of your plant each time you water it to build a time lapse of your plant's growth
 
 ## API
 - Most data is kept on CoreData and persisted with CloudKit
@@ -15,3 +15,9 @@ Join the TestFlight: https://testflight.apple.com/join/NI5fZIlp
 ## Dependencies
 - grpc-swift: https://github.com/grpc/grpc-swift
 - BRYXBanner: https://github.com/bryx-inc/BRYXBanner
+
+## TODO 
+- [ ] Refactor SucculentListView
+- [ ] Cache identification & health check requests
+- [ ] Finish trends view; Use real data here
+- [ ] Polish UI and rename files for consistency
