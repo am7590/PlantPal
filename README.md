@@ -17,7 +17,7 @@ Join the TestFlight: https://testflight.apple.com/join/NI5fZIlp
 - BRYXBanner: https://github.com/bryx-inc/BRYXBanner
 
 ## TODO 
-- [ ] Refactor SucculentListView
+- [ ] Refactor SucculentFormView
 - [ ] Cache identification & health check requests
 - [ ] Finish trends view; Use real data here
 - [ ] Polish UI and rename files for consistency
