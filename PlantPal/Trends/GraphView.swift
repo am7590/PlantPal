@@ -14,11 +14,11 @@ struct GraphView: View {
     
     var body: some View {
         ZStack {
-            if viewModel.isLoading {
-                AnimatedChart(dataItems: viewModel.dataItems)
-            } else {
-                AnimatedChart(dataItems: viewModel.dataItems)
-            }
+//            if viewModel.isLoading {
+//                AnimatedChart(dataItems: viewModel.dataItems)
+//            } else {
+            AnimatedChart(dataItems: viewModel.dataItems)
+//            }
         }
     }
     
