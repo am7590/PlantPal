@@ -40,8 +40,6 @@
 		29455BA62B32648F00DBB58C /* SucculentListView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29455BA52B32648F00DBB58C /* SucculentListView+Helpers.swift */; };
 		29455BA82B326D4600DBB58C /* Date+StripTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29455BA72B326D4600DBB58C /* Date+StripTime.swift */; };
 		29455BAA2B327A2300DBB58C /* HealthReportView+FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29455BA92B327A2300DBB58C /* HealthReportView+FetchData.swift */; };
-		29588A3E2AF178790043DA65 /* store.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29588A3C2AF178790043DA65 /* store.grpc.swift */; };
-		29588A3F2AF178790043DA65 /* store.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29588A3D2AF178790043DA65 /* store.pb.swift */; };
 		295F875D2A6313230021CA70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295F875C2A6313230021CA70 /* AppDelegate.swift */; };
 		297ECD242A2BA5F700739538 /* CameraHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD232A2BA5F700739538 /* CameraHostingView.swift */; };
 		297ECD262A2BA61600739538 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD252A2BA61600739538 /* CameraController.swift */; };
@@ -53,6 +51,8 @@
 		298249512AFA894F00463CE5 /* MPLUSRounded1c-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298249502AFA894F00463CE5 /* MPLUSRounded1c-Thin.ttf */; };
 		298249542AFA897C00463CE5 /* Geist-UltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 298249522AFA897C00463CE5 /* Geist-UltraLight.otf */; };
 		298249552AFA897C00463CE5 /* Geist-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 298249532AFA897C00463CE5 /* Geist-Thin.otf */; };
+		29A2A85A2B436235008C6850 /* store.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2A8582B436235008C6850 /* store.pb.swift */; };
+		29A2A85B2B436235008C6850 /* store.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2A8592B436235008C6850 /* store.grpc.swift */; };
 		29B38A1F2A5B565D00023032 /* ImagePageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B38A1E2A5B565D00023032 /* ImagePageSliderView.swift */; };
 		29B9CD0A2A64A2BB00E7BAAD /* SucculentFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9CD092A64A2BB00E7BAAD /* SucculentFormView.swift */; };
 		29B9CD262A68268200E7BAAD /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9CD252A68268200E7BAAD /* CircularProgressView.swift */; };
@@ -111,8 +111,6 @@
 		29455BA52B32648F00DBB58C /* SucculentListView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SucculentListView+Helpers.swift"; sourceTree = "<group>"; };
 		29455BA72B326D4600DBB58C /* Date+StripTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StripTime.swift"; sourceTree = "<group>"; };
 		29455BA92B327A2300DBB58C /* HealthReportView+FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthReportView+FetchData.swift"; sourceTree = "<group>"; };
-		29588A3C2AF178790043DA65 /* store.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = store.grpc.swift; sourceTree = "<group>"; };
-		29588A3D2AF178790043DA65 /* store.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = store.pb.swift; sourceTree = "<group>"; };
 		295F875C2A6313230021CA70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		297ECD232A2BA5F700739538 /* CameraHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHostingView.swift; sourceTree = "<group>"; };
 		297ECD252A2BA61600739538 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
@@ -124,6 +122,8 @@
 		298249502AFA894F00463CE5 /* MPLUSRounded1c-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Thin.ttf"; sourceTree = "<group>"; };
 		298249522AFA897C00463CE5 /* Geist-UltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geist-UltraLight.otf"; sourceTree = "<group>"; };
 		298249532AFA897C00463CE5 /* Geist-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geist-Thin.otf"; sourceTree = "<group>"; };
+		29A2A8582B436235008C6850 /* store.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = store.pb.swift; sourceTree = "<group>"; };
+		29A2A8592B436235008C6850 /* store.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = store.grpc.swift; sourceTree = "<group>"; };
 		29B38A1E2A5B565D00023032 /* ImagePageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageSliderView.swift; sourceTree = "<group>"; };
 		29B9CD092A64A2BB00E7BAAD /* SucculentFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentFormView.swift; sourceTree = "<group>"; };
 		29B9CD252A68268200E7BAAD /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
@@ -334,9 +334,9 @@
 		29588A3B2AF178790043DA65 /* grpc */ = {
 			isa = PBXGroup;
 			children = (
+				29A2A8592B436235008C6850 /* store.grpc.swift */,
+				29A2A8582B436235008C6850 /* store.pb.swift */,
 				29588A402AF1F9AE0043DA65 /* Helpers */,
-				29588A3C2AF178790043DA65 /* store.grpc.swift */,
-				29588A3D2AF178790043DA65 /* store.pb.swift */,
 			);
 			path = grpc;
 			sourceTree = "<group>";
@@ -538,6 +538,7 @@
 				29F02D112A648D29001D2FF3 /* ReportsLoadState.swift in Sources */,
 				2942388A2A0B0B1500CE0A63 /* Modifiers.swift in Sources */,
 				297ECD242A2BA5F700739538 /* CameraHostingView.swift in Sources */,
+				29A2A85A2B436235008C6850 /* store.pb.swift in Sources */,
 				29E05A162A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift in Sources */,
 				29455BA42B325BE700DBB58C /* CodableImage.swift in Sources */,
 				2919F3312A0815700003194F /* SucculentAndPlantAppApp.swift in Sources */,
@@ -548,7 +549,7 @@
 				29B38A1F2A5B565D00023032 /* ImagePageSliderView.swift in Sources */,
 				2919F3672A086ECA0003194F /* Router.swift in Sources */,
 				29FDA7272AF16993008E8EE2 /* GRPCViewModel.swift in Sources */,
-				29588A3F2AF178790043DA65 /* store.pb.swift in Sources */,
+				29A2A85B2B436235008C6850 /* store.grpc.swift in Sources */,
 				29455BA82B326D4600DBB58C /* Date+StripTime.swift in Sources */,
 				2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */,
 				297F423A2AFB4CFF00167243 /* NSNotification.swift in Sources */,
@@ -556,7 +557,6 @@
 				29455BA22B32546D00DBB58C /* Logger.swift in Sources */,
 				2919F3592A083C6E0003194F /* ImageSelector.swift in Sources */,
 				2924DD192A9BE8BA00BD9299 /* SplashScreenManager.swift in Sources */,
-				29588A3E2AF178790043DA65 /* store.grpc.swift in Sources */,
 				2919F34A2A08330F0003194F /* Item.swift in Sources */,
 				2924DD172A9BE89E00BD9299 /* SplashScreenState.swift in Sources */,
 				29455BAA2B327A2300DBB58C /* HealthReportView+FetchData.swift in Sources */,

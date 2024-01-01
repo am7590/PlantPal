@@ -37,7 +37,7 @@ struct ImagePageSliderView: View {
                     
                     PageControl(numberOfPages: images.count, currentPage: $currentIndex)
                         .padding(.bottom, -50)
-                        .id(UUID())
+                        .animation(.default, value: UUID())
                 }
             }
         }
