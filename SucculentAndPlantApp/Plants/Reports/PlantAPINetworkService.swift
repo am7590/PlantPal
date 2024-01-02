@@ -15,8 +15,8 @@ class PlantAPINetworkService {
     private let jsonDecoder = JSONDecoder()
     private let cacheKeyPrefix = "apiResponseCache_"
 
-    func fetchData<T: Codable>(url: URL, requestBody: [String: Any], completion: @escaping (Result<T, Error>) -> Void) {
-        let cacheKey = cacheKeyPrefix + "\(url.absoluteString):\(GRPCManager.shared.userDeviceToken)"        
+    func fetchData<T: Codable>(url: URL, cacheKey: String, requestBody: [String: Any], completion: @escaping (Result<T, Error>) -> Void) {
+        let cacheKey = cacheKeyPrefix + "\(cacheKey):\(GRPCManager.shared.userDeviceToken)"
         if let cachedData = UserDefaults.standard.data(forKey: cacheKey) {
             do {
                 let cachedResponse = try jsonDecoder.decode(T.self, from: cachedData)

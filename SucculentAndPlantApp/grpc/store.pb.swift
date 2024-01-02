@@ -20,7 +20,6 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-/// TODO: get user device ID; push token
 public struct Plant_Plant {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -107,6 +106,15 @@ public struct Plant_PlantInformation {
   /// Clears the value of `lastIdentification`. Subsequent reads from it will return its default value.
   public mutating func clearLastIdentification() {self._lastIdentification = nil}
 
+  public var identifiedSpeciesName: String {
+    get {return _identifiedSpeciesName ?? String()}
+    set {_identifiedSpeciesName = newValue}
+  }
+  /// Returns true if `identifiedSpeciesName` has been explicitly set.
+  public var hasIdentifiedSpeciesName: Bool {return self._identifiedSpeciesName != nil}
+  /// Clears the value of `identifiedSpeciesName`. Subsequent reads from it will return its default value.
+  public mutating func clearIdentifiedSpeciesName() {self._identifiedSpeciesName = nil}
+
   public var unknownFields = SwiftProtobuf.UnknownStorage()
 
   public init() {}
@@ -115,6 +123,7 @@ public struct Plant_PlantInformation {
   fileprivate var _lastWatered: Int64? = nil
   fileprivate var _lastHealthCheck: Int64? = nil
   fileprivate var _lastIdentification: Int64? = nil
+  fileprivate var _identifiedSpeciesName: String? = nil
 }
 
 public struct Plant_PlantUpdateRequest {
@@ -184,6 +193,60 @@ public struct Plant_ListOfPlants {
   public init() {}
 }
 
+/// Health check info
+public struct Plant_HealthCheckInformation {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var probability: Double = 0
+
+  public var historicalProbabilities: Plant_HistoricalProbabilities {
+    get {return _historicalProbabilities ?? Plant_HistoricalProbabilities()}
+    set {_historicalProbabilities = newValue}
+  }
+  /// Returns true if `historicalProbabilities` has been explicitly set.
+  public var hasHistoricalProbabilities: Bool {return self._historicalProbabilities != nil}
+  /// Clears the value of `historicalProbabilities`. Subsequent reads from it will return its default value.
+  public mutating func clearHistoricalProbabilities() {self._historicalProbabilities = nil}
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+
+  fileprivate var _historicalProbabilities: Plant_HistoricalProbabilities? = nil
+}
+
+public struct Plant_HistoricalProbabilities {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var probabilities: [Plant_Probabilities] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct Plant_Probabilities {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var id: String = String()
+
+  public var name: String = String()
+
+  public var probability: Double = 0
+
+  public var date: Int64 = 0
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
 #if swift(>=5.5) && canImport(_Concurrency)
 extension Plant_Plant: @unchecked Sendable {}
 extension Plant_PlantIdentifier: @unchecked Sendable {}
@@ -192,6 +255,9 @@ extension Plant_PlantUpdateRequest: @unchecked Sendable {}
 extension Plant_PlantResponse: @unchecked Sendable {}
 extension Plant_PlantUpdateResponse: @unchecked Sendable {}
 extension Plant_ListOfPlants: @unchecked Sendable {}
+extension Plant_HealthCheckInformation: @unchecked Sendable {}
+extension Plant_HistoricalProbabilities: @unchecked Sendable {}
+extension Plant_Probabilities: @unchecked Sendable {}
 #endif  // swift(>=5.5) && canImport(_Concurrency)
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -285,6 +351,7 @@ extension Plant_PlantInformation: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     2: .same(proto: "lastWatered"),
     3: .same(proto: "lastHealthCheck"),
     4: .same(proto: "lastIdentification"),
+    5: .same(proto: "identifiedSpeciesName"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -297,6 +364,7 @@ extension Plant_PlantInformation: SwiftProtobuf.Message, SwiftProtobuf._MessageI
       case 2: try { try decoder.decodeSingularInt64Field(value: &self._lastWatered) }()
       case 3: try { try decoder.decodeSingularInt64Field(value: &self._lastHealthCheck) }()
       case 4: try { try decoder.decodeSingularInt64Field(value: &self._lastIdentification) }()
+      case 5: try { try decoder.decodeSingularStringField(value: &self._identifiedSpeciesName) }()
       default: break
       }
     }
@@ -319,6 +387,9 @@ extension Plant_PlantInformation: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     try { if let v = self._lastIdentification {
       try visitor.visitSingularInt64Field(value: v, fieldNumber: 4)
     } }()
+    try { if let v = self._identifiedSpeciesName {
+      try visitor.visitSingularStringField(value: v, fieldNumber: 5)
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -327,6 +398,7 @@ extension Plant_PlantInformation: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     if lhs._lastWatered != rhs._lastWatered {return false}
     if lhs._lastHealthCheck != rhs._lastHealthCheck {return false}
     if lhs._lastIdentification != rhs._lastIdentification {return false}
+    if lhs._identifiedSpeciesName != rhs._identifiedSpeciesName {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -465,6 +537,130 @@ extension Plant_ListOfPlants: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
 
   public static func ==(lhs: Plant_ListOfPlants, rhs: Plant_ListOfPlants) -> Bool {
     if lhs.plants != rhs.plants {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Plant_HealthCheckInformation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".HealthCheckInformation"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "probability"),
+    2: .same(proto: "historicalProbabilities"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularDoubleField(value: &self.probability) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._historicalProbabilities) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
+    if self.probability != 0 {
+      try visitor.visitSingularDoubleField(value: self.probability, fieldNumber: 1)
+    }
+    try { if let v = self._historicalProbabilities {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    } }()
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Plant_HealthCheckInformation, rhs: Plant_HealthCheckInformation) -> Bool {
+    if lhs.probability != rhs.probability {return false}
+    if lhs._historicalProbabilities != rhs._historicalProbabilities {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Plant_HistoricalProbabilities: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".HistoricalProbabilities"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "probabilities"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeRepeatedMessageField(value: &self.probabilities) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.probabilities.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.probabilities, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Plant_HistoricalProbabilities, rhs: Plant_HistoricalProbabilities) -> Bool {
+    if lhs.probabilities != rhs.probabilities {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Plant_Probabilities: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".Probabilities"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .same(proto: "name"),
+    3: .same(proto: "probability"),
+    4: .same(proto: "date"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularStringField(value: &self.id) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.name) }()
+      case 3: try { try decoder.decodeSingularDoubleField(value: &self.probability) }()
+      case 4: try { try decoder.decodeSingularInt64Field(value: &self.date) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if !self.name.isEmpty {
+      try visitor.visitSingularStringField(value: self.name, fieldNumber: 2)
+    }
+    if self.probability != 0 {
+      try visitor.visitSingularDoubleField(value: self.probability, fieldNumber: 3)
+    }
+    if self.date != 0 {
+      try visitor.visitSingularInt64Field(value: self.date, fieldNumber: 4)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: Plant_Probabilities, rhs: Plant_Probabilities) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.name != rhs.name {return false}
+    if lhs.probability != rhs.probability {return false}
+    if lhs.date != rhs.date {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

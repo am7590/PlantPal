@@ -32,8 +32,7 @@ class GRPCViewModel: ObservableObject {
         }
     }
     
-    func updateExistingPlant(with identifier: String, name: String, lastWatered: Int64?, lastHealthCheck: Int64?, lastIdentification: Int64?) {
-        
+    func updateExistingPlant(with identifier: String, name: String, lastWatered: Int64?, lastHealthCheck: Int64?, lastIdentification: Int64?, identifiedSpeciesName: String?) {
         let plantID = Plant_PlantIdentifier.with {
             $0.sku = identifier
             $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
@@ -44,21 +43,19 @@ class GRPCViewModel: ObservableObject {
                 // Fetch the current item's information
                 var currentPlantInfo = try await self.fetchPlantInfo(using: plantID)
                 
-                // Check if lastWatered field was updated
-                if let serverLastWatered = currentPlantInfo?.lastWatered, let lastWatered = lastWatered, serverLastWatered != lastWatered {
+                // Update fields as necessary
+                if let lastWatered = lastWatered {
                     currentPlantInfo?.lastWatered = lastWatered
                 }
-                
-                // Check if last health check date was updated
                 if let lastHealthCheck = lastHealthCheck {
                     currentPlantInfo?.lastHealthCheck = lastHealthCheck
                 }
-                
-                // Check if last ID date was updated
                 if let lastIdentification = lastIdentification {
                     currentPlantInfo?.lastIdentification = lastIdentification
                 }
-                
+                if let identifiedSpeciesName = identifiedSpeciesName {
+                    currentPlantInfo?.identifiedSpeciesName = identifiedSpeciesName
+                }
                 currentPlantInfo?.name = name
                 
                 let response = try await self.updatePlantEntry(with: plantID, updatedInfo: currentPlantInfo!)
@@ -68,12 +65,13 @@ class GRPCViewModel: ObservableObject {
                 await self.updateUIResult(with: error.localizedDescription)
                 
                 Task {
-                    let banner = await Banner(title: "Could not update", subtitle: "\(error.localizedDescription)", image: UIImage(named: "alert"), backgroundColor: UIColor(red: 48.00/255.0, green: 174.0/255.0, blue: 51.5/255.0, alpha: 1.000))
+                    let banner = await Banner(title: "Could not update", subtitle: "\(error.localizedDescription)", image: UIImage(named: "alert"), backgroundColor: .red)
                     await banner.show(duration: 5.0)
                 }
             }
         }
     }
+
     
     func removePlantEntry(with identifier: String) {
         let plantID = Plant_PlantIdentifier.with {

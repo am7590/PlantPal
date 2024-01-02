@@ -68,6 +68,7 @@ struct SucculentAndPlantAppApp: App {
                                 Label("Trends", systemImage: "chart.bar.fill")
                             }
                             .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                            .environmentObject(grpcViewModel)
                     }
                     .tint(.primary)
                 }

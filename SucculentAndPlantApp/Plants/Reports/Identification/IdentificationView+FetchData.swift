@@ -11,7 +11,7 @@ import SwiftUI
 import os
 
 extension IdentificationView {
-    func fetchData(images: [UIImage]) {
+    func fetchData(forPlant plant: String, images: [UIImage]) {
         let base64Images = images.compactMap { image -> String? in
             guard let imageData = image.jpegData(compressionQuality: 0.8) else {
                 Logger.networking.error("Failed to convert image to data")
@@ -28,13 +28,15 @@ extension IdentificationView {
             "similar_images": true
         ]
 
-        PlantAPINetworkService.shared.fetchData(url: apiUrl, requestBody: requestBody) { (result: Result<IdentificationResponse, Error>) in
+        PlantAPINetworkService.shared.fetchData(url: apiUrl, cacheKey: plant, requestBody: requestBody) { (result: Result<IdentificationResponse, Error>) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
                     self.identificationData = response
                     self.loadState = .loaded
                     self.cacheSimilarImages(response)
+                    
+                    
                 case .failure(let error):
                     Logger.networking.error("Error fetching data from plant id API: \(error)")
                     self.loadState = .failed

@@ -31,7 +31,7 @@ extension HealthReportView {
         ]
         
         let apiUrl = URL(string: "https://plant.id/api/v3/health_assessment")!
-        PlantAPINetworkService.shared.fetchData(url: apiUrl, requestBody: requestBody) { (result: Result<HealthAssessmentResponse, Error>) in
+        PlantAPINetworkService.shared.fetchData(url: apiUrl, cacheKey: plantName, requestBody: requestBody) { (result: Result<HealthAssessmentResponse, Error>) in
             switch result {
             case .success(let response):
                 DispatchQueue.main.async {

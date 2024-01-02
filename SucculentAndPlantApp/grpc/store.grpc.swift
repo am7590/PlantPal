@@ -40,6 +40,16 @@ public protocol Plant_PlantServiceClientProtocol: GRPCClient {
     _ request: Plant_PlantUpdateRequest,
     callOptions: CallOptions?
   ) -> UnaryCall<Plant_PlantUpdateRequest, Plant_PlantUpdateResponse>
+
+  func identificationRequest(
+    _ request: Plant_PlantIdentifier,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Plant_PlantIdentifier, Plant_PlantInformation>
+
+  func healthCheckRequest(
+    _ request: Plant_PlantIdentifier,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Plant_PlantIdentifier, Plant_HealthCheckInformation>
 }
 
 extension Plant_PlantServiceClientProtocol {
@@ -47,7 +57,7 @@ extension Plant_PlantServiceClientProtocol {
     return "plant.PlantService"
   }
 
-  /// Insert item
+  /// Create plant
   ///
   /// - Parameters:
   ///   - request: Request to send to Add.
@@ -65,7 +75,7 @@ extension Plant_PlantServiceClientProtocol {
     )
   }
 
-  /// Remove item(s) from the inventory
+  /// Remove plant
   ///
   /// - Parameters:
   ///   - request: Request to send to Remove.
@@ -83,7 +93,7 @@ extension Plant_PlantServiceClientProtocol {
     )
   }
 
-  /// Get a singular item's info
+  /// Get plant 
   ///
   /// - Parameters:
   ///   - request: Request to send to Get.
@@ -101,7 +111,7 @@ extension Plant_PlantServiceClientProtocol {
     )
   }
 
-  //// Get a list of plants that need to be watered
+  /// Get a list of plants that need to be watered (for APNs microservice)
   ///
   /// - Parameters:
   ///   - request: Request to send to GetWatered.
@@ -119,7 +129,7 @@ extension Plant_PlantServiceClientProtocol {
     )
   }
 
-  /// Increase/decrease an item's stock quantity
+  /// Update plant schedule/health check/id
   ///
   /// - Parameters:
   ///   - request: Request to send to UpdatePlant.
@@ -134,6 +144,42 @@ extension Plant_PlantServiceClientProtocol {
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeUpdatePlantInterceptors() ?? []
+    )
+  }
+
+  /// Caching
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to IdentificationRequest.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  public func identificationRequest(
+    _ request: Plant_PlantIdentifier,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Plant_PlantIdentifier, Plant_PlantInformation> {
+    return self.makeUnaryCall(
+      path: Plant_PlantServiceClientMetadata.Methods.identificationRequest.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeIdentificationRequestInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to HealthCheckRequest
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to HealthCheckRequest.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  public func healthCheckRequest(
+    _ request: Plant_PlantIdentifier,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Plant_PlantIdentifier, Plant_HealthCheckInformation> {
+    return self.makeUnaryCall(
+      path: Plant_PlantServiceClientMetadata.Methods.healthCheckRequest.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeHealthCheckRequestInterceptors() ?? []
     )
   }
 }
@@ -224,6 +270,16 @@ public protocol Plant_PlantServiceAsyncClientProtocol: GRPCClient {
     _ request: Plant_PlantUpdateRequest,
     callOptions: CallOptions?
   ) -> GRPCAsyncUnaryCall<Plant_PlantUpdateRequest, Plant_PlantUpdateResponse>
+
+  func makeIdentificationRequestCall(
+    _ request: Plant_PlantIdentifier,
+    callOptions: CallOptions?
+  ) -> GRPCAsyncUnaryCall<Plant_PlantIdentifier, Plant_PlantInformation>
+
+  func makeHealthCheckRequestCall(
+    _ request: Plant_PlantIdentifier,
+    callOptions: CallOptions?
+  ) -> GRPCAsyncUnaryCall<Plant_PlantIdentifier, Plant_HealthCheckInformation>
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -295,6 +351,30 @@ extension Plant_PlantServiceAsyncClientProtocol {
       interceptors: self.interceptors?.makeUpdatePlantInterceptors() ?? []
     )
   }
+
+  public func makeIdentificationRequestCall(
+    _ request: Plant_PlantIdentifier,
+    callOptions: CallOptions? = nil
+  ) -> GRPCAsyncUnaryCall<Plant_PlantIdentifier, Plant_PlantInformation> {
+    return self.makeAsyncUnaryCall(
+      path: Plant_PlantServiceClientMetadata.Methods.identificationRequest.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeIdentificationRequestInterceptors() ?? []
+    )
+  }
+
+  public func makeHealthCheckRequestCall(
+    _ request: Plant_PlantIdentifier,
+    callOptions: CallOptions? = nil
+  ) -> GRPCAsyncUnaryCall<Plant_PlantIdentifier, Plant_HealthCheckInformation> {
+    return self.makeAsyncUnaryCall(
+      path: Plant_PlantServiceClientMetadata.Methods.healthCheckRequest.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeHealthCheckRequestInterceptors() ?? []
+    )
+  }
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -358,6 +438,30 @@ extension Plant_PlantServiceAsyncClientProtocol {
       interceptors: self.interceptors?.makeUpdatePlantInterceptors() ?? []
     )
   }
+
+  public func identificationRequest(
+    _ request: Plant_PlantIdentifier,
+    callOptions: CallOptions? = nil
+  ) async throws -> Plant_PlantInformation {
+    return try await self.performAsyncUnaryCall(
+      path: Plant_PlantServiceClientMetadata.Methods.identificationRequest.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeIdentificationRequestInterceptors() ?? []
+    )
+  }
+
+  public func healthCheckRequest(
+    _ request: Plant_PlantIdentifier,
+    callOptions: CallOptions? = nil
+  ) async throws -> Plant_HealthCheckInformation {
+    return try await self.performAsyncUnaryCall(
+      path: Plant_PlantServiceClientMetadata.Methods.healthCheckRequest.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeHealthCheckRequestInterceptors() ?? []
+    )
+  }
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -393,6 +497,12 @@ public protocol Plant_PlantServiceClientInterceptorFactoryProtocol: Sendable {
 
   /// - Returns: Interceptors to use when invoking 'updatePlant'.
   func makeUpdatePlantInterceptors() -> [ClientInterceptor<Plant_PlantUpdateRequest, Plant_PlantUpdateResponse>]
+
+  /// - Returns: Interceptors to use when invoking 'identificationRequest'.
+  func makeIdentificationRequestInterceptors() -> [ClientInterceptor<Plant_PlantIdentifier, Plant_PlantInformation>]
+
+  /// - Returns: Interceptors to use when invoking 'healthCheckRequest'.
+  func makeHealthCheckRequestInterceptors() -> [ClientInterceptor<Plant_PlantIdentifier, Plant_HealthCheckInformation>]
 }
 
 public enum Plant_PlantServiceClientMetadata {
@@ -405,6 +515,8 @@ public enum Plant_PlantServiceClientMetadata {
       Plant_PlantServiceClientMetadata.Methods.get,
       Plant_PlantServiceClientMetadata.Methods.getWatered,
       Plant_PlantServiceClientMetadata.Methods.updatePlant,
+      Plant_PlantServiceClientMetadata.Methods.identificationRequest,
+      Plant_PlantServiceClientMetadata.Methods.healthCheckRequest,
     ]
   )
 
@@ -438,6 +550,18 @@ public enum Plant_PlantServiceClientMetadata {
       path: "/plant.PlantService/UpdatePlant",
       type: GRPCCallType.unary
     )
+
+    public static let identificationRequest = GRPCMethodDescriptor(
+      name: "IdentificationRequest",
+      path: "/plant.PlantService/IdentificationRequest",
+      type: GRPCCallType.unary
+    )
+
+    public static let healthCheckRequest = GRPCMethodDescriptor(
+      name: "HealthCheckRequest",
+      path: "/plant.PlantService/HealthCheckRequest",
+      type: GRPCCallType.unary
+    )
   }
 }
 
@@ -445,20 +569,25 @@ public enum Plant_PlantServiceClientMetadata {
 public protocol Plant_PlantServiceProvider: CallHandlerProvider {
   var interceptors: Plant_PlantServiceServerInterceptorFactoryProtocol? { get }
 
-  /// Insert item
+  /// Create plant
   func add(request: Plant_Plant, context: StatusOnlyCallContext) -> EventLoopFuture<Plant_PlantResponse>
 
-  /// Remove item(s) from the inventory
+  /// Remove plant
   func remove(request: Plant_PlantIdentifier, context: StatusOnlyCallContext) -> EventLoopFuture<Plant_PlantResponse>
 
-  /// Get a singular item's info
+  /// Get plant 
   func get(request: Plant_PlantIdentifier, context: StatusOnlyCallContext) -> EventLoopFuture<Plant_Plant>
 
-  //// Get a list of plants that need to be watered
+  /// Get a list of plants that need to be watered (for APNs microservice)
   func getWatered(request: SwiftProtobuf.Google_Protobuf_Empty, context: StatusOnlyCallContext) -> EventLoopFuture<Plant_ListOfPlants>
 
-  /// Increase/decrease an item's stock quantity
+  /// Update plant schedule/health check/id
   func updatePlant(request: Plant_PlantUpdateRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Plant_PlantUpdateResponse>
+
+  /// Caching
+  func identificationRequest(request: Plant_PlantIdentifier, context: StatusOnlyCallContext) -> EventLoopFuture<Plant_PlantInformation>
+
+  func healthCheckRequest(request: Plant_PlantIdentifier, context: StatusOnlyCallContext) -> EventLoopFuture<Plant_HealthCheckInformation>
 }
 
 extension Plant_PlantServiceProvider {
@@ -518,6 +647,24 @@ extension Plant_PlantServiceProvider {
         userFunction: self.updatePlant(request:context:)
       )
 
+    case "IdentificationRequest":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Plant_PlantIdentifier>(),
+        responseSerializer: ProtobufSerializer<Plant_PlantInformation>(),
+        interceptors: self.interceptors?.makeIdentificationRequestInterceptors() ?? [],
+        userFunction: self.identificationRequest(request:context:)
+      )
+
+    case "HealthCheckRequest":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Plant_PlantIdentifier>(),
+        responseSerializer: ProtobufSerializer<Plant_HealthCheckInformation>(),
+        interceptors: self.interceptors?.makeHealthCheckRequestInterceptors() ?? [],
+        userFunction: self.healthCheckRequest(request:context:)
+      )
+
     default:
       return nil
     }
@@ -530,35 +677,46 @@ public protocol Plant_PlantServiceAsyncProvider: CallHandlerProvider, Sendable {
   static var serviceDescriptor: GRPCServiceDescriptor { get }
   var interceptors: Plant_PlantServiceServerInterceptorFactoryProtocol? { get }
 
-  /// Insert item
+  /// Create plant
   func add(
     request: Plant_Plant,
     context: GRPCAsyncServerCallContext
   ) async throws -> Plant_PlantResponse
 
-  /// Remove item(s) from the inventory
+  /// Remove plant
   func remove(
     request: Plant_PlantIdentifier,
     context: GRPCAsyncServerCallContext
   ) async throws -> Plant_PlantResponse
 
-  /// Get a singular item's info
+  /// Get plant 
   func get(
     request: Plant_PlantIdentifier,
     context: GRPCAsyncServerCallContext
   ) async throws -> Plant_Plant
 
-  //// Get a list of plants that need to be watered
+  /// Get a list of plants that need to be watered (for APNs microservice)
   func getWatered(
     request: SwiftProtobuf.Google_Protobuf_Empty,
     context: GRPCAsyncServerCallContext
   ) async throws -> Plant_ListOfPlants
 
-  /// Increase/decrease an item's stock quantity
+  /// Update plant schedule/health check/id
   func updatePlant(
     request: Plant_PlantUpdateRequest,
     context: GRPCAsyncServerCallContext
   ) async throws -> Plant_PlantUpdateResponse
+
+  /// Caching
+  func identificationRequest(
+    request: Plant_PlantIdentifier,
+    context: GRPCAsyncServerCallContext
+  ) async throws -> Plant_PlantInformation
+
+  func healthCheckRequest(
+    request: Plant_PlantIdentifier,
+    context: GRPCAsyncServerCallContext
+  ) async throws -> Plant_HealthCheckInformation
 }
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
@@ -625,6 +783,24 @@ extension Plant_PlantServiceAsyncProvider {
         wrapping: { try await self.updatePlant(request: $0, context: $1) }
       )
 
+    case "IdentificationRequest":
+      return GRPCAsyncServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Plant_PlantIdentifier>(),
+        responseSerializer: ProtobufSerializer<Plant_PlantInformation>(),
+        interceptors: self.interceptors?.makeIdentificationRequestInterceptors() ?? [],
+        wrapping: { try await self.identificationRequest(request: $0, context: $1) }
+      )
+
+    case "HealthCheckRequest":
+      return GRPCAsyncServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Plant_PlantIdentifier>(),
+        responseSerializer: ProtobufSerializer<Plant_HealthCheckInformation>(),
+        interceptors: self.interceptors?.makeHealthCheckRequestInterceptors() ?? [],
+        wrapping: { try await self.healthCheckRequest(request: $0, context: $1) }
+      )
+
     default:
       return nil
     }
@@ -652,6 +828,14 @@ public protocol Plant_PlantServiceServerInterceptorFactoryProtocol: Sendable {
   /// - Returns: Interceptors to use when handling 'updatePlant'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeUpdatePlantInterceptors() -> [ServerInterceptor<Plant_PlantUpdateRequest, Plant_PlantUpdateResponse>]
+
+  /// - Returns: Interceptors to use when handling 'identificationRequest'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeIdentificationRequestInterceptors() -> [ServerInterceptor<Plant_PlantIdentifier, Plant_PlantInformation>]
+
+  /// - Returns: Interceptors to use when handling 'healthCheckRequest'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeHealthCheckRequestInterceptors() -> [ServerInterceptor<Plant_PlantIdentifier, Plant_HealthCheckInformation>]
 }
 
 public enum Plant_PlantServiceServerMetadata {
@@ -664,6 +848,8 @@ public enum Plant_PlantServiceServerMetadata {
       Plant_PlantServiceServerMetadata.Methods.get,
       Plant_PlantServiceServerMetadata.Methods.getWatered,
       Plant_PlantServiceServerMetadata.Methods.updatePlant,
+      Plant_PlantServiceServerMetadata.Methods.identificationRequest,
+      Plant_PlantServiceServerMetadata.Methods.healthCheckRequest,
     ]
   )
 
@@ -695,6 +881,18 @@ public enum Plant_PlantServiceServerMetadata {
     public static let updatePlant = GRPCMethodDescriptor(
       name: "UpdatePlant",
       path: "/plant.PlantService/UpdatePlant",
+      type: GRPCCallType.unary
+    )
+
+    public static let identificationRequest = GRPCMethodDescriptor(
+      name: "IdentificationRequest",
+      path: "/plant.PlantService/IdentificationRequest",
+      type: GRPCCallType.unary
+    )
+
+    public static let healthCheckRequest = GRPCMethodDescriptor(
+      name: "HealthCheckRequest",
+      path: "/plant.PlantService/HealthCheckRequest",
       type: GRPCCallType.unary
     )
   }

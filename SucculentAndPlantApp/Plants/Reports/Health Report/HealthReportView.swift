@@ -62,7 +62,7 @@ struct HealthReportView: View {
                             }
                             .listStyle(InsetGroupedListStyle())
                             .onAppear {
-                                grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: nil, lastHealthCheck: Int64(Date().timeIntervalSince1970), lastIdentification: nil)
+                                grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: nil, lastHealthCheck: Int64(Date().timeIntervalSince1970), lastIdentification: nil, identifiedSpeciesName: nil)
                             }
 
                         } else {

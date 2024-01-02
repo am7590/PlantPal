@@ -21,7 +21,7 @@ struct IdentificationView: View {
             case .loading:
                 ProgressView("Identifying Plant...")
                     .onAppear {
-                        fetchData(images: viewModel.uiImage)
+                        fetchData(forPlant: viewModel.name, images: viewModel.uiImage)
                     }
             case .loaded:
                 if let identificationData {
@@ -58,8 +58,7 @@ struct IdentificationView: View {
                                 .onTapGesture {
                                     UserDefaults.standard.hasBeenIdentified(for: viewModel.name, with: suggestion.name)
                                     dismiss()
-                                    grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: nil, lastHealthCheck: nil, lastIdentification: Int64(Date().timeIntervalSince1970))
-                                
+                                    grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: nil, lastHealthCheck: nil, lastIdentification: Int64(Date().timeIntervalSince1970), identifiedSpeciesName: suggestion.name)
                                 }
                             }
                         } else {
