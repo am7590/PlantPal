@@ -55,12 +55,18 @@
 		29A2A85B2B436235008C6850 /* store.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2A8592B436235008C6850 /* store.grpc.swift */; };
 		29A2A85E2B438DD6008C6850 /* PlantAPINetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2A85D2B438DD6008C6850 /* PlantAPINetworkService.swift */; };
 		29A2A8612B438E2A008C6850 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2A8602B438E2A008C6850 /* ImageCacheManager.swift */; };
+		29A2A8632B439BCF008C6850 /* DefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2A8622B439BCF008C6850 /* DefaultValues.swift */; };
+		29A2A8692B439D22008C6850 /* PlaceholderShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2A8642B439D22008C6850 /* PlaceholderShimmerView.swift */; };
+		29A2A86A2B439D22008C6850 /* GraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2A8652B439D22008C6850 /* GraphViewModel.swift */; };
+		29A2A86B2B439D22008C6850 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2A8662B439D22008C6850 /* GraphView.swift */; };
+		29A2A86C2B439D22008C6850 /* TrendsGraphDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2A8672B439D22008C6850 /* TrendsGraphDataItem.swift */; };
+		29A2A86D2B439D22008C6850 /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2A8682B439D22008C6850 /* TrendsView.swift */; };
+		29A2A8702B439D31008C6850 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 29A2A86F2B439D31008C6850 /* Shimmer */; };
 		29B38A1F2A5B565D00023032 /* ImagePageSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B38A1E2A5B565D00023032 /* ImagePageSliderView.swift */; };
 		29B9CD0A2A64A2BB00E7BAAD /* SucculentFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9CD092A64A2BB00E7BAAD /* SucculentFormView.swift */; };
 		29B9CD262A68268200E7BAAD /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9CD252A68268200E7BAAD /* CircularProgressView.swift */; };
 		29B9CD432A69ED4700E7BAAD /* UserDefaults+Identification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9CD422A69ED4700E7BAAD /* UserDefaults+Identification.swift */; };
 		29E05A162A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */; };
-		29E0CA122B0A8C04004173CC /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E0CA112B0A8C04004173CC /* TrendsView.swift */; };
 		29E0CA142B0AE09B004173CC /* Double+stringFormal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E0CA132B0AE09B004173CC /* Double+stringFormal.swift */; };
 		29F02D032A64742E001D2FF3 /* HealthAssessmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D022A64742E001D2FF3 /* HealthAssessmentResponse.swift */; };
 		29F02D062A64809B001D2FF3 /* IdentificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F02D052A64809B001D2FF3 /* IdentificationView.swift */; };
@@ -128,12 +134,17 @@
 		29A2A8592B436235008C6850 /* store.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = store.grpc.swift; sourceTree = "<group>"; };
 		29A2A85D2B438DD6008C6850 /* PlantAPINetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantAPINetworkService.swift; sourceTree = "<group>"; };
 		29A2A8602B438E2A008C6850 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		29A2A8622B439BCF008C6850 /* DefaultValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValues.swift; sourceTree = "<group>"; };
+		29A2A8642B439D22008C6850 /* PlaceholderShimmerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderShimmerView.swift; sourceTree = "<group>"; };
+		29A2A8652B439D22008C6850 /* GraphViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewModel.swift; sourceTree = "<group>"; };
+		29A2A8662B439D22008C6850 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		29A2A8672B439D22008C6850 /* TrendsGraphDataItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendsGraphDataItem.swift; sourceTree = "<group>"; };
+		29A2A8682B439D22008C6850 /* TrendsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrendsView.swift; path = ../../../../PlantPalApp/PlantPal/Trends/TrendsView.swift; sourceTree = "<group>"; };
 		29B38A1E2A5B565D00023032 /* ImagePageSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePageSliderView.swift; sourceTree = "<group>"; };
 		29B9CD092A64A2BB00E7BAAD /* SucculentFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentFormView.swift; sourceTree = "<group>"; };
 		29B9CD252A68268200E7BAAD /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		29B9CD422A69ED4700E7BAAD /* UserDefaults+Identification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Identification.swift"; sourceTree = "<group>"; };
 		29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+ClipToBounds.swift"; sourceTree = "<group>"; };
-		29E0CA112B0A8C04004173CC /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
 		29E0CA132B0AE09B004173CC /* Double+stringFormal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+stringFormal.swift"; sourceTree = "<group>"; };
 		29F02D022A64742E001D2FF3 /* HealthAssessmentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAssessmentResponse.swift; sourceTree = "<group>"; };
 		29F02D052A64809B001D2FF3 /* IdentificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationView.swift; sourceTree = "<group>"; };
@@ -156,6 +167,7 @@
 				29FDA7232AF168DD008E8EE2 /* protoc-gen-grpc-swift in Frameworks */,
 				29FDA71F2AF168DD008E8EE2 /* CGRPCZlib in Frameworks */,
 				290FAA072A17022D00B98124 /* ZIPFoundation in Frameworks */,
+				29A2A8702B439D31008C6850 /* Shimmer in Frameworks */,
 				29F03F362AE3427E00F60AF4 /* BRYXBanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,7 +418,11 @@
 		29E0CA102B0A8BF7004173CC /* Trends */ = {
 			isa = PBXGroup;
 			children = (
-				29E0CA112B0A8C04004173CC /* TrendsView.swift */,
+				29A2A8662B439D22008C6850 /* GraphView.swift */,
+				29A2A8652B439D22008C6850 /* GraphViewModel.swift */,
+				29A2A8642B439D22008C6850 /* PlaceholderShimmerView.swift */,
+				29A2A8672B439D22008C6850 /* TrendsGraphDataItem.swift */,
+				29A2A8682B439D22008C6850 /* TrendsView.swift */,
 			);
 			path = Trends;
 			sourceTree = "<group>";
@@ -436,6 +452,7 @@
 			children = (
 				29F02D102A648D29001D2FF3 /* ReportsLoadState.swift */,
 				29A2A85D2B438DD6008C6850 /* PlantAPINetworkService.swift */,
+				29A2A8622B439BCF008C6850 /* DefaultValues.swift */,
 				29A2A85F2B438E11008C6850 /* Images */,
 				29F02CFF2A646821001D2FF3 /* Health Report */,
 				29F02D042A648091001D2FF3 /* Identification */,
@@ -465,6 +482,7 @@
 				29FDA71E2AF168DD008E8EE2 /* CGRPCZlib */,
 				29FDA7202AF168DD008E8EE2 /* GRPC */,
 				29FDA7222AF168DD008E8EE2 /* protoc-gen-grpc-swift */,
+				29A2A86F2B439D31008C6850 /* Shimmer */,
 			);
 			productName = SucculentAndPlantApp;
 			productReference = 2919F32D2A0815700003194F /* PlantPal.app */;
@@ -498,6 +516,7 @@
 				290FAA052A17022D00B98124 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 				29F03F342AE3427E00F60AF4 /* XCRemoteSwiftPackageReference "BRYXBanner" */,
 				29FDA71D2AF168DD008E8EE2 /* XCRemoteSwiftPackageReference "grpc-swift" */,
+				29A2A86E2B439D31008C6850 /* XCRemoteSwiftPackageReference "Shimmer" */,
 			);
 			productRefGroup = 2919F32E2A0815700003194F /* Products */;
 			projectDirPath = "";
@@ -532,6 +551,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2919F33A2A0815710003194F /* PersistenceController.swift in Sources */,
+				29A2A86C2B439D22008C6850 /* TrendsGraphDataItem.swift in Sources */,
 				29F02D0B2A648C60001D2FF3 /* RemoteImage.swift in Sources */,
 				29B9CD262A68268200E7BAAD /* CircularProgressView.swift in Sources */,
 				29FDA7252AF16921008E8EE2 /* GRPCManager.swift in Sources */,
@@ -540,6 +560,7 @@
 				29455BA62B32648F00DBB58C /* SucculentListView+Helpers.swift in Sources */,
 				2919F3332A0815700003194F /* SucculentListView.swift in Sources */,
 				29F02D082A6480F7001D2FF3 /* IdentificationReponse.swift in Sources */,
+				29A2A8692B439D22008C6850 /* PlaceholderShimmerView.swift in Sources */,
 				29F02D332A64A125001D2FF3 /* HealthReportView.swift in Sources */,
 				2919F3522A083A070003194F /* SuccuelentFormViewModel.swift in Sources */,
 				295F875D2A6313230021CA70 /* AppDelegate.swift in Sources */,
@@ -556,6 +577,7 @@
 				29E05A162A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift in Sources */,
 				29455BA42B325BE700DBB58C /* CodableImage.swift in Sources */,
 				2919F3312A0815700003194F /* SucculentAndPlantAppApp.swift in Sources */,
+				29A2A8632B439BCF008C6850 /* DefaultValues.swift in Sources */,
 				29E0CA142B0AE09B004173CC /* Double+stringFormal.swift in Sources */,
 				2919F35B2A083C860003194F /* FIleManager+Image.swift in Sources */,
 				2924DD1B2A9BE91300BD9299 /* SplashScreenView.swift in Sources */,
@@ -566,6 +588,7 @@
 				29A2A85B2B436235008C6850 /* store.grpc.swift in Sources */,
 				29455BA82B326D4600DBB58C /* Date+StripTime.swift in Sources */,
 				2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */,
+				29A2A86A2B439D22008C6850 /* GraphViewModel.swift in Sources */,
 				297F423A2AFB4CFF00167243 /* NSNotification.swift in Sources */,
 				2919F3622A0840280003194F /* FileManager+JSON.swift in Sources */,
 				29455BA22B32546D00DBB58C /* Logger.swift in Sources */,
@@ -576,15 +599,16 @@
 				2924DD172A9BE89E00BD9299 /* SplashScreenState.swift in Sources */,
 				29455BAA2B327A2300DBB58C /* HealthReportView+FetchData.swift in Sources */,
 				29A2A85E2B438DD6008C6850 /* PlantAPINetworkService.swift in Sources */,
-				29E0CA122B0A8C04004173CC /* TrendsView.swift in Sources */,
 				2919F34D2A0834540003194F /* UIImageTransformer.swift in Sources */,
 				290FAA0C2A17085300B98124 /* ImagePicker.swift in Sources */,
 				2919F34F2A08347B0003194F /* ImageContainer.swift in Sources */,
 				29F02D062A64809B001D2FF3 /* IdentificationView.swift in Sources */,
 				297ECD262A2BA61600739538 /* CameraController.swift in Sources */,
 				297ECD282A2BA66E00739538 /* PhotoPreviewView.swift in Sources */,
+				29A2A86D2B439D22008C6850 /* TrendsView.swift in Sources */,
 				29B9CD432A69ED4700E7BAAD /* UserDefaults+Identification.swift in Sources */,
 				2942388C2A0B232600CE0A63 /* Animation+Repeat.swift in Sources */,
+				29A2A86B2B439D22008C6850 /* GraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -813,6 +837,14 @@
 				minimumVersion = 0.9.16;
 			};
 		};
+		29A2A86E2B439D31008C6850 /* XCRemoteSwiftPackageReference "Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/joshuajhomann/Shimmer.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		29F03F342AE3427E00F60AF4 /* XCRemoteSwiftPackageReference "BRYXBanner" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bryx-inc/BRYXBanner.git";
@@ -836,6 +868,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 290FAA052A17022D00B98124 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
 			productName = ZIPFoundation;
+		};
+		29A2A86F2B439D31008C6850 /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29A2A86E2B439D31008C6850 /* XCRemoteSwiftPackageReference "Shimmer" */;
+			productName = Shimmer;
 		};
 		29F03F352AE3427E00F60AF4 /* BRYXBanner */ = {
 			isa = XCSwiftPackageProductDependency;

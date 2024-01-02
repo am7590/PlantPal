@@ -8,7 +8,7 @@
 import Foundation
 import os
 
-// Makes requests to a third-party API which performs plant id and health checks
+// Makes and caches requests to a third-party API which performs plant id and health checks
 class PlantAPINetworkService {
     static let shared = PlantAPINetworkService()
     private let urlSession = URLSession.shared
@@ -65,22 +65,5 @@ class PlantAPINetworkService {
                 completion(.failure(error))
             }
         }.resume()
-    }
-}
-
-
-protocol Defaultable {
-    static func defaultValue() -> Self
-}
-
-extension HealthAssessmentResponse: Defaultable {
-    static func defaultValue() -> HealthAssessmentResponse {
-        return HealthAssessmentResponse(result: HealthResult(isPlant: HealthPrediction(probability: 40.0, binary: false, threshold: 1.0), isHealthy: HealthPrediction(probability: 0, binary: false, threshold: 0), disease: DiseaseSuggestion(suggestions: [])))
-    }
-}
-
-extension IdentificationResponse: Defaultable {
-    static func defaultValue() -> IdentificationResponse {
-        return IdentificationResponse(result: IdentificationResult(classification: IdentificationClassification(suggestions: [])))
     }
 }

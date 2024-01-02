@@ -52,4 +52,8 @@ extension Item {
     var gridPosition: Int {
         Int(truncating: position ?? 0)
     }
+    
+    var healthData: [TrendsGraphDataItem] {
+        []
+    }
 }

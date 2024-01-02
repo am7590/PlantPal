@@ -11,7 +11,7 @@ import SwiftUI
 // Add to the enum to make more error responses
 
 enum ErrorHandlingType {
-    case noData, failedToLoad
+    case noData, failedToLoad, noDataTrends
     
     var icon: String {
         switch self {
@@ -19,6 +19,8 @@ enum ErrorHandlingType {
             return "leaf.fill"
         case .failedToLoad:
             return "exclamationmark.square"
+        case .noDataTrends:
+            return "chart.bar.fill"
         }
     }
     
@@ -28,15 +30,19 @@ enum ErrorHandlingType {
             return "No Plants"
         case .failedToLoad:
             return "Failed To Load"
+        case .noDataTrends:
+            return "No Trends"
         }
     }
     
     var subtitle: String {
         switch self {
         case .noData:
-            return "Tap + to add a plant and start tracking its health"
+            return "Tap + to add a plant"
         case .failedToLoad:
-            return "Reach out to Alek if this persists"
+            return "Womp Womp :("
+        case .noDataTrends:
+            return "Create a plant to track its health"
         }
     }
 }
