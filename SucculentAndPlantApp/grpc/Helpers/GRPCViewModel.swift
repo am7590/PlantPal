@@ -32,32 +32,36 @@ class GRPCViewModel: ObservableObject {
         }
     }
     
-    func updateExistingPlant(with identifier: String, name: String, lastWatered: Int64?, lastHealthCheck: Int64?, lastIdentification: Int64?, identifiedSpeciesName: String?) {
-        let plantID = Plant_PlantIdentifier.with {
-            $0.sku = identifier
-            $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
-        }
+    func updateExistingPlant(with identifier: String, name: String, lastWatered: Int64?, lastHealthCheck: Int64?, lastIdentification: Int64?, identifiedSpeciesName: String?, newHealthProbability: String?) {
+  
         
         Task(priority: .background) {
             do {
                 // Fetch the current item's information
-                var currentPlantInfo = try await self.fetchPlantInfo(using: plantID)
+                var currentPlantInfo = try await self.fetchPlantInfo(using: identifier)
                 
                 // Update fields as necessary
-                if let lastWatered = lastWatered {
+                if let lastWatered {
                     currentPlantInfo?.lastWatered = lastWatered
                 }
-                if let lastHealthCheck = lastHealthCheck {
+                if let lastHealthCheck {
                     currentPlantInfo?.lastHealthCheck = lastHealthCheck
                 }
-                if let lastIdentification = lastIdentification {
+                if let lastIdentification {
                     currentPlantInfo?.lastIdentification = lastIdentification
                 }
-                if let identifiedSpeciesName = identifiedSpeciesName {
+                if let identifiedSpeciesName {
                     currentPlantInfo?.identifiedSpeciesName = identifiedSpeciesName
                 }
+                
+                // TODO: Update health data
+                
                 currentPlantInfo?.name = name
                 
+                let plantID = Plant_PlantIdentifier.with {
+                    $0.sku = identifier
+                    $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
+                }
                 let response = try await self.updatePlantEntry(with: plantID, updatedInfo: currentPlantInfo!)
                 await self.updateUIResult(with: response)
             } catch {
@@ -71,7 +75,7 @@ class GRPCViewModel: ObservableObject {
             }
         }
     }
-
+    
     
     func removePlantEntry(with identifier: String) {
         let plantID = Plant_PlantIdentifier.with {
@@ -95,6 +99,50 @@ class GRPCViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    public func fetchPlantInfo(using identifier: String) async throws -> Plant_PlantInformation? {
+        let plantID = Plant_PlantIdentifier.with {
+            $0.sku = identifier
+            $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
+        }
+        let channel = GRPCManager.shared.createChannel()
+        let client = Plant_PlantServiceNIOClient(channel: channel)
+        
+        let response = try await client.get(plantID)
+        let information = try await response.response.get().information
+        // Closing the channel asynchronously
+        Task {
+            _ = try? await channel.close().get()
+        }
+        
+        return information
+    }
+    
+    public func fetchHealthCheckInfo(for identifier: String) async throws -> Plant_HealthCheckInformation? {
+        let plantID = Plant_PlantIdentifier.with {
+            $0.sku = identifier
+            $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
+        }
+        
+        let channel = GRPCManager.shared.createChannel()
+        let client = Plant_PlantServiceNIOClient(channel: channel)
+        
+        do {
+            let response = try await client.healthCheckRequest(plantID)
+            let healthCheckInfo = try await response.response.get()
+            
+            // Close channel asynchronously
+            Task {
+                _ = try? await channel.close().get()
+            }
+            
+            return healthCheckInfo
+        } catch {
+            throw error
+        }
+        
+        
     }
 }
 
@@ -140,20 +188,6 @@ extension GRPCViewModel {
         }
         
         return "brik works!" // do I need a real response here?
-    }
-    
-    private func fetchPlantInfo(using identifier: Plant_PlantIdentifier) async throws -> Plant_PlantInformation? {
-        let channel = GRPCManager.shared.createChannel()
-        let client = Plant_PlantServiceNIOClient(channel: channel)
-        
-        let response = try await client.get(identifier)
-        let information = try await response.response.get().information
-        // Closing the channel asynchronously
-        Task {
-            _ = try? await channel.close().get()
-        }
-        
-        return information
     }
     
     private func updatePlantEntry(with identifier: Plant_PlantIdentifier, updatedInfo: Plant_PlantInformation) async throws -> String {

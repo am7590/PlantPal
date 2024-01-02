@@ -29,6 +29,10 @@ extension Item: Identifiable {
 }
 
 extension Item {
+    var itemId: String {
+        id ?? ""
+    }
+    
     var nameText: String {
         name ?? ""
     }

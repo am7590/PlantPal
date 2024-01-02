@@ -346,6 +346,17 @@
 			path = Animations;
 			sourceTree = "<group>";
 		};
+		294A54472B43AD48009C292A /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				29A2A8672B439D22008C6850 /* TrendsGraphDataItem.swift */,
+				29A2A8652B439D22008C6850 /* GraphViewModel.swift */,
+				29A2A8662B439D22008C6850 /* GraphView.swift */,
+				29A2A8642B439D22008C6850 /* PlaceholderShimmerView.swift */,
+			);
+			path = Graph;
+			sourceTree = "<group>";
+		};
 		29588A3B2AF178790043DA65 /* grpc */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,11 +429,8 @@
 		29E0CA102B0A8BF7004173CC /* Trends */ = {
 			isa = PBXGroup;
 			children = (
-				29A2A8662B439D22008C6850 /* GraphView.swift */,
-				29A2A8652B439D22008C6850 /* GraphViewModel.swift */,
-				29A2A8642B439D22008C6850 /* PlaceholderShimmerView.swift */,
-				29A2A8672B439D22008C6850 /* TrendsGraphDataItem.swift */,
 				29A2A8682B439D22008C6850 /* TrendsView.swift */,
+				294A54472B43AD48009C292A /* Graph */,
 			);
 			path = Trends;
 			sourceTree = "<group>";

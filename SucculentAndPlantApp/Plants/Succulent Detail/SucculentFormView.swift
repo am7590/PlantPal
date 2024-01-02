@@ -163,11 +163,11 @@ struct SucculentFormView: View {
             .alert("Add Plant Photo", isPresented: $viewModel.waterAlertIsDispayed) {
                 Button("Take Photo") {
                     showCameraSheet = true
-                    grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: Int64(Date().timeIntervalSince1970), lastHealthCheck: nil, lastIdentification: nil, identifiedSpeciesName: nil)
+                    grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: Int64(Date().timeIntervalSince1970), lastHealthCheck: nil, lastIdentification: nil, identifiedSpeciesName: nil, newHealthProbability: nil)
                 }
                 Button("Upload Photo") {
                     showPhotoSelectionSheet = true
-                    grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: Int64(Date().timeIntervalSince1970), lastHealthCheck: nil, lastIdentification: nil, identifiedSpeciesName: nil)
+                    grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: Int64(Date().timeIntervalSince1970), lastHealthCheck: nil, lastIdentification: nil, identifiedSpeciesName: nil, newHealthProbability: nil)
                 }
                 Button("Cancel", role: .cancel) { }
             }
@@ -205,7 +205,7 @@ struct SucculentFormView: View {
                     // TODO: Move this to viewModel
                     
                     let interval = viewModel.date.timeIntervalSince1970 * 86400
-                    grpcViewModel.updateExistingPlant(with: id, name: viewModel.name, lastWatered: Int64(interval), lastHealthCheck: nil, lastIdentification: nil, identifiedSpeciesName: nil)
+                    grpcViewModel.updateExistingPlant(with: id, name: viewModel.name, lastWatered: Int64(interval), lastHealthCheck: nil, lastIdentification: nil, identifiedSpeciesName: nil, newHealthProbability: nil)
     
                     item?.timestamp = viewModel.date
                     try? moc.save()
@@ -216,7 +216,7 @@ struct SucculentFormView: View {
                     // TODO: Move this to viewModel
                     
                     let interval = viewModel.date.timeIntervalSince1970 * 86400
-                    grpcViewModel.updateExistingPlant(with: id, name: viewModel.name, lastWatered: Int64(interval), lastHealthCheck: nil, lastIdentification: nil, identifiedSpeciesName: nil)
+                    grpcViewModel.updateExistingPlant(with: id, name: viewModel.name, lastWatered: Int64(interval), lastHealthCheck: nil, lastIdentification: nil, identifiedSpeciesName: nil, newHealthProbability: nil)
                     item?.interval = ((viewModel.amount) as NSNumber)
                     try? moc.save()
                 }

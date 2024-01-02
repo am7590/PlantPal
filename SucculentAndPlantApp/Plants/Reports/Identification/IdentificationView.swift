@@ -58,7 +58,7 @@ struct IdentificationView: View {
                                 .onTapGesture {
                                     UserDefaults.standard.hasBeenIdentified(for: viewModel.name, with: suggestion.name)
                                     dismiss()
-                                    grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: nil, lastHealthCheck: nil, lastIdentification: Int64(Date().timeIntervalSince1970), identifiedSpeciesName: suggestion.name)
+                                    grpcViewModel.updateExistingPlant(with: viewModel.id!, name: viewModel.name, lastWatered: nil, lastHealthCheck: nil, lastIdentification: Int64(Date().timeIntervalSince1970), identifiedSpeciesName: suggestion.name, newHealthProbability: nil)
                                 }
                             }
                         } else {
