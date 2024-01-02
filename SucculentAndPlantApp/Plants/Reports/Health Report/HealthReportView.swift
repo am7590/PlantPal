@@ -66,10 +66,10 @@ struct HealthReportView: View {
                             }
 
                         } else {
-                            Text("Failed to load health data")
+                            ErrorHandlingView(listType: .failedToLoad)
                         }
                     case .failed:
-                        Text("Failed to load. Please try again.")
+                        ErrorHandlingView(listType: .failedToLoad)
                     }
                 }
                 .navigationTitle("Health Report")
@@ -78,12 +78,12 @@ struct HealthReportView: View {
     }
 }
 
-//struct HealthReportView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let data = HealthAssessmentResponse(result: HealthResult(isHealthy: HealthPrediction(probability: 0.5421, binary: false, threshold: 0.5), disease: DiseaseSuggestion(suggestions: [Disease(id: "0", name: "Disease #1", probability: 0.243231, similarImages: []), Disease(id: "1", name: "Disease #2", probability: 0.243231, similarImages: []), Disease(id: "2", name: "Disease #3", probability: 0.243231, similarImages: [])])))
-//        HealthReportView(image: UIImage(systemName: "trash")!, plantName: "Plant", loadState: .loaded, healthData: data)
-//    }
-//}
+struct HealthReportView_Previews: PreviewProvider {
+    static var previews: some View {
+        let data = HealthAssessmentResponse(result: HealthResult(isPlant: HealthPrediction(probability: 40.0, binary: false, threshold: 1.0), isHealthy: HealthPrediction(probability: 0.5421, binary: false, threshold: 0.5), disease: DiseaseSuggestion(suggestions: [Disease(id: "0", name: "Disease #1", probability: 0.243231, similarImages: []), Disease(id: "1", name: "Disease #2", probability: 0.243231, similarImages: []), Disease(id: "2", name: "Disease #3", probability: 0.243231, similarImages: [])])))
+        HealthReportView(viewModel: SuccuelentFormViewModel([]), grpcViewModel: GRPCViewModel(), loadState: .failed, healthData: data)
+    }
+}
 
 struct DiseaseDetailView: View {
     let suggestion: Disease

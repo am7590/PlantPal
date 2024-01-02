@@ -36,7 +36,7 @@ enum ErrorHandlingType {
         case .noData:
             return "Tap + to add a plant and start tracking its health"
         case .failedToLoad:
-            return "Womp Womp :("
+            return "Reach out to Alek if this persists"
         }
     }
 }

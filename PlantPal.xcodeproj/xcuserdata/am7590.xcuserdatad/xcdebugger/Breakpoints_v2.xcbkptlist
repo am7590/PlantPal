@@ -923,5 +923,131 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1850B4B6-9C9E-4FB4-A6AE-E928CE8DDF80"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/Plants/Reports/PlantAPINetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "fetchData(url:requestBody:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1850B4B6-9C9E-4FB4-A6AE-E928CE8DDF80 - e7582fc81dbbd2ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPal.PlantAPINetworkService.fetchData&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(url: Foundation.URL, requestBody: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: (Swift.Result&lt;&#x3c4;_0_0, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/plantpal-final/PlantPal/SucculentAndPlantApp/Plants/Reports/PlantAPINetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "2060">
+               </Location>
+               <Location
+                  uuid = "1850B4B6-9C9E-4FB4-A6AE-E928CE8DDF80 - e7582fc81dbbd34c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPal.PlantAPINetworkService.fetchData&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(url: Foundation.URL, requestBody: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: (Swift.Result&lt;&#x3c4;_0_0, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/plantpal-final/PlantPal/SucculentAndPlantApp/Plants/Reports/PlantAPINetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "2416">
+               </Location>
+               <Location
+                  uuid = "1850B4B6-9C9E-4FB4-A6AE-E928CE8DDF80 - e7582fc81dbbd34c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPal.PlantAPINetworkService.fetchData&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(url: Foundation.URL, requestBody: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: (Swift.Result&lt;&#x3c4;_0_0, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/plantpal-final/PlantPal/SucculentAndPlantApp/Plants/Reports/PlantAPINetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "2452">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "600C7565-5864-4FC8-9276-37A223948DDF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/Plants/Reports/PlantAPINetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "fetchData(url:requestBody:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "600C7565-5864-4FC8-9276-37A223948DDF - 1ad7b6b6a85d749e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in PlantPal.PlantAPINetworkService.fetchData&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(url: Foundation.URL, requestBody: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: (Swift.Result&lt;&#x3c4;_0_0, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/plantpal-final/PlantPal/SucculentAndPlantApp/Plants/Reports/PlantAPINetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "2144">
+               </Location>
+               <Location
+                  uuid = "600C7565-5864-4FC8-9276-37A223948DDF - 1ad7b6b6a85d749e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in PlantPal.PlantAPINetworkService.fetchData&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(url: Foundation.URL, requestBody: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: (Swift.Result&lt;&#x3c4;_0_0, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/plantpal-final/PlantPal/SucculentAndPlantApp/Plants/Reports/PlantAPINetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "3072">
+               </Location>
+               <Location
+                  uuid = "600C7565-5864-4FC8-9276-37A223948DDF - 1ad7b6b6a85d749e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in PlantPal.PlantAPINetworkService.fetchData&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable, &#x3c4;_0_0: Swift.Encodable&gt;(url: Foundation.URL, requestBody: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: (Swift.Result&lt;&#x3c4;_0_0, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/plantpal-final/PlantPal/SucculentAndPlantApp/Plants/Reports/PlantAPINetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "2896">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

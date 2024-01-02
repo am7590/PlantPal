@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Load state for id + health check requests
 enum ReportLoadState {
     case loading, loaded, failed
 }
