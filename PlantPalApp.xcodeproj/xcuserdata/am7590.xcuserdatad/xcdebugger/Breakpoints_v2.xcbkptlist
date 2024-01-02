@@ -923,5 +923,148 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F85A0E89-B223-4B60-BF62-FAD4CC2ABB6B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PlantPal/Support/Images/Image Slider/ImagePageSliderView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "updateUIView(_:context:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F85A0E89-B223-4B60-BF62-FAD4CC2ABB6B - 9ef934fb40ed2f4f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPalApp.PageControl.updateUIView(_: __C.UIPageControl, context: SwiftUI.UIViewRepresentableContext&lt;PlantPalApp.PageControl&gt;) -&gt; ()"
+                  moduleName = "PlantPalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/PlantPalApp/PlantPal/Support/Images/Image%20Slider/ImagePageSliderView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  uuid = "F85A0E89-B223-4B60-BF62-FAD4CC2ABB6B - 9ef934fb40ed2fae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPalApp.PageControl.updateUIView(_: __C.UIPageControl, context: SwiftUI.UIViewRepresentableContext&lt;PlantPalApp.PageControl&gt;) -&gt; ()"
+                  moduleName = "PlantPalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/PlantPalApp/PlantPal/Support/Images/Image%20Slider/ImagePageSliderView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "224">
+               </Location>
+               <Location
+                  uuid = "F85A0E89-B223-4B60-BF62-FAD4CC2ABB6B - 9ef934fb40ed2f8d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPalApp.PageControl.updateUIView(_: __C.UIPageControl, context: SwiftUI.UIViewRepresentableContext&lt;PlantPalApp.PageControl&gt;) -&gt; ()"
+                  moduleName = "PlantPalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/PlantPalApp/PlantPal/Support/Images/Image%20Slider/ImagePageSliderView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "128">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "89065428-7D34-4F00-8998-DE22FB7C4E0F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PlantPal/Support/Images/Image Slider/ImagePageSliderView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "makeUIView(context:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "89065428-7D34-4F00-8998-DE22FB7C4E0F - 9ef934fb40ed2f4f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPalApp.PageControl.updateUIView(_: __C.UIPageControl, context: SwiftUI.UIViewRepresentableContext&lt;PlantPalApp.PageControl&gt;) -&gt; ()"
+                  moduleName = "PlantPalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/PlantPalApp/PlantPal/Support/Images/Image%20Slider/ImagePageSliderView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "132">
+               </Location>
+               <Location
+                  uuid = "89065428-7D34-4F00-8998-DE22FB7C4E0F - 3378a1f26d4163ee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPalApp.PageControl.makeUIView(context: SwiftUI.UIViewRepresentableContext&lt;PlantPalApp.PageControl&gt;) -&gt; __C.UIPageControl"
+                  moduleName = "PlantPalApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/PlantPalApp/PlantPal/Support/Images/Image%20Slider/ImagePageSliderView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "296">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "39836F32-2C4F-4EDC-96B0-1C6F9B296620"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PlantPal/Support/Images/Image Slider/ImagePageSliderView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "makeCoordinator()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "90120D61-7BF1-458B-9EAD-D81DA9F5CEF9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PlantPal/Support/Images/Image Slider/ImagePageSliderView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "makeCoordinator()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
