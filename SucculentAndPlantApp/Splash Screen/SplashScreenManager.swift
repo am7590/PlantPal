@@ -18,7 +18,6 @@ class SplashScreenManager: ObservableObject {
     @MainActor
     func dismiss() {
         Task {
-//            launchState = .dismiss
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.90) {
                 self.launchState = .finished
                 Logger.plantPal.debug("Splash screen is being dismissed")

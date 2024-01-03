@@ -99,23 +99,25 @@ struct SucculentFormView: View {
             .toolbar {
                 if viewModel.updating {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        HStack {
-                            Button {
+                        Menu {
+                            
+                            Button(role: .destructive) {
                                 if let selectedImage = myImages.first(where: { $0.id == viewModel.id }) {
                                     moc.delete(selectedImage)
                                     try? moc.save()
                                 }
-                                
+
                                 // I want to see on the server if 0 gets sent a lot
                                 grpcViewModel.removePlantEntry(with: viewModel.id ?? "0")
-                                
+
                                 dismiss()
                             } label: {
-                                Image(systemName: "trash")
+                                Label("Delete", systemImage: "trash")
                             }
-                            .buttonStyle(.borderedProminent)
-                            .tint(.red)
+                        } label: {
+                            Label("", systemImage: "ellipsis.circle")
                         }
+                        .foregroundColor(.primary)
                     }
                 } else {
                     ToolbarItem(placement: .navigationBarTrailing) {
