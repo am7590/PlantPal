@@ -60,6 +60,7 @@ struct ErrorHandlingView: View {
                     VStack(alignment: .center, spacing: 8) {
                         Image(systemName: listType.icon)
                             .font(.largeTitle.bold())
+                            .foregroundColor(.green)
                         
                         Text(listType.title)
                             .font(.title2.bold())
@@ -67,6 +68,7 @@ struct ErrorHandlingView: View {
                         Text(listType.subtitle)
                             .font(.subheadline)
                             .foregroundColor(.secondary)
+                            .tint(.green)
                             .multilineTextAlignment(.center)
                     }
                     Spacer()

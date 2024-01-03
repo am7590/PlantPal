@@ -30,6 +30,12 @@ struct IdentificationView: View {
             case .loaded:
                 if let identificationData {
                     List {
+                        
+                        Text("Tap to identify")
+                            .font(.largeTitle.bold())
+                            .padding(.leading, -8)
+                            .listRowBackground(Color.clear)
+                        
                         if let suggestions = identificationData.result?.classification?.suggestions {
                             ForEach(suggestions, id: \.id) { suggestion in
                                 Section {
@@ -37,7 +43,7 @@ struct IdentificationView: View {
                                         
                                         HStack {
                                             
-                                            CircularProgressView(progress: suggestion.probability, color: .blue, size: .small, showProgress: true)
+                                            CircularProgressView(progress: suggestion.probability, color: .green, size: .small, showProgress: true)
                                                 .frame(width: 45, height: 45)
                                                 .padding()
                                             
@@ -78,8 +84,9 @@ struct IdentificationView: View {
                 ErrorHandlingView(listType: .failedToLoad)
             }
         }
-        .navigationTitle("Tap to Identify")
+        .navigationBarHidden(true)
     }
+    
 }
 
 struct IdentificationView_Previews: PreviewProvider {

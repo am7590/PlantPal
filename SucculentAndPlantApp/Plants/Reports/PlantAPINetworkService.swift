@@ -53,10 +53,14 @@ class PlantAPINetworkService {
         }
 
         urlSession.dataTask(with: request) { data, response, error in
+            
+            
             if let error = error {
                 completion(.failure(error))
                 return
             }
+
+            print(String(data: data!, encoding: .utf8))
 
             guard let data = data else {
                 completion(.failure(NSError(domain: "", code: -1, userInfo: nil)))

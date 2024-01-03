@@ -64,6 +64,7 @@ struct SucculentFormView: View {
                                     .onDisappear {
                                         refreshUserDefaults()
                                     }
+                                
                             }
                         }
                         .listRowBackground(Color(uiColor: .secondarySystemBackground))
@@ -141,6 +142,7 @@ struct SucculentFormView: View {
                             
                         }
                         .buttonStyle(.borderedProminent)
+                        .tint(.green)
                         .disabled(viewModel.incomplete)
                     }
                 }
@@ -224,8 +226,11 @@ struct SucculentFormView: View {
                     try? moc.save()
                 }
             }
+
+
         }
     }
+    
     
     func refreshUserDefaults() {
         self.navLinkValue = UserDefaults.standard.getIdentification(for: viewModel.name)
@@ -367,6 +372,8 @@ struct SucculentFormView: View {
             }
         }
         .listRowBackground(Color(uiColor: .secondarySystemBackground))
+        .tint(.green)
+
     }
 }
 

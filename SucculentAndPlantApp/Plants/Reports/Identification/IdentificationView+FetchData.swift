@@ -32,6 +32,8 @@ extension IdentificationView {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
+                    dump(response)
+                    
                     self.identificationData = response
                     self.loadState = .loaded
                     self.cacheSimilarImages(response)
@@ -48,6 +50,8 @@ extension IdentificationView {
     private func cacheSimilarImages(_ response: IdentificationResponse) {
         response.result?.classification?.suggestions?.forEach { suggestion in
             suggestion.similarImages?.forEach { similarImage in
+                print("Caching... \(similarImages.debugDescription)")
+
                 fetchAndCacheImage(from: similarImage.url, imageKey: suggestion.name)
             }
         }

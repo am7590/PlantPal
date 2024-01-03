@@ -25,7 +25,7 @@ extension SucculentListView {
                 } label: {
                     Image(systemName: "plus")
                 }
-                .foregroundColor(.primary)
+                .foregroundColor(.green)
             }
             
             ToolbarItem(placement: .navigationBarTrailing) {

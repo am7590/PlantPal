@@ -71,7 +71,9 @@ struct SucculentAndPlantAppApp: App {
                             .environment(\.managedObjectContext, persistenceController.container.viewContext)
                             .environmentObject(grpcViewModel)
                     }
-                    .tint(.primary)
+                    //                    .tint(.primary)
+
+                    .accentColor(.green)
                 }
             }
             .environmentObject(splashScreenState)
