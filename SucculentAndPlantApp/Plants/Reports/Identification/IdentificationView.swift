@@ -12,7 +12,11 @@ struct IdentificationView: View {
     @StateObject var viewModel: SuccuelentFormViewModel
     @StateObject var grpcViewModel: GRPCViewModel
     @State var loadState: ReportLoadState = .loading
-    @State var identificationData: IdentificationResponse?
+    @State var identificationData: IdentificationResponse? {
+        didSet {
+            dump(identificationData)
+        }
+    }
     @State var similarImages = [String: [UIImage]]()
     
     var body: some View {

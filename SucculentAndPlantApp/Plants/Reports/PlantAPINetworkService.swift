@@ -15,22 +15,30 @@ class PlantAPINetworkService {
     private let jsonDecoder = JSONDecoder()
     private let cacheKeyPrefix = "apiResponseCache_"
 
-    // TODO CACHE WITH NAME LIKE ID
     func fetchData<T: Codable>(url: URL, cacheKey: String, requestBody: [String: Any], completion: @escaping (Result<T, Error>) -> Void) {
-        let cacheKey = cacheKeyPrefix + "\(cacheKey):\(GRPCManager.shared.userDeviceToken)"
-        if let cachedData = UserDefaults.standard.data(forKey: cacheKey) {
+        let fullCacheKey = cacheKeyPrefix + "\(cacheKey):\(GRPCManager.shared.userDeviceToken)"
+
+        if let cachedData = UserDefaults.standard.data(forKey: fullCacheKey) {
             do {
                 let cachedResponse = try jsonDecoder.decode(T.self, from: cachedData)
-                DispatchQueue.main.async {
-                    completion(.success(cachedResponse))
+                // Check if cachedResponse is valid, if not, continue to fetch from network
+                if isValidResponse(cachedResponse) {
+                    DispatchQueue.main.async {
+                        completion(.success(cachedResponse))
+                    }
+                    return
+                } else {
+                    UserDefaults.standard.removeObject(forKey: fullCacheKey)
                 }
-                return
             } catch {
-                fatalError("womp womp")
+                UserDefaults.standard.removeObject(forKey: fullCacheKey)
             }
         }
 
-        // Network request
+        performNetworkRequest(url: url, requestBody: requestBody, cacheKey: fullCacheKey, completion: completion)
+    }
+
+    private func performNetworkRequest<T: Codable>(url: URL, requestBody: [String: Any], cacheKey: String, completion: @escaping (Result<T, Error>) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("S6VUgIM03MvELLMGtMQBEpVuBvtaG0b0UOGoma3iT2oO2OuMYH", forHTTPHeaderField: "Api-Key")
@@ -49,9 +57,6 @@ class PlantAPINetworkService {
                 completion(.failure(error))
                 return
             }
-            
-            Logger.networking.debug("\(String(data: data!, encoding: .utf8)!)")
-
 
             guard let data = data else {
                 completion(.failure(NSError(domain: "", code: -1, userInfo: nil)))
@@ -66,5 +71,17 @@ class PlantAPINetworkService {
                 completion(.failure(error))
             }
         }.resume()
+    }
+
+    private func isValidResponse<T: Codable>(_ response: T) -> Bool {
+        // Check if the response is of type IdentificationResponse
+        if let identificationResponse = response as? IdentificationResponse {
+            // A valid IdentificationResponse should have a non-nil classification
+            return identificationResponse.result?.classification != nil
+        }
+
+        // TODO: Do this for health check responses too
+        // Return true for other types where specific validation logic is not implemented
+        return true
     }
 }

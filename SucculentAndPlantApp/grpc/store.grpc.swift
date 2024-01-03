@@ -41,6 +41,11 @@ public protocol Plant_PlantServiceClientProtocol: GRPCClient {
     callOptions: CallOptions?
   ) -> UnaryCall<Plant_PlantUpdateRequest, Plant_PlantUpdateResponse>
 
+  func saveHealthCheckData(
+    _ request: Plant_HealthCheckDataRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Plant_HealthCheckDataRequest, Plant_HealthCheckDataResponse>
+
   func identificationRequest(
     _ request: Plant_PlantIdentifier,
     callOptions: CallOptions?
@@ -129,7 +134,7 @@ extension Plant_PlantServiceClientProtocol {
     )
   }
 
-  /// Update plant schedule/health check/id
+  /// Update plant schedule/health check/id time
   ///
   /// - Parameters:
   ///   - request: Request to send to UpdatePlant.
@@ -144,6 +149,24 @@ extension Plant_PlantServiceClientProtocol {
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeUpdatePlantInterceptors() ?? []
+    )
+  }
+
+  /// Save JSON health check
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SaveHealthCheckData.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  public func saveHealthCheckData(
+    _ request: Plant_HealthCheckDataRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Plant_HealthCheckDataRequest, Plant_HealthCheckDataResponse> {
+    return self.makeUnaryCall(
+      path: Plant_PlantServiceClientMetadata.Methods.saveHealthCheckData.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSaveHealthCheckDataInterceptors() ?? []
     )
   }
 
@@ -271,6 +294,11 @@ public protocol Plant_PlantServiceAsyncClientProtocol: GRPCClient {
     callOptions: CallOptions?
   ) -> GRPCAsyncUnaryCall<Plant_PlantUpdateRequest, Plant_PlantUpdateResponse>
 
+  func makeSaveHealthCheckDataCall(
+    _ request: Plant_HealthCheckDataRequest,
+    callOptions: CallOptions?
+  ) -> GRPCAsyncUnaryCall<Plant_HealthCheckDataRequest, Plant_HealthCheckDataResponse>
+
   func makeIdentificationRequestCall(
     _ request: Plant_PlantIdentifier,
     callOptions: CallOptions?
@@ -349,6 +377,18 @@ extension Plant_PlantServiceAsyncClientProtocol {
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeUpdatePlantInterceptors() ?? []
+    )
+  }
+
+  public func makeSaveHealthCheckDataCall(
+    _ request: Plant_HealthCheckDataRequest,
+    callOptions: CallOptions? = nil
+  ) -> GRPCAsyncUnaryCall<Plant_HealthCheckDataRequest, Plant_HealthCheckDataResponse> {
+    return self.makeAsyncUnaryCall(
+      path: Plant_PlantServiceClientMetadata.Methods.saveHealthCheckData.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSaveHealthCheckDataInterceptors() ?? []
     )
   }
 
@@ -439,6 +479,18 @@ extension Plant_PlantServiceAsyncClientProtocol {
     )
   }
 
+  public func saveHealthCheckData(
+    _ request: Plant_HealthCheckDataRequest,
+    callOptions: CallOptions? = nil
+  ) async throws -> Plant_HealthCheckDataResponse {
+    return try await self.performAsyncUnaryCall(
+      path: Plant_PlantServiceClientMetadata.Methods.saveHealthCheckData.path,
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSaveHealthCheckDataInterceptors() ?? []
+    )
+  }
+
   public func identificationRequest(
     _ request: Plant_PlantIdentifier,
     callOptions: CallOptions? = nil
@@ -498,6 +550,9 @@ public protocol Plant_PlantServiceClientInterceptorFactoryProtocol: Sendable {
   /// - Returns: Interceptors to use when invoking 'updatePlant'.
   func makeUpdatePlantInterceptors() -> [ClientInterceptor<Plant_PlantUpdateRequest, Plant_PlantUpdateResponse>]
 
+  /// - Returns: Interceptors to use when invoking 'saveHealthCheckData'.
+  func makeSaveHealthCheckDataInterceptors() -> [ClientInterceptor<Plant_HealthCheckDataRequest, Plant_HealthCheckDataResponse>]
+
   /// - Returns: Interceptors to use when invoking 'identificationRequest'.
   func makeIdentificationRequestInterceptors() -> [ClientInterceptor<Plant_PlantIdentifier, Plant_PlantInformation>]
 
@@ -515,6 +570,7 @@ public enum Plant_PlantServiceClientMetadata {
       Plant_PlantServiceClientMetadata.Methods.get,
       Plant_PlantServiceClientMetadata.Methods.getWatered,
       Plant_PlantServiceClientMetadata.Methods.updatePlant,
+      Plant_PlantServiceClientMetadata.Methods.saveHealthCheckData,
       Plant_PlantServiceClientMetadata.Methods.identificationRequest,
       Plant_PlantServiceClientMetadata.Methods.healthCheckRequest,
     ]
@@ -551,6 +607,12 @@ public enum Plant_PlantServiceClientMetadata {
       type: GRPCCallType.unary
     )
 
+    public static let saveHealthCheckData = GRPCMethodDescriptor(
+      name: "SaveHealthCheckData",
+      path: "/plant.PlantService/SaveHealthCheckData",
+      type: GRPCCallType.unary
+    )
+
     public static let identificationRequest = GRPCMethodDescriptor(
       name: "IdentificationRequest",
       path: "/plant.PlantService/IdentificationRequest",
@@ -581,8 +643,11 @@ public protocol Plant_PlantServiceProvider: CallHandlerProvider {
   /// Get a list of plants that need to be watered (for APNs microservice)
   func getWatered(request: SwiftProtobuf.Google_Protobuf_Empty, context: StatusOnlyCallContext) -> EventLoopFuture<Plant_ListOfPlants>
 
-  /// Update plant schedule/health check/id
+  /// Update plant schedule/health check/id time
   func updatePlant(request: Plant_PlantUpdateRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Plant_PlantUpdateResponse>
+
+  /// Save JSON health check
+  func saveHealthCheckData(request: Plant_HealthCheckDataRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Plant_HealthCheckDataResponse>
 
   /// Caching
   func identificationRequest(request: Plant_PlantIdentifier, context: StatusOnlyCallContext) -> EventLoopFuture<Plant_PlantInformation>
@@ -647,6 +712,15 @@ extension Plant_PlantServiceProvider {
         userFunction: self.updatePlant(request:context:)
       )
 
+    case "SaveHealthCheckData":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Plant_HealthCheckDataRequest>(),
+        responseSerializer: ProtobufSerializer<Plant_HealthCheckDataResponse>(),
+        interceptors: self.interceptors?.makeSaveHealthCheckDataInterceptors() ?? [],
+        userFunction: self.saveHealthCheckData(request:context:)
+      )
+
     case "IdentificationRequest":
       return UnaryServerHandler(
         context: context,
@@ -701,11 +775,17 @@ public protocol Plant_PlantServiceAsyncProvider: CallHandlerProvider, Sendable {
     context: GRPCAsyncServerCallContext
   ) async throws -> Plant_ListOfPlants
 
-  /// Update plant schedule/health check/id
+  /// Update plant schedule/health check/id time
   func updatePlant(
     request: Plant_PlantUpdateRequest,
     context: GRPCAsyncServerCallContext
   ) async throws -> Plant_PlantUpdateResponse
+
+  /// Save JSON health check
+  func saveHealthCheckData(
+    request: Plant_HealthCheckDataRequest,
+    context: GRPCAsyncServerCallContext
+  ) async throws -> Plant_HealthCheckDataResponse
 
   /// Caching
   func identificationRequest(
@@ -783,6 +863,15 @@ extension Plant_PlantServiceAsyncProvider {
         wrapping: { try await self.updatePlant(request: $0, context: $1) }
       )
 
+    case "SaveHealthCheckData":
+      return GRPCAsyncServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Plant_HealthCheckDataRequest>(),
+        responseSerializer: ProtobufSerializer<Plant_HealthCheckDataResponse>(),
+        interceptors: self.interceptors?.makeSaveHealthCheckDataInterceptors() ?? [],
+        wrapping: { try await self.saveHealthCheckData(request: $0, context: $1) }
+      )
+
     case "IdentificationRequest":
       return GRPCAsyncServerHandler(
         context: context,
@@ -829,6 +918,10 @@ public protocol Plant_PlantServiceServerInterceptorFactoryProtocol: Sendable {
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeUpdatePlantInterceptors() -> [ServerInterceptor<Plant_PlantUpdateRequest, Plant_PlantUpdateResponse>]
 
+  /// - Returns: Interceptors to use when handling 'saveHealthCheckData'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSaveHealthCheckDataInterceptors() -> [ServerInterceptor<Plant_HealthCheckDataRequest, Plant_HealthCheckDataResponse>]
+
   /// - Returns: Interceptors to use when handling 'identificationRequest'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeIdentificationRequestInterceptors() -> [ServerInterceptor<Plant_PlantIdentifier, Plant_PlantInformation>]
@@ -848,6 +941,7 @@ public enum Plant_PlantServiceServerMetadata {
       Plant_PlantServiceServerMetadata.Methods.get,
       Plant_PlantServiceServerMetadata.Methods.getWatered,
       Plant_PlantServiceServerMetadata.Methods.updatePlant,
+      Plant_PlantServiceServerMetadata.Methods.saveHealthCheckData,
       Plant_PlantServiceServerMetadata.Methods.identificationRequest,
       Plant_PlantServiceServerMetadata.Methods.healthCheckRequest,
     ]
@@ -881,6 +975,12 @@ public enum Plant_PlantServiceServerMetadata {
     public static let updatePlant = GRPCMethodDescriptor(
       name: "UpdatePlant",
       path: "/plant.PlantService/UpdatePlant",
+      type: GRPCCallType.unary
+    )
+
+    public static let saveHealthCheckData = GRPCMethodDescriptor(
+      name: "SaveHealthCheckData",
+      path: "/plant.PlantService/SaveHealthCheckData",
       type: GRPCCallType.unary
     )
 

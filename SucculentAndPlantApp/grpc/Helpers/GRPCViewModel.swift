@@ -119,6 +119,7 @@ class GRPCViewModel: ObservableObject {
         return information
     }
     
+    
     public func fetchHealthCheckInfo(for identifier: String) async throws -> Plant_HealthCheckInformation? {
         let plantID = Plant_PlantIdentifier.with {
             $0.sku = identifier
@@ -131,19 +132,55 @@ class GRPCViewModel: ObservableObject {
         do {
             let response = try await client.healthCheckRequest(plantID)
             let healthCheckInfo = try await response.response.get()
-            
-            // Close channel asynchronously
-            Task {
-                _ = try? await channel.close().get()
-            }
-            
-            return healthCheckInfo
+
+            var processedHealthCheckInfo = healthCheckInfo
+
+            return processedHealthCheckInfo
         } catch {
             throw error
         }
-        
-        
     }
+    
+    func saveHealthCheckData(for identifier: String, currentProbability: Double, historicalProbabilities: [[String: Any]]) {
+           let plantID = Plant_PlantIdentifier.with {
+               $0.sku = identifier
+               $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
+           }
+           
+           // healthCheckInformation JSON
+           var healthCheckData = [String: Any]()
+           healthCheckData["probability"] = currentProbability
+           healthCheckData["historicalProbabilities"] = historicalProbabilities
+           
+           // Store as a JSON string
+           guard let jsonData = try? JSONSerialization.data(withJSONObject: healthCheckData, options: []),
+                 let jsonString = String(data: jsonData, encoding: .utf8) else {
+   //            self.updateUIResult(with: "Error creating JSON data")
+               return
+           }
+           
+           let healthCheckDataRequest = Plant_HealthCheckDataRequest.with {
+               $0.identifier = plantID
+               $0.healthCheckInformation = jsonString
+           }
+           
+           Task(priority: .background) {
+               do {
+                   let response = try await self.sendHealthCheckData(healthCheckDataRequest)
+                   Logger.networking.debug("Health Check Data Saved: \(response)")
+                   await self.updateUIResult(with: "Health check data saved successfully.")
+               } catch {
+                   await self.updateUIResult(with: error.localizedDescription)
+                   
+                   Task {
+                       let banner = await Banner(title: "Failed to Save Health Check Data", subtitle: "\(error.localizedDescription)", image: UIImage(named: "alert"), backgroundColor: .red)
+                       await banner.show(duration: 5.0)
+                   }
+               }
+           }
+       }
+       
+    
 }
 
 // MARK: Update UI
@@ -223,4 +260,20 @@ extension GRPCViewModel {
         
         return response
     }
+    
+    private func sendHealthCheckData(_ request: Plant_HealthCheckDataRequest) async throws -> String {
+            let channel = GRPCManager.shared.createChannel()
+            let client = Plant_PlantServiceNIOClient(channel: channel)
+
+            let response = try await client.saveHealthCheckData(request)
+                .response
+                .get()
+
+            // Close channel
+            Task {
+                _ = try? await channel.close().get()
+            }
+
+            return response.status
+        }
 }

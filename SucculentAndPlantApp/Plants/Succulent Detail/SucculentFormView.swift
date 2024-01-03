@@ -122,6 +122,7 @@ struct SucculentFormView: View {
                         Button("Create") {
                             viewModel.snoozeAlertIsDispayed.toggle()
                             
+                            // TODO: Extract from here
                             // Create succulent
                             let newItem = Item(context: moc)
                             newItem.name = viewModel.name

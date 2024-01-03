@@ -27,14 +27,14 @@ struct GraphView: View {
                         x: .value("Hour", item.date,unit: .hour),
                         y: .value("Views", item.animate ? item.value : 0)
                     )
-                    .foregroundStyle(dataItems.first?.value ?? 0 > dataItems.last?.value ?? 0 ? Color.red.gradient : Color.green.gradient)
+                    .foregroundStyle(dataItems.last?.value ?? 0 > dataItems.first?.value ?? 0 ? Color.red.gradient : Color.green.gradient)
                     .interpolationMethod(.catmullRom)
                 } else {
                     BarMark(
                         x: .value("Hour", item.date,unit: .hour),
                         y: .value("Views", item.animate ? item.value : 0)
                     )
-                    .foregroundStyle(dataItems.first?.value ?? 0 > dataItems.last?.value ?? 0 ? Color.red.gradient : Color.green.gradient)
+                    .foregroundStyle(dataItems.last?.value ?? 0 > dataItems.first?.value ?? 0 ? Color.red.gradient : Color.green.gradient)
                 }
                 
                 if isLineGraph {
@@ -42,7 +42,7 @@ struct GraphView: View {
                         x: .value("Hour", item.date,unit: .hour),
                         y: .value("Views", item.animate ? item.value : 0)
                     )
-                    .foregroundStyle(dataItems.first?.value ?? 0 > dataItems.last?.value ?? 0 ? Color.red.opacity(0.1).gradient : Color.green.opacity(0.1).gradient)
+                    .foregroundStyle(dataItems.last?.value ?? 0 > dataItems.first?.value ?? 0 ? Color.red.opacity(0.1).gradient : Color.green.opacity(0.1).gradient)
                     .interpolationMethod(.catmullRom)
                 }
             }

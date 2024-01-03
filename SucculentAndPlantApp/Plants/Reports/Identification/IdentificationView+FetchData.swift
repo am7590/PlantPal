@@ -28,7 +28,7 @@ extension IdentificationView {
             "similar_images": true
         ]
 
-        PlantAPINetworkService.shared.fetchData(url: apiUrl, cacheKey: plant, requestBody: requestBody) { (result: Result<IdentificationResponse, Error>) in
+        PlantAPINetworkService.shared.fetchData(url: apiUrl, cacheKey: plant+":id", requestBody: requestBody) { (result: Result<IdentificationResponse, Error>) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
