@@ -1,10 +1,3 @@
-//
-//  CircularProgressView.swift
-//  SucculentAndPlantApp
-//
-//  Created by Alek Michelson on 7/19/23.
-//
-
 import SwiftUI
 
 enum CircularProgressViewSize { case small, large }
@@ -14,11 +7,14 @@ struct CircularProgressView: View {
     let color: Color
     let size: CircularProgressViewSize
     let showProgress: Bool
-    
+    var animationDuration: Double = 1.0  // Duration for animation
+
+    @State private var animatedProgress: CGFloat = 0
+
     var body: some View {
         ZStack {
             if showProgress {
-                Text("\(String(format: "%.\(size == .large ? "2" : "")f", progress*100))%")
+                Text("\(String(format: "%.\(size == .large ? "2" : "0")f", animatedProgress * 100))%")
                     .font(size == .large ? .title3.bold() : .caption.bold())
                     .foregroundColor(color)
             }
@@ -30,7 +26,7 @@ struct CircularProgressView: View {
                 )
             
             Circle()
-                .trim(from: 0, to: CGFloat(progress))
+                .trim(from: 0, to: animatedProgress)
                 .stroke(
                     color,
                     style: StrokeStyle(
@@ -38,8 +34,16 @@ struct CircularProgressView: View {
                         lineCap: .round
                     )
                 )
-                .animation(.linear(duration: 10), value: progress)
                 .rotationEffect(.degrees(-90))
+                .onAppear {
+                    Timer.scheduledTimer(withTimeInterval: animationDuration / 100, repeats: true) { timer in
+                        if animatedProgress < CGFloat(progress) {
+                            animatedProgress += CGFloat(progress) / 100
+                        } else {
+                            timer.invalidate()
+                        }
+                    }
+                }
         }
     }
 }
