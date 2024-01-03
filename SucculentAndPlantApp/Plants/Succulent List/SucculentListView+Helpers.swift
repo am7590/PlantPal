@@ -32,13 +32,13 @@ extension SucculentListView {
                 Menu {
                     Menu {
                         Button {
-                            viewModel.isList = false
+                            viewModel.isList = false  // Update UserDefaults
                         } label: {
                             Label("Grid", systemImage: "rectangle.grid.2x2")
                         }
                         
                         Button {
-                            viewModel.isList = true
+                            viewModel.isList = true  // Update UserDefaults
                         } label: {
                             Label("List", systemImage: "list.bullet")
                         }

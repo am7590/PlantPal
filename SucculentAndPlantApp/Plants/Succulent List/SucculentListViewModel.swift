@@ -14,12 +14,22 @@ class SucculentListViewModel: ObservableObject {
     @Published var formState: SucculentFormState?
     @Published var imageExists = false
     @Published var searchText = ""
-    @Published var isList = false   // TODO: Hook up to UserDefaults
     @Published var wiggle = false   // Depreciated (for now)
     
     @Environment(\.managedObjectContext) var viewContext
     
     var gridItemLayout = [GridItem(.adaptive(minimum: 150))]
+    
+    private let isListViewKey = "isListView"
+    
+    var isList: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: isListViewKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: isListViewKey)
+        }
+    }
     
     func handleImageChange(_ newImage: [UIImage]?, viewModel: GRPCViewModel) {
         if let newImage {
