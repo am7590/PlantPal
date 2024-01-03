@@ -37,6 +37,7 @@ struct SucculentAndPlantAppApp: App {
                 // Show splash screen
                 if splashScreenState.launchState != .finished {
                     SplashScreenView()
+                        .environmentObject(splashScreenState)
                         .task {
                             // Wait for CoreData and UserDefaults to be accessible
                             // Displays splash screen until data is avaibale

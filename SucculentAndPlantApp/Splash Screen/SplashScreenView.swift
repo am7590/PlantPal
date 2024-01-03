@@ -40,20 +40,40 @@ struct SplashScreenView: View {
             image
         }
         .opacity(startFadeoutAnimation ? 0 : 1)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                withAnimation(.linear(duration: 1)) {
+                    startFadeoutAnimation = true
+                }
+            }
+        }
+        .onChange(of: startFadeoutAnimation) { newValue in
+            if newValue {
+                // Call dismiss after the animation duration
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    splashScreenState.dismiss()
+                }
+            }
+        }
+
     }
-    
+
     private func updateAnimation() {
         switch splashScreenState.launchState {
         case .start:
             ()
         case .dismiss:
-            withAnimation(.linear) {
-                startFadeoutAnimation = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                withAnimation(.linear(duration: 2)) {
+                    startFadeoutAnimation = true
+                }
+
             }
         case .finished:
             break
         }
     }
+
     
 }
 
