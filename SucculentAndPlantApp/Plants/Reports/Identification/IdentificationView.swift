@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+
 // viewModel.uiImage, plantName: viewModel.name
 struct IdentificationView: View {
     @Environment(\.dismiss) var dismiss
@@ -23,47 +24,112 @@ struct IdentificationView: View {
         VStack {
             switch loadState {
             case .loading:
-                ProgressView("Identifying Plant...")
-                    .onAppear {
-                        fetchData(forPlant: viewModel.name, images: viewModel.uiImage)
+                
+                Section {
+                    Text("Tap to identify")
+                          .font(.largeTitle.bold())
+                          .padding(.leading, -8)
+                          .listRowBackground(Color.clear)
+                          .padding(.top, 72)
+
+                    
+                    
+                    VStack(alignment: .center, spacing: 4) {
+                        
+                      
+                        
+                        HStack {
+                            CircularProgressView(progress: 0.0, color: .green, size: .small, showProgress: true)
+                                .frame(width: 45, height: 45)
+                                .padding()
+                            
+                            Text("(suggestion.nfrf")
+                                .font(.title)
+                        }
+                        
+                        HStack(spacing: 10) {
+                            Spacer()
+                            RemoteImage(url: URL(string: "https://avatars.githubusercontent.com/u/70722459?v=4")!)
+                                .frame(width: 150, height: 150)
+                                .cornerRadius(16)
+                            
+                            RemoteImage(url: URL(string: "https://avatars.githubusercontent.com/u/70722459?v=4")!)
+                                .frame(width: 150, height: 150)
+                                .cornerRadius(16)
+                            
+                            Spacer()
+                        }
+                        
+                        
+                        
+                        HStack {
+                            CircularProgressView(progress: 0.0, color: .green, size: .small, showProgress: true)
+                                .frame(width: 45, height: 45)
+                                .padding()
+                            
+                            Text("(suggestion.nfrf")
+                                .font(.title)
+                        }
+                        
+                        HStack(spacing: 10) {
+                            Spacer()
+                            RemoteImage(url: URL(string: "https://avatars.githubusercontent.com/u/70722459?v=4")!)
+                                .frame(width: 150, height: 150)
+                                .cornerRadius(16)
+                            
+                            RemoteImage(url: URL(string: "https://avatars.githubusercontent.com/u/70722459?v=4")!)
+                                .frame(width: 150, height: 150)
+                                .cornerRadius(16)
+                            
+                            Spacer()
+                        }
+                        
+                        Spacer()
+                        
                     }
+                }
+                .redacted(reason: .placeholder)
+                .onAppear {
+                    fetchData(forPlant: viewModel.name, images: viewModel.uiImage)
+                }
+                
             case .loaded:
                 if let identificationData {
                     List {
-                        
+
                         Text("Tap to identify")
                             .font(.largeTitle.bold())
                             .padding(.leading, -8)
                             .listRowBackground(Color.clear)
-                        
+
                         if let suggestions = identificationData.result?.classification?.suggestions {
                             ForEach(suggestions, id: \.id) { suggestion in
                                 Section {
                                     VStack(alignment: .leading, spacing: 4) {
-                                        
+
                                         HStack {
-                                            
+
                                             CircularProgressView(progress: suggestion.probability, color: .green, size: .small, showProgress: true)
                                                 .frame(width: 45, height: 45)
                                                 .padding()
-                                            
+
                                             Text("\(suggestion.name)")
                                                 .font(.title)
                                         }
-                                        
+
                                         ScrollView(.horizontal) {
-                                                       HStack(spacing: 10) {
-                                                           ForEach(suggestion.similarImages ?? [], id: \.id) { imageInfo in
-                                                               if let url = URL(string: imageInfo.url) {
-                                                                   RemoteImage(url: url)
-                                                                       .frame(width: 150, height: 150)
-                                                                       .cornerRadius(16)
-                                                               }
-                                                           }
-                                                       }
-                                                   }
+                                            HStack(spacing: 10) {
+                                                ForEach(suggestion.similarImages ?? [], id: \.id) { imageInfo in
+                                                    if let url = URL(string: imageInfo.url) {
+                                                        RemoteImage(url: url)
+                                                            .frame(width: 150, height: 150)
+                                                            .cornerRadius(16)
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
-                                    
+
                                 }
                                 .onTapGesture {
                                     UserDefaults.standard.hasBeenIdentified(for: viewModel.name, with: suggestion.name)
@@ -80,6 +146,7 @@ struct IdentificationView: View {
                 } else {
                     Text("Failed to identify plant")
                 }
+          
             case .failed:
                 ErrorHandlingView(listType: .failedToLoad)
             }
@@ -92,7 +159,7 @@ struct IdentificationView: View {
 struct IdentificationView_Previews: PreviewProvider {
     static var previews: some View {
         let response = IdentificationResponse(result: IdentificationResult(classification: IdentificationClassification(suggestions: [IdentificationSuggestion(id: "0", name: "Suggestion #1", probability: 0.51, similarImages: []), IdentificationSuggestion(id: "1", name: "Suggestion #2", probability: 0.45, similarImages: []), IdentificationSuggestion(id: "2", name: "Suggestion #3", probability: 0.3, similarImages: [])])))
-//        IdentificationView(images: [UIImage(systemName: "leaf")!], plantName: "Womp Womp", loadState: .loaded, identificationData: response)
+        //        IdentificationView(images: [UIImage(systemName: "leaf")!], plantName: "Womp Womp", loadState: .loaded, identificationData: response)
         IdentificationView(viewModel: SuccuelentFormViewModel([]), grpcViewModel: GRPCViewModel())
     }
 }
