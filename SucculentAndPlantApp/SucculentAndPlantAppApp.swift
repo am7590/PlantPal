@@ -31,6 +31,8 @@ struct SucculentAndPlantAppApp: App {
     @StateObject var viewModel = SucculentListViewModel()
     @StateObject private var imagePicker = ImageSelector()
     
+    @State private var showingOnboarding = true
+    
     var body: some Scene {
         WindowGroup {
             Group {
@@ -71,8 +73,13 @@ struct SucculentAndPlantAppApp: App {
                             .environment(\.managedObjectContext, persistenceController.container.viewContext)
                             .environmentObject(grpcViewModel)
                     }
+                    
+                    .fullScreenCover(isPresented: $showingOnboarding, content: {
+                        OnboardingView()
+                            .edgesIgnoringSafeArea(.all)
+                    })
                     //                    .tint(.primary)
-
+                    
                     .accentColor(.green)
                 }
             }
