@@ -42,7 +42,7 @@ struct SplashScreenView: View {
         .opacity(startFadeoutAnimation ? 0 : 1)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                withAnimation(.linear(duration: 1)) {
+                withAnimation(.linear(duration: 1.5)) {
                     startFadeoutAnimation = true
                 }
             }
@@ -50,7 +50,7 @@ struct SplashScreenView: View {
         .onChange(of: startFadeoutAnimation) { newValue in
             if newValue {
                 // Call dismiss after the animation duration
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     splashScreenState.dismiss()
                 }
             }

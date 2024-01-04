@@ -46,6 +46,8 @@ struct HealthDataListView: View {
     var body: some View {
         List {
             HealthSummarySection(healthData: healthData, imageWidth: imageWidth)
+                .padding(.top, 20)
+                .padding(.bottom, 4)
             DiseaseSuggestionSection(diseases: healthData.result.disease.suggestions, similarImages: similarImages)
         }
         .listStyle(InsetGroupedListStyle())
@@ -63,9 +65,11 @@ struct HealthSummarySection: View {
                 VStack {
                     CircularProgressView(progress: healthData.result.isHealthy.probability, color: healthData.color, size: .large, showProgress: true)
                         .frame(width: imageWidth / 3, height: imageWidth / 3)
+                    
                     Text(healthData.result.isHealthy.binary ? "Healthy" : "Not Healthy")
                         .font(.title2.bold())
                         .foregroundColor(healthData.color)
+                        .padding(.top)
                 }
                 Spacer()
             }
@@ -80,15 +84,23 @@ struct DiseaseDetailView: View {
     var similarImages: [String: [UIImage]]
 
     var body: some View {
-        VStack {
-            CircularProgressView(progress: disease.probability, color: color, size: .small, showProgress: true)
-                .frame(minWidth: 45, minHeight: 45) // Adjust frame size
-            Text(disease.name.capitalized)
-                .font(.title)
-            
-            if let images = similarImages[disease.id] { // Use disease id to retrieve images
-                ImageViewer(images: images)
+        VStack(alignment: .center) {
+            HStack {
+                CircularProgressView(progress: disease.probability, color: color, size: .small, showProgress: true)
+                    .frame(width: 55, height: 55)
+                
+                Text(disease.name.capitalized)
+                    .font(.title)
+                    .padding(.leading, 8)
             }
+            
+            
+            if let images = similarImages[disease.id] {
+                ImageViewer(images: images)
+                    .padding(.leading, 24)
+            }
+            
+            Spacer()
         }
         .padding()
     }

@@ -95,7 +95,7 @@ struct SucculentFormView: View {
                     viewModel.uiImage.append(newImage)
                 }
             }
-            .navigationTitle(viewModel.updating ? "\(viewModel.name)" : "New Succulent")
+            .navigationTitle(viewModel.updating ? "\(viewModel.name)" : "New Plant")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 if viewModel.updating {

@@ -25,32 +25,32 @@ extension SucculentListView {
                 } label: {
                     Image(systemName: "plus")
                 }
-                .foregroundColor(.green)
+//                .foregroundColor(.green)
             }
             
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Menu {
-                    Menu {
-                        Button {
-                            viewModel.isList = false  // Update UserDefaults
-                        } label: {
-                            Label("Grid", systemImage: "rectangle.grid.2x2")
-                        }
-                        
-                        Button {
-                            viewModel.isList = true  // Update UserDefaults
-                        } label: {
-                            Label("List", systemImage: "list.bullet")
-                        }
-                        
-                    } label: {
-                        Label("Group by", systemImage: viewModel.isList ? "list.bullet" : "rectangle.grid.2x2")
-                    }
-                } label: {
-                    Label("", systemImage: "ellipsis.circle")
-                }
-                .foregroundColor(.primary)
-            }
+//            ToolbarItem(placement: .navigationBarTrailing) {
+//                Menu {
+//                    Menu {
+//                        Button {
+//                            viewModel.isList = false  // Update UserDefaults
+//                        } label: {
+//                            Label("Grid", systemImage: "rectangle.grid.2x2")
+//                        }
+//
+//                        Button {
+//                            viewModel.isList = true  // Update UserDefaults
+//                        } label: {
+//                            Label("List", systemImage: "list.bullet")
+//                        }
+//
+//                    } label: {
+//                        Label("Group by", systemImage: viewModel.isList ? "list.bullet" : "rectangle.grid.2x2")
+//                    }
+//                } label: {
+//                    Label("", systemImage: "ellipsis.circle")
+//                }
+//                .foregroundColor(.primary)
+//            }
         }
     }
 }
