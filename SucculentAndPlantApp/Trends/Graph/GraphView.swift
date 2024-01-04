@@ -19,7 +19,7 @@ struct GraphView: View {
     }
     
     @ViewBuilder
-    func AnimatedChart(dataItems: [TrendsGraphDataItem])-> some View {
+    func AnimatedChart(dataItems: [TrendsGraphDataItem]) -> some View {
         Chart {
             ForEach(dataItems) { item in
                 if isLineGraph {
@@ -56,6 +56,9 @@ struct GraphView: View {
     
     
     func animateGraph(fromChange: Bool = false) {
+ 
+        print("animating graph")
+        
         for (index, _) in viewModel.dataItems.enumerated() {
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * (fromChange ? 0.03 : 0.01))  {
                 withAnimation(fromChange ? .easeInOut(duration: 0.6) : .interactiveSpring(response: 0.8, dampingFraction: 0.8, blendDuration: 0.8)) {

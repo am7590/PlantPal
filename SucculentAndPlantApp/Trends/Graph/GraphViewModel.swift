@@ -8,8 +8,17 @@
 import SwiftUI
 
 class GraphViewModel: ObservableObject {
-    @Published var dataItems: [TrendsGraphDataItem]
-    @Published var isLoading: Bool = true
+    @Published var dataItems: [TrendsGraphDataItem] {
+        didSet {
+            
+            print("dataItems \(oldValue.difference(from: dataItems))")
+        }
+    }
+    @Published var isLoading: Bool = true {
+        didSet {
+            print("\n\nisLoading: \(isLoading)\n\n")
+        }
+    }
     
     init(dataItems: [TrendsGraphDataItem]) {
         self.dataItems = dataItems

@@ -32,9 +32,7 @@ struct PlaceholderShimmerView: View {
                             .foregroundColor(.secondary)
                             .frame(width: 48, height: 48)
                             .mask(Circle())
-
-                        Text("Unhealthy")
-                            .font(.caption.bold())
+ 
                     }
                     .padding()
                 }
