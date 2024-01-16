@@ -942,54 +942,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1CF76C5A-EE26-497A-A615-3CE59FEF6D94"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../PlantPalApp/PlantPal/Trends/TrendsView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "fetchPlantInfoData()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1CF76C5A-EE26-497A-A615-3CE59FEF6D94 - 6c847d46861fe929"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 @Sendable () async -&gt; () in PlantPal.PlantHealthViewModel.fetchPlantInfoData() -&gt; ()"
-                  moduleName = "PlantPal"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/am7590/Development/Projects/PlantPalApp/PlantPal/Trends/TrendsView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "129"
-                  endingLineNumber = "129"
-                  offsetFromSymbolStart = "384">
-               </Location>
-               <Location
-                  uuid = "1CF76C5A-EE26-497A-A615-3CE59FEF6D94 - 6c847d46861fe929"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 @Sendable () async -&gt; () in PlantPal.PlantHealthViewModel.fetchPlantInfoData() -&gt; ()"
-                  moduleName = "PlantPal"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/am7590/Development/Projects/PlantPalApp/PlantPal/Trends/TrendsView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "129"
-                  endingLineNumber = "129"
-                  offsetFromSymbolStart = "56">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "1E267A51-1DFA-4DE7-8282-CFE492B27351"
             shouldBeEnabled = "No"
             ignoreCount = "0"

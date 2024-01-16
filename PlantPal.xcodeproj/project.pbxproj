@@ -38,6 +38,11 @@
 		2942388A2A0B0B1500CE0A63 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294238892A0B0B1500CE0A63 /* Modifiers.swift */; };
 		2942388C2A0B232600CE0A63 /* Animation+Repeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942388B2A0B232600CE0A63 /* Animation+Repeat.swift */; };
 		2942388E2A0B242200CE0A63 /* ShakeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2942388D2A0B242200CE0A63 /* ShakeAnimation.swift */; };
+		29427E0D2B56D49D00134ED1 /* TrendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29427E0C2B56D49D00134ED1 /* TrendsViewModel.swift */; };
+		29427E0F2B56D4D700134ED1 /* Date+UpdateDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29427E0E2B56D4D700134ED1 /* Date+UpdateDay.swift */; };
+		29427E132B56D51F00134ED1 /* PlantHealthSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29427E122B56D51F00134ED1 /* PlantHealthSectionView.swift */; };
+		29427E152B56D53000134ED1 /* PlantHealthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29427E142B56D53000134ED1 /* PlantHealthViewModel.swift */; };
+		29427E172B56D59200134ED1 /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29427E162B56D59200134ED1 /* DummyData.swift */; };
 		29455BA22B32546D00DBB58C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29455BA12B32546D00DBB58C /* Logger.swift */; };
 		29455BA42B325BE700DBB58C /* CodableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29455BA32B325BE700DBB58C /* CodableImage.swift */; };
 		29455BA62B32648F00DBB58C /* SucculentListView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29455BA52B32648F00DBB58C /* SucculentListView+Helpers.swift */; };
@@ -119,6 +124,11 @@
 		294238892A0B0B1500CE0A63 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		2942388B2A0B232600CE0A63 /* Animation+Repeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+Repeat.swift"; sourceTree = "<group>"; };
 		2942388D2A0B242200CE0A63 /* ShakeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeAnimation.swift; sourceTree = "<group>"; };
+		29427E0C2B56D49D00134ED1 /* TrendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsViewModel.swift; sourceTree = "<group>"; };
+		29427E0E2B56D4D700134ED1 /* Date+UpdateDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+UpdateDay.swift"; sourceTree = "<group>"; };
+		29427E122B56D51F00134ED1 /* PlantHealthSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantHealthSectionView.swift; sourceTree = "<group>"; };
+		29427E142B56D53000134ED1 /* PlantHealthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantHealthViewModel.swift; sourceTree = "<group>"; };
+		29427E162B56D59200134ED1 /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
 		29455BA12B32546D00DBB58C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		29455BA32B325BE700DBB58C /* CodableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableImage.swift; sourceTree = "<group>"; };
 		29455BA52B32648F00DBB58C /* SucculentListView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SucculentListView+Helpers.swift"; sourceTree = "<group>"; };
@@ -329,6 +339,7 @@
 				29E05A152A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift */,
 				297F42392AFB4CFF00167243 /* NSNotification.swift */,
 				29455BA72B326D4600DBB58C /* Date+StripTime.swift */,
+				29427E0E2B56D4D700134ED1 /* Date+UpdateDay.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -445,7 +456,11 @@
 		29E0CA102B0A8BF7004173CC /* Trends */ = {
 			isa = PBXGroup;
 			children = (
+				29427E162B56D59200134ED1 /* DummyData.swift */,
 				29A2A8682B439D22008C6850 /* TrendsView.swift */,
+				29427E0C2B56D49D00134ED1 /* TrendsViewModel.swift */,
+				29427E122B56D51F00134ED1 /* PlantHealthSectionView.swift */,
+				29427E142B56D53000134ED1 /* PlantHealthViewModel.swift */,
 				294A54472B43AD48009C292A /* Graph */,
 			);
 			path = Trends;
@@ -604,8 +619,10 @@
 				29A2A85A2B436235008C6850 /* store.pb.swift in Sources */,
 				29E05A162A5B14CB004E71D0 /* UIScrollView+ClipToBounds.swift in Sources */,
 				29455BA42B325BE700DBB58C /* CodableImage.swift in Sources */,
+				29427E0D2B56D49D00134ED1 /* TrendsViewModel.swift in Sources */,
 				2919F3312A0815700003194F /* SucculentAndPlantAppApp.swift in Sources */,
 				29A2A8632B439BCF008C6850 /* DefaultValues.swift in Sources */,
+				29427E152B56D53000134ED1 /* PlantHealthViewModel.swift in Sources */,
 				29E0CA142B0AE09B004173CC /* Double+stringFormal.swift in Sources */,
 				2919F35B2A083C860003194F /* FIleManager+Image.swift in Sources */,
 				2924DD1B2A9BE91300BD9299 /* SplashScreenView.swift in Sources */,
@@ -616,6 +633,7 @@
 				29A2A85B2B436235008C6850 /* store.grpc.swift in Sources */,
 				29455BA82B326D4600DBB58C /* Date+StripTime.swift in Sources */,
 				2919F35D2A083FA80003194F /* PersistImageService.swift in Sources */,
+				29427E172B56D59200134ED1 /* DummyData.swift in Sources */,
 				29A2A86A2B439D22008C6850 /* GraphViewModel.swift in Sources */,
 				297F423A2AFB4CFF00167243 /* NSNotification.swift in Sources */,
 				2919F3622A0840280003194F /* FileManager+JSON.swift in Sources */,
@@ -635,7 +653,9 @@
 				297ECD282A2BA66E00739538 /* PhotoPreviewView.swift in Sources */,
 				29A2A86D2B439D22008C6850 /* TrendsView.swift in Sources */,
 				29B9CD432A69ED4700E7BAAD /* UserDefaults+Identification.swift in Sources */,
+				29427E132B56D51F00134ED1 /* PlantHealthSectionView.swift in Sources */,
 				2942388C2A0B232600CE0A63 /* Animation+Repeat.swift in Sources */,
+				29427E0F2B56D4D700134ED1 /* Date+UpdateDay.swift in Sources */,
 				29A2A86B2B439D22008C6850 /* GraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
