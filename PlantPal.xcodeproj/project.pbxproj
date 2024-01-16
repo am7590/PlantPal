@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		290FAA072A17022D00B98124 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 290FAA062A17022D00B98124 /* ZIPFoundation */; };
 		290FAA0C2A17085300B98124 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290FAA0B2A17085300B98124 /* ImagePicker.swift */; };
+		29124B8F2B46728B000E127B /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 29124B8E2B46728B000E127B /* UIOnboarding */; };
+		29124B922B4672AE000E127B /* UIOnboardingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29124B912B4672AE000E127B /* UIOnboardingHelper.swift */; };
+		29124B942B4672F4000E127B /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29124B932B4672F4000E127B /* OnboardingView.swift */; };
 		2919F3312A0815700003194F /* SucculentAndPlantAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3302A0815700003194F /* SucculentAndPlantAppApp.swift */; };
 		2919F3332A0815700003194F /* SucculentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2919F3322A0815700003194F /* SucculentListView.swift */; };
 		2919F3352A0815710003194F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2919F3342A0815710003194F /* Assets.xcassets */; };
@@ -85,6 +88,8 @@
 
 /* Begin PBXFileReference section */
 		290FAA0B2A17085300B98124 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		29124B912B4672AE000E127B /* UIOnboardingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIOnboardingHelper.swift; sourceTree = "<group>"; };
+		29124B932B4672F4000E127B /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		2919F32D2A0815700003194F /* PlantPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlantPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2919F3302A0815700003194F /* SucculentAndPlantAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentAndPlantAppApp.swift; sourceTree = "<group>"; };
 		2919F3322A0815700003194F /* SucculentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SucculentListView.swift; sourceTree = "<group>"; };
@@ -167,6 +172,7 @@
 				29FDA7232AF168DD008E8EE2 /* protoc-gen-grpc-swift in Frameworks */,
 				29FDA71F2AF168DD008E8EE2 /* CGRPCZlib in Frameworks */,
 				290FAA072A17022D00B98124 /* ZIPFoundation in Frameworks */,
+				29124B8F2B46728B000E127B /* UIOnboarding in Frameworks */,
 				29A2A8702B439D31008C6850 /* Shimmer in Frameworks */,
 				29F03F362AE3427E00F60AF4 /* BRYXBanner in Frameworks */,
 			);
@@ -175,6 +181,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29124B902B46729D000E127B /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				29124B912B4672AE000E127B /* UIOnboardingHelper.swift */,
+				29124B932B4672F4000E127B /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		2919F3242A0815700003194F = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +213,7 @@
 				2919F3472A08158C0003194F /* SucculentAndPlantApp.entitlements */,
 				2919F3302A0815700003194F /* SucculentAndPlantAppApp.swift */,
 				295F875C2A6313230021CA70 /* AppDelegate.swift */,
+				29124B902B46729D000E127B /* Onboarding */,
 				2924DD152A9BE88E00BD9299 /* Splash Screen */,
 				2919F3482A08327D0003194F /* Core Data */,
 				2919F3652A086EB20003194F /* Navigation */,
@@ -491,6 +507,7 @@
 				29FDA7202AF168DD008E8EE2 /* GRPC */,
 				29FDA7222AF168DD008E8EE2 /* protoc-gen-grpc-swift */,
 				29A2A86F2B439D31008C6850 /* Shimmer */,
+				29124B8E2B46728B000E127B /* UIOnboarding */,
 			);
 			productName = SucculentAndPlantApp;
 			productReference = 2919F32D2A0815700003194F /* PlantPal.app */;
@@ -525,6 +542,7 @@
 				29F03F342AE3427E00F60AF4 /* XCRemoteSwiftPackageReference "BRYXBanner" */,
 				29FDA71D2AF168DD008E8EE2 /* XCRemoteSwiftPackageReference "grpc-swift" */,
 				29A2A86E2B439D31008C6850 /* XCRemoteSwiftPackageReference "Shimmer" */,
+				29124B8D2B46728B000E127B /* XCRemoteSwiftPackageReference "UIOnboarding" */,
 			);
 			productRefGroup = 2919F32E2A0815700003194F /* Products */;
 			projectDirPath = "";
@@ -570,7 +588,9 @@
 				29F02D082A6480F7001D2FF3 /* IdentificationReponse.swift in Sources */,
 				29A2A8692B439D22008C6850 /* PlaceholderShimmerView.swift in Sources */,
 				29F02D332A64A125001D2FF3 /* HealthReportView.swift in Sources */,
+				29124B922B4672AE000E127B /* UIOnboardingHelper.swift in Sources */,
 				2919F3522A083A070003194F /* SuccuelentFormViewModel.swift in Sources */,
+				29124B942B4672F4000E127B /* OnboardingView.swift in Sources */,
 				295F875D2A6313230021CA70 /* AppDelegate.swift in Sources */,
 				2919F33D2A0815710003194F /* SucculentAndPlantApp.xcdatamodeld in Sources */,
 				2942388E2A0B242200CE0A63 /* ShakeAnimation.swift in Sources */,
@@ -845,6 +865,14 @@
 				minimumVersion = 0.9.16;
 			};
 		};
+		29124B8D2B46728B000E127B /* XCRemoteSwiftPackageReference "UIOnboarding" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lascic/UIOnboarding.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		29A2A86E2B439D31008C6850 /* XCRemoteSwiftPackageReference "Shimmer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/joshuajhomann/Shimmer.git";
@@ -876,6 +904,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 290FAA052A17022D00B98124 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
 			productName = ZIPFoundation;
+		};
+		29124B8E2B46728B000E127B /* UIOnboarding */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29124B8D2B46728B000E127B /* XCRemoteSwiftPackageReference "UIOnboarding" */;
+			productName = UIOnboarding;
 		};
 		29A2A86F2B439D31008C6850 /* Shimmer */ = {
 			isa = XCSwiftPackageProductDependency;

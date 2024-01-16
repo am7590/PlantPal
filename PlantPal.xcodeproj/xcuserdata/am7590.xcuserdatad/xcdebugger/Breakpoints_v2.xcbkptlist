@@ -949,8 +949,8 @@
             filePath = "../../PlantPalApp/PlantPal/Trends/TrendsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "fetchPlantInfoData()"
             landmarkType = "7">
             <Locations>
@@ -997,8 +997,8 @@
             filePath = "SucculentAndPlantApp/Trends/Graph/GraphViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "init(dataItems:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1013,8 +1013,8 @@
             filePath = "SucculentAndPlantApp/SucculentAndPlantAppApp.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -1061,8 +1061,8 @@
             filePath = "SucculentAndPlantApp/SucculentAndPlantAppApp.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -1208,6 +1208,149 @@
             endingLineNumber = "54"
             landmarkName = "cacheSimilarImages(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7920ABB5-5215-49D4-852A-9C6820DF7E62"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/Trends/Graph/GraphViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "dataItems"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "7920ABB5-5215-49D4-852A-9C6820DF7E62 - ac2508a64a8c6a60"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPal.GraphViewModel.dataItems.didset : Swift.Array&lt;PlantPal.TrendsGraphDataItem&gt;"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/plantpal-final/PlantPal/SucculentAndPlantApp/Trends/Graph/GraphViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "424">
+               </Location>
+               <Location
+                  uuid = "7920ABB5-5215-49D4-852A-9C6820DF7E62 - ac2508a64a8c6a60"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPal.GraphViewModel.dataItems.didset : Swift.Array&lt;PlantPal.TrendsGraphDataItem&gt;"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/plantpal-final/PlantPal/SucculentAndPlantApp/Trends/Graph/GraphViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "156">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1F71AD4F-4589-48D5-964E-289260EACBE6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/Trends/Graph/GraphView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "animateGraph(fromChange:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2DB70868-4F08-4962-AD86-2980F7FC8C5B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/Trends/Graph/GraphViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "GraphViewModel"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "2DB70868-4F08-4962-AD86-2980F7FC8C5B - 6364163c8785e224"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPal.GraphViewModel.__allocating_init(dataItems: Swift.Array&lt;PlantPal.TrendsGraphDataItem&gt;) -&gt; PlantPal.GraphViewModel"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/plantpal-final/PlantPal/SucculentAndPlantApp/Trends/Graph/GraphViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "2DB70868-4F08-4962-AD86-2980F7FC8C5B - b992236398a7c96a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPal.GraphViewModel.init(dataItems: Swift.Array&lt;PlantPal.TrendsGraphDataItem&gt;) -&gt; PlantPal.GraphViewModel"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/plantpal-final/PlantPal/SucculentAndPlantApp/Trends/Graph/GraphViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "312">
+               </Location>
+               <Location
+                  uuid = "2DB70868-4F08-4962-AD86-2980F7FC8C5B - a9d921fd71de7a21"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlantPal.GraphViewModel.isLoading.didset : Swift.Bool"
+                  moduleName = "PlantPal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/am7590/Development/Projects/plantpal-final/PlantPal/SucculentAndPlantApp/Trends/Graph/GraphViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "76">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "841F97C9-BC7D-4CB3-944C-CCBAA1B06163"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SucculentAndPlantApp/Trends/Graph/GraphViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "GraphViewModel"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
