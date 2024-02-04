@@ -15,6 +15,7 @@ struct HealthReportView: View {
                 VStack {
                     switch healthDataViewModel.loadState {
                     case .loading:
+                        // Shimmer placeholder view
                         HealthDataListView(healthData: HealthAssessmentResponse(result: HealthResult(isPlant: HealthPrediction(probability: 0.69, binary: true, threshold: 0.1), isHealthy: HealthPrediction(probability: 0.99, binary: true, threshold: 0.2), disease: DiseaseSuggestion(suggestions: [Disease(id: "01", name: "Wompie Dompie", probability: 0.56, similarImages: [SimilarImage(id: "01", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.90, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4")] ), Disease(id: "01", name: "Wompie Dompie", probability: 0.56, similarImages: [SimilarImage(id: "01", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.90, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4")] )]))), imageWidth: CGFloat(400.2), similarImages: [:])
                             .redacted(reason: .placeholder)
                     case .loaded:
@@ -186,7 +187,6 @@ class HealthDataViewModel: ObservableObject {
             }
         }
     }
-
 
     private func setImageFromStringURL(stringUrl: String, imageKey: String) {
         guard let url = URL(string: stringUrl) else { return }

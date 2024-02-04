@@ -17,26 +17,29 @@ struct PlantHealthSectionView: View {
     var body: some View {
         Section {
             VStack {
-                if !plantHealthViewModel.loadedPlantInformation {
-                    if plantHealthViewModel.isLoading {
-                        PlaceholderShimmerView()
-                    } else {
-                        HStack {
-                            Spacer()
-                            Text("Perform a health check for \(plantHealthViewModel.plantInformation?.name ?? " your plant")")
-                                .bold()
-                            Spacer()
-                        }
-                    }
-                } else {
+//                if !plantHealthViewModel.loadedPlantInformation {
+////                    if plantHealthViewModel.isLoading {
+////                        PlaceholderShimmerView()
+////                    } else {
+//                        HStack {
+//                            Spacer()
+//                            Text("Perform a health check for \(plantHealthViewModel.plantInformation?.name ?? " your plant")")
+//                                .bold()
+//                            Spacer()
+//                        }
+////                    }
+//                } else {
                     GraphView(viewModel: GraphViewModel(dataItems: plantHealthViewModel.healthData?.historicalProbabilities.probabilities.map{ TrendsGraphDataItem(date: Date(timeIntervalSince1970: TimeInterval($0.date)), value: ($0.probability*100)) } ?? []))
                         .padding(.top, 6)
                     
                     HStack {
                         VStack(alignment: .leading) {
-                            Text(plantHealthViewModel.plantInformation?.name ?? "").font(.title3).bold()
-                            
-                            Text(plantHealthViewModel.plantInformation?.identifiedSpeciesName ?? "").italic()
+                            if let name = plantHealthViewModel.plantInformation?.name, let speciesName = plantHealthViewModel.plantInformation?.identifiedSpeciesName {
+                                Text(name).font(.title3).bold()
+                                Text(speciesName).italic()
+                            } else {
+                                Text("No data")
+                            }
                         }
                         
                         Spacer()
@@ -49,7 +52,7 @@ struct PlantHealthSectionView: View {
                         }
                         .padding()
                     }
-                }
+//                }
                 
             }
         }
