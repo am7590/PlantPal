@@ -11,9 +11,7 @@ import os
 
 @main
 struct SucculentAndPlantAppApp: App {    
-    // Splash screen
-    @StateObject private var splashScreenState = SplashScreenManager()
-    
+
     // App Delegate (for APNs stuff)
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
@@ -31,7 +29,14 @@ struct SucculentAndPlantAppApp: App {
     @StateObject var viewModel = SucculentListViewModel()
     @StateObject private var imagePicker = ImageSelector()
     
-    @State private var showingOnboarding = true
+    // Launch state
+    let launchState = LaunchStateManager.shared.checkLaunchState()()
+    
+    // Splash screen
+    @StateObject private var splashScreenState = SplashScreenManager()
+    
+    
+    @State private var showingOnboarding = false
     
     var body: some Scene {
         WindowGroup {
@@ -84,6 +89,18 @@ struct SucculentAndPlantAppApp: App {
                 }
             }
             .environmentObject(splashScreenState)
+            .task {
+                switch launchState {
+                case .firstLaunchEver:
+                    ()
+                    // TODO: Show special onboarding
+                case .newBuildLaunch:
+                    showingOnboarding = true
+                    // Handle new build launch scenario
+                case .normalLaunch:
+                    break
+                }
+            }
         }
     }
     
