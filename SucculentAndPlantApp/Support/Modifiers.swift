@@ -43,7 +43,7 @@ struct CustomFrameModifier: ViewModifier {
                         Spacer()
                         VStack {
                             Spacer()
-                            CircularProgressView(progress: 0.55, color: .green, size: .small, showProgress: true)
+                            CircularProgressView(progress: 0.55, color: Color(uiColor: .systemGreen), size: .small, showProgress: true)
                                 .frame(width: 60, height: 60)
                             Spacer()
                             Text("Healthy")

@@ -34,7 +34,7 @@ struct HealthReportView: View {
                 }
             }
         }
-        .accentColor(.green)
+        .accentColor(Color(uiColor: .systemGreen))
     }
 }
 

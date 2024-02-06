@@ -24,7 +24,7 @@ struct UIOnboardingHelper {
     // App Name
     static func setUpSecondTitleLine() -> NSMutableAttributedString {
         .init(string: Bundle.main.displayName ?? "leaf", attributes: [
-            .foregroundColor: UIColor.green.withAlphaComponent(0.8)
+            .foregroundColor: Color(uiColor: .systemGreen)
         ])
     }
 
@@ -47,12 +47,12 @@ struct UIOnboardingHelper {
                      text: "",
                      linkTitle: "",
                      link: "",
-                     tint: .green)
+                     tint: .systemGreen)
     }
     
     static func setUpButton() -> UIOnboardingButtonConfiguration {
         return .init(title: "Continue",
-                     backgroundColor: .green.withAlphaComponent(0.7))
+                     backgroundColor: .systemGreen)
     }
 }
 

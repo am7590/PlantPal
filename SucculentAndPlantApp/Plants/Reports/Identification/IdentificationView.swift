@@ -39,7 +39,7 @@ struct IdentificationView: View {
                       
                         
                         HStack {
-                            CircularProgressView(progress: 0.0, color: .green, size: .small, showProgress: true)
+                            CircularProgressView(progress: 0.0, color: Color(uiColor: .systemGreen), size: .small, showProgress: true)
                                 .frame(width: 45, height: 45)
                                 .padding()
                             
@@ -63,7 +63,7 @@ struct IdentificationView: View {
                         
                         
                         HStack {
-                            CircularProgressView(progress: 0.0, color: .green, size: .small, showProgress: true)
+                            CircularProgressView(progress: 0.0, color: Color(uiColor: .systemGreen), size: .small, showProgress: true)
                                 .frame(width: 45, height: 45)
                                 .padding()
                             
@@ -109,7 +109,7 @@ struct IdentificationView: View {
 
                                         HStack {
 
-                                            CircularProgressView(progress: suggestion.probability, color: .green, size: .small, showProgress: true)
+                                            CircularProgressView(progress: suggestion.probability, color: Color(uiColor: .systemGreen), size: .small, showProgress: true)
                                                 .frame(width: 45, height: 45)
                                                 .padding()
 

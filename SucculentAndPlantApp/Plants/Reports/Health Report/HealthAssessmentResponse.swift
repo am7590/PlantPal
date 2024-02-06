@@ -11,7 +11,7 @@ struct HealthAssessmentResponse: Codable {
     let result: HealthResult
 
     var color: Color {
-        result.isHealthy.binary ? .green : .red
+        result.isHealthy.binary ? Color(uiColor: .systemGreen) : Color(uiColor: .systemRed)
     }
 }
 

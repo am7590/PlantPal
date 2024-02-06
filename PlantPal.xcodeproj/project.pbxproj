@@ -47,7 +47,6 @@
 		29455BA42B325BE700DBB58C /* CodableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29455BA32B325BE700DBB58C /* CodableImage.swift */; };
 		29455BA62B32648F00DBB58C /* SucculentListView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29455BA52B32648F00DBB58C /* SucculentListView+Helpers.swift */; };
 		29455BA82B326D4600DBB58C /* Date+StripTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29455BA72B326D4600DBB58C /* Date+StripTime.swift */; };
-		29455BAA2B327A2300DBB58C /* HealthReportView+FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29455BA92B327A2300DBB58C /* HealthReportView+FetchData.swift */; };
 		295F875D2A6313230021CA70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295F875C2A6313230021CA70 /* AppDelegate.swift */; };
 		297ECD242A2BA5F700739538 /* CameraHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD232A2BA5F700739538 /* CameraHostingView.swift */; };
 		297ECD262A2BA61600739538 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297ECD252A2BA61600739538 /* CameraController.swift */; };
@@ -59,6 +58,7 @@
 		298249512AFA894F00463CE5 /* MPLUSRounded1c-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 298249502AFA894F00463CE5 /* MPLUSRounded1c-Thin.ttf */; };
 		298249542AFA897C00463CE5 /* Geist-UltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 298249522AFA897C00463CE5 /* Geist-UltraLight.otf */; };
 		298249552AFA897C00463CE5 /* Geist-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 298249532AFA897C00463CE5 /* Geist-Thin.otf */; };
+		298A68DD2B6F2DA9004A5FA5 /* LaunchStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298A68DC2B6F2DA9004A5FA5 /* LaunchStateManager.swift */; };
 		29A2A85A2B436235008C6850 /* store.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2A8582B436235008C6850 /* store.pb.swift */; };
 		29A2A85B2B436235008C6850 /* store.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2A8592B436235008C6850 /* store.grpc.swift */; };
 		29A2A85E2B438DD6008C6850 /* PlantAPINetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A2A85D2B438DD6008C6850 /* PlantAPINetworkService.swift */; };
@@ -133,7 +133,6 @@
 		29455BA32B325BE700DBB58C /* CodableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableImage.swift; sourceTree = "<group>"; };
 		29455BA52B32648F00DBB58C /* SucculentListView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SucculentListView+Helpers.swift"; sourceTree = "<group>"; };
 		29455BA72B326D4600DBB58C /* Date+StripTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StripTime.swift"; sourceTree = "<group>"; };
-		29455BA92B327A2300DBB58C /* HealthReportView+FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthReportView+FetchData.swift"; sourceTree = "<group>"; };
 		295F875C2A6313230021CA70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		297ECD232A2BA5F700739538 /* CameraHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHostingView.swift; sourceTree = "<group>"; };
 		297ECD252A2BA61600739538 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
@@ -145,6 +144,7 @@
 		298249502AFA894F00463CE5 /* MPLUSRounded1c-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MPLUSRounded1c-Thin.ttf"; sourceTree = "<group>"; };
 		298249522AFA897C00463CE5 /* Geist-UltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geist-UltraLight.otf"; sourceTree = "<group>"; };
 		298249532AFA897C00463CE5 /* Geist-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Geist-Thin.otf"; sourceTree = "<group>"; };
+		298A68DC2B6F2DA9004A5FA5 /* LaunchStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchStateManager.swift; sourceTree = "<group>"; };
 		29A2A8582B436235008C6850 /* store.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = store.pb.swift; sourceTree = "<group>"; };
 		29A2A8592B436235008C6850 /* store.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = store.grpc.swift; sourceTree = "<group>"; };
 		29A2A85D2B438DD6008C6850 /* PlantAPINetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantAPINetworkService.swift; sourceTree = "<group>"; };
@@ -194,6 +194,7 @@
 		29124B902B46729D000E127B /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				298A68DC2B6F2DA9004A5FA5 /* LaunchStateManager.swift */,
 				29124B912B4672AE000E127B /* UIOnboardingHelper.swift */,
 				29124B932B4672F4000E127B /* OnboardingView.swift */,
 			);
@@ -470,7 +471,6 @@
 			isa = PBXGroup;
 			children = (
 				29F02D322A64A125001D2FF3 /* HealthReportView.swift */,
-				29455BA92B327A2300DBB58C /* HealthReportView+FetchData.swift */,
 				29F02D022A64742E001D2FF3 /* HealthAssessmentResponse.swift */,
 			);
 			path = "Health Report";
@@ -623,6 +623,7 @@
 				2919F3312A0815700003194F /* SucculentAndPlantAppApp.swift in Sources */,
 				29A2A8632B439BCF008C6850 /* DefaultValues.swift in Sources */,
 				29427E152B56D53000134ED1 /* PlantHealthViewModel.swift in Sources */,
+				298A68DD2B6F2DA9004A5FA5 /* LaunchStateManager.swift in Sources */,
 				29E0CA142B0AE09B004173CC /* Double+stringFormal.swift in Sources */,
 				2919F35B2A083C860003194F /* FIleManager+Image.swift in Sources */,
 				2924DD1B2A9BE91300BD9299 /* SplashScreenView.swift in Sources */,
@@ -643,7 +644,6 @@
 				2924DD192A9BE8BA00BD9299 /* SplashScreenManager.swift in Sources */,
 				2919F34A2A08330F0003194F /* Item.swift in Sources */,
 				2924DD172A9BE89E00BD9299 /* SplashScreenState.swift in Sources */,
-				29455BAA2B327A2300DBB58C /* HealthReportView+FetchData.swift in Sources */,
 				29A2A85E2B438DD6008C6850 /* PlantAPINetworkService.swift in Sources */,
 				2919F34D2A0834540003194F /* UIImageTransformer.swift in Sources */,
 				290FAA0C2A17085300B98124 /* ImagePicker.swift in Sources */,
@@ -785,7 +785,7 @@
 				CODE_SIGN_ENTITLEMENTS = SucculentAndPlantApp/SucculentAndPlantApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"SucculentAndPlantApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 7W5ZSCHZ2W;
 				ENABLE_PREVIEWS = YES;
@@ -802,7 +802,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.2;
+				MARKETING_VERSION = 0.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alek.SucculentAndPlantApp;
 				PRODUCT_NAME = PlantPal;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -823,7 +823,7 @@
 				CODE_SIGN_ENTITLEMENTS = SucculentAndPlantApp/SucculentAndPlantApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"SucculentAndPlantApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 7W5ZSCHZ2W;
 				ENABLE_PREVIEWS = YES;
@@ -840,7 +840,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.2;
+				MARKETING_VERSION = 0.2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alek.SucculentAndPlantApp;
 				PRODUCT_NAME = PlantPal;
 				PROVISIONING_PROFILE_SPECIFIER = "";

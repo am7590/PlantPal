@@ -27,14 +27,14 @@ struct GraphView: View {
                         x: .value("Hour", item.date,unit: .hour),
                         y: .value("Views", item.animate ? item.value : 0)
                     )
-                    .foregroundStyle(dataItems.last?.value ?? 0 > dataItems.first?.value ?? 0 ? Color.red.gradient : Color.green.gradient)
+                    .foregroundStyle(dataItems.last?.value ?? 0 > dataItems.first?.value ?? 0 ? Color.red.gradient : Color(uiColor: .systemGreen).gradient)
                     .interpolationMethod(.catmullRom)
                 } else {
                     BarMark(
                         x: .value("Hour", item.date,unit: .hour),
                         y: .value("Views", item.animate ? item.value : 0)
                     )
-                    .foregroundStyle(dataItems.last?.value ?? 0 > dataItems.first?.value ?? 0 ? Color.red.gradient : Color.green.gradient)
+                    .foregroundStyle(dataItems.last?.value ?? 0 > dataItems.first?.value ?? 0 ? Color.red.gradient : Color(uiColor: .systemGreen).gradient)
                 }
                 
                 if isLineGraph {

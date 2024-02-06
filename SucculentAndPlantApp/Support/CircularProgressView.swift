@@ -50,7 +50,7 @@ struct CircularProgressView: View {
 
 struct CircularProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        CircularProgressView(progress: 0.69, color: .green, size: .small, showProgress: true)
+        CircularProgressView(progress: 0.69, color: Color(uiColor: .systemGreen), size: .small, showProgress: true)
             .frame(width: 50, height: 50)
     }
 }

@@ -116,9 +116,10 @@ struct SucculentFormView: View {
                                 Label("Delete", systemImage: "trash")
                             }
                         } label: {
-                            Label("", systemImage: "ellipsis.circle")
+                            Image(systemName: "ellipsis.circle")
+                                .tint(.primary)
                         }
-                        .foregroundColor(.primary)
+                        
                     }
                 } else {
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -142,7 +143,7 @@ struct SucculentFormView: View {
                             
                         }
                         .buttonStyle(.borderedProminent)
-                        .tint(.green)
+                        .tint(Color(uiColor: .systemGreen))
                         .disabled(viewModel.incomplete)
                     }
                 }
@@ -372,7 +373,7 @@ struct SucculentFormView: View {
             }
         }
         .listRowBackground(Color(uiColor: .secondarySystemBackground))
-        .tint(.green)
+        .tint(Color(uiColor: .systemGreen))
 
     }
 }

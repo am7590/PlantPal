@@ -23,7 +23,8 @@ extension SucculentListView {
                     // Create an item
                     viewModel.formState = .new([], GRPCViewModel())
                 } label: {
-                    Image(systemName: "plus")
+                    Image(systemName: "plus.app")
+                        .bold()
                 }
 //                .foregroundColor(.green)
             }

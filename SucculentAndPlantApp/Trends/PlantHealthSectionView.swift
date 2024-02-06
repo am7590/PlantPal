@@ -45,7 +45,7 @@ struct PlantHealthSectionView: View {
                         Spacer()
                         
                         VStack {
-                            CircularProgressView(progress: plantHealthViewModel.healthData?.probability ?? 0, color: plantHealthViewModel.healthData?.probability ?? 0 < 50 ? .green : .red, size: .small, showProgress: true)
+                            CircularProgressView(progress: plantHealthViewModel.healthData?.probability ?? 0, color: plantHealthViewModel.healthData?.probability ?? 0 < 50 ? Color(uiColor: .systemGreen) : .red, size: .small, showProgress: true)
                                 .frame(width: 50, height: 50)
                             //                            Text(plantHealthViewModel.healthData?.historicalProbabilities.probabilities.first?.name ?? "")
                             //                                .font(.caption.bold())

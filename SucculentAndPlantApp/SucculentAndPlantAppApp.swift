@@ -85,7 +85,7 @@ struct SucculentAndPlantAppApp: App {
                     })
                     //                    .tint(.primary)
                     
-                    .accentColor(.green)
+                    .accentColor(Color(uiColor: .systemGreen))
                 }
             }
             .environmentObject(splashScreenState)
@@ -111,3 +111,7 @@ struct SucculentAndPlantAppApp: App {
     }
 }
 
+
+extension Color {
+    static let appPrimary = Color("appPrimaryColor")
+}
