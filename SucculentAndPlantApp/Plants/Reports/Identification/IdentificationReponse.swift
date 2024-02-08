@@ -51,4 +51,14 @@ struct IdentificationSimilarImage: Codable {
         case similarity
         case urlSmall = "url_small"
     }
+    
+    init(id: String, url: String, licenseName: String? = nil, licenseUrl: String? = nil, citation: String? = nil, similarity: Double, urlSmall: String) {
+        self.id = id
+        self.url = url
+        self.licenseName = licenseName
+        self.licenseUrl = licenseUrl
+        self.citation = citation
+        self.similarity = similarity
+        self.urlSmall = urlSmall
+    }
 }

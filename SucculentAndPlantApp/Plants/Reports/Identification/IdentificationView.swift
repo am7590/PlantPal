@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-// viewModel.uiImage, plantName: viewModel.name
+// TODO: I know this can be refactored!
+
 struct IdentificationView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel: SuccuelentFormViewModel
@@ -24,75 +25,28 @@ struct IdentificationView: View {
         VStack {
             switch loadState {
             case .loading:
-                
-                Section {
+                List {
                     Text("Tap to identify")
-                          .font(.largeTitle.bold())
-                          .padding(.leading, -8)
-                          .listRowBackground(Color.clear)
-                          .padding(.top, 72)
+                        .font(.largeTitle.bold())
+                        .padding(.leading, -8)
+                        .listRowBackground(Color.clear)
 
                     
-                    
-                    VStack(alignment: .center, spacing: 4) {
-                        
-                      
-                        
-                        HStack {
-                            CircularProgressView(progress: 0.0, color: Color(uiColor: .systemGreen), size: .small, showProgress: true)
-                                .frame(width: 45, height: 45)
-                                .padding()
-                            
-                            Text("(suggestion.nfrf")
-                                .font(.title)
-                        }
-                        
-                        HStack(spacing: 10) {
-                            Spacer()
-                            RemoteImage(url: URL(string: "https://avatars.githubusercontent.com/u/70722459?v=4")!)
-                                .frame(width: 150, height: 150)
-                                .cornerRadius(16)
-                            
-                            RemoteImage(url: URL(string: "https://avatars.githubusercontent.com/u/70722459?v=4")!)
-                                .frame(width: 150, height: 150)
-                                .cornerRadius(16)
-                            
-                            Spacer()
-                        }
-                        
-                        
-                        
-                        HStack {
-                            CircularProgressView(progress: 0.0, color: Color(uiColor: .systemGreen), size: .small, showProgress: true)
-                                .frame(width: 45, height: 45)
-                                .padding()
-                            
-                            Text("(suggestion.nfrf")
-                                .font(.title)
-                        }
-                        
-                        HStack(spacing: 10) {
-                            Spacer()
-                            RemoteImage(url: URL(string: "https://avatars.githubusercontent.com/u/70722459?v=4")!)
-                                .frame(width: 150, height: 150)
-                                .cornerRadius(16)
-                            
-                            RemoteImage(url: URL(string: "https://avatars.githubusercontent.com/u/70722459?v=4")!)
-                                .frame(width: 150, height: 150)
-                                .cornerRadius(16)
-                            
-                            Spacer()
-                        }
-                        
-                        Spacer()
-                        
-                    }
+                    IdentificationSuggestionShimmerView(suggestion: IdentificationSuggestion(id: "12123345", name: "112342345", probability: 69.420, similarImages: [IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4"), IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4")]))
+
+                   
+                    IdentificationSuggestionShimmerView(suggestion: IdentificationSuggestion(id: "12345", name: "12112342345345", probability: 69.420, similarImages: [IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4"), IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4")]))
+//                        .shimmer()
+
+                    IdentificationSuggestionShimmerView(suggestion: IdentificationSuggestion(id: "12345", name: "123112342345", probability: 69.420, similarImages: [IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4"), IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4")]))
+//                        .shimmer()
+
                 }
                 .redacted(reason: .placeholder)
                 .onAppear {
-                    fetchData(forPlant: viewModel.name, images: viewModel.uiImage)
+//                    fetchData(forPlant: viewModel.name, images: viewModel.uiImage)
                 }
-                
+                .listStyle(InsetGroupedListStyle())
             case .loaded:
                 if let identificationData {
                     List {
@@ -104,33 +58,7 @@ struct IdentificationView: View {
 
                         if let suggestions = identificationData.result?.classification?.suggestions {
                             ForEach(suggestions, id: \.id) { suggestion in
-                                Section {
-                                    VStack(alignment: .leading, spacing: 4) {
-
-                                        HStack {
-
-                                            CircularProgressView(progress: suggestion.probability, color: Color(uiColor: .systemGreen), size: .small, showProgress: true)
-                                                .frame(width: 45, height: 45)
-                                                .padding()
-
-                                            Text("\(suggestion.name)")
-                                                .font(.title)
-                                        }
-
-                                        ScrollView(.horizontal) {
-                                            HStack(spacing: 10) {
-                                                ForEach(suggestion.similarImages ?? [], id: \.id) { imageInfo in
-                                                    if let url = URL(string: imageInfo.url) {
-                                                        RemoteImage(url: url)
-                                                            .frame(width: 150, height: 150)
-                                                            .cornerRadius(16)
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                }
+                                IdentificationSuggestionView(suggestion: suggestion)
                                 .onTapGesture {
                                     UserDefaults.standard.hasBeenIdentified(for: viewModel.name, with: suggestion.name)
                                     dismiss()
@@ -156,9 +84,81 @@ struct IdentificationView: View {
     
 }
 
+struct IdentificationSuggestionView: View {
+    let suggestion: IdentificationSuggestion
+    
+    var body: some View {
+        Section {
+            VStack(alignment: .leading, spacing: 4) {
+
+                HStack {
+
+                    CircularProgressView(progress: suggestion.probability, color: Color(uiColor: .systemGreen), size: .small, showProgress: true)
+                        .frame(width: 45, height: 45)
+                        .padding()
+
+                    Text("\(suggestion.name)")
+                        .font(.title)
+                }
+
+                ScrollView(.horizontal) {
+                    HStack(spacing: 10) {
+                        ForEach(suggestion.similarImages ?? [], id: \.id) { imageInfo in
+                            if let url = URL(string: imageInfo.url) {
+                                RemoteImage(url: url)
+                                    .frame(width: 150, height: 150)
+                                    .cornerRadius(16)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct IdentificationSuggestionShimmerView: View {
+    let suggestion: IdentificationSuggestion
+    
+    var body: some View {
+        Section {
+            VStack(alignment: .leading, spacing: 4) {
+
+                HStack {
+
+                    CircularProgressView(progress: suggestion.probability, color: Color(uiColor: .systemGreen), size: .small, showProgress: true)
+                        .frame(width: 45, height: 45)
+                        .padding()
+
+                    Text("\(suggestion.name)")
+                        .font(.title)
+                    
+                }
+
+                ScrollView(.horizontal) {
+                    HStack(spacing: 10) {
+                        ForEach(suggestion.similarImages ?? [], id: \.id) { imageInfo in
+                            if let url = URL(string: imageInfo.url) {
+                                RemoteImage(url: url)
+                                    .frame(width: 150, height: 150)
+                                    .cornerRadius(16)
+                            }
+                        }
+                    }
+                }
+
+                .padding(.vertical, -8)
+
+                .shimmer()
+            }
+        }
+
+    }
+}
+
 struct IdentificationView_Previews: PreviewProvider {
     static var previews: some View {
-        let response = IdentificationResponse(result: IdentificationResult(classification: IdentificationClassification(suggestions: [IdentificationSuggestion(id: "0", name: "Suggestion #1", probability: 0.51, similarImages: []), IdentificationSuggestion(id: "1", name: "Suggestion #2", probability: 0.45, similarImages: []), IdentificationSuggestion(id: "2", name: "Suggestion #3", probability: 0.3, similarImages: [])])))
+//        let resp/*onse = IdentificationResponse(result: IdentificationResult(classification: IdentificationClassification(suggestions: [IdentificationSuggestion(id: "0", name: "Suggestion #1", probability: 0.51, similarImages: []), IdentificationSuggestion(id: "1", name: "Suggestion #2", probability: 0.45, similarImages: []), IdentificationSuggestion(id: "2", name: "Suggestion #3", probability: 0.3, similarImages: [])])))*/
         //        IdentificationView(images: [UIImage(systemName: "leaf")!], plantName: "Womp Womp", loadState: .loaded, identificationData: response)
         IdentificationView(viewModel: SuccuelentFormViewModel([]), grpcViewModel: GRPCViewModel())
     }
