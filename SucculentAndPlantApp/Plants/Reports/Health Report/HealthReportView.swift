@@ -16,7 +16,7 @@ struct HealthReportView: View {
                     switch healthDataViewModel.loadState {
                     case .loading:
                         // Shimmer placeholder view
-                        HealthDataListView(healthData: HealthAssessmentResponse(result: HealthResult(isPlant: HealthPrediction(probability: 0.69, binary: true, threshold: 0.1), isHealthy: HealthPrediction(probability: 0.99, binary: true, threshold: 0.2), disease: DiseaseSuggestion(suggestions: [Disease(id: "01", name: "Wompie Dompie", probability: 0.56, similarImages: [SimilarImage(id: "01", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.90, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4")] ), Disease(id: "01", name: "Wompie Dompie", probability: 0.56, similarImages: [SimilarImage(id: "01", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.90, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4")] )]))), imageWidth: CGFloat(400.2), similarImages: [:])
+                        HealthDataListView(healthData: HealthAssessmentResponse(result: HealthResult(isPlant: HealthPrediction(probability: 0.69, binary: true, threshold: 0.1), isHealthy: HealthPrediction(probability: 0.99, binary: true, threshold: 0.2), disease: DiseaseSuggestion(suggestions: [Disease(id: "01", name: "Wompie Dompie", probability: 0.56, similarImages: [SimilarImage(id: "01", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.90, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4")] ), Disease(id: "02", name: "Wompie Dompie", probability: 0.56, similarImages: [SimilarImage(id: "01", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.90, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4")] )]))), imageWidth: CGFloat(400.2), similarImages: [:])
                             .redacted(reason: .placeholder)
                     case .loaded:
                         if let healthData = healthDataViewModel.healthData {
@@ -30,7 +30,7 @@ struct HealthReportView: View {
                 }
                 .navigationTitle("Health Report")
                 .onAppear {
-                    healthDataViewModel.fetchData(for: viewModel.name, image: viewModel.uiImage.first!)
+                    healthDataViewModel.fetchData(for: viewModel.name, id: viewModel.id, image: viewModel.uiImage.first!)
                 }
             }
         }
@@ -149,7 +149,7 @@ class HealthDataViewModel: ObservableObject {
     @Published var similarImages = [String: [UIImage]]()
     @Published var loadState: ReportLoadState = .loading
 
-    func fetchData(for plantName: String, image: UIImage) {
+    func fetchData(for plantName: String, id: String?, image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             Logger.networking.debug("Failed to compress jpeg")
             self.loadState = .failed
@@ -172,6 +172,10 @@ class HealthDataViewModel: ObservableObject {
                     self?.healthData = response
                     self?.loadState = .loaded
                     self?.cacheSimilarImages(from: response)
+                    
+                    if let id {
+                        GRPCViewModel().saveHealthCheckData(for: id, currentProbability: response.result.isHealthy.probability, historicalProbabilities: [])
+                    }
                 case .failure(let error):
                     Logger.networking.error("Error fetching data: \(error)")
                     self?.loadState = .failed

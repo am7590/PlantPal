@@ -44,7 +44,7 @@ struct IdentificationView: View {
                 }
                 .redacted(reason: .placeholder)
                 .onAppear {
-//                    fetchData(forPlant: viewModel.name, images: viewModel.uiImage)
+                    fetchData(forPlant: viewModel.name, images: viewModel.uiImage)
                 }
                 .listStyle(InsetGroupedListStyle())
             case .loaded:
