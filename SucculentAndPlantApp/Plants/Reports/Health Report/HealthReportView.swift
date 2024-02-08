@@ -85,23 +85,28 @@ struct DiseaseDetailView: View {
     var similarImages: [String: [UIImage]]
 
     var body: some View {
-        VStack(alignment: .center) {
-            HStack {
-                CircularProgressView(progress: disease.probability, color: color, size: .small, showProgress: true)
-                    .frame(width: 55, height: 55)
-                
-                Text(disease.name.capitalized)
-                    .font(.title)
-                    .padding(.leading, 8)
+        List {
+            Section {
+                HStack {
+                    CircularProgressView(progress: disease.probability, color: color, size: .small, showProgress: true)
+                        .frame(width: 55, height: 55)
+                    
+                    Text(disease.name.capitalized)
+                        .font(.title)
+                        .padding(.leading, 8)
+                    
+                    Spacer()
+                }
+                .padding()
             }
-            
             
             if let images = similarImages[disease.id] {
-                ImageViewer(images: images)
-                    .padding(.leading, 24)
+                Section {
+                    ImageViewer(images: images)
+                        .padding()
+                }
+               
             }
-            
-            Spacer()
         }
         .padding()
     }
@@ -113,15 +118,13 @@ struct ImageViewer: View {
     var images: [UIImage]
 
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                ForEach(images, id: \.self) { image in
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 150, height: 150)
-                        .cornerRadius(8)
-                }
+        VStack {
+            ForEach(images, id: \.self) { image in
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 250, height: 250)
+                    .cornerRadius(8)
             }
         }
     }
