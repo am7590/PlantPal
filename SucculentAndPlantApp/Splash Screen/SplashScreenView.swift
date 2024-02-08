@@ -21,10 +21,6 @@ struct SplashScreenView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 200, height: 200)
-            
-            Text("plantpal")
-                .font(.custom("Geist-Thin", fixedSize: 48))
-                .bold()
         }
     }
     
@@ -41,8 +37,8 @@ struct SplashScreenView: View {
         }
         .opacity(startFadeoutAnimation ? 0 : 1)
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                withAnimation(.linear(duration: 1.5)) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                withAnimation(.linear(duration: 0.5)) {
                     startFadeoutAnimation = true
                 }
             }
@@ -50,30 +46,27 @@ struct SplashScreenView: View {
         .onChange(of: startFadeoutAnimation) { newValue in
             if newValue {
                 // Call dismiss after the animation duration
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                     splashScreenState.dismiss()
                 }
             }
         }
-
+        
     }
-
+    
     private func updateAnimation() {
         switch splashScreenState.launchState {
         case .start:
             ()
         case .dismiss:
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                withAnimation(.linear(duration: 2)) {
-                    startFadeoutAnimation = true
-                }
-
+            withAnimation(.linear(duration: 1)) {
+                startFadeoutAnimation = true
             }
         case .finished:
             break
         }
     }
-
+    
     
 }
 

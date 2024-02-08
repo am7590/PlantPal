@@ -11,7 +11,7 @@ import SwiftUI
 
 struct UIOnboardingHelper {
     static func setUpIcon() -> UIImage {
-        return Bundle.main.appIcon ?? .init(named: "onboarding-icon")!
+        return Bundle.main.appIcon ?? .init(named: "IconImage")!
     }
     
     // First Title Line
