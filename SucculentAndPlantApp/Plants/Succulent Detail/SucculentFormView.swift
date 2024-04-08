@@ -373,7 +373,7 @@ struct SucculentFormView: View {
             }
         }
         .listRowBackground(Color(uiColor: .secondarySystemBackground))
-        .tint(Color(uiColor: .systemGreen))
+//        .tint(Color(uiColor: .systemOrange))
 
     }
 }

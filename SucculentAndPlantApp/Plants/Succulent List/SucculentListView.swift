@@ -75,6 +75,20 @@ struct SucculentListView: View {
                         handleDeepLinkingToItem(url: url, grpcViewModel: grpcViewModel)
                     }
                 }
+                .onReceive(NotificationCenter.default.publisher(for: NSNotification.foundCloudkitUUID)) { notification in
+                    print("User's iClou", notification)
+                    
+                    
+                    if let uuid = notification.object as? String {
+                        Task {
+                            let parsedUuid = uuid.replacingOccurrences(of: String("_"), with: "")
+                            print("$$$ \(parsedUuid)")
+                            GRPCManager.shared.userDeviceToken = parsedUuid
+                            GRPCManager.shared.useriCloudToken = parsedUuid
+                            try await grpcViewModel.registerOrGetUser(uuid: parsedUuid)
+                        }
+                    }
+                }
             }
         }
     }

@@ -9,5 +9,6 @@ import Foundation
 
 extension NSNotification {
     static let deepLink = Notification.Name.init("DeepLink")
+    static let foundCloudkitUUID = Notification.Name.init("foundCloudkitUUID")
 }
 

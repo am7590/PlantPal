@@ -38,6 +38,7 @@ struct SucculentAndPlantAppApp: App {
     
     @State private var showingOnboarding = false
     
+
     var body: some Scene {
         WindowGroup {
             Group {

@@ -9,6 +9,7 @@ import UIKit
 import UserNotifications
 import BRYXBanner
 import os
+import CloudKit
 
 // I could not get push notification handling working correctly with SwiftUI :(
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -32,6 +33,20 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         // Instantiate GRPCManager with gRPC channel
         _ = GRPCManager.shared
+        
+        // Authenticate with gRPC API
+        getUserICloudID { result in
+            switch result {
+            case .success(let iCloudID):
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                    NotificationCenter.default.post(name: NSNotification.foundCloudkitUUID, object: iCloudID)
+                    print("User's iCloud ID: \(iCloudID)")
+
+                }
+            case .failure(let error):
+                print("Error retrieving iCloud ID: \(error.localizedDescription)")
+            }
+        }
         
         return true
     }
@@ -81,5 +96,20 @@ extension AppDelegate {
         let aps = userInfo["url"] as! [String : Any]
         payloadURL = aps
     
+    }
+}
+
+// MARK: CloudKit/gRPC auth
+extension AppDelegate {
+    func getUserICloudID(completion: @escaping (Result<String, Error>) -> Void) {
+        CKContainer.default().fetchUserRecordID { recordID, error in
+            if let error = error {
+                completion(.failure(error))
+            } else if let recordID = recordID {
+                completion(.success(recordID.recordName))
+            } else {
+                completion(.failure(NSError(domain: "this is a placeholder error", code: 0, userInfo: [NSLocalizedDescriptionKey: "Unknown error occurred"])))
+            }
+        }
     }
 }

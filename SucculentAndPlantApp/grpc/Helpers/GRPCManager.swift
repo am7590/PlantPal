@@ -15,7 +15,12 @@ class GRPCManager {
     
     static let shared = GRPCManager()
     
-    var userDeviceToken = ""
+    public var userDeviceToken = "" {
+        didSet {
+            print("$$ \(userDeviceToken)")
+        }
+    }
+    public var useriCloudToken = ""
     
     init() {
         // Needs to be in background or priority inversion will occur

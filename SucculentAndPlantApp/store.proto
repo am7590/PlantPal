@@ -1,32 +1,57 @@
 syntax = "proto3";
 package plant;
-import "google/protobuf/empty.proto";
 
 service PlantService {
+    // Users are identified by their iCloud UUID
+    // All 'uuid' references in this proto mean iCloud UUID
+    rpc RegisterOrGetUser(UserIdentifier) returns (UserResponse);
+
     // Create plant
-    rpc Add(Plant) returns (PlantResponse); 
+    // 'sku' references the plant's id
+    rpc Add(AddPlantRequest) returns (PlantResponse);
 
     // Remove plant
-    rpc Remove(PlantIdentifier) returns (PlantResponse);  
+    rpc Remove(RemovePlantRequest) returns (PlantResponse);
 
-    // Get plant 
-    rpc Get(PlantIdentifier) returns (Plant);  
+    // Get plant
+    rpc Get(GetPlantRequest) returns (Plant);
 
     // Get a list of plants that need to be watered (for APNs microservice)
-    rpc GetWatered(google.protobuf.Empty) returns (ListOfPlants);
+    rpc GetWatered(GetWateredRequest) returns (ListOfPlants);
 
     // Update plant schedule/health check/id time
-    rpc UpdatePlant(PlantUpdateRequest) returns (PlantUpdateResponse);  
-    
+    rpc UpdatePlant(PlantUpdateRequest) returns (PlantUpdateResponse);
+
     // Save JSON health check
     rpc SaveHealthCheckData(HealthCheckDataRequest) returns (HealthCheckDataResponse);
 
     // Caching
-    rpc IdentificationRequest(PlantIdentifier) returns (PlantInformation);
-
-    rpc HealthCheckRequest(PlantIdentifier) returns (HealthCheckInformation);
+    rpc IdentificationRequest(IdentificationRequestParam) returns (PlantInformation);
+    rpc HealthCheckRequest(HealthCheckRequestParam) returns (HealthCheckInformation);
 }
 
+message UserIdentifier {
+    string uuid = 1; // UUID stored in iCloud Keychain
+}
+
+message UserResponse {
+    string status = 1; // "new" for a registration; "existing" otherwise
+}
+
+message AddPlantRequest {
+    string userId = 1;
+    Plant plant = 2;
+}
+
+message GetPlantRequest {
+    string uuid = 1;
+    string sku = 2;
+}
+
+message RemovePlantRequest {
+    string uuid = 1;
+    string sku = 2;
+}
 
 message Plant {
     PlantIdentifier identifier = 1;
@@ -47,8 +72,9 @@ message PlantInformation {
 }
 
 message PlantUpdateRequest {
-    PlantIdentifier identifier = 1;
-    optional PlantInformation information = 2;
+    string uuid = 1;
+    PlantIdentifier identifier = 2;
+    PlantInformation information = 3;
 }
 
 message PlantResponse {
@@ -59,11 +85,14 @@ message PlantUpdateResponse {
     string status = 1;
 }
 
+message GetWateredRequest {
+    string uuid = 1;
+}
+
 message ListOfPlants {
     repeated Plant plants = 1;
 }
 
-// Health check info
 message HealthCheckDataRequest {
     PlantIdentifier identifier = 1;
     string healthCheckInformation = 2;
@@ -87,4 +116,14 @@ message Probabilities {
     string name = 2;
     double probability = 3;
     int64 date = 4;
+}
+
+message IdentificationRequestParam {
+    string uuid = 1;
+    string sku = 2;
+}
+
+message HealthCheckRequestParam {
+    string uuid = 1;
+    string sku = 2;
 }
