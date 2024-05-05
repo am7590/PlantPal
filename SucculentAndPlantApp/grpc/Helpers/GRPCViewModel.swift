@@ -33,11 +33,10 @@ class GRPCViewModel: ObservableObject {
     }
 
     func updateExistingPlant(with identifier: String, name: String, lastWatered: Int64?, lastHealthCheck: Int64?, lastIdentification: Int64?, identifiedSpeciesName: String?, newHealthProbability: String?) {
-
         Task(priority: .background) {
             do {
                 // Fetch the current item's information
-                var currentPlantInfo = try await self.fetchPlantInfo(using: identifier)
+                var currentPlantInfo = try await self.fetchPlantInfo(using: identifier, plantName: name)
 
                 // Update fields as necessary
                 if let lastWatered = lastWatered {
@@ -53,14 +52,15 @@ class GRPCViewModel: ObservableObject {
                     currentPlantInfo?.identifiedSpeciesName = identifiedSpeciesName
                 }
 
-                // TODO: Update health data
-
+                // Update the plant's name
                 currentPlantInfo?.name = name
 
+                // Hardcode the SKU to be the concatenation of the updated plant name and the user's iCloud ID
                 let plantID = Plant_PlantIdentifier.with {
-                    $0.sku = identifier
+                    $0.sku = "\(name)\(GRPCManager.shared.userDeviceToken)"
                     $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
                 }
+                
                 let response = try await self.updatePlantEntry(with: plantID, updatedInfo: currentPlantInfo!)
                 await self.updateUIResult(with: response)
             } catch {
@@ -77,8 +77,7 @@ class GRPCViewModel: ObservableObject {
 
     func removePlantEntry(with identifier: String) {
         let plantID = Plant_PlantIdentifier.with {
-            $0.sku = identifier
-
+            $0.sku = "\(identifier)\(GRPCManager.shared.userDeviceToken)"
             // Assuming deviceIdentifier is the same for all entries and known ahead of time
             $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
         }
@@ -99,10 +98,12 @@ class GRPCViewModel: ObservableObject {
         }
     }
 
-    public func fetchPlantInfo(using identifier: String) async throws -> Plant_PlantInformation? {
+    func fetchPlantInfo(using identifier: String, plantName: String) async throws -> Plant_PlantInformation? {
+        print("\(#function) idntifier: \(identifier)")
         let request = Plant_GetPlantRequest.with {
             $0.uuid = GRPCManager.shared.userDeviceToken
-            $0.sku = identifier
+            // Hardcode the SKU to be the concatenation of the plant name and the user's iCloud ID
+            $0.sku = "\(plantName)\(identifier)"
         }
         
         let channel = GRPCManager.shared.createChannel()
@@ -125,7 +126,7 @@ class GRPCViewModel: ObservableObject {
         
         let request = Plant_HealthCheckRequestParam.with {
             $0.uuid = GRPCManager.shared.userDeviceToken
-            $0.sku = identifier
+            $0.sku = identifier+GRPCManager.shared.userDeviceToken
         }
 
         let channel = GRPCManager.shared.createChannel()
@@ -145,7 +146,7 @@ class GRPCViewModel: ObservableObject {
     
     func saveHealthCheckData(for identifier: String, currentProbability: Double, historicalProbabilities: [[String: Any]]) {
            let plantID = Plant_PlantIdentifier.with {
-               $0.sku = identifier
+               $0.sku = identifier+GRPCManager.shared.userDeviceToken
                $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
            }
            

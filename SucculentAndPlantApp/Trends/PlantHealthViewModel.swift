@@ -24,7 +24,9 @@ class PlantHealthViewModel: ObservableObject {
         self.grpcViewModel = grpcViewModel
         self.plantId = plantId
         fetchHealthData()
-        fetchPlantInfoData()
+        if let plantName = plantInformation?.name {
+            fetchPlantInfoData(plantName: plantName)
+        }
     }
     
     private func fetchHealthData() {
@@ -42,10 +44,10 @@ class PlantHealthViewModel: ObservableObject {
         }
     }
     
-    private func fetchPlantInfoData() {
+    private func fetchPlantInfoData(plantName: String) {
         Task {
             do {
-                let fetchedData = try await grpcViewModel.fetchPlantInfo(using: plantId)
+                let fetchedData = try await grpcViewModel.fetchPlantInfo(using: plantInformation?.name ?? "", plantName: plantName)
                 DispatchQueue.main.async {
                     self.plantInformation = fetchedData
                     self.loadedPlantInformation = true
