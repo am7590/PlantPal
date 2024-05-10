@@ -15,11 +15,7 @@ struct IdentificationView: View {
     @StateObject var viewModel: SuccuelentFormViewModel
     @StateObject var grpcViewModel: GRPCViewModel
     @State var loadState: ReportLoadState = .loading
-    @State var identificationData: IdentificationResponse? {
-        didSet {
-            dump(identificationData)
-        }
-    }
+    @State var identificationData: IdentificationResponse?
     @State var similarImages = [String: [UIImage]]()
     
     var body: some View {
@@ -33,14 +29,11 @@ struct IdentificationView: View {
                         .listRowBackground(Color.clear)
 
                     
-                    IdentificationSuggestionShimmerView(suggestion: IdentificationSuggestion(id: "12123345", name: "112342345", probability: 69.420, similarImages: [IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4"), IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4")]))
+                    IdentificationSuggestionShimmerView(suggestion: IdentificationSuggestion(id: "12123345", name: "11234234567014", probability: 69.420, similarImages: [IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4"), IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4")]))
 
                    
-                    IdentificationSuggestionShimmerView(suggestion: IdentificationSuggestion(id: "12345", name: "12112342345345", probability: 69.420, similarImages: [IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4"), IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4")]))
-//                        .shimmer()
+                    IdentificationSuggestionShimmerView(suggestion: IdentificationSuggestion(id: "12345", name: "11234234567014", probability: 69.420, similarImages: [IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4"), IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4")]))
 
-                    IdentificationSuggestionShimmerView(suggestion: IdentificationSuggestion(id: "12345", name: "123112342345", probability: 69.420, similarImages: [IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4"), IdentificationSimilarImage(id: "123", url: "https://avatars.githubusercontent.com/u/70722459?v=4", similarity: 0.0, urlSmall: "https://avatars.githubusercontent.com/u/70722459?v=4")]))
-//                        .shimmer()
 
                 }
                 .redacted(reason: .placeholder)
@@ -128,12 +121,15 @@ struct IdentificationSuggestionShimmerView: View {
                 HStack {
 
                     CircularProgressView(progress: suggestion.probability, color: Color(uiColor: .systemGreen), size: .small, showProgress: true)
-                        .frame(width: 45, height: 45)
+                        .frame(width: 50, height: 50)
                         .padding()
+                        .padding(.leading, -55)
+                        .shimmer()
 
                     Text("\(suggestion.name)")
+                        .shimmer()
                         .font(.title)
-                    
+                        .padding(.leading, -70)
                 }
 
                 ScrollView(.horizontal) {
@@ -143,14 +139,16 @@ struct IdentificationSuggestionShimmerView: View {
                                 RemoteImage(url: url)
                                     .frame(width: 150, height: 150)
                                     .cornerRadius(16)
+                                    .shimmer()
+
                             }
                         }
                     }
                 }
 
                 .padding(.vertical, -8)
+                .padding(.bottom, 8)
 
-                .shimmer()
             }
         }
 
