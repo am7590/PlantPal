@@ -100,10 +100,14 @@ class GRPCViewModel: ObservableObject {
 
     func fetchPlantInfo(using identifier: String, plantName: String) async throws -> Plant_PlantInformation? {
         print("\(#function) idntifier: \(identifier)")
+//        let request = Plant_GetPlantRequest.with {
+//            $0.uuid = GRPCManager.shared.userDeviceToken
+//            // Hardcode the SKU to be the concatenation of the plant name and the user's iCloud ID
+//            $0.sku = "\(plantName)\(identifier)"
+//        }
         let request = Plant_GetPlantRequest.with {
             $0.uuid = GRPCManager.shared.userDeviceToken
-            // Hardcode the SKU to be the concatenation of the plant name and the user's iCloud ID
-            $0.sku = "\(plantName)\(identifier)"
+            $0.sku = plantName+identifier
         }
         
         let channel = GRPCManager.shared.createChannel()
@@ -122,11 +126,11 @@ class GRPCViewModel: ObservableObject {
 
 
 
-    public func fetchHealthCheckInfo(for identifier: String) async throws -> Plant_HealthCheckInformation? {
+    public func fetchHealthCheckInfo(withID identifier: String, forPlantName: String) async throws -> Plant_HealthCheckInformation? {
         
         let request = Plant_HealthCheckRequestParam.with {
             $0.uuid = GRPCManager.shared.userDeviceToken
-            $0.sku = identifier+GRPCManager.shared.userDeviceToken
+            $0.sku = forPlantName+identifier
         }
 
         let channel = GRPCManager.shared.createChannel()
@@ -144,9 +148,9 @@ class GRPCViewModel: ObservableObject {
         }
     }
     
-    func saveHealthCheckData(for identifier: String, currentProbability: Double, historicalProbabilities: [[String: Any]]) {
+    func saveHealthCheckData(for identifier: String, plantName: String, currentProbability: Double, historicalProbabilities: [[String: Any]]) {
            let plantID = Plant_PlantIdentifier.with {
-               $0.sku = identifier+GRPCManager.shared.userDeviceToken
+               $0.sku = plantName+identifier
                $0.deviceIdentifier = GRPCManager.shared.userDeviceToken
            }
            
@@ -166,6 +170,8 @@ class GRPCViewModel: ObservableObject {
                $0.identifier = plantID
                $0.healthCheckInformation = jsonString
            }
+        
+            dump(healthCheckDataRequest)
            
            Task(priority: .background) {
                do {
@@ -173,6 +179,7 @@ class GRPCViewModel: ObservableObject {
 //                   Logger.networking.debug("Health Check Data Saved: \(response)")
                    await self.updateUIResult(with: "Health check data saved successfully.")
                } catch {
+                   print(error)
                    await self.updateUIResult(with: error.localizedDescription)
                    
                    Task {

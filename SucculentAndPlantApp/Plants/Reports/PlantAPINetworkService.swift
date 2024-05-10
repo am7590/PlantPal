@@ -21,7 +21,6 @@ class PlantAPINetworkService {
         if let cachedData = UserDefaults.standard.data(forKey: fullCacheKey) {
             do {
                 let cachedResponse = try jsonDecoder.decode(T.self, from: cachedData)
-                // Check if cachedResponse is valid, if not, continue to fetch from network
                 if isValidResponse(cachedResponse) {
                     DispatchQueue.main.async {
                         completion(.success(cachedResponse))
@@ -78,14 +77,11 @@ class PlantAPINetworkService {
     }
 
     private func isValidResponse<T: Codable>(_ response: T) -> Bool {
-        // Check if the response is of type IdentificationResponse
         if let identificationResponse = response as? IdentificationResponse {
-            // A valid IdentificationResponse should have a non-nil classification
             return identificationResponse.result?.classification != nil
         }
 
         // TODO: Do this for health check responses too
-        // Return true for other types where specific validation logic is not implemented
         return true
     }
 }

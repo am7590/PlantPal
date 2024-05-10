@@ -24,7 +24,6 @@ struct CustomFrameModifier: ViewModifier {
                     .cornerRadius(16)
                     .shadow(radius: 8.0)
                 
-                
                 VStack(alignment: .leading) {
                     
                     Group {
@@ -33,9 +32,7 @@ struct CustomFrameModifier: ViewModifier {
 
                         Text("Bergeranthus concavus").font(.subheadline).italic()
                             .padding(.leading)
-
                     }
-//                    .padding(.top)
                
                     Spacer()
                     HStack {
@@ -63,21 +60,3 @@ struct CustomFrameModifier: ViewModifier {
         }
     }
 }
-
-//struct CustomListModifier: ViewModifier {
-//    var viewModel: SucculentListViewModel
-//    var cellWidth: CGFloat
-//
-//    var gridItemLayout = [GridItem(.adaptive(minimum: 150))]
-//
-//    func body(content: Content) -> some View {
-//        if viewModel.isList {
-//            content
-//        } else {
-//            LazyVGrid(columns: gridItemLayout, spacing: 16) {
-//                content
-//            }
-//        }
-//
-//    }
-//}
