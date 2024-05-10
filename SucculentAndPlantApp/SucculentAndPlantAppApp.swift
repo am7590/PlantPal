@@ -84,7 +84,6 @@ struct SucculentAndPlantAppApp: App {
                         OnboardingView()
                             .edgesIgnoringSafeArea(.all)
                     })
-                    //                    .tint(.primary)
                     
                     .accentColor(Color(uiColor: .systemGreen))
                 }

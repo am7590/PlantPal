@@ -12,6 +12,7 @@ struct GraphView: View {
     @ObservedObject var viewModel: GraphViewModel
     @State var isLineGraph: Bool = true
     
+    
     var body: some View {
         ZStack {
             AnimatedChart(dataItems: viewModel.dataItems)

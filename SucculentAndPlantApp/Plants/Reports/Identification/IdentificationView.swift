@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PlantPalSharedUI
 
 // TODO: I know this can be refactored!
 

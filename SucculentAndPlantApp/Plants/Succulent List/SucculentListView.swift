@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 import BRYXBanner
 import _PhotosUI_SwiftUI
+import PlantPalSharedUI
 
 struct SucculentListView: View {    
     @EnvironmentObject var router: Router
@@ -21,6 +22,8 @@ struct SucculentListView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.name)])
     var fetchedItems: FetchedResults<Item>
     
+    // Triggers deep link detail view
+    // I know this isn't best practice; I waited too long to implement deep linking
     let pub = NotificationCenter.default.publisher(for: NSNotification.deepLink)
 
     @State var items: [Item] = []
@@ -76,14 +79,13 @@ struct SucculentListView: View {
                     }
                 }
                 .onReceive(NotificationCenter.default.publisher(for: NSNotification.foundCloudkitUUID)) { notification in
-                    print("User's iClou", notification)
+                    print("User's iCloud UUID", notification)
                     
                     
                     if let uuid = notification.object as? String {
                         Task {
                             let parsedUuid = uuid.replacingOccurrences(of: String("_"), with: "")
-                            print("$$$ \(parsedUuid)")
-                            GRPCManager.shared.userDeviceToken = parsedUuid
+                            GRPCManager.shared.userDeviceToken = parsedUuid  // TODO: This should be depreciated
                             GRPCManager.shared.useriCloudToken = parsedUuid
                             try await grpcViewModel.registerOrGetUser(uuid: parsedUuid)
                         }
