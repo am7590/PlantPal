@@ -1,6 +1,7 @@
 import SwiftUI
 import os
 import Shimmer
+import PlantPalSharedUI
 
 struct HealthReportView: View {
     @StateObject var viewModel: SuccuelentFormViewModel
@@ -177,7 +178,7 @@ class HealthDataViewModel: ObservableObject {
                     self?.cacheSimilarImages(from: response)
                     
                     if let id {
-                        GRPCViewModel().saveHealthCheckData(for: id, currentProbability: response.result.isHealthy.probability, historicalProbabilities: [])
+                        GRPCViewModel().saveHealthCheckData(for: id, plantName: plantName, currentProbability: response.result.isHealthy.probability, historicalProbabilities: [])
                     }
                 case .failure(let error):
                     Logger.networking.error("Error fetching data: \(error)")

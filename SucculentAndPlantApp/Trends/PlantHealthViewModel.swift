@@ -15,27 +15,29 @@ class PlantHealthViewModel: ObservableObject {
     @Published var loadedHealthData = false
     @Published var loadedPlantInformation = false
     
+    @Published var probability: Double? = nil
+    
     @Published var isLoading = true
     
     let grpcViewModel: GRPCViewModel
     let plantId: String
     
-    init(grpcViewModel: GRPCViewModel, plantId: String) {
+    init(grpcViewModel: GRPCViewModel, plantId: String, plantName: String) {
         self.grpcViewModel = grpcViewModel
         self.plantId = plantId
-        fetchHealthData()
-        if let plantName = plantInformation?.name {
-            fetchPlantInfoData(plantName: plantName)
-        }
+        
+        fetchPlantInfoData(id: plantId, plantName: plantName)
+        fetchHealthData(id: plantId, plantName: plantName)
     }
     
-    private func fetchHealthData() {
+    private func fetchHealthData(id: String, plantName: String) {
         Task {
             do {
-                let fetchedData = try await grpcViewModel.fetchHealthCheckInfo(for: plantId)
+                let fetchedData = try await grpcViewModel.fetchHealthCheckInfo(withID: id, forPlantName: plantName)
                 DispatchQueue.main.async {
                     self.healthData = fetchedData
                     self.loadedHealthData = true
+                    self.probability = fetchedData?.historicalProbabilities.probabilities.first?.probability
                 }
             } catch {
                 self.isLoading = false
@@ -44,10 +46,11 @@ class PlantHealthViewModel: ObservableObject {
         }
     }
     
-    private func fetchPlantInfoData(plantName: String) {
+    private func fetchPlantInfoData(id: String, plantName: String) {
         Task {
             do {
-                let fetchedData = try await grpcViewModel.fetchPlantInfo(using: plantInformation?.name ?? "", plantName: plantName)
+                print("^^^ fetching plant info for \(id) and \(plantName)")
+                let fetchedData = try await grpcViewModel.fetchPlantInfo(using: id, plantName: plantName)
                 DispatchQueue.main.async {
                     self.plantInformation = fetchedData
                     self.loadedPlantInformation = true
