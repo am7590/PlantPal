@@ -10,6 +10,7 @@ import CoreData
 import BRYXBanner
 import _PhotosUI_SwiftUI
 import PlantPalSharedUI
+import PlantPalCore
 
 struct SucculentListView: View {    
     @EnvironmentObject var router: Router

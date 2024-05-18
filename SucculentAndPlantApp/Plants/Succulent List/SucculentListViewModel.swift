@@ -22,6 +22,8 @@ class SucculentListViewModel: ObservableObject {
     
     private let isListViewKey = "isListView"
     
+    public init() { }
+    
     var isList: Bool {
         get {
             UserDefaults.standard.bool(forKey: isListViewKey)

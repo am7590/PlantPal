@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import PlantPalCore
 
 class SuccuelentFormViewModel: ObservableObject {
     @Published var name = ""

@@ -2,6 +2,7 @@ import SwiftUI
 import os
 import Shimmer
 import PlantPalSharedUI
+import PlantPalCore
 
 struct HealthReportView: View {
     @StateObject var viewModel: SuccuelentFormViewModel
@@ -169,7 +170,7 @@ class HealthDataViewModel: ObservableObject {
         ]
 
         let apiUrl = URL(string: "https://plant.id/api/v3/health_assessment")!
-        PlantAPINetworkService.shared.fetchData(url: apiUrl, cacheKey: plantName+":health", requestBody: requestBody) { [weak self] (result: Result<HealthAssessmentResponse, Error>) in
+        PlantAPINetworkService.shared.fetchData(url: apiUrl, cacheKey: plantName+":health", userDeviceToken:  GRPCManager.shared.userDeviceToken, requestBody: requestBody) { [weak self] (result: Result<HealthAssessmentResponse, Error>) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
