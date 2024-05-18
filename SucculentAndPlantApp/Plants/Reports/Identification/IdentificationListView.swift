@@ -30,6 +30,7 @@ struct IdentificationListView: View {
         .listStyle(InsetGroupedListStyle())
     }
 
+    // TODO: Can this be moved to the viewModel?
     private func handleSuggestionTap(_ suggestion: IdentificationSuggestion) {
         UserDefaults.standard.hasBeenIdentified(for: viewModel.plantFormViewModel.name, with: suggestion.name)
 //        viewModel.onDismiss
