@@ -6,11 +6,10 @@
 //
 
 import SwiftUI
+import PlantPalSharedUI
 
 struct PlantHealthSectionView: View {
     @ObservedObject var plantHealthViewModel: PlantHealthViewModel
-    
-    
     
     init(plantId: String, grpcViewModel: GRPCViewModel, plantName: String) {
         plantHealthViewModel = PlantHealthViewModel(grpcViewModel: grpcViewModel, plantId: plantId, plantName: plantName)

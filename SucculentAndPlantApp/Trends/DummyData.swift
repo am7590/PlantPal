@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PlantPalCore
 
 var sample_analytics: [TrendsGraphDataItem] = [
     TrendsGraphDataItem(date: Date(), value: 5),
