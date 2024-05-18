@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PlantPalCore
 
 protocol Defaultable {
     static func defaultValue() -> Self
@@ -17,8 +18,8 @@ extension HealthAssessmentResponse: Defaultable {
     }
 }
 
-extension IdentificationResponse: Defaultable {
-    public static func defaultValue() -> IdentificationResponse {
-        return IdentificationResponse(result: IdentificationResult(classification: IdentificationClassification(suggestions: [])))
-    }
-}
+//extension IdentificationResponse: Defaultable {
+//    public static func defaultValue() -> IdentificationResponse {
+//        return IdentificationResponse(result: IdentificationResult(classification: IdentificationClassification(suggestions: [])))
+//    }
+//}
