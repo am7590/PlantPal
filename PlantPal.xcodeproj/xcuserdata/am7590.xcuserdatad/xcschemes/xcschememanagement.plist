@@ -4,10 +4,28 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>PlantPalTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>SucculentAndPlantApp.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2919F32C2A0815700003194F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29B5C3C22BF9129800BAFD22</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

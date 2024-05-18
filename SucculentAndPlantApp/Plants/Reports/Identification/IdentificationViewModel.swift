@@ -13,22 +13,6 @@ protocol PlantIdentificationServiceProtocol {
 }
 
 class IdentificationViewModel: ObservableObject, PlantIdentificationServiceProtocol {
-    func identifyPlant(images: [String], plantName: String, completion: @escaping (Result<PlantPalCore.IdentificationResponse, Error>) -> Void) {
-        identificationService.identifyPlant(images: images, plantName: plantName) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let response):
-                    self.identificationData = response
-                    self.loadState = .loaded
-                    self.cacheSimilarImages(response)
-                case .failure(let error):
-                    print("Error fetching data from plant id API: %{PUBLIC}@", String(describing: error))
-                    self.loadState = .failed
-                }
-            }
-        }
-    }
-    
     @Published var loadState: ReportLoadState = .loading
     @Published var identificationData: IdentificationResponse?
     @Published var similarImages = [String: [UIImage]]()
@@ -43,6 +27,22 @@ class IdentificationViewModel: ObservableObject, PlantIdentificationServiceProto
         self.plantFormViewModel = plantFormViewModel
         self.identificationService = identificationService
 //        self.onDismiss = onDismiss
+    }
+    
+    func identifyPlant(images: [String], plantName: String, completion: @escaping (Result<PlantPalCore.IdentificationResponse, Error>) -> Void) {
+        identificationService.identifyPlant(images: images, plantName: plantName) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    self.identificationData = response
+                    self.loadState = .loaded
+                    self.cacheSimilarImages(response)
+                case .failure(let error):
+                    print("Error fetching data from plant id API: %{PUBLIC}@", String(describing: error))
+                    self.loadState = .failed
+                }
+            }
+        }
     }
 
     func fetchData() {

@@ -10,6 +10,7 @@ import UserNotifications
 import BRYXBanner
 import os
 import CloudKit
+import PlantPalCore
 
 // I could not get push notification handling working correctly with SwiftUI :(
 class AppDelegate: NSObject, UIApplicationDelegate {
