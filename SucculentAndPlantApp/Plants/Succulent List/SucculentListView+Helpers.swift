@@ -11,8 +11,8 @@ import _PhotosUI_SwiftUI
 import BRYXBanner
 import os
 
+// MARK: SucculentListView Toolbar
 extension SucculentListView {
-    // MARK: SucculentListView Toolbar
     struct CustomToolbar: ToolbarContent {
         @EnvironmentObject var viewModel: SucculentListViewModel
         
@@ -26,32 +26,7 @@ extension SucculentListView {
                     Image(systemName: "plus.app")
                         .bold()
                 }
-//                .foregroundColor(.green)
             }
-            
-//            ToolbarItem(placement: .navigationBarTrailing) {
-//                Menu {
-//                    Menu {
-//                        Button {
-//                            viewModel.isList = false  // Update UserDefaults
-//                        } label: {
-//                            Label("Grid", systemImage: "rectangle.grid.2x2")
-//                        }
-//
-//                        Button {
-//                            viewModel.isList = true  // Update UserDefaults
-//                        } label: {
-//                            Label("List", systemImage: "list.bullet")
-//                        }
-//
-//                    } label: {
-//                        Label("Group by", systemImage: viewModel.isList ? "list.bullet" : "rectangle.grid.2x2")
-//                    }
-//                } label: {
-//                    Label("", systemImage: "ellipsis.circle")
-//                }
-//                .foregroundColor(.primary)
-//            }
         }
     }
 }
@@ -69,6 +44,11 @@ extension SucculentListView {
                 restoreMyImage()
             }
         }
+    }
+    
+    // Triggers refresh from CoreData
+    func refreshFetchedItems() {
+        items = Array(fetchedItems)
     }
     
     func updateItemsFromSearchQuery(_ value: String) {
@@ -122,6 +102,17 @@ extension SucculentListView {
         }
         shareService.codeableImage = nil
     }
+    
+    func saveiCloudUUID(notification: NotificationCenter.Publisher.Output) {
+        print("User's iCloud UUID", notification)
+        
+        if let uuid = notification.object as? String {
+            Task {
+                let parsedUuid = uuid.replacingOccurrences(of: String("_"), with: "")
+                GRPCManager.shared.userDeviceToken = parsedUuid  // TODO: This should be depreciated
+                GRPCManager.shared.useriCloudToken = parsedUuid
+                try await grpcViewModel.registerOrGetUser(uuid: parsedUuid)
+            }
+        }
+    }
 }
-
-

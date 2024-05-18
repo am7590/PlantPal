@@ -53,33 +53,33 @@ struct SucculentFormView: View {
                     
                     List {
                         // TODO: Open keypad and select this TextField upon opening .new view type
-                        Section(viewModel.isItem ? "Species ID" : "Name") {
-                            if !viewModel.isItem {
-                                TextField("", text: $viewModel.name)
-                                    .textFieldStyle(.plain)
-                            }
-
-                            if viewModel.isItem {
-                                //                                NavigationLink(navLinkValue, destination: IdentificationView(viewModel: viewModel, grpcViewModel: grpcViewModel))
-                                                         
-                                
-                                NavigationLink(navLinkValue, destination:
-                                    EmptyView()
-//                                    IdentificationView(dismiss: dismiss, viewModel: IdentificationViewModel(grpcViewModel: grpcViewModel, plantFormViewModel: viewModel, identificationService: <#T##PlantIdentificationServiceProtocol#>))
-                                    .onDisappear {
-                                        refreshUserDefaults()
-                                    }
-                                )
-                            }
-                        }
-                        .listRowBackground(Color(uiColor: .secondarySystemBackground))
-
-                        waterPlantView()
-
-                        if !viewModel.isItem {
-                            selectImageView(width: width)
-                                .listRowBackground(Color(uiColor: .secondarySystemBackground))
-                        }
+//                        Section(viewModel.isItem ? "Species ID" : "Name") {
+//                            if !viewModel.isItem {
+//                                TextField("", text: $viewModel.name)
+//                                    .textFieldStyle(.plain)
+//                            }
+//
+//                            if viewModel.isItem {
+//                                //                                NavigationLink(navLinkValue, destination: IdentificationView(viewModel: viewModel, grpcViewModel: grpcViewModel))
+//                                                         
+//                                
+//                                NavigationLink(navLinkValue, destination:
+//                                    EmptyView()
+////                                    IdentificationView(dismiss: dismiss, viewModel: IdentificationViewModel(grpcViewModel: grpcViewModel, plantFormViewModel: viewModel, identificationService: <#T##PlantIdentificationServiceProtocol#>))
+//                                    .onDisappear {
+//                                        refreshUserDefaults()
+//                                    }
+//                                )
+//                            }
+//                        }
+//                        .listRowBackground(Color(uiColor: .secondarySystemBackground))
+//
+//                        waterPlantView()
+//
+//                        if !viewModel.isItem {
+//                            selectImageView(width: width)
+//                                .listRowBackground(Color(uiColor: .secondarySystemBackground))
+//                        }
                     }
                     .cornerRadius(16)
                     .scrollContentBackground(.hidden)
@@ -169,7 +169,7 @@ struct SucculentFormView: View {
                 }
             })
             .sheet(isPresented: $showHealthCheckSheet) {
-                HealthReportView(viewModel: viewModel, grpcViewModel: grpcViewModel)
+//                HealthReportView(viewModel: viewModel, grpcViewModel: grpcViewModel)
             }
             .alert("Add Plant Photo", isPresented: $viewModel.waterAlertIsDispayed) {
                 Button("Take Photo") {

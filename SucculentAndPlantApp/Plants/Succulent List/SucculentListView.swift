@@ -24,7 +24,7 @@ struct SucculentListView: View {
     var fetchedItems: FetchedResults<Item>
     
     // Triggers deep link detail view
-    // I know this isn't best practice; I waited too long to implement deep linking
+    // I know this isn't best practice :( I would only do this in a personal project
     let pub = NotificationCenter.default.publisher(for: NSNotification.deepLink)
 
     @State var items: [Item] = []
@@ -80,29 +80,19 @@ struct SucculentListView: View {
                     }
                 }
                 .onReceive(NotificationCenter.default.publisher(for: NSNotification.foundCloudkitUUID)) { notification in
-                    print("User's iCloud UUID", notification)
-                    
-                    
-                    if let uuid = notification.object as? String {
-                        Task {
-                            let parsedUuid = uuid.replacingOccurrences(of: String("_"), with: "")
-                            GRPCManager.shared.userDeviceToken = parsedUuid  // TODO: This should be depreciated
-                            GRPCManager.shared.useriCloudToken = parsedUuid
-                            try await grpcViewModel.registerOrGetUser(uuid: parsedUuid)
-                        }
-                    }
+                    saveiCloudUUID(notification: notification)
                 }
             }
         }
     }
-    
-    // Triggers refresh from CoreData
-    func refreshFetchedItems() {
-        items = Array(fetchedItems)
-    }
-    
+}
+
+// MARK: List/Grid View
+extension SucculentListView {
     func listView(width cellWidth: CGFloat) -> some View {
         ForEach(items, id: \.self) { item in
+            // Items can be dragged and dropped to reorder
+            // TODO: Send list index to gRPC server to save reordering
             let dropDelegate = MyDropDelegate(item: item, items: $items, draggedItem: draggedItem)
             
             Button {
