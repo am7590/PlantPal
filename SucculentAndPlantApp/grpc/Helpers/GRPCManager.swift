@@ -37,3 +37,28 @@ class GRPCManager {
         try? eventLoopGroup.syncShutdownGracefully()
     }
 }
+
+//class GRPCManager {
+//    static let shared = GRPCManager()
+//    private var eventLoopGroup: EventLoopGroup?
+//
+//    private init() {
+//        setupEventLoopGroup()
+//    }
+//    
+//    private func setupEventLoopGroup() {
+//        eventLoopGroup = MultiThreadedEventLoopGroup(numberOfThreads: System.coreCount)
+//    }
+//    
+//    func createChannel() -> ClientConnection {
+//        guard let eventLoopGroup = eventLoopGroup else {
+//            fatalError("EventLoopGroup is not initialized")
+//        }
+//        return ClientConnection.insecure(group: eventLoopGroup).connect(host: "127.0.0.1", port: 9001)
+//    }
+//    
+//    deinit {
+//        try? eventLoopGroup?.syncShutdownGracefully()
+//        eventLoopGroup = nil
+//    }
+//}

@@ -9,7 +9,6 @@ import UIKit
 import SwiftUI
 import PlantPalCore
 import CoreData
-import _PhotosUI_SwiftUI
 import os
 
 class SuccuelentFormViewModel: ObservableObject {
@@ -25,8 +24,15 @@ class SuccuelentFormViewModel: ObservableObject {
     @Published var amount = 0
     @Published var imagePageSliderIndex = 0
     
+    @Published var showCameraSheet = false
+    @Published var showPhotoSelectionSheet = false
+    @Published var showHealthCheckSheet = false
+    @Published var navLinkValue = ""
+    
+    @State var newImageSelection: PhotosPickerItem?
+    
     @Environment(\.managedObjectContext) var moc
-            
+    
     let cameraHostingView = EmptyView()
         
     var id: String?
@@ -111,4 +117,37 @@ class SuccuelentFormViewModel: ObservableObject {
             }
         }
     }
+    
+    func updateExistingPlant() -> Date? {
+        if let id = UserDefaults.standard.getUUID(for: name), !name.isEmpty, date != Date.now.stripTime() {
+            let interval = date.timeIntervalSince1970 * 86400
+//            grpcViewModel.updateExistingPlant(with: id, name: name, lastWatered: Int64(interval), lastHealthCheck: nil, lastIdentification: nil, identifiedSpeciesName: nil, newHealthProbability: nil)
+
+//            item?.timestamp = date
+            try? moc.save()
+            return date
+        }
+        
+        return nil
+    }
+    
+    
+//    func createItem(myImages: FetchedResults<Item>) {
+//        snoozeAlertIsDispayed.toggle()
+//        
+//        // Create plant
+//        let newItem = Item(context: moc)
+//        newItem.name = viewModel.name
+//        newItem.id = UUID().uuidString
+//        newItem.image = viewModel.uiImage
+//        newItem.position = NSNumber(value: myImages.count)
+//        newItem.timestamp = viewModel.date
+//        newItem.interval = (viewModel.amount) as NSNumber
+//        try? moc.save()
+//        
+//        grpcViewModel.createNewPlant(identifier: newItem.id ?? "69420", name: viewModel.name)
+//        
+//        UserDefaults.standard.hasGeneratedUUID(for: viewModel.name, with: newItem.id!)
+//    }
+    
 }
