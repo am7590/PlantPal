@@ -22,7 +22,7 @@ struct SucculentFormView: View {
     @State var navLinkValue = ""
     
     @FetchRequest(sortDescriptors: [])
-    var myImages: FetchedResults<Item>
+    public var myImages: FetchedResults<Item>
     
     @State private var showCameraSheet = false
     @State private var showPhotoSelectionSheet = false
@@ -88,71 +88,26 @@ struct SucculentFormView: View {
                 }
                 
             }
-            .onAppear {
-                if !viewModel.name.isEmpty {
-                    refreshUserDefaults()
-                }
-            }
+            
             .padding()
             .textFieldStyle(.roundedBorder)
-            .onChange(of: imageSelector.uiImage) { newImage in
-                if let newImage {
-                    viewModel.uiImage.append(newImage)
-                }
-            }
             .navigationTitle(viewModel.updating ? "\(viewModel.name)" : "New Plant")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                if viewModel.updating {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Menu {
-                            
-                            Button(role: .destructive) {
-                                if let selectedImage = myImages.first(where: { $0.id == viewModel.id }) {
-                                    moc.delete(selectedImage)
-                                    try? moc.save()
-                                }
-
-                                // I want to see on the server if 0 gets sent a lot
-                                grpcViewModel.removePlantEntry(with: viewModel.id ?? "0")
-
-                                dismiss()
-                            } label: {
-                                Label("Delete", systemImage: "trash")
-                            }
-                        } label: {
-                            Image(systemName: "ellipsis.circle")
-                                .tint(.primary)
-                        }
-                        
+                if !viewModel.updating {
+                    UpdatingToolbar(viewModel: viewModel) {
+                        let newItem = viewModel.updateItem(myImages: myImages)
+                        grpcViewModel.createNewPlant(identifier: newItem.id ?? "0", name: viewModel.name)
+                        dismiss()
                     }
                 } else {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Create") {
-                            viewModel.snoozeAlertIsDispayed.toggle()
-                            
-                            // TODO: Extract from here
-                            // Create succulent
-                            let newItem = Item(context: moc)
-                            newItem.name = viewModel.name
-                            newItem.id = UUID().uuidString
-                            newItem.image = viewModel.uiImage
-                            newItem.position = NSNumber(value: myImages.count)
-                            newItem.timestamp = viewModel.date
-                            newItem.interval = (viewModel.amount) as NSNumber
-                            try? moc.save()
-                            dismiss()
-                            
-                            grpcViewModel.createNewPlant(identifier: newItem.id ?? "69420", name: viewModel.name)
-                            UserDefaults.standard.hasGeneratedUUID(for: viewModel.name, with: newItem.id!)
-                            
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .tint(Color(uiColor: .systemGreen))
-                        .disabled(viewModel.incomplete)
+                    CreateToolbar() {
+                        viewModel.createItem(myImages: myImages)
+                        grpcViewModel.removePlantEntry(with: viewModel.id ?? "0")
+                        dismiss()
                     }
                 }
-                
+
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
                         dismiss()
@@ -164,12 +119,18 @@ struct SucculentFormView: View {
                 
             }, content: {
                 CameraHostingView(viewModel: viewModel) {
-                    updateImage()  // After photo is appeneded in CameraHostingView
+                    viewModel.updateImage(item: myImages.first(where: {$0.id == viewModel.id}))  // After photo is appeneded in CameraHostingView
                     // If gRPC call is successful, change "last watered"
                 }
             })
             .sheet(isPresented: $showHealthCheckSheet) {
 //                HealthReportView(viewModel: viewModel, grpcViewModel: grpcViewModel)
+            }
+            .onAppear {
+                refreshUserDefaultsIfNeccesary()
+            }
+            .onChange(of: imageSelector.uiImage) { newImage in
+               appendNewImageIfNeccesary(image: newImage)
             }
             .alert("Add Plant Photo", isPresented: $viewModel.waterAlertIsDispayed) {
                 Button("Take Photo") {
@@ -183,34 +144,12 @@ struct SucculentFormView: View {
                 Button("Cancel", role: .cancel) { }
             }
             .photosPicker(isPresented: $showPhotoSelectionSheet, selection: $newImageSelection)
-            .onChange(of: newImageSelection) { newItem in
-                Task {
-                    do {
-                        if let data = try await newItem?.loadTransferable(type: Data.self) {
-                            if let uiImage = UIImage(data: data) {
-                                viewModel.uiImage.append(uiImage)
-                                updateImage()
-                            }
-                        }
-                    } catch {
-                        Logger.plantPal.error("\(#function) \(error.localizedDescription)")
-                    }
-                }
-            }
-            .onChange(of: imagePicker.imageSelection) { image in
-                Task {
-                    do {
-                        if let data = try await image?.loadTransferable(type: Data.self) {
-                            if let uiImage = UIImage(data: data) {
-                                viewModel.uiImage.append(uiImage)
-                                updateImage()
-                            }
-                        }
-                    } catch {
-                        Logger.plantPal.error("\(#function) \(error.localizedDescription)")
-                    }
-                }
-            }
+//            .onChange(of: newImageSelection) { newItem in
+//                viewModel.handleNewImageSelection(newItem: newItem)
+//            }
+//            .onChange(of: imagePicker.imageSelection) { image in
+//                viewModel.handleNewImageSelection(newItem: image)
+//            }
             .onChange(of: viewModel.date) { newDate in
                 if let id = UserDefaults.standard.getUUID(for: viewModel.name), !viewModel.name.isEmpty, viewModel.date != Date.now.stripTime() {
                     // TODO: Move this to viewModel
@@ -246,19 +185,26 @@ struct SucculentFormView: View {
         viewModel.amount = Int(item?.interval ?? 0)
     }
     
-    func updateImage() {
-        if let id = viewModel.id,
-           let selectedImage = myImages.first(where: {$0.id == id}) {
-            selectedImage.name = viewModel.name
-            selectedImage.image = viewModel.uiImage
-            if moc.hasChanges {
-                try? moc.save()
-            }
-            withAnimation {
-                viewModel.imagePageSliderIndex = viewModel.uiImage.count-1
-            }
-        }
+    func createItem(myImages: FetchedResults<Item>) {
+        viewModel.snoozeAlertIsDispayed.toggle()
+        
+        // Create plant
+        let newItem = Item(context: moc)
+        newItem.name = viewModel.name
+        newItem.id = UUID().uuidString
+        newItem.image = viewModel.uiImage
+        newItem.position = NSNumber(value: myImages.count)
+        newItem.timestamp = viewModel.date
+        newItem.interval = (viewModel.amount) as NSNumber
+        try? moc.save()
+        
+        grpcViewModel.createNewPlant(identifier: newItem.id ?? "69420", name: viewModel.name)
+        
+        UserDefaults.standard.hasGeneratedUUID(for: viewModel.name, with: newItem.id!)
     }
+    
+    
+
     
     @ViewBuilder func waterButton(width: CGFloat) -> some View {
         Button(action: {

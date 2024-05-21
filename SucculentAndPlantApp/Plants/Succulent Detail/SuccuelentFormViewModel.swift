@@ -8,6 +8,9 @@
 import UIKit
 import SwiftUI
 import PlantPalCore
+import CoreData
+import _PhotosUI_SwiftUI
+import os
 
 class SuccuelentFormViewModel: ObservableObject {
     @Published var name = ""
@@ -22,6 +25,8 @@ class SuccuelentFormViewModel: ObservableObject {
     @Published var amount = 0
     @Published var imagePageSliderIndex = 0
     
+    @Environment(\.managedObjectContext) var moc
+            
     let cameraHostingView = EmptyView()
         
     var id: String?
@@ -53,5 +58,57 @@ class SuccuelentFormViewModel: ObservableObject {
         id = myItem.imageID
         uiImage = myItem.uiImage
         isItem = true
+    }
+    
+    func updateItem(myImages: FetchedResults<Item>) -> Item {
+        snoozeAlertIsDispayed.toggle()
+        
+        // Create plant
+        let newItem = Item(context: moc)
+        newItem.name = name
+        newItem.id = UUID().uuidString
+        newItem.image = uiImage
+        newItem.position = NSNumber(value: myImages.count)
+        newItem.timestamp = date
+        newItem.interval = (amount) as NSNumber
+        try? moc.save()
+        
+        UserDefaults.standard.hasGeneratedUUID(for: name, with: newItem.id!)
+        return newItem
+    }
+    
+    func createItem(myImages: FetchedResults<Item>) {
+        if let selectedImage = myImages.first(where: { $0.id == id }) {
+            moc.delete(selectedImage)
+            try? moc.save()
+        }
+    }
+    
+    func handleNewImageSelection(newItem: PhotosPickerItem?) {
+        Task {
+            do {
+                if let data = try await newItem?.loadTransferable(type: Data.self) {
+                    if let uiImage = UIImage(data: data) {
+                        self.uiImage.append(uiImage)
+//                        updateImage(item: myImages.first(where: {$0.id == id}))
+                    }
+                }
+            } catch {
+                Logger.plantPal.error("\(#function) \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func updateImage(item: Item?) {
+        if let id, let selectedImage = item {
+            selectedImage.name = name
+            selectedImage.image = uiImage
+            if moc.hasChanges {
+                try? moc.save()
+            }
+            withAnimation {
+                imagePageSliderIndex = uiImage.count-1
+            }
+        }
     }
 }
