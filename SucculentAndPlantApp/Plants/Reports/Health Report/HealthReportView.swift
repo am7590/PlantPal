@@ -5,9 +5,15 @@ import PlantPalSharedUI
 import PlantPalCore
 
 struct HealthReportView: View {
-    @StateObject var viewModel: SuccuelentFormViewModel
-    @StateObject var grpcViewModel: GRPCViewModel
-    @StateObject private var healthDataViewModel: HealthDataViewModel
+    @ObservedObject var viewModel: SuccuelentFormViewModel
+    @ObservedObject var grpcViewModel: GRPCViewModel
+    @ObservedObject private var healthDataViewModel: HealthDataViewModel
+    
+    public init(viewModel: SuccuelentFormViewModel, grpcViewModel: GRPCViewModel, healthDataViewModel: HealthDataViewModel) {
+        self.viewModel = viewModel
+        self.grpcViewModel = grpcViewModel
+        self.healthDataViewModel = healthDataViewModel
+    }
 
     var body: some View {
         NavigationView {
@@ -36,4 +42,8 @@ struct HealthReportView: View {
         }
         .accentColor(Color(uiColor: .systemGreen))
     }
+}
+
+#Preview {
+    HealthReportView(viewModel: SuccuelentFormViewModel([], context: PersistenceController.shared.container.viewContext), grpcViewModel: GRPCViewModel(), healthDataViewModel: HealthDataViewModel())
 }

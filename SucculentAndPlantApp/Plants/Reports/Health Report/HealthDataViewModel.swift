@@ -15,11 +15,7 @@ class HealthDataViewModel: ObservableObject {
     @Published var similarImages = [String: [UIImage]]()
     @Published var loadState: ReportLoadState = .loading
 
-    private var healthDataService: HealthDataServiceProtocol
-
-    init(service: HealthDataServiceProtocol) {
-        self.healthDataService = service
-    }
+    private var healthDataService: HealthDataServiceProtocol = PlantHealthDataService()
     
     func fetchData(for plantName: String, id: String?, image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
@@ -37,15 +33,15 @@ class HealthDataViewModel: ObservableObject {
         ]
 
         healthDataService.fetchHealthData(requestBody: requestBody) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let response):
-                    self?.processSuccessfulFetch(response: response, plantName: plantName, plantId: id)
-                case .failure(let error):
-                    Logger.networking.error("Error fetching data: \(error)")
-                    self?.loadState = .failed
-                }
-            }
+//            DispatchQueue.main.async {
+//                switch result {
+//                case .success(let response):
+//                    self?.processSuccessfulFetch(response: response, plantName: plantName, plantId: id)
+//                case .failure(let error):
+//                    Logger.networking.error("Error fetching data: \(error)")
+//                    self?.loadState = .failed
+//                }
+//            }
         }
     }
 
