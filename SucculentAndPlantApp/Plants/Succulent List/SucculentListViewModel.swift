@@ -33,9 +33,9 @@ class SucculentListViewModel: ObservableObject {
         }
     }
     
-    func handleImageChange(_ newImage: [UIImage]?, viewModel: GRPCViewModel) {
+    func handleImageChange(_ newImage: [UIImage]?, viewModel: GRPCViewModel, context: NSManagedObjectContext) {
         if let newImage {
-            formState = .new(newImage, viewModel)
+            formState = .new(newImage, viewModel, context)
         }
     }
 }

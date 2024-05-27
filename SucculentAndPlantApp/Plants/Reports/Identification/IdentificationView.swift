@@ -43,7 +43,7 @@ struct IdentificationView: View {
 struct IdentificationView_Previews: PreviewProvider {
     static var previews: some View {
         let grpcViewModel = GRPCViewModel()
-        let plantFormViewModel = SuccuelentFormViewModel([])
+        let plantFormViewModel = SuccuelentFormViewModel([], context: PersistenceController.shared.container.viewContext)
         let mockService = MockPlantIdentificationService()
 
         let viewModel = IdentificationViewModel(grpcViewModel: grpcViewModel,

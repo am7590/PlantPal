@@ -21,7 +21,7 @@ extension SucculentListView {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     // Create an item
-                    viewModel.formState = .new([], GRPCViewModel())
+                    viewModel.formState = .new([], GRPCViewModel(), PersistenceController.shared.container.viewContext)
                 } label: {
                     Image(systemName: "plus.app")
                         .bold()
@@ -59,7 +59,7 @@ extension SucculentListView {
         }
     }
     
-    func handleDeepLinkingToItem(url: String, grpcViewModel: GRPCViewModel) {
+    func handleDeepLinkingToItem(url: String, grpcViewModel: GRPCViewModel, context: NSManagedObjectContext) {
         Logger.plantPal.debug("\(#function) Handling url: \(url)")
         print("url: \(url)")
         
@@ -69,7 +69,7 @@ extension SucculentListView {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
             if let foundItem = fetchedItems.first(where: { $0.nameText.trimmingCharacters(in: .whitespaces) == parsedURL || $0.nameText.trimmingCharacters(in: .whitespaces) == parsedURL.capitalized }) {
-                viewModel.formState = .edit(foundItem, grpcViewModel)                
+                viewModel.formState = .edit(foundItem, grpcViewModel, context)
             }
         })
     }

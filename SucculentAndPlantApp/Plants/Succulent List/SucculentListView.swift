@@ -76,7 +76,7 @@ struct SucculentListView: View {
                 }
                 .onReceive(pub) { obj in
                     if let userInfo = obj.object as? [String:String], let url = userInfo["url"] {
-                        handleDeepLinkingToItem(url: url, grpcViewModel: grpcViewModel)
+                        handleDeepLinkingToItem(url: url, grpcViewModel: grpcViewModel, context: PersistenceController.shared.container.viewContext)
                     }
                 }
                 .onReceive(NotificationCenter.default.publisher(for: NSNotification.foundCloudkitUUID)) { notification in
@@ -96,7 +96,7 @@ extension SucculentListView {
             let dropDelegate = MyDropDelegate(item: item, items: $items, draggedItem: draggedItem)
             
             Button {
-                viewModel.formState = .edit(item, grpcViewModel)
+                viewModel.formState = .edit(item, grpcViewModel, PersistenceController.shared.container.viewContext)
             } label: {
                 ZStack(alignment: .topLeading) {
                     Image(uiImage: item.uiImage.last ?? UIImage(systemName: "trash")!)
@@ -115,7 +115,7 @@ extension SucculentListView {
                 .rotationEffect(.degrees(viewModel.wiggle ? 2.5 : 0))
                 .animation(.easeInOut(duration: 0.14).repeat(while: viewModel.wiggle), value: viewModel.wiggle)
                 .onTapGesture {
-                    viewModel.formState = .edit(item, grpcViewModel)
+                    viewModel.formState = .edit(item, grpcViewModel, PersistenceController.shared.container.viewContext)
                 }
                 .onLongPressGesture(minimumDuration: 1) {
                     viewModel.wiggle.toggle()

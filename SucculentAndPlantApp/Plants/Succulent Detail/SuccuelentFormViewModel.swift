@@ -10,6 +10,7 @@ import SwiftUI
 import PlantPalCore
 import CoreData
 import os
+import _PhotosUI_SwiftUI
 
 class SuccuelentFormViewModel: ObservableObject {
     @Published var name = ""
@@ -31,40 +32,46 @@ class SuccuelentFormViewModel: ObservableObject {
     
     @State var newImageSelection: PhotosPickerItem?
     
-    @Environment(\.managedObjectContext) var moc
+    var moc: NSManagedObjectContext
     
     let cameraHostingView = EmptyView()
-        
+    
     var id: String?
-    
-    var updating: Bool { id != nil }
-    
-    var dateHidden: Bool {
-        date == Date.distantPast
-    }
-    
-    init(_ uiImage: [UIImage]) {
-        self.uiImage = uiImage
-    }
-
-    func setName(with name: String) {
-        self.name = name
-    }
-    
-    var incomplete: Bool {
-        name.isEmpty || uiImage.isEmpty
-    }
     
     var isItem = false
     
     var count = 0
     
-    init(_ myItem: Item) {
+    init(_ uiImage: [UIImage], context: NSManagedObjectContext) {
+        self.uiImage = uiImage
+        self.moc = context
+    }
+    
+    init(_ myItem: Item, context: NSManagedObjectContext) {
         name = myItem.nameText
         id = myItem.imageID
         uiImage = myItem.uiImage
+        self.moc = context
         isItem = true
     }
+    
+    var dateHidden: Bool {
+        date == Date.distantPast
+    }
+    
+    
+    var incomplete: Bool {
+        name.isEmpty || uiImage.isEmpty
+    }
+    
+    var updating: Bool { id != nil }
+
+    func setName(with name: String) {
+        self.name = name
+    }
+}
+    
+extension SuccuelentFormViewModel {
     
     func updateItem(myImages: FetchedResults<Item>) -> Item {
         snoozeAlertIsDispayed.toggle()
@@ -130,24 +137,4 @@ class SuccuelentFormViewModel: ObservableObject {
         
         return nil
     }
-    
-    
-//    func createItem(myImages: FetchedResults<Item>) {
-//        snoozeAlertIsDispayed.toggle()
-//        
-//        // Create plant
-//        let newItem = Item(context: moc)
-//        newItem.name = viewModel.name
-//        newItem.id = UUID().uuidString
-//        newItem.image = viewModel.uiImage
-//        newItem.position = NSNumber(value: myImages.count)
-//        newItem.timestamp = viewModel.date
-//        newItem.interval = (viewModel.amount) as NSNumber
-//        try? moc.save()
-//        
-//        grpcViewModel.createNewPlant(identifier: newItem.id ?? "69420", name: viewModel.name)
-//        
-//        UserDefaults.standard.hasGeneratedUUID(for: viewModel.name, with: newItem.id!)
-//    }
-    
 }

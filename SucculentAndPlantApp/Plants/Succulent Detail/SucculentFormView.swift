@@ -86,43 +86,42 @@ struct SucculentFormView: View {
             .navigationTitle(viewModel.updating ? "\(viewModel.name)" : "New Plant")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                
+//                CustomToolbar(viewModel: viewModel, grpcViewModel: grpcViewModel, myImages: myImages, dismiss: Void)
                 if viewModel.updating {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Menu {
-                            
-                            Button(role: .destructive) {
-                                viewModel.createItem(myImages: myImages)
-                                grpcViewModel.removePlantEntry(with: viewModel.id ?? "0")
-                                
-                                // I want to see on the server if 0 gets sent a lot
-                                grpcViewModel.removePlantEntry(with: viewModel.id ?? "0")
-                                
-                                dismiss()
-                            } label: {
-                                Label("Delete", systemImage: "trash")
-                            }
-                        } label: {
-                            Image(systemName: "ellipsis.circle")
-                                .tint(.primary)
-                        }
-                        
-                    }
-                } else {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Create") {
-                            viewModel.snoozeAlertIsDispayed.toggle()
-                            let newItem = viewModel.updateItem(myImages: myImages)
-                            grpcViewModel.createNewPlant(identifier: newItem.id ?? "69420", name: viewModel.name)
-                            dismiss()
-                            UserDefaults.standard.hasGeneratedUUID(for: viewModel.name, with: newItem.id!)
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .tint(Color(uiColor: .systemGreen))
-                        .disabled(viewModel.incomplete)
-                    }
-                }
-                
+                                    ToolbarItem(placement: .navigationBarTrailing) {
+                                        Menu {
+                                            
+                                            Button(role: .destructive) {
+                                                viewModel.createItem(myImages: myImages)
+                                                grpcViewModel.removePlantEntry(with: viewModel.id ?? "0")
+
+                                                // I want to see on the server if 0 gets sent a lot
+                                                grpcViewModel.removePlantEntry(with: viewModel.id ?? "0")
+
+                                                dismiss()
+                                            } label: {
+                                                Label("Delete", systemImage: "trash")
+                                            }
+                                        } label: {
+                                            Image(systemName: "ellipsis.circle")
+                                                .tint(.primary)
+                                        }
+                                        
+                                    }
+                                } else {
+                                    ToolbarItem(placement: .navigationBarTrailing) {
+                                        Button("Create") {
+                                            viewModel.snoozeAlertIsDispayed.toggle()
+                                            let newItem = viewModel.updateItem(myImages: myImages)
+                                            dismiss()
+                                            grpcViewModel.createNewPlant(identifier: newItem.id ?? "69420", name: viewModel.name)
+                                            UserDefaults.standard.hasGeneratedUUID(for: viewModel.name, with: newItem.id!)
+                                        }
+                                        .buttonStyle(.borderedProminent)
+                                        .tint(Color(uiColor: .systemGreen))
+                                        .disabled(viewModel.incomplete)
+                                    }
+                                }
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
                         dismiss()

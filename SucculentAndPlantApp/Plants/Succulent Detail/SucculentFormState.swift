@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import CoreData
 
 enum SucculentFormState: Identifiable, View {
-    case new([UIImage], GRPCViewModel) // Create a plant
-    case edit(Item, GRPCViewModel)     // Edit/Detail view
+    case new([UIImage], GRPCViewModel, NSManagedObjectContext) // Create a plant
+    case edit(Item, GRPCViewModel, NSManagedObjectContext)     // Edit/Detail view
     
     var id: String {
         switch self {
@@ -22,11 +23,11 @@ enum SucculentFormState: Identifiable, View {
     
     var body: some View {
         switch self {
-        case .new(let image, let viewModel):
-            return SucculentFormView(item: nil, viewModel: SuccuelentFormViewModel(image), grpcViewModel: viewModel)
+        case .new(let image, let viewModel, let context):
+            return SucculentFormView(item: nil, viewModel: SuccuelentFormViewModel(image, context: context), grpcViewModel: viewModel)
             
-        case .edit(let item, let viewModel):
-            return SucculentFormView(item: item, viewModel: SuccuelentFormViewModel(item), grpcViewModel: viewModel)
+        case .edit(let item, let viewModel, let context):
+            return SucculentFormView(item: item, viewModel: SuccuelentFormViewModel(item, context: context), grpcViewModel: viewModel)
         }
     }
 }
