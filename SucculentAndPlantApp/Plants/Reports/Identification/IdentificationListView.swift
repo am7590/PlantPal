@@ -33,7 +33,7 @@ struct IdentificationListView: View {
     // TODO: Can this be moved to the viewModel?
     private func handleSuggestionTap(_ suggestion: IdentificationSuggestion) {
         UserDefaults.standard.hasBeenIdentified(for: viewModel.plantFormViewModel.name, with: suggestion.name)
-//        viewModel.onDismiss
+        viewModel.loadState = .done
         viewModel.grpcViewModel.updateExistingPlant(with: viewModel.plantFormViewModel.id!, name: viewModel.plantFormViewModel.name, lastWatered: nil, lastHealthCheck: nil, lastIdentification: Int64(Date().timeIntervalSince1970), identifiedSpeciesName: suggestion.name, newHealthProbability: nil)
     }
 }

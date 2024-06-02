@@ -54,15 +54,11 @@ struct SucculentFormView: View {
                             }
 
                             if viewModel.isItem {
-                                //                                NavigationLink(navLinkValue, destination: IdentificationView(viewModel: viewModel, grpcViewModel: grpcViewModel))
-                                                         
-                                
                                 NavigationLink(viewModel.navLinkValue, destination:
-                                    EmptyView()
-//                                    IdentificationView(dismiss: dismiss, viewModel: IdentificationViewModel(grpcViewModel: grpcViewModel, plantFormViewModel: viewModel, identificationService: <#T##PlantIdentificationServiceProtocol#>))
-                                    .onDisappear {
-                                        refreshUserDefaults()
-                                    }
+                                    IdentificationView(viewModel: IdentificationViewModel(grpcViewModel: grpcViewModel, plantFormViewModel: viewModel, identificationService: PlantIdentificationService()))
+                                        .onDisappear {
+                                            refreshUserDefaults()
+                                        }
                                 )
                             }
                         }

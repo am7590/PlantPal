@@ -11,15 +11,19 @@ import PlantPalCore
 
 struct IdentificationView: View {
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var viewModel: IdentificationViewModel
+    @StateObject var viewModel: IdentificationViewModel
     
     init(viewModel: IdentificationViewModel) {
-        self.viewModel = viewModel
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
         VStack {
+//            Text("Current state: \(viewModel.loadState.hashValue)") // Debug: Show current state
+            
             switch viewModel.loadState {
+                
+            // loadState not updating view
             case .loading:
                 IdentificationSuggestionLoadingView()
             case .loaded:
@@ -30,12 +34,19 @@ struct IdentificationView: View {
                 }
             case .failed:
                 ErrorHandlingView(listType: .failedToLoad)
+            case .done:
+                EmptyView() // unused
             }
         }
         .onAppear {
             viewModel.fetchData()
         }
-        .navigationBarHidden(true)
+//        .navigationBarHidden(true)
+        .onChange(of: viewModel.loadState) { newState in
+            if newState == .done {
+                dismiss()
+            }
+        }
     }
 }
 
@@ -48,8 +59,7 @@ struct IdentificationView_Previews: PreviewProvider {
 
         let viewModel = IdentificationViewModel(grpcViewModel: grpcViewModel,
                                                 plantFormViewModel: plantFormViewModel,
-                                                identificationService: mockService,
-                                                onDismiss: { print("Dismissed") })
+                                                identificationService: mockService)
 
         let identificationListView = IdentificationListView(identificationData: IdentificationResponse(result: IdentificationResult(classification: IdentificationClassification(suggestions: [
             IdentificationSuggestion(id: "1", name: "Aloe Vera", probability: 0.98, similarImages: []),

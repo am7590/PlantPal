@@ -11,9 +11,9 @@ import PlantPalCore
 // TODO: Write tests with this mock data
 
 class MockPlantIdentificationService: PlantIdentificationServiceProtocol {
-    var identifyPlantHandler: (([String], String, @escaping (Result<IdentificationResponse, Error>) -> Void) -> Void)?
+    var identifyPlantHandler: (([UIImage], String, @escaping (Result<IdentificationResponse, Error>) -> Void) -> Void)?
 
-    func identifyPlant(images: [String], plantName: String, completion: @escaping (Result<IdentificationResponse, Error>) -> Void) {
+    func identifyPlant(images: [UIImage], plantName: String, completion: @escaping (Result<IdentificationResponse, Error>) -> Void) {
         if let handler = identifyPlantHandler {
             handler(images, plantName, completion)
         } else {
