@@ -32,6 +32,8 @@ struct HealthReportView: View {
                         }
                     case .failed:
                         ErrorHandlingView(listType: .failedToLoad)
+                    case .done:
+                        EmptyView()  // Unused
                     }
                 }
                 .navigationTitle("Health Report")
