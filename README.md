@@ -1,5 +1,22 @@
+## My plants screen
+<img src="testflight_images/my%20plants.webp" alt="My Plants" width="25%"/>
+
+# Bluetooth sensor integration
+<img src="testflight_images/sensor%20data.webp" alt="Sensor Data" width="25%"/>
+
+## Plant health screen
+<img src="testflight_images/health%20assessment.webp" alt="Health Assessment" width="25%"/>
+<img src="testflight_images/health%20trends.webp" alt="Health Trends" width="25%"/>
+
+### Fun animations
+<img src="testflight_images/plantpalgif.gif" alt="PlantPal GIF" width="25%"/>
+
+
+___
+
+
 # PlantPal iOS App
-Join the TestFlight: https://testflight.apple.com/join/NI5fZIlp
+Join the TestFlight: [https://testflight.apple.com/join/NI5fZIlp](https://testflight.apple.com/join/tDFcwZDt)
 
 ## Features
 - Remember to water your plants with scheduled push notifications
